@@ -7,10 +7,7 @@
   "margin-right": 0,
   "spacing": 2,
   "modules-left": [
-    "custom/virt-desktop-1",
-    "custom/virt-desktop-2",
-    "custom/virt-desktop-3",
-    "custom/spotify"
+    "hyprland/workspaces"
   ],
   "modules-center": [
     "custom/clock"
@@ -24,39 +21,15 @@
     "battery",
     "battery#bat2"
   ],
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1"
+  },
   "custom/clock": {
     "exec": "date +'%a  %d  %b  %Y  -  %H:%M:%S'",
     "interval": 1,
     "tooltip": false
-  },
-  "custom/spotify": {
-    "format": "{}  ",
-    "return-type": "json",
-    "max-length": 40,
-    "restart-interval": 5,
-    "on-click": "playerctl -p spotify play-pause",
-    "smooth-scrolling-threshold": 3,
-    "on-scroll-up": "playerctl -p spotify next",
-    "on-scroll-down": "playerctl -p spotify previous",
-    "exec": "/usr/bin/python3 /etc/xdg/waybar/mediaplayer.py --player spotify"
-  },
-  "custom/virt-desktop-1": {
-    "exec": "/etc/xdg/waybar/virt-desktop-checker.sh 1",
-    "on-click": "ydotool key 29:1 59:1 59:0 29:0",
-    "restart-interval": 5,
-    "return-type": "json"
-  },
-  "custom/virt-desktop-2": {
-    "exec": "/etc/xdg/waybar/virt-desktop-checker.sh 2",
-    "on-click": "ydotool key 29:1 60:1 60:0 29:0",
-    "restart-interval": 5,
-    "return-type": "json"
-  },
-  "custom/virt-desktop-3": {
-    "exec": "/etc/xdg/waybar/virt-desktop-checker.sh 3",
-    "on-click": "ydotool key 29:1 61:1 61:0 29:0",
-    "restart-interval": 5,
-    "return-type": "json"
   },
   "custom/power": {
     "exec": "/etc/xdg/waybar/power-usage.sh",
