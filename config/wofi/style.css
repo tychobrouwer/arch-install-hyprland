@@ -9,7 +9,7 @@ window {
     margin: 5px;
     border: none;
     color: #dddddd;
-    background-color: #B784B7;
+    background-color: #8e7ab5;
     border-radius: 10px;
 }
 
@@ -38,13 +38,13 @@ window {
 } 
 
 #entry:selected {
-    background-color: #B784B7;
+    background-color: #8e7ab5;
     border-radius: 8px;
     outline: none;
 }
 
 #entry:selected * {
-    background-color: #B784B7;
+    background-color: #8e7ab5;
     border-radius: 8px;
     outline: none;
 }
