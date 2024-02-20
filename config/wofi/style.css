@@ -16,14 +16,14 @@ window {
 #inner-box {
     margin: 5px;
     border: none;
-    background-color: #282a36;
+    background-color: transparent;
     border-radius: 10px;
 }
 
 #outer-box {
     margin: 15px;
     border: none;
-    background-color: #282a36;
+    background-color: transparent;
 }
 
 #scroll {
