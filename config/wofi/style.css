@@ -7,10 +7,11 @@ window {
 
 #input {
     margin: 5px;
-    border: none;
+    border: 1px solid #8e7ab5;
     color: #dddddd;
     background-color: #333333;
     border-radius: 10px;
+    box-shadow: none;
 }
 
 #inner-box {
