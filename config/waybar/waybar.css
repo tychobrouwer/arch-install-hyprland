@@ -22,7 +22,8 @@ window#waybar {
 #pulseaudio,
 #custom-spotify,
 #custom-power,
-#custom-clock {
+#custom-clock,
+#hyprland-workspaces {
   margin: 3px 5px;
   padding: 3px 0;
   font-weight: bold;

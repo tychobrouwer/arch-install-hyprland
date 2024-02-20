@@ -1,15 +1,15 @@
 window {
     margin: 0px;
-    background-color: rgba(36, 36, 36, 0.6);
+    background-color: #242424;
     border-radius: 10px;
-    border: 1px solid #bd93f9;
+    border: 1px solid #8e7ab5;
 }
 
 #input {
     margin: 5px;
     border: none;
     color: #dddddd;
-    background-color: #44475a;
+    background-color: #B784B7;
     border-radius: 10px;
 }
 
@@ -38,13 +38,13 @@ window {
 } 
 
 #entry:selected {
-    background-color: #44475a;
+    background-color: #B784B7;
     border-radius: 8px;
     outline: none;
 }
 
 #entry:selected * {
-    background-color: #44475a;
+    background-color: #B784B7;
     border-radius: 8px;
     outline: none;
 }
