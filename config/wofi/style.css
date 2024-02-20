@@ -1,7 +1,7 @@
 window {
     margin: 0px;
     background-color: #242424;
-    border-radius: 10px;
+    border-radius: 6px;
     border: 1px solid #8e7ab5;
 }
 
@@ -10,7 +10,7 @@ window {
     border: 1px solid #8e7ab5;
     color: #dddddd;
     background-color: #333333;
-    border-radius: 10px;
+    border-radius: 6px;
     box-shadow: none;
 }
 
@@ -18,7 +18,7 @@ window {
     margin: 5px;
     border: none;
     background-color: transparent;
-    border-radius: 10px;
+    border-radius: 6px;
 }
 
 #outer-box {
@@ -40,12 +40,12 @@ window {
 
 #entry:selected {
     background-color: #333333;
-    border-radius: 8px;
+    border-radius: 6px;
     outline: none;
 }
 
 #entry:selected * {
     background-color: #333333;
-    border-radius: 8px;
+    border-radius: 6px;
     outline: none;
 }
