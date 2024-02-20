@@ -8,7 +8,7 @@ window {
 #input {
     margin: 5px;
     border: none;
-    color: #FFFFFF;
+    color: #dddddd;
     background-color: #44475a;
     border-radius: 10px;
 }
@@ -34,7 +34,7 @@ window {
 #text {
     margin: 5px;
     border: none;
-    color: #bd93f9;
+    color: #dddddd;
 } 
 
 #entry:selected {
