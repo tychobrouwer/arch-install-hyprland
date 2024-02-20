@@ -1,6 +1,6 @@
 window {
     margin: 0px;
-    background-color: #242424;
+    background-color: rgba(36, 36, 36, 0.6);
     border-radius: 6px;
     border: 1px solid #8e7ab5;
 }
