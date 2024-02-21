@@ -1,5 +1,5 @@
 # Oh My Zsh configuration
-export ZSH="$HOME/Projects/oh-my-zsh"
+export ZSH="$HOME/git/oh-my-zsh"
 ZSH_THEME="candy"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
