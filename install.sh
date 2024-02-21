@@ -86,7 +86,7 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   stow --adopt -t "$HOME" .
   git reset --hard
   git pull
-  cd "$HOME"
+  cd "$HOME/git/arch-install-hyprland"
 fi
 
 # Install packages
