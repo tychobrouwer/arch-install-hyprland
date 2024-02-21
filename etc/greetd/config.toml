@@ -8,9 +8,13 @@ vt = 1
 
 # `agreety` is the bundled agetty/login-lookalike. You can replace `/bin/sh`
 # with whatever you want started, such as sway
-command = "Hyprland --config /etc/greetd/hyprland.conf"
+command = "Hyprland"
 
 # The user to run the session as. The privileges of this user must have depends
 # on the greeter. A graphical greeter may for example need the user to be
 # in the `video` group.
-user = "greeter"
+user = "me"
+
+[logging]
+terminal = "syslog"
+log_file = "/var/log/greetd.log"
