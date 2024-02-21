@@ -14,6 +14,7 @@ if pacman -Qs grub > /dev/null; then
   fi
 else
   # Set pacman hook for systemd-boot
+  sudo mkdir -p /etc/pacman.d/hooks
   sudo bash -c "cat <<EOF > /etc/pacman.d/hooks/95-systemd-boot.hook
 [Trigger]
 Type = Package
