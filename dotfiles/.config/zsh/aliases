@@ -7,7 +7,8 @@ alias rm='rm -i'
 alias mkdir='mkdir -p'
 alias ..='cd ..'
 
-alias clear='clear && echo && neofetch --config $HOME/.config/neofetch/config-short.conf --ascii_distro arch_small'
+alias neofetch_tiny='neofetch --disable packages resolution de wm wm_theme theme icons term term_font cpu gpu memory --ascii_distro arch_small --color_blocks off'
+alias clear='clear && echo && neofetch_tiny'
 
 alias tree='tree -CAhF -L 3 --dirsfirst'
 alias treed='tree -CAFd -L 3'
