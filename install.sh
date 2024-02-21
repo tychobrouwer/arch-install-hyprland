@@ -83,7 +83,7 @@ read -p "Configure dotfiles? (Y/n) " Yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   cd "$HOME/git/arch-install-hyprland/dotfiles" || exit
   stow --adopt -t "$HOME" .
-  git restore .
+  git reset --hard
   git pull
   cd "$HOME"
 fi

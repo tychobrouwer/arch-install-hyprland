@@ -2,6 +2,6 @@
 
 cd "$HOME/git/arch-install-hyprland/dotfiles" || exit
 stow --adopt -t "$HOME" .
-git restore .
+git reset --hard
 git pull
 cd "$HOME"
