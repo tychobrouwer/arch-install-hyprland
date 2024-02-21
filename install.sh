@@ -42,11 +42,11 @@ EOF"
   read -p "Enable IOMMU? [Y/n] " Yn
   if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
     if ! grep -q "intel_iommu=on" /boot/loader/entries/*linux-zen.conf; then
-      sudo sed '/^options/s/$/ intel_iommu=on/' /boot/loader/entries/*linux-zen.conf
+      sudo sed -i '/^options/s/$/ intel_iommu=on/' /boot/loader/entries/*linux-zen.conf
     fi
 
     if ! grep -q "iommu=pt" /boot/loader/entries/*linux-zen.conf; then
-      sudo sed '/^options/s/$/ iommu=pt/' /boot/loader/entries/*linux-zen.conf
+      sudo sed -i '/^options/s/$/ iommu=pt/' /boot/loader/entries/*linux-zen.conf
     fi
   fi
 
@@ -54,7 +54,7 @@ EOF"
   if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
     # Disable mitigations if not already disabled
     if ! grep -q "mitigations=off" /boot/loader/entries/*linux-zen.conf; then
-      sudo sed '/^options/s/$/ mitigations=off/' /boot/loader/entries/*linux-zen.conf
+      sudo sed -i '/^options/s/$/ mitigations=off/' /boot/loader/entries/*linux-zen.conf
     fi
   fi
 
@@ -62,12 +62,12 @@ EOF"
   if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
     # Set tsc to reliable if not already set
     if ! grep -q "tsc=reliable" /boot/loader/entries/*linux-zen.conf; then
-      sudo sed '/^options/s/$/ tsc=reliable/' /boot/loader/entries/*linux-zen.conf
+      sudo sed -i '/^options/s/$/ tsc=reliable/' /boot/loader/entries/*linux-zen.conf
     fi
 
     # Set clocksource to tsc if not already set
     if ! grep -q "clocksource=tsc" /boot/loader/entries/*linux-zen.conf; then
-      sudo sed '/^options/s/$/ clocksource=tsc/' /boot/loader/entries/*linux-zen.conf
+      sudo sed -i '/^options/s/$/ clocksource=tsc/' /boot/loader/entries/*linux-zen.conf
     fi
   fi
 fi
