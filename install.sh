@@ -87,7 +87,7 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   stow --adopt -t "$HOME" .
 
   # Copy files to /etc
-  cp -r $HOME/git/arch-install-hyprland/etc/* /etc
+  sudo cp -r $HOME/git/arch-install-hyprland/etc/* /etc
 
   # Reset to master branch 
   git reset --hard
@@ -167,3 +167,5 @@ fi
 # Start and enable ssh deamon
 sudo systemctl start sshd.service
 sudo systemctl enable sshd.service
+
+sudo systemctl enable greetd.service
