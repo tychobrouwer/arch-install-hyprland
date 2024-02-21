@@ -33,16 +33,16 @@ window#waybar {
   border-radius: 1px;
 }
 
-#workspaces button.active {
-  color: #242424;
-  background-color: #dddddd;
-}
-
 #workspaces button:hover {
   box-shadow: none;
   text-shadow: none;
   background: none;
   transition: none;
+}
+
+#workspaces button.active {
+  color: #242424;
+  background-color: #dddddd;
 }
 
 #pulseaudio.microphone {
