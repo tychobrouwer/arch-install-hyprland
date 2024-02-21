@@ -118,7 +118,7 @@ fi
 # Install paru
 read -p "Install paru? [Y/n] " Yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  if ! command -v paru &> /dev/null then
+  if ! command -v paru &> /dev/null; then
     git clone https://aur.archlinux.org/paru.git /tmp/paru
     cd /tmp/paru || exit
     makepkg -si
@@ -128,7 +128,7 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   fi
 fi
 
-if command -v paru &> /dev/null then
+if command -v paru &> /dev/null; then
   # Install AUR packages
   read -p "Install AUR packages? [Y/n] " Yn
   if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
@@ -137,7 +137,7 @@ if command -v paru &> /dev/null then
 fi
 
 # Configure zsh
-if command -v zsh &> /dev/null then
+if command -v zsh &> /dev/null; then
   ZSH="$HOME/git/oh-my-zsh" sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
   # Set zsh as default shell
