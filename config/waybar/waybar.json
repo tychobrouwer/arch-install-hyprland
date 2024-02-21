@@ -54,10 +54,10 @@
   },
   "network": {
     "tooltip": false,
-    "format-wifi": "{ifname} ({signalStrength}%) ",
-    "format-ethernet": "{ifname} ",
-    "format-linked": "{ifname} ",
-    "format-disconnected": "Disconnected ⚠"
+    "format-wifi": " {ifname} ({signalStrength}%)",
+    "format-ethernet": " {ifname}",
+    "format-linked": " {ifname}",
+    "format-disconnected": ""
   },
   "tray": {
     "icon-size": 18,
@@ -78,8 +78,8 @@
       "critical": 15
     },
     "format": "{capacity}% {icon}",
-    "format-charging": "{capacity}% ",
-    "format-plugged": "{capacity}% ",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
     "format-alt": "{time} {icon}",
     "tooltip": false,
     "interval": 1,
@@ -94,6 +94,7 @@
   "bluetooth": {
     "format": " {status}",
     "format-disabled": "",
+    "format-no-controller": "",	
     "format-connected": " {num_connections}",
     "tooltip": false
   },
