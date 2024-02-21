@@ -2,6 +2,8 @@ cliphist
 curl
 foot
 git
+greetd
+greetd-tuigreet
 htop
 hyprland
 hyprpaper

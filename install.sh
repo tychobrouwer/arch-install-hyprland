@@ -82,8 +82,15 @@ sudo sed -i '/SystemMaxUse/c\SystemMaxUse=1G' /etc/systemd/journald.conf
 # Configure dotfiles
 read -p "Configure dotfiles? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+  # Create links do dotfiles
   cd "$HOME/git/arch-install-hyprland/dotfiles" || exit
   stow --adopt -t "$HOME" .
+  
+  # Create links to etc files
+  cd "$HOME/git/arch-install-hyprland/etc" || exit
+  sudo stow --adopt -t /etc .
+
+  # Reset to master branch 
   git reset --hard
   git pull
   cd "$HOME/git/arch-install-hyprland"

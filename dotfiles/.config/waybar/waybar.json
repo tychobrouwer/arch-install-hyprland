@@ -43,7 +43,7 @@
     "tooltip": false
   },
   "custom/power": {
-    "exec": "$HOME/.config/scripts/power-usage.sh",
+    "exec": "$HOME/.scripts/power-usage.sh",
     "interval": 1,
     "return-type": "json"
   },
