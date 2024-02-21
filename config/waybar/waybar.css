@@ -21,8 +21,7 @@ window#waybar {
 #disk,
 #network,
 #bluetooth,
-#pulseaudio#input,
-#pulseaudio#output,
+#pulseaudio,
 #tray,
 #custom-spotify,
 #custom-power,
@@ -32,6 +31,10 @@ window#waybar {
   margin: 3px 5px;
   padding: 3px 0;
   border-radius: 1px;
+}
+
+#pulseaudio.microphone {
+  margin-left: 5px;
 }
 
 #custom-power.charging {
