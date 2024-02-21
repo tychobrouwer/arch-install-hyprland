@@ -1,7 +1,9 @@
 #!/bin/bash
 
-cd ~/git/arch-install-hyprland
-stow --adopt -t $HOME/.config/ config
-git restore .
+# Install packages
 
-# Install liboft, otf-font-awesome, ttf-roboto-mono-nerd, foot, stow, hyprpaper
+read -p "Install pacakges? (Y/n) " yn
+
+if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+  sudo pacman -S --needed --noconfirm - < packages.txt
+fi

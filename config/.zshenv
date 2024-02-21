@@ -1,7 +1,7 @@
-source ~/.config/zsh/variables
-source ~/.config/zsh/functions
-source ~/.config/zsh/aliases
-source ~/.config/zsh/keybinds
+source $HOME/.config/zsh/variables
+source $HOME/.config/zsh/functions
+source $HOME/.config/zsh/aliases
+source $HOME/.config/zsh/keybinds
 
 # Show neofetch on shell startup
 echo ""

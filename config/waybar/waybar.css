@@ -33,6 +33,10 @@ window#waybar {
   border-radius: 1px;
 }
 
+#workspaces button {
+  color: #dddddd;
+}
+
 #workspaces button:hover {
   box-shadow: none;
   text-shadow: none;
