@@ -13,16 +13,16 @@
     "hyprland/window"
   ],
   "modules-right": [
-    "cpu",
-    "memory",
-    "custom/power",
-    "battery",
-    "backlight",
-    "network",
-    "bluetooth",
-    "pulseaudio#microphone",
+    "tray",
     "pulseaudio",
-    "tray"
+    "pulseaudio#microphone",
+    "bluetooth",
+    "network",
+    "backlight",
+    "battery",
+    "custom/power",
+    "memory",
+    "cpu"
   ],
   "hyprland/window": {
     "format": "{}"
@@ -33,7 +33,7 @@
     "on-scroll-down": "hyprctl dispatch workspace e-1"
   },
   "custom/clock": {
-    "exec": "date +'%a  %d  %b  %Y  -  %H:%M:%S'",
+    "exec": "date +'%d/%m/%Y    %H:%M:%S'",
     "interval": 1,
     "tooltip": false
   },
