@@ -36,7 +36,7 @@
     }
   },
   "custom/clock": {
-    "exec": "date +'%d/%m/%Y    %H:%M:%S'",
+    "exec": "date +'%d/%m/%Y  %H:%M:%S'",
     "interval": 1,
     "tooltip": false
   },
@@ -97,13 +97,14 @@
   "bluetooth": {
     "format": " {status}",
     "format-disabled": "",
-    "format-no-controller": "",	
+    "format-no-controller": "",
     "format-connected": " {num_connections}",
+
     "tooltip": false
   },
   "pulseaudio": {
     "tooltip": false,
-    "format": "{icon} {volume}%",
+    "format": "{icon}  {volume}%",
     "format-muted": " {format_source}",
     "format-icons": {
       "headphone": " ",

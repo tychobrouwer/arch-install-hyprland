@@ -49,6 +49,18 @@ window#waybar {
   margin-left: 5px;
 }
 
+#pulseaudio.muted {
+  color: #31363b;
+}
+
+#cpu {
+  margin-right: 10px;
+}
+
+#custom-clock {
+  margin-left: 10px;
+}
+
 #custom-power.charging {
   color: #9ece6a;
 }
@@ -71,8 +83,4 @@ window#waybar {
 
 #battery.warning:not(.charging) {
   color: #f7768e;
-}
-
-#pulseaudio.muted {
-  color: #31363b;
 }
