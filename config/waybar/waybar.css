@@ -38,9 +38,9 @@ window#waybar {
   background-color: #dddddd;
 }
 
-#workspaces button.focused {
+#workspaces button:hover {
   color: #dddddd;
-  background-color: transparent;
+  background-color: none;
 }
 
 #pulseaudio.microphone {
