@@ -39,8 +39,8 @@ window#waybar {
 }
 
 #workspaces button:hover {
-  color: #dddddd;
-  background-color: none;
+  box-shadow: inherit;
+  text-shadow: inherit;
 }
 
 #pulseaudio.microphone {
