@@ -1,3 +1,4 @@
+cliphist
 curl
 foot
 git
@@ -5,12 +6,18 @@ htop
 hyprland
 hyprpaper
 hyprpicker
+less
 liboft
 nano
 neofetch
+ntfs-3g
+openssh
 otf-font-awesome
+pacman-contrib
 pipewire
+playerctl
 polkit-kde-agent
+python-pip
 qt5-wayland
 qt6-wayland
 stow
@@ -24,3 +31,4 @@ wofi
 xdg-desktop-portal-hyprland
 xorg-xwayland
 xwaylandvideobridge
+zsh

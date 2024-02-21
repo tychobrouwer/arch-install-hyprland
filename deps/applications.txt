@@ -1,0 +1,15 @@
+docker
+firefox
+firewalld
+gimp
+inkscape
+man-pages-uk
+partitionmanager
+powertop
+qbittorrent
+steam
+timeshift
+tldr
+torbrowser-launcher
+ttf-jetbrains-mono
+wireguard-tools
