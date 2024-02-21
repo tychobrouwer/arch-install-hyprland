@@ -1,0 +1,18 @@
+# Aliases
+alias la='ls -lAFh --color=always --group-directories-first'
+alias ls='ls -AFh --color=always --group-directories-first'
+alias cp='cp -i' 
+alias mv='mv -i'
+alias rm='rm -i'
+alias mkdir='mkdir -p'
+alias ..='cd ..'
+
+alias clear='clear && echo && neofetch --config $HOME/.config/neofetch/config-short.conf --ascii_distro arch_small'
+
+alias tree='tree -CAhF -L 3 --dirsfirst'
+alias treed='tree -CAFd -L 3'
+
+alias myip="whatsmyip"
+
+alias pacman='sudo pacman'
+alias pacman-autoremove='sudo pacman -Rns $(pacman -Qtdq) && paru -Sccy --noconfirm'

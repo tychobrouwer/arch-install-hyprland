@@ -1,0 +1,16 @@
+# Set default libvirt URI to the system one
+export LIBVIRT_DEFAULT_URI='qemu:///system'
+
+# Set default editor (for example for virsh net-edit)
+export EDITOR=nano
+
+# Add flutter to path
+
+if [ -d "$HOME/DevTools/flutter/bin" ] ; then
+  export PATH="$PATH:$HOME/DevTools/flutter/bin"
+  export CHROME_EXECUTABLE=/usr/bin/google-chrome
+fi
+
+if [ -d "$HOME/.local/bin" ] ; then
+  export PATH="$PATH:$HOME/.local/bin"
+fi
