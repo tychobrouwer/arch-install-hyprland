@@ -12,6 +12,7 @@ window#waybar {
   /* background-color: #1b1e20; */
   background: rgba(36, 36, 36, 0.6);
   color: #dddddd;
+  font-weight: bold;
 }
 
 #cpu,
@@ -30,7 +31,6 @@ window#waybar {
 #hyprland-window {
   margin: 3px 5px;
   padding: 3px 0;
-  font-weight: bold;
   border-radius: 1px;
 }
 
