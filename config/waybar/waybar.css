@@ -2,7 +2,7 @@
   border: none;
   border-radius: 0px;
   /*font-family: VictorMono, Iosevka Nerd Font, Noto Sans CJK;*/
-  font-family: "Iosevka", "Font Awesome 6 Free", "Noto Sans CJK";
+  font-family: "Font Awesome 6 Free", "Iosevka", "Noto Sans CJK";
   font-size: 14px;
   font-style: normal;
   min-height: 0;
@@ -67,10 +67,6 @@ window#waybar {
 
 #custom-power:not(.charging) {
   color: #f7768e;
-}
-
-#battery {
-  margin-right: 10px;
 }
 
 #battery {

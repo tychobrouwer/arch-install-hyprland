@@ -36,7 +36,7 @@
     }
   },
   "custom/clock": {
-    "exec": "date +'%d/%m/%Y  %H:%M:%S'",
+    "exec": "date +'%d/%m/%Y %H:%M:%S'",
     "interval": 1,
     "tooltip": false
   },
