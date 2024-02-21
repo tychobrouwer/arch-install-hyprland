@@ -5,4 +5,4 @@ source $HOME/.config/zsh/keybinds
 
 # Show neofetch on shell startup
 echo ""
-neofetch --config $HOME/.config/neofetch/config-short.conf
+neofetch --enable packages resolution de wm wm_theme theme icons term term_font cpu gpu memory --ascii_distro arch_small
