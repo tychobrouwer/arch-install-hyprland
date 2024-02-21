@@ -111,7 +111,10 @@ fi
 if pacman -Qs docker > /dev/null; then
   sudo systemctl start docker.service
   sudo systemctl enable docker.service
-  sudo groupadd docker
+
+  if ! grep -q "docker" /etc/group; then
+    sudo groupadd docker
+  fi
   sudo usermod -aG docker "$USER"
 fi
 
@@ -138,10 +141,10 @@ fi
 
 # Configure zsh
 if command -v zsh &> /dev/null; then
-  ZSH="$HOME/git/oh-my-zsh" sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  ZSH="$HOME/git/oh-my-zsh" sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc --skip-chsh
 
   # Set zsh as default shell
-  chsh -s "$(command -v zsh)"
+  sudo chsh -s "$(command -v zsh)" "$USER"
 fi
 
 # Generate SSH key
