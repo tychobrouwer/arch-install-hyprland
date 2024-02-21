@@ -85,7 +85,7 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   # Create links do dotfiles
   cd "$HOME/git/arch-install-hyprland/dotfiles" || exit
   stow --adopt -t "$HOME" .
-  
+
   # Create links to etc files
   cd "$HOME/git/arch-install-hyprland/etc" || exit
   sudo stow --adopt -t /etc .
@@ -148,6 +148,12 @@ fi
 
 # Configure zsh
 if command -v zsh &> /dev/null; then
+  # Remove oh-my-zsh repository if exists
+  if [[ -d "$HOME/git/oh-my-zsh" ]]; then
+    rm -rf "$HOME/git/oh-my-zsh"
+  fi
+
+  # Clone oh-my-zsh repository and install
   ZSH="$HOME/git/oh-my-zsh" sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc --skip-chsh
 
   # Set zsh as default shell
