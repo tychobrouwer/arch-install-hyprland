@@ -23,7 +23,8 @@ window#waybar {
 #custom-spotify,
 #custom-power,
 #custom-clock,
-#hyprland-workspaces {
+#hyprland-workspaces,
+#hyprland-window {
   margin: 3px 5px;
   padding: 3px 0;
   font-weight: bold;

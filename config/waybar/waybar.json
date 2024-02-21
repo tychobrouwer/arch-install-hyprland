@@ -1,26 +1,32 @@
 {
-  "position": "top",
   "layer": "top",
-  "margin-top": 0,
-  "margin-bottom": 0,
-  "margin-left": 0,
-  "margin-right": 0,
-  "spacing": 2,
+  "position": "top",
+  "mod": "dock",
+  "exclusive": true,
+  "passthrough": false,
+  "gtk-layer-shell": true,
   "modules-left": [
+    "custom/clock",
     "hyprland/workspaces"
   ],
   "modules-center": [
-    "custom/clock"
+    "hyprland/window"
   ],
   "modules-right": [
-    "pulseaudio",
     "cpu",
     "memory",
-    "disk",
     "custom/power",
     "battery",
-    "battery#bat2"
+    "backlight",
+    "network",
+    "bluetooth",
+    "pulseaudio#microphone",
+    "pulseaudio",
+    "tray"
   ],
+  "hyprland/window": {
+    "format": "{}"
+},
   "hyprland/workspaces": {
     "format": "{icon}",
     "on-scroll-up": "hyprctl dispatch workspace e+1",
@@ -46,18 +52,25 @@
     "tooltip": false,
     "interval": 5
   },
-  "disk": {
-    "format": " {free}",
-    "interval": 1,
-    "tooltip": false,
-    "path": "/"
-  },
   "network": {
     "tooltip": false,
     "format-wifi": "{essid} ({signalStrength}%) ",
     "format-ethernet": "{ipaddr}/{cidr} ",
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "Disconnected ⚠"
+  },
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
+    "format-icons": ["󰃞", "󰃟", "󰃠"],
+    "on-scroll-up": "brightnessctl set 1%+",
+    "on-scroll-down": "brightnessctl set 1%-",
+    "min-length": 6,
+    "tooltip": false
   },
   "battery": {
     "states": {
@@ -78,17 +91,16 @@
       ""
     ]
   },
-  "battery#bat2": {
-    "bat": "BAT2"
+  "bluetooth": {
+    "format": " {status}",
+    "format-disabled": "",
+    "format-connected": " {num_connections}",
+    "tooltip": false
   },
   "pulseaudio": {
     "tooltip": false,
-    "format": "{volume}% {icon} {format_source}",
-    "format-bluetooth": "{volume}% {icon} {format_source}",
-    "format-bluetooth-muted": " {icon} {format_source}",
+    "format": "{volume}% {icon}",
     "format-muted": " {format_source}",
-    "format-source": "{volume}% ",
-    "format-source-muted": "",
     "format-icons": {
       "headphone": " ",
       "hands-free": " ",
@@ -102,5 +114,15 @@
         ""
       ]
     }
+  },
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": " Muted",
+    "on-click": "pamixer --default-source -t",
+    "on-scroll-up": "pamixer --default-source -i 5",
+    "on-scroll-down": "pamixer --default-source -d 5",
+    "scroll-step": 5,
+    "tooltip": false
   }
 }
