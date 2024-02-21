@@ -8,7 +8,7 @@ sudo sed -i '/MAKEFLAGS=/c\MAKEFLAGS="-j$(nproc)"' /etc/makepkg.conf
 
 if pacman -Qs grub > /dev/null; then
   # Grub not supported
-  read -p "Grub not supported, continue?" Yn
+  read -p "Grub not supported, continue?" yn
   if [[ $yn == "N" || $yn == "n" ]]; then
     exit 1
   fi
@@ -39,7 +39,7 @@ EOF"
   fi
 
   # Enable IOMMU if not already enabled
-  read -p "Enable IOMMU? [Y/n] " Yn
+  read -p "Enable IOMMU? [Y/n] " yn
   if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
     if ! grep -q "intel_iommu=on" /boot/loader/entries/*linux-zen.conf; then
       sudo sed -i '/^options/s/$/ intel_iommu=on/' /boot/loader/entries/*linux-zen.conf
@@ -50,7 +50,7 @@ EOF"
     fi
   fi
 
-  read -p "Disable mitigations? [Y/n] " Yn
+  read -p "Disable mitigations? [Y/n] " yn
   if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
     # Disable mitigations if not already disabled
     if ! grep -q "mitigations=off" /boot/loader/entries/*linux-zen.conf; then
@@ -58,7 +58,7 @@ EOF"
     fi
   fi
 
-  read -p "Enable tsc clock? [Y/n] " Yn
+  read -p "Enable tsc clock? [Y/n] " yn
   if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
     # Set tsc to reliable if not already set
     if ! grep -q "tsc=reliable" /boot/loader/entries/*linux-zen.conf; then
@@ -80,7 +80,7 @@ sudo sed -i '/DefaultDeviceTimeoutSec/c\DefaultDeviceTimeoutSec=10s' /etc/system
 sudo sed -i '/SystemMaxUse/c\SystemMaxUse=1G' /etc/systemd/journald.conf
 
 # Configure dotfiles
-read -p "Configure dotfiles? [Y/n] " Yn
+read -p "Configure dotfiles? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   cd "$HOME/git/arch-install-hyprland/dotfiles" || exit
   stow --adopt -t "$HOME" .
@@ -90,19 +90,19 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
 fi
 
 # Install packages
-read -p "Install essential pacakges? [Y/n] " Yn
+read -p "Install essential pacakges? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   sudo pacman -S --needed --noconfirm - < deps/packages.txt
 fi
 
 # Install NVIDIA drivers
-read -p "Install NVIDIA packages? [Y/n] " Yn
+read -p "Install NVIDIA packages? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   sudo pacman -S --needed --noconfirm - < deps/nvidia.txt
 fi
 
 # Install applications
-read -p "Install applications? [Y/n] " Yn
+read -p "Install applications? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   sudo pacman -S --needed --noconfirm - < deps/applications.txt
 fi
@@ -116,7 +116,7 @@ if pacman -Qs docker > /dev/null; then
 fi
 
 # Install paru
-read -p "Install paru? [Y/n] " Yn
+read -p "Install paru? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   if ! command -v paru &> /dev/null; then
     git clone https://aur.archlinux.org/paru.git /tmp/paru
@@ -130,7 +130,7 @@ fi
 
 if command -v paru &> /dev/null; then
   # Install AUR packages
-  read -p "Install AUR packages? [Y/n] " Yn
+  read -p "Install AUR packages? [Y/n] " yn
   if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
     paru -S --needed --noconfirm --skipreview - < deps/aur.txt
   fi
