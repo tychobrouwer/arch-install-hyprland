@@ -10,7 +10,7 @@
 
 window#waybar {
   /* background-color: #1b1e20; */
-  background: rgba(36, 36, 36, 0.6);
+  background: #242424;
   color: #dddddd;
   font-weight: bold;
 }
@@ -50,7 +50,7 @@ window#waybar {
 }
 
 #pulseaudio.muted {
-  color: #31363b;
+  color: #595959;
 }
 
 #cpu {

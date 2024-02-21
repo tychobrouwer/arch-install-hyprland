@@ -20,17 +20,19 @@
     "network",
     "backlight",
     "battery",
-    "custom/power",
-    "memory",
-    "cpu"
+    "cpu",
+    "memory"
   ],
   "hyprland/window": {
     "format": "{}"
   },
   "hyprland/workspaces": {
     "format": "{icon}",
-    "on-scroll-up": "hyprctl dispatch workspace e+1",
-    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "disable-scroll": true,
+    "all-outputs": true,
+    "active-only": false,
+    "onclick": "activate",
+    "sort-by-number": true,
     "persistent-workspaces": {
       "*": 3
     }
@@ -63,7 +65,7 @@
     "format-disconnected": ""
   },
   "tray": {
-    "icon-size": 18,
+    "icon-size": 16,
     "spacing": 10
   },
   "backlight": {
@@ -104,8 +106,9 @@
   },
   "pulseaudio": {
     "tooltip": false,
-    "format": "{icon}  {volume}%",
+    "format": "{icon} {volume}%",
     "format-muted": " {format_source}",
+    "scroll-step": 1,
     "format-icons": {
       "headphone": " ",
       "hands-free": " ",
