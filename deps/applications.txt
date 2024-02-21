@@ -2,6 +2,7 @@ docker
 firefox
 firewalld
 gimp
+hyprpicker
 inkscape
 man-pages-uk
 partitionmanager

@@ -5,9 +5,8 @@ git
 htop
 hyprland
 hyprpaper
-hyprpicker
 less
-liboft
+libotf
 nano
 neofetch
 ntfs-3g
