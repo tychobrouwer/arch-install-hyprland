@@ -79,21 +79,21 @@ window#waybar {
 }
 
 #custom-power.charging {
-  color: #9ece6a;
+  color: #50fa7b;
 }
 
 #custom-power:not(.charging) {
-  color: #f7768e;
+  color: #ff5555;
 }
 
 #battery {
-  color: #9ece6a;
+  color: #50fa7b;
 }
 
 #battery.charging {
-  color: #9ece6a;
+  color: #50fa7b;
 }
 
 #battery.warning:not(.charging) {
-  color: #f7768e;
+  color: #ff5555;
 }
