@@ -26,7 +26,8 @@ window#waybar {
 #custom-spotify,
 #custom-power,
 #clock,
-#hyprland-window {
+#hyprland-window,
+#keyboard-state {
   margin: 3px 5px;
   padding: 3px 0;
 }
@@ -67,6 +68,10 @@ window#waybar {
 
 #clock {
   margin-left: 15px;
+}
+
+#keyboard-state label.capslock.locked {
+  color: #595959;
 }
 
 #custom-power.charging {
