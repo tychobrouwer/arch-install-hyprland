@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONFIG_FILES="$HOME/.config/waybar/config.json $HOME/.config/waybar/style.css"
+CONFIG_FILES="$HOME/.config/waybar/waybar.json $HOME/.config/waybar/waybar.css"
 
 trap "killall waybar" EXIT
 
@@ -8,6 +8,6 @@ if [[ ! $(pidof waybar) ]]; then
   while true; do
     inotifywait -e create,modify $CONFIG_FILES
     killall waybar
-    waybar -c $HOME/.config/waybar/config -s $HOME/.config/waybar/style.css &
+    waybar -c $HOME/.config/waybar/waybar.json -s $HOME/.config/waybar/waybar.css &
   done
 fi
