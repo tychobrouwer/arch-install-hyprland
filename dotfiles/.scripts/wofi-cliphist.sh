@@ -1,5 +1,3 @@
-if [[ ! $(pidof wofi) ]]; then
-  cliphist list | wofi --dmenu | cliphist decode | wl-copy
-else
-  killall wofi
-fi
+#!/bin/bash
+
+out=$(cliphist list | wofi --dmenu --prompt 'Search...') && echo "$out" | cliphist decode | wl-copy
