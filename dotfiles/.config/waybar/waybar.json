@@ -24,10 +24,10 @@
     "memory"
   ],
   "hyprland/window": {
-    "format": ""
+    "format": "{}"
   },
   "hyprland/workspaces": {
-    "format": "{icon}",
+    "format": "",
     "disable-scroll": true,
     "all-outputs": true,
     "active-only": false,

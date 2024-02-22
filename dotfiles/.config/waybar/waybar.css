@@ -35,7 +35,6 @@ window#waybar {
 
 #workspaces button {
   color: #dddddd;
-  border-radius: 50%;
 }
 
 #workspaces button:hover {
