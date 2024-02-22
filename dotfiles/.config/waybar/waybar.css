@@ -26,15 +26,20 @@ window#waybar {
 #custom-spotify,
 #custom-power,
 #custom-clock,
-#hyprland-workspaces,
 #hyprland-window {
   margin: 3px 5px;
   padding: 3px 0;
-  border-radius: 1px;
+}
+
+#hyprland-workspaces {
+  margin: 3px 0px;
+  padding: 3px 0px;
 }
 
 #workspaces button {
-  color: #dddddd;
+  color: #26233a;
+  padding-left: 3px;
+  padding-right: 3px;
 }
 
 #workspaces button:hover {
@@ -42,11 +47,11 @@ window#waybar {
   text-shadow: none;
   background: none;
   transition: none;
+  color: #595959;
 }
 
 #workspaces button.active {
-  color: #191724;
-  background-color: #dddddd;
+  color: #dddddd;
 }
 
 #pulseaudio {
