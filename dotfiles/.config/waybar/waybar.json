@@ -107,10 +107,10 @@
   "pulseaudio#sink": {
     "tooltip": false,
     "format": "{icon}{volume}%",
-    "format-muted": " {volume}%",
+    "format-muted": " {volume}%",
     "on-click": "pamixer -t",
-    "on-scroll-up": "pamixer --default-source -i 5",
-    "on-scroll-down": "pamixer --default-source -d 5",
+    "on-scroll-up": "pamixer -i 5",
+    "on-scroll-down": "pamixer -d 5",
     "format-icons": {
       "headphone": " ",
       "hands-free": " ",
@@ -121,6 +121,7 @@
       "default": [
         " ",
         " ",
+        " ",
         " "
       ]
     }
