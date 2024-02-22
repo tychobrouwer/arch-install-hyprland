@@ -210,7 +210,7 @@ EOF"
 
   # Fix systemd messages in tuigreet
   if ! grep -q "multi-user.target" /etc/systemd/system/greetd.service; then
-    sudo sed -i '/^After=/ {s/$/ multi-user.target/; :a;n;ba' /etc/systemd/system/greetd.service
+    sudo sed -i '/^After=/ {s/$/ multi-user.target/}; :a;n;ba' /etc/systemd/system/greetd.service
   fi
 
   # Enable colors in hooks
