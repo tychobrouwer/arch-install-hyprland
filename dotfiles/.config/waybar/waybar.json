@@ -38,6 +38,12 @@
       "*": 5
     }
   },
+  "systemd-failed-units": {
+    "hide-on-ok": true,
+    "format": " {nr_failed}",
+    "system": true,
+    "user": false
+  },  
   "keyboard-state": {
     "capslock": true,
     "format": "{icon}",

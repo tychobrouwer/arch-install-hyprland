@@ -229,21 +229,21 @@ EOF"
 
   # Set vt colors
   sudo sed -ni -e '/COLOR_0=/!p' -e '$a\COLOR_0=191724' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_1=/!p' -e '$a\COLOR_1=dc322f' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_2=/!p' -e '$a\COLOR_2=859900' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_3=/!p' -e '$a\COLOR_3=b58900' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_4=/!p' -e '$a\COLOR_4=268bd2' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_5=/!p' -e '$a\COLOR_5=d33682' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_6=/!p' -e '$a\COLOR_6=2aa198' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_1=/!p' -e '$a\COLOR_1=ff5555' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_2=/!p' -e '$a\COLOR_2=50fa7b' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_3=/!p' -e '$a\COLOR_3=f1fa8c' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_4=/!p' -e '$a\COLOR_4=bd93f9' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_5=/!p' -e '$a\COLOR_5=ff79c6' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_6=/!p' -e '$a\COLOR_6=8be9fd' /etc/vconsole.conf
   sudo sed -ni -e '/COLOR_7=/!p' -e '$a\COLOR_7=dddddd' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_8=/!p' -e '$a\COLOR_8=002b36' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_9=/!p' -e '$a\COLOR_9=cb4b16' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_10=/!p' -e '$a\COLOR_10=586e75' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_11=/!p' -e '$a\COLOR_11=657b83' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_12=/!p' -e '$a\COLOR_12=839496' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_13=/!p' -e '$a\COLOR_13=6c71c4' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_14=/!p' -e '$a\COLOR_14=dddddd' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_15=/!p' -e '$a\COLOR_15=dddddd' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_8=/!p' -e '$a\COLOR_8=4d4d4d' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_9=/!p' -e '$a\COLOR_9=ff6e67' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_10=/!p' -e '$a\COLOR_10=5af78e' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_11=/!p' -e '$a\COLOR_11=f4f99d' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_12=/!p' -e '$a\COLOR_12=caa9fa' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_13=/!p' -e '$a\COLOR_13=ff92d0' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_14=/!p' -e '$a\COLOR_14=9aedfe' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_15=/!p' -e '$a\COLOR_15=e6e6e6' /etc/vconsole.conf
 
   # Rebuild initramfs
   sudo mkinitcpio -P
