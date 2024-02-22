@@ -37,6 +37,7 @@ EOF"
 
     sudo systemctl mask systemd-fsck-root.service
   fi
+  sudo sed -i 's/ )/)/' /etc/mkinitcpio.conf
 
   # Enable IOMMU if not already enabled
   read -p "Enable IOMMU? [Y/n] " yn
@@ -168,31 +169,46 @@ fi
 sudo systemctl start sshd.service
 sudo systemctl enable sshd.service
 
-# Start and enable greetd
-sudo systemctl enable greetd.service
+# Enable greetd and tuigreet
+read -p "Enable greetd with tuigreet? [Y/n] " yn
+if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+  # Start and enable greetd
+  sudo systemctl enable greetd.service
 
-# Fix systemd messages in tuigreet
-if ! grep -q "multi-user.target" ; then
-  sudo sed -i '/^After=/ {s/$/ multi-user.target/; :a;n;ba' /etc/systemd/system/greetd.service
+  # Fix systemd messages in tuigreet
+  if ! grep -q "multi-user.target" /etc/systemd/system/greetd.service; then
+    sudo sed -i '/^After=/ {s/$/ multi-user.target/; :a;n;ba' /etc/systemd/system/greetd.service
+  fi
+
+  # Enable colors in hooks
+  if grep -q "systemd" /etc/tuigreet.conf; then
+    if ! grep -q "sd-colors" /etc/tuigreet.conf; then
+      sudo sed -ri 's/HOOKS=\((.*)\)/HOOKS=(\1 sd-colors)/' /etc/tuigreet.conf
+    fi
+  else
+    if ! grep -q "colors" /etc/tuigreet.conf; then
+      sudo sed -ri 's/HOOKS=\((.*)\)/HOOKS=(\1 colors)/' /etc/tuigreet.conf
+    fi
+  fi
+
+  # Set vt colors
+  sudo sed -ni -e '/COLOR_0/!p' -e '/COLOR_0/a\COLOR_0=242424' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_1/!p' -e '/COLOR_1/a\COLOR_1=dc322f' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_2/!p' -e '/COLOR_2/a\COLOR_2=859900' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_3/!p' -e '/COLOR_3/a\COLOR_3=b58900' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_4/!p' -e '/COLOR_4/a\COLOR_4=268bd2' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_5/!p' -e '/COLOR_5/a\COLOR_5=d33682' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_6/!p' -e '/COLOR_6/a\COLOR_6=2aa198' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_7/!p' -e '/COLOR_7/a\COLOR_7=dddddd' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_8/!p' -e '/COLOR_8/a\COLOR_8=002b36' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_9/!p' -e '/COLOR_9/a\COLOR_9=cb4b16' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_10/!p' -e '/COLOR_10/a\COLOR_10=586e75' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_11/!p' -e '/COLOR_11/a\COLOR_11=657b83' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_12/!p' -e '/COLOR_12/a\COLOR_12=839496' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_13/!p' -e '/COLOR_13/a\COLOR_13=6c71c4' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_14/!p' -e '/COLOR_14/a\COLOR_14=dddddd' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_15/!p' -e '/COLOR_15/a\COLOR_15=dddddd' /etc/vconsole.conf
 fi
-
-# Configure vt colors
-# COLOR_0=242424
-# COLOR_1=dc322f
-# COLOR_2=859900
-# COLOR_3=b58900
-# COLOR_4=268bd2
-# COLOR_5=d33682
-# COLOR_6=2aa198
-# COLOR_7=dddddd
-# COLOR_8=002b36
-# COLOR_9=cb4b16
-# COLOR_10=586e75
-# COLOR_11=657b83
-# COLOR_12=839496
-# COLOR_13=6c71c4
-# COLOR_14=dddddd
-# COLOR_15=dddddd
 
 # NetworkManager configuration
 sudo systemctl enable NetworkManager.service
