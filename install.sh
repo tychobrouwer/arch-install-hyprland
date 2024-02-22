@@ -208,6 +208,9 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   sudo sed -ni -e '/COLOR_13/!p' -e '/COLOR_13/a\COLOR_13=6c71c4' /etc/vconsole.conf
   sudo sed -ni -e '/COLOR_14/!p' -e '/COLOR_14/a\COLOR_14=dddddd' /etc/vconsole.conf
   sudo sed -ni -e '/COLOR_15/!p' -e '/COLOR_15/a\COLOR_15=dddddd' /etc/vconsole.conf
+
+  # Rebuild initramfs
+  sudo mkinitcpio -P
 fi
 
 # NetworkManager configuration
