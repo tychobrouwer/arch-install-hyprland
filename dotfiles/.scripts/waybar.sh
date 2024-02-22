@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONFIG_FILES="$HOME/.config/waybar/config $HOME/.config/waybar/style.css"
+CONFIG_FILES="$HOME/.config/waybar/config.json $HOME/.config/waybar/style.css"
 
 if [[ ! $(pidof waybar) ]]; then
   while true; do

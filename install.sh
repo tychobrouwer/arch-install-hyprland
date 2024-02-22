@@ -100,6 +100,9 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   sudo fc-cache -f
 fi
 
+# Add user to input group
+sudo usermod -aG input "$USER"
+
 # Install packages
 read -p "Install essential pacakges? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then

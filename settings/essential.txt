@@ -9,6 +9,7 @@ greetd-tuigreet
 htop
 hyprland
 hyprpaper
+inotify-tools
 less
 libotf
 nano
