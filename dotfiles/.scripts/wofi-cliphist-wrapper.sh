@@ -3,5 +3,7 @@
 if [[ ! $(pgrep -f "/bin/bash $HOME/.scripts/wofi-cliphist.sh") ]]; then
   /bin/bash $HOME/.scripts/wofi-cliphist.sh
 else
-  pgrep -f "/bin/bash $HOME/.scripts/wofi-cliphist.sh" | xargs kill
+  killall wofi
+
+  cliphist list | cliphist decode | wl-copy
 fi
