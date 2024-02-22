@@ -8,9 +8,9 @@ jellyfin-media-player
 kopia-ui-bin
 mailspring-bin
 minecraft-launcher
+mkinitcpio-colors-git
 nordvpn-bin
 spotify
 teams-for-linux-bin
 ttf-ms-win10-cdn
 visual-studio-code-bin
-mkinitcpio-colors-git

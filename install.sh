@@ -269,7 +269,7 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
     application=$(basename "$desktop_file")
     local_desktop_file="$HOME/.local/share/applications/$application"
 
-    sudo cp "desktop_file" "$local_desktop_file"
+    sudo cp "$desktop_file" "$local_desktop_file"
     sudo chown "$USER:$USER" "$local_desktop_file"
     sed -ni -e '/NoDisplay/!p' -e '/NoDisplay/a\NoDisplay=true' "$local_desktop_file"
   done
@@ -286,7 +286,7 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
     application=$(basename "$desktop_file")
     local_desktop_file="$HOME/.config/autostart/$application"
 
-    sudo cp "desktop_file" "$local_desktop_file"
+    sudo cp "$desktop_file" "$local_desktop_file"
     sudo chown "$USER:$USER" "$local_desktop_file"
     sed -ni -e '/Hidden/!p' -e '/Hidden/a\Hidden=true' "$local_desktop_file"
   done
