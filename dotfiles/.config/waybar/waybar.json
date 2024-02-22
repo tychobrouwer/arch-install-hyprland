@@ -53,7 +53,7 @@
     "interval": 1
   },
   "cpu": {
-    "format": " {usage:2}%",
+    "format": " {usage}%",
     "tooltip": false,
     "interval": 5
   },
