@@ -2,6 +2,8 @@
 
 CONFIG_FILES="$HOME/.config/waybar/config.json $HOME/.config/waybar/style.css"
 
+trap "killall waybar" EXIT
+
 if [[ ! $(pidof waybar) ]]; then
   while true; do
     inotifywait -e create,modify $CONFIG_FILES
