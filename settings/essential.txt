@@ -14,7 +14,6 @@ nano
 neofetch
 ntfs-3g
 openssh
-otf-font-awesome
 pacman-contrib
 pamixer
 partitionmanager

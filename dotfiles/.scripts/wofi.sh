@@ -3,5 +3,5 @@
 if [[ ! $(pidof wofi) ]]; then
   wofi --show drun --prompt 'Search...' --conf $HOME/.config/wofi/config --style $HOME/.config/wofi/style.css
 else
-  pkill wofi
+  killall wofi
 fi

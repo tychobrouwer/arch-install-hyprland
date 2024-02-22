@@ -67,6 +67,7 @@ window#waybar {
 
 #custom-clock {
   margin-left: 10px;
+  margin-right: 10px;
 }
 
 #custom-power.charging {
