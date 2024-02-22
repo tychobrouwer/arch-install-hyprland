@@ -114,6 +114,16 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   sudo pacman -S --needed --noconfirm - < settings/applications.txt
 fi
 
+# Rate pacman mirrors
+read -p "Rate pacman mirrors? [Y/n] " yn
+if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+  if ! -f /etc/pacman.d/mirrorlist.backup; then
+    sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+  fi
+
+  sudo bash -c "curl -s 'https://archlinux.org/mirrorlist/?country=NL&country=GB&country=DE&protocol=https&use_mirror_status=on' | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 5 - > /etc/pacman.d/mirrorlist"
+fi
+
 # Enable Docker if installed
 read -p "Enable Docker? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
@@ -181,6 +191,14 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   # Start and enable greetd
   sudo systemctl enable greetd.service
 
+  sudo bash -c "cat <<EOF > /usr/share/wayland-sessions/hyprland.desktop
+[Desktop Entry]
+Name=Hyprland
+Comment=An intelligent dynamic tiled Wayland compositor
+Exec=Hyprland
+Type=Application
+EOF"
+
   # Fix systemd messages in tuigreet
   if ! grep -q "multi-user.target" /etc/systemd/system/greetd.service; then
     sudo sed -i '/^After=/ {s/$/ multi-user.target/; :a;n;ba' /etc/systemd/system/greetd.service
@@ -235,7 +253,7 @@ fi
 read -p "set NoDisplay desktop files? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   mkdir -p "$HOME/.local/share/applications"
-  
+
   for desktop_file in $(cat settings/nodisplay_desktop_files.txt); do
     [ ! -f "$desktop_file" ] && continue
 
@@ -279,4 +297,12 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   sudo firewall-cmd --permanent --add-service=dhcpv6-client
   sudo firewall-cmd --reload
 fi
+
+# Set applications to use wayland
+wayland_application_desktop_files=(
+  "/usr/share/applications/brave-browser.desktop"
+  "/usr/share/applications/Mailspring.desktop"
+  "$HOME/.config/autostart/Mailspring.desktop"
+)
+
 
