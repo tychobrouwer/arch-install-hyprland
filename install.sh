@@ -216,31 +216,31 @@ EOF"
   # Enable colors in hooks
   if grep -q "systemd" /etc/mkinitcpio.conf; then
     if ! grep -q "sd-colors" /etc/mkinitcpio.conf; then
-      sudo sed -ri 's/HOOKS=\((.*)\)/HOOKS=(\1 sd-colors)/' /etc/mkinitcpio.conf
+      sudo sed -i 's/system/system sd-colors/' /etc/mkinitcpio.conf
     fi
   else
     if ! grep -q "colors" /etc/mkinitcpio.conf; then
-      sudo sed -ri 's/HOOKS=\((.*)\)/HOOKS=(\1 colors)/' /etc/mkinitcpio.conf
+      sudo sed -i 's/udev/udev colors/' /etc/mkinitcpio.conf
     fi
   fi
 
   # Set vt colors
-  sudo sed -ni -e '/COLOR_0/!p' -e '/COLOR_0/a\COLOR_0=191724' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_1/!p' -e '/COLOR_1/a\COLOR_1=dc322f' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_2/!p' -e '/COLOR_2/a\COLOR_2=859900' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_3/!p' -e '/COLOR_3/a\COLOR_3=b58900' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_4/!p' -e '/COLOR_4/a\COLOR_4=268bd2' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_5/!p' -e '/COLOR_5/a\COLOR_5=d33682' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_6/!p' -e '/COLOR_6/a\COLOR_6=2aa198' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_7/!p' -e '/COLOR_7/a\COLOR_7=dddddd' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_8/!p' -e '/COLOR_8/a\COLOR_8=002b36' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_9/!p' -e '/COLOR_9/a\COLOR_9=cb4b16' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_10/!p' -e '/COLOR_10/a\COLOR_10=586e75' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_11/!p' -e '/COLOR_11/a\COLOR_11=657b83' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_12/!p' -e '/COLOR_12/a\COLOR_12=839496' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_13/!p' -e '/COLOR_13/a\COLOR_13=6c71c4' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_14/!p' -e '/COLOR_14/a\COLOR_14=dddddd' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_15/!p' -e '/COLOR_15/a\COLOR_15=dddddd' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_0=/!p' -e '/COLOR_0=/a\COLOR_0=191724' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_1=/!p' -e '/COLOR_1=/a\COLOR_1=dc322f' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_2=/!p' -e '/COLOR_2=/a\COLOR_2=859900' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_3=/!p' -e '/COLOR_3=/a\COLOR_3=b58900' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_4=/!p' -e '/COLOR_4=/a\COLOR_4=268bd2' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_5=/!p' -e '/COLOR_5=/a\COLOR_5=d33682' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_6=/!p' -e '/COLOR_6=/a\COLOR_6=2aa198' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_7=/!p' -e '/COLOR_7=/a\COLOR_7=dddddd' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_8=/!p' -e '/COLOR_8=/a\COLOR_8=002b36' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_9=/!p' -e '/COLOR_9=/a\COLOR_9=cb4b16' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_10=/!p' -e '/COLOR_10=/a\COLOR_10=586e75' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_11=/!p' -e '/COLOR_11=/a\COLOR_11=657b83' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_12=/!p' -e '/COLOR_12=/a\COLOR_12=839496' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_13=/!p' -e '/COLOR_13=/a\COLOR_13=6c71c4' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_14=/!p' -e '/COLOR_14=/a\COLOR_14=dddddd' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_15=/!p' -e '/COLOR_15=/a\COLOR_15=dddddd' /etc/vconsole.conf
 
   # Rebuild initramfs
   sudo mkinitcpio -P
