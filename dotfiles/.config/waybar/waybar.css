@@ -70,8 +70,12 @@ window#waybar {
   margin-left: 15px;
 }
 
-#keyboard-state label.capslock.unlocked {
+#keyboard-state label.capslock.locked {
   color: #595959;
+}
+
+#keyboard-state label.capslock.unlocked {
+  color: #dddddd;
 }
 
 #systemd-failed-units.degraded {
