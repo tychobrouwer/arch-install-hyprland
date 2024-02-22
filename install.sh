@@ -168,4 +168,37 @@ fi
 sudo systemctl start sshd.service
 sudo systemctl enable sshd.service
 
+# Start and enable greetd
 sudo systemctl enable greetd.service
+
+# Fix systemd messages in tuigreet
+if ! grep -q "multi-user.target" ; then
+  sudo sed -i '/^After=/ {s/$/ multi-user.target/; :a;n;ba' /etc/systemd/system/greetd.service
+fi
+
+# Configure vt colors
+# COLOR_0=242424
+# COLOR_1=dc322f
+# COLOR_2=859900
+# COLOR_3=b58900
+# COLOR_4=268bd2
+# COLOR_5=d33682
+# COLOR_6=2aa198
+# COLOR_7=dddddd
+# COLOR_8=002b36
+# COLOR_9=cb4b16
+# COLOR_10=586e75
+# COLOR_11=657b83
+# COLOR_12=839496
+# COLOR_13=6c71c4
+# COLOR_14=dddddd
+# COLOR_15=dddddd
+
+# NetworkManager configuration
+sudo systemctl enable NetworkManager.service
+sudo systemctl start NetworkManager.service
+sudo systemctl stop wpa_supplicant
+sudo systemctl disable wpa_supplicant
+sudo systemctl mask wpa_supplicant
+sudo systemctl start iwd
+sudo systemctl enable iwd
