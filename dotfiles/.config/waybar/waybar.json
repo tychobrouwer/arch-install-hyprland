@@ -14,7 +14,7 @@
   ],
   "modules-right": [
     "tray",
-    "pulseaudio#sink",
+    "pulseaudio",
     "pulseaudio#source",
     "bluetooth",
     "network",
@@ -59,10 +59,10 @@
   },
   "network": {
     "tooltip": false,
-    "format-wifi": " {ifname} ({signalStrength}%)",
-    "format-ethernet": " {ifname}",
-    "format-linked": " {ifname}",
-    "format-disconnected": ""
+    "format-wifi": " {ipaddr}",
+    "format-ethernet": " {ipaddr}",
+    "format-linked": " {ipaddr}",
+    "format-disconnected": ""
   },
   "tray": {
     "icon-size": 16,
@@ -104,7 +104,7 @@
 
     "tooltip": false
   },
-  "pulseaudio#sink": {
+  "pulseaudio": {
     "tooltip": false,
     "format": "{icon}{volume}%",
     "format-muted": " {volume}%",

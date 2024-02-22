@@ -259,7 +259,7 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
 fi
 
 # Hide applications in menu
-read -p "set NoDisplay desktop files? [Y/n] " yn
+read -p "Set NoDisplay desktop files? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   mkdir -p "$HOME/.local/share/applications"
 
@@ -276,7 +276,7 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
 fi
 
 # Disable startup services
-read -p "set Hidden xdg autostart? [Y/n] " yn
+read -p "Set Hidden xdg autostart? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   mkdir -p "$HOME/.config/autostart"
 

@@ -31,11 +31,6 @@ window#waybar {
   padding: 3px 0;
 }
 
-#hyprland-workspaces {
-  margin: 3px 0px;
-  padding: 3px 0px;
-}
-
 #workspaces button {
   color: #26233a;
   padding-left: 3px;

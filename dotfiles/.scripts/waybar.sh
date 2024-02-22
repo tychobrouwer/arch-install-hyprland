@@ -1,5 +1,11 @@
 #!/bin/bash
 
+CONFIG_FILES="$HOME/.config/waybar/config $HOME/.config/waybar/style.css"
+
 if [[ ! $(pidof waybar) ]]; then
-  waybar -c $HOME/.config/waybar/waybar.json -s $HOME/.config/waybar/waybar.css
+  while true; do
+    inotifywait -e create,modify $CONFIG_FILES
+    killall waybar
+    waybar -c $HOME/.config/waybar/config -s $HOME/.config/waybar/style.css &
+  done
 fi
