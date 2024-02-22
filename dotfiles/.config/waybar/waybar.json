@@ -34,7 +34,7 @@
     "onclick": "activate",
     "sort-by-number": true,
     "persistent-workspaces": {
-      "*": 3
+      "*": 5
     }
   },
   "custom/clock": {
