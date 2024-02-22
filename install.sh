@@ -232,9 +232,11 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
 fi
 
 # Hide applications in menu
-read -p "Hide applications in menu? [Y/n] " yn
+read -p "set NoDisplay desktop files? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  for desktop_file in $(cat settings/hidden-applications.txt); do
+  mkdir -p "$HOME/.local/share/applications"
+  
+  for desktop_file in $(cat settings/nodisplay_desktop_files.txt); do
     [ ! -f "$desktop_file" ] && continue
 
     application=$(basename "$desktop_file")
@@ -245,3 +247,36 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
     sed -ni -e '/NoDisplay/!p' -e '/NoDisplay/a\NoDisplay=true' "$local_desktop_file"
   done
 fi
+
+# Disable startup services
+read -p "set Hidden xdg autostart? [Y/n] " yn
+if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+  mkdir -p "$HOME/.config/autostart"
+
+  for desktop_file in $(cat settings/hidden_xdg_files.txt); do
+    [ ! -f "$desktop_file" ] && continue
+
+    application=$(basename "$desktop_file")
+    local_desktop_file="$HOME/.config/autostart/$application"
+
+    sudo cp "desktop_file" "$local_desktop_file"
+    sudo chown "$USER:$USER" "$local_desktop_file"
+    sed -ni -e '/Hidden/!p' -e '/Hidden/a\Hidden=true' "$local_desktop_file"
+  done
+fi
+
+# Set up firewall
+read -p "Set up firewall? [Y/n] " yn
+if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+  if ! pacman -Qs firewalld > /dev/null; then
+    sudo pacman -S --needed --noconfirm firewalld
+  fi
+
+  sudo systemctl start firewalld
+  sudo systemctl enable firewalld
+
+  sudo firewall-cmd --permanent --add-service=ssh
+  sudo firewall-cmd --permanent --add-service=dhcpv6-client
+  sudo firewall-cmd --reload
+fi
+
