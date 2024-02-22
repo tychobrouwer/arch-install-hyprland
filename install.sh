@@ -84,6 +84,7 @@ sudo sed -i '/SystemMaxUse/c\SystemMaxUse=1G' /etc/systemd/journald.conf
 read -p "Configure dotfiles? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   # Create links do dotfiles
+  tree -dfi --noreport $HOME/git/arch-install-hyprland/dotfiles | xargs -I {} mkdir -p "$HOME/{}"
   cd "$HOME/git/arch-install-hyprland/dotfiles" || exit
   stow --adopt -t "$HOME" .
 
@@ -94,6 +95,9 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   git reset --hard
   git pull
   cd "$HOME/git/arch-install-hyprland"
+
+  # Update fonts
+  sudo fc-cache -f
 fi
 
 # Install packages
@@ -122,6 +126,11 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   fi
 
   sudo bash -c "curl -s 'https://archlinux.org/mirrorlist/?country=NL&country=GB&country=DE&protocol=https&use_mirror_status=on' | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 5 - > /etc/pacman.d/mirrorlist"
+fi
+
+if command -v git &> /dev/null; then
+  git config --global user.name $(awk 'NR==1' "settings/git.txt")
+  git config --global user.email $(awk 'NR==2' "settings/git.txt")
 fi
 
 # Enable Docker if installed
@@ -297,12 +306,3 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   sudo firewall-cmd --permanent --add-service=dhcpv6-client
   sudo firewall-cmd --reload
 fi
-
-# Set applications to use wayland
-wayland_application_desktop_files=(
-  "/usr/share/applications/brave-browser.desktop"
-  "/usr/share/applications/Mailspring.desktop"
-  "$HOME/.config/autostart/Mailspring.desktop"
-)
-
-

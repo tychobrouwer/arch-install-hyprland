@@ -1,3 +1,4 @@
+brightnessctl
 cliphist
 curl
 foot
@@ -15,6 +16,7 @@ ntfs-3g
 openssh
 otf-font-awesome
 pacman-contrib
+pamixer
 partitionmanager
 pipewire
 playerctl
@@ -24,7 +26,7 @@ qt5-wayland
 qt6-wayland
 stow
 tree
-ttf-roboto-mono-nerd
+ttf-roboto-mono
 udiskie
 waybar
 wget

@@ -14,8 +14,8 @@
   ],
   "modules-right": [
     "tray",
-    "pulseaudio",
-    "pulseaudio#microphone",
+    "pulseaudio#sink",
+    "pulseaudio#source",
     "bluetooth",
     "network",
     "backlight",
@@ -104,11 +104,13 @@
 
     "tooltip": false
   },
-  "pulseaudio": {
+  "pulseaudio#sink": {
     "tooltip": false,
-    "format": "{icon} {volume}%",
-    "format-muted": " {format_source}",
-    "scroll-step": 1,
+    "format": "{icon}{volume}%",
+    "format-muted": " {volume}%",
+    "on-click": "pamixer -t",
+    "on-scroll-up": "pamixer --default-source -i 5",
+    "on-scroll-down": "pamixer --default-source -d 5",
     "format-icons": {
       "headphone": " ",
       "hands-free": " ",
@@ -117,20 +119,19 @@
       "portable": " ",
       "car": " ",
       "default": [
-        "",
-        "",
-        ""
+        " ",
+        " ",
+        " "
       ]
     }
   },
-  "pulseaudio#microphone": {
+  "pulseaudio#source": {
     "format": "{format_source}",
     "format-source": " {volume}%",
-    "format-source-muted": " Muted",
+    "format-source-muted": " {volume}%",
     "on-click": "pamixer --default-source -t",
     "on-scroll-up": "pamixer --default-source -i 5",
     "on-scroll-down": "pamixer --default-source -d 5",
-    "scroll-step": 5,
     "tooltip": false
   }
 }
