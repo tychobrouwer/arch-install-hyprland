@@ -71,11 +71,11 @@ window#waybar {
 }
 
 #keyboard-state label.capslock.locked {
-  color: #595959;
+  color: #dddddd;
 }
 
-#keyboard-state label.capslock.unlocked {
-  color: #dddddd;
+#keyboard-state label.capslock {
+  color: #595959;
 }
 
 #systemd-failed-units.degraded {
