@@ -1,3 +1,3 @@
 #!/bin/bash
 
-out=$(cliphist list | wofi --dmenu --prompt 'Search...') && echo "$out" | cliphist decode | wl-copy
+out=$(cliphist list | wofi --dmenu --prompt 'Search clipboard...') && echo "$out" | cliphist decode | wl-copy

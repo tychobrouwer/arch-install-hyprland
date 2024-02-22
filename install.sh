@@ -225,7 +225,7 @@ EOF"
   fi
 
   # Set vt colors
-  sudo sed -ni -e '/COLOR_0/!p' -e '/COLOR_0/a\COLOR_0=242424' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_0/!p' -e '/COLOR_0/a\COLOR_0=191724' /etc/vconsole.conf
   sudo sed -ni -e '/COLOR_1/!p' -e '/COLOR_1/a\COLOR_1=dc322f' /etc/vconsole.conf
   sudo sed -ni -e '/COLOR_2/!p' -e '/COLOR_2/a\COLOR_2=859900' /etc/vconsole.conf
   sudo sed -ni -e '/COLOR_3/!p' -e '/COLOR_3/a\COLOR_3=b58900' /etc/vconsole.conf

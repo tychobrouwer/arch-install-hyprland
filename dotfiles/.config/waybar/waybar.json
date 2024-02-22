@@ -24,7 +24,7 @@
     "memory"
   ],
   "hyprland/window": {
-    "format": "{}"
+    "format": ""
   },
   "hyprland/workspaces": {
     "format": "{icon}",
