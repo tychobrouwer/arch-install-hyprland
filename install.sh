@@ -214,13 +214,13 @@ EOF"
   fi
 
   # Enable colors in hooks
-  if grep -q "systemd" /etc/tuigreet.conf; then
-    if ! grep -q "sd-colors" /etc/tuigreet.conf; then
-      sudo sed -ri 's/HOOKS=\((.*)\)/HOOKS=(\1 sd-colors)/' /etc/tuigreet.conf
+  if grep -q "systemd" /etc/mkinitcpio.conf; then
+    if ! grep -q "sd-colors" /etc/mkinitcpio.conf; then
+      sudo sed -ri 's/HOOKS=\((.*)\)/HOOKS=(\1 sd-colors)/' /etc/mkinitcpio.conf
     fi
   else
-    if ! grep -q "colors" /etc/tuigreet.conf; then
-      sudo sed -ri 's/HOOKS=\((.*)\)/HOOKS=(\1 colors)/' /etc/tuigreet.conf
+    if ! grep -q "colors" /etc/mkinitcpio.conf; then
+      sudo sed -ri 's/HOOKS=\((.*)\)/HOOKS=(\1 colors)/' /etc/mkinitcpio.conf
     fi
   fi
 
