@@ -99,23 +99,29 @@ fi
 # Install packages
 read -p "Install essential pacakges? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  sudo pacman -S --needed --noconfirm - < deps/packages.txt
+  sudo pacman -S --needed --noconfirm - < settings/essential.txt
 fi
 
 # Install NVIDIA drivers
 read -p "Install NVIDIA packages? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  sudo pacman -S --needed --noconfirm - < deps/nvidia.txt
+  sudo pacman -S --needed --noconfirm - < settings/nvidia.txt
 fi
 
 # Install applications
 read -p "Install applications? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  sudo pacman -S --needed --noconfirm - < deps/applications.txt
+  sudo pacman -S --needed --noconfirm - < settings/applications.txt
 fi
 
 # Enable Docker if installed
-if pacman -Qs docker > /dev/null; then
+read -p "Enable Docker? [Y/n] " yn
+if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+  if ! pacman -Qs docker > /dev/null; then
+    # Install Docker
+    sudo pacman -S --needed --noconfirm docker
+  fi
+  
   sudo systemctl start docker.service
   sudo systemctl enable docker.service
 
@@ -138,11 +144,11 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   fi
 fi
 
+# Install AUR packages
 if command -v paru &> /dev/null; then
-  # Install AUR packages
   read -p "Install AUR packages? [Y/n] " yn
   if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-    paru -S --needed --noconfirm --skipreview - < deps/aur.txt
+    paru -S --needed --noconfirm --skipreview - < settings/aur.txt
   fi
 fi
 
@@ -213,11 +219,29 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   sudo mkinitcpio -P
 fi
 
-# NetworkManager configuration
-sudo systemctl enable NetworkManager.service
-sudo systemctl start NetworkManager.service
-sudo systemctl stop wpa_supplicant
-sudo systemctl disable wpa_supplicant
-sudo systemctl mask wpa_supplicant
-sudo systemctl start iwd
-sudo systemctl enable iwd
+read -p "Enable iwd with NetworkManager? [Y/n] " yn
+if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+  # NetworkManager configuration
+  sudo systemctl enable NetworkManager.service
+  sudo systemctl start NetworkManager.service
+  sudo systemctl stop wpa_supplicant
+  sudo systemctl disable wpa_supplicant
+  sudo systemctl mask wpa_supplicant
+  sudo systemctl start iwd
+  sudo systemctl enable iwd
+fi
+
+# Hide applications in menu
+read -p "Hide applications in menu? [Y/n] " yn
+if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+  for desktop_file in $(cat settings/hidden-applications.txt); do
+    [ ! -f "$desktop_file" ] && continue
+
+    application=$(basename "$desktop_file")
+    local_desktop_file="$HOME/.local/share/applications/$application"
+
+    sudo cp "desktop_file" "$local_desktop_file"
+    sudo chown "$USER:$USER" "$local_desktop_file"
+    sed -ni -e '/NoDisplay/!p' -e '/NoDisplay/a\NoDisplay=true' "$local_desktop_file"
+  done
+fi
