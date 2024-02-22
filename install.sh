@@ -121,7 +121,7 @@ fi
 # Rate pacman mirrors
 read -p "Rate pacman mirrors? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  if ! -f /etc/pacman.d/mirrorlist.backup; then
+  if [[ ! -f /etc/pacman.d/mirrorlist.backup ]]; then
     sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
   fi
 
