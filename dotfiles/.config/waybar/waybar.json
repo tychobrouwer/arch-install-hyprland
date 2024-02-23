@@ -5,6 +5,9 @@
   "exclusive": true,
   "passthrough": false,
   "gtk-layer-shell": true,
+  "margin-top": 6,
+  "margin-left": 6,
+  "margin-right": 6,
   "modules-left": [
     "clock",
     "hyprland/workspaces"
