@@ -48,7 +48,7 @@
     "on-click": "playerctl -p spotify play-pause",
     "on-scroll-up": "playerctl -p spotify next",
     "on-scroll-down": "playerctl -p spotify previous",
-    "exec": "/usr/bin/python3 $HOME/.scripts/mediaplayer.py --player spotify",
+    "exec": "/usr/bin/python3 $HOME/.scripts/mediaplayer.py --player spotifyd",
     "return-type": "json",
     "max-length": 30,
     "restart-interval": 5,
