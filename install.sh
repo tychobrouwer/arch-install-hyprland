@@ -163,7 +163,7 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
     cd /tmp/paru || exit
     makepkg -si
 
-    cd "$HOME"
+    cd "$SCRIPT_DIR"
     rm -rf /tmp/paru
   fi
 fi
@@ -174,17 +174,30 @@ if command -v paru &> /dev/null; then
   if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
     paru -S --needed --noconfirm --skipreview - < settings/aur.txt
   fi
+
+  # Install spotify-player with custom arguments
+  cd /tmp || exit
+
+  paru -G spotify-player
+  sed -i '/^cargo build/s/$/ --features notify,daemon/' /tmp/spotify-player/PKGBUILD
+
+  cd /tmp/spotify-player || exit
+  pacman -Bi --needed --noconfirm --skipreview .
+
+  cd "$SCRIPT_DIR"
+  rm -rf /tmp/spotify-player
 fi
 
 # Configure zsh
 if command -v zsh &> /dev/null; then
-  # Remove oh-my-zsh repository if exists
-  if [[ -d "$HOME/git/oh-my-zsh" ]]; then
-    rm -rf "$HOME/git/oh-my-zsh"
+  # Check if oh-my-zsh is installed
+  if [[ ! -d "$HOME/git/oh-my-zsh" ]]; then
+    # Clone oh-my-zsh repository and install
+    ZSH="$HOME/git/oh-my-zsh" sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc --skip-chsh
+  else
+    # Update oh-my-zsh
+    omz update
   fi
-
-  # Clone oh-my-zsh repository and install
-  ZSH="$HOME/git/oh-my-zsh" sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc --skip-chsh
 
   # Set zsh as default shell
   sudo chsh -s "$(command -v zsh)" "$USER"

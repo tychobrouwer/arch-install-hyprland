@@ -11,7 +11,7 @@
   "modules-left": [
     "clock",
     "hyprland/workspaces",
-    "custom/spotifyd"
+    "custom/spotify_player"
   ],
   "modules-center": [
     "hyprland/window"
@@ -43,12 +43,12 @@
       "*": 5
     }
   },
-  "custom/spotifyd": {
+  "custom/spotify_player": {
     "format": "{}",
-    "on-click": "playerctl -p spotifyd play-pause",
-    "on-scroll-up": "playerctl -p spotifyd next",
-    "on-scroll-down": "playerctl -p spotifyd previous",
-    "exec": "/usr/bin/python3 $HOME/.scripts/mediaplayer.py --player spotifyd",
+    "on-click": "playerctl -p spotify_player play-pause",
+    "on-scroll-up": "playerctl -p spotify_player next",
+    "on-scroll-down": "playerctl -p spotify_player previous",
+    "exec": "/usr/bin/python3 $HOME/.scripts/mediaplayer.py --player spotify_player",
     "return-type": "json",
     "max-length": 30,
     "restart-interval": 5,
