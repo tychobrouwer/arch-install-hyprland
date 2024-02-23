@@ -35,11 +35,23 @@
     "disable-scroll": true,
     "all-outputs": true,
     "active-only": false,
+    "show-special": false,
     "onclick": "activate",
     "sort-by-number": true,
     "persistent-workspaces": {
       "*": 5
     }
+  },
+  "custom/spotify": {
+    "format": " {}",
+    "on-click": "playerctl -p spotify play-pause",
+    "on-scroll-up": "playerctl -p spotify next",
+    "on-scroll-down": "playerctl -p spotify previous",
+    "exec": "/usr/bin/python3 $HOME/.scripts/mediaplayer.py --player spotify",
+    "return-type": "json",
+    "max-length": 30,
+    "restart-interval": 5,
+    "smooth-scrolling-threshold": 3
   },
   "systemd-failed-units": {
     "hide-on-ok": true,
