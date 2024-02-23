@@ -10,7 +10,8 @@
   "margin-right": 6,
   "modules-left": [
     "clock",
-    "hyprland/workspaces"
+    "hyprland/workspaces",
+    "custom/spotifyd"
   ],
   "modules-center": [
     "hyprland/window"
@@ -42,7 +43,7 @@
       "*": 5
     }
   },
-  "custom/spotify": {
+  "custom/spotifyd": {
     "format": " {}",
     "on-click": "playerctl -p spotify play-pause",
     "on-scroll-up": "playerctl -p spotify next",
