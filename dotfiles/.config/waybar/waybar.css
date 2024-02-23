@@ -31,7 +31,6 @@ window#waybar {
 #hyprland-window,
 #keyboard-state {
   margin: 3px 5px;
-  padding: 3px 0;
 }
 
 #workspaces button {
