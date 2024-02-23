@@ -134,8 +134,8 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
 fi
 
 if command -v git &> /dev/null; then
-  git config --global user.name $(awk 'NR==1' "settings/git.txt")
-  git config --global user.email $(awk 'NR==2' "settings/git.txt")
+  git config --global user.name "$(awk 'NR==1' "settings/git.txt")"
+  git config --global user.email "$(awk 'NR==2' "settings/git.txt")"
 fi
 
 # Enable Docker if installed
