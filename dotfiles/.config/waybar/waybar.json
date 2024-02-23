@@ -44,10 +44,10 @@
     }
   },
   "custom/spotifyd": {
-    "format": " {}",
-    "on-click": "playerctl -p spotify play-pause",
-    "on-scroll-up": "playerctl -p spotify next",
-    "on-scroll-down": "playerctl -p spotify previous",
+    "format": "{}",
+    "on-click": "playerctl -p spotifyd play-pause",
+    "on-scroll-up": "playerctl -p spotifyd next",
+    "on-scroll-down": "playerctl -p spotifyd previous",
     "exec": "/usr/bin/python3 $HOME/.scripts/mediaplayer.py --player spotifyd",
     "return-type": "json",
     "max-length": 30,
