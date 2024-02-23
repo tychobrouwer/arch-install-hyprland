@@ -13,8 +13,8 @@ window#waybar {
   background: rgba(25, 23, 36, 0.8);
   color: #dddddd;
   font-weight: bold;
-  border-radius: 6px;
-  border: 2px solid #26233a;
+  border-radius: calc(6px + 2px);
+  border: 2px solid #393553;
 }
 
 #cpu,
@@ -35,7 +35,7 @@ window#waybar {
 }
 
 #workspaces button {
-  color: #26233a;
+  color: #393553;
   padding-left: 3px;
   padding-right: 3px;
 }
