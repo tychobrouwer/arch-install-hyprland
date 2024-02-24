@@ -1,9 +1,0 @@
-[X-GNOME-Metatheme]
-Name=my-theme
-Type=X-GNOME-Metatheme
-Comment= My Theme
-Encoding=UTF-8
-GtkTheme=my-theme
-IconTheme=my-theme
-CursorTheme=Capitaine Cursors
-CursorSize=24
