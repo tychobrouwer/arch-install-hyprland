@@ -133,28 +133,6 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   sudo bash -c "curl -s 'https://archlinux.org/mirrorlist/?country=NL&country=GB&country=DE&protocol=https&use_mirror_status=on' | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 5 - > /etc/pacman.d/mirrorlist"
 fi
 
-if command -v git &> /dev/null; then
-  git config --global user.name "$(awk 'NR==1' 'settings/git.txt')"
-  git config --global user.email "$(awk 'NR==2' 'settings/git.txt')"
-fi
-
-# Enable Docker if installed
-read -p "Enable Docker? [Y/n] " yn
-if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  if ! pacman -Qs docker > /dev/null; then
-    # Install Docker
-    sudo pacman -S --needed --noconfirm docker
-  fi
-  
-  sudo systemctl start docker.service
-  sudo systemctl enable docker.service
-
-  if ! grep -q "docker" /etc/group; then
-    sudo groupadd docker
-  fi
-  sudo usermod -aG docker "$USER"
-fi
-
 # Install paru
 read -p "Install paru? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
@@ -188,6 +166,28 @@ if command -v paru &> /dev/null; then
   rm -rf /tmp/spotify-player
 
   spotify-player authenticate
+fi
+
+if command -v git &> /dev/null; then
+  git config --global user.name "$(awk 'NR==1' 'settings/git.txt')"
+  git config --global user.email "$(awk 'NR==2' 'settings/git.txt')"
+fi
+
+# Enable Docker if installed
+read -p "Enable Docker? [Y/n] " yn
+if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+  if ! pacman -Qs docker > /dev/null; then
+    # Install Docker
+    sudo pacman -S --needed --noconfirm docker
+  fi
+  
+  sudo systemctl start docker.service
+  sudo systemctl enable docker.service
+
+  if ! grep -q "docker" /etc/group; then
+    sudo groupadd docker
+  fi
+  sudo usermod -aG docker "$USER"
 fi
 
 # Configure zsh

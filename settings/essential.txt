@@ -11,7 +11,6 @@ htop
 hyprland
 hyprpaper
 inotify-tools
-kvantum
 less
 libotf
 nano
@@ -26,7 +25,6 @@ playerctl
 polkit-kde-agent
 python-pip
 qt5-wayland
-qt5ct
 qt6-wayland
 stow
 tree
