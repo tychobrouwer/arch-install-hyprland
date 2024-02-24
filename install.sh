@@ -168,9 +168,28 @@ if command -v paru &> /dev/null; then
   spotify-player authenticate
 fi
 
+# Set up git
 if command -v git &> /dev/null; then
   git config --global user.name "$(awk 'NR==1' 'settings/git.txt')"
   git config --global user.email "$(awk 'NR==2' 'settings/git.txt')"
+  git config --global init.defaultBranch main
+fi
+
+# Create theme based on Adwaita
+read -p "Build theme based on Adwaita? [Y/n] " yn
+if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+  # Clone Adwaita repository directory
+  mkdir -p $SCRIPT_DIR/../adwaita-custom
+  cd $SCRIPT_DIR/../adwaita-custom || exit
+  git init
+  git remote add -f origin https://gitlab.gnome.org/GNOME/gtk.git
+  git config core.sparseCheckout true
+  echo "gtk/theme/Adwaita" >> .git/info/sparse-checkout
+  gtk3_version=$(pacman -Qi gtk3 | sed -nr 's/Version.*:(.*)-.*$/\1/p')
+  git fetch origin refs/tags/$gtk3_version
+  git checkout $gtk3_version
+
+  
 fi
 
 # Enable Docker if installed

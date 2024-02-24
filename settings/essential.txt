@@ -1,5 +1,6 @@
 base-devel
 brightnessctl
+capitaine-cursors
 cliphist
 curl
 dunst
