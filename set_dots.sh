@@ -3,7 +3,7 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # Create links do dotfiles
-tree -dfi --noreport $SCRIPT_DIR/dotfiles | xargs -I {} mkdir -p "$HOME/{}"
+tree -dfi --noreport $SCRIPT_DIR/dotfiles | xargs -I {} mkdir -p "{}"
 cd "$SCRIPT_DIR/dotfiles" || exit
 stow --adopt -t "$HOME" .
 

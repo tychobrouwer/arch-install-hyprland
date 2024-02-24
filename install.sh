@@ -86,7 +86,7 @@ sudo sed -i '/SystemMaxUse/c\SystemMaxUse=1G' /etc/systemd/journald.conf
 read -p "Configure dotfiles? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   # Create links do dotfiles
-  tree -dfi --noreport $SCRIPT_DIR/dotfiles | xargs -I {} mkdir -p "$HOME/{}"
+  tree -dfi --noreport $SCRIPT_DIR/dotfiles | xargs -I {} mkdir -p "{}"
   cd "$SCRIPT_DIR/dotfiles" || exit
   stow --adopt -t "$HOME" .
 
