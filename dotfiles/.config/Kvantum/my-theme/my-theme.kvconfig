@@ -28,7 +28,7 @@ menubar_mouse_tracking=true
 toolbutton_style=0
 double_click=false
 translucent_windows=true
-blurring=true
+blurring=false
 popup_blurring=true
 vertical_spin_indicators=true
 spin_button_width=32
@@ -69,10 +69,10 @@ contrast=1.00
 dialog_button_layout=0
 drag_from_buttons=true
 intensity=1.00
-menu_blur_radius=14
+menu_blur_radius=4
 saturation=1.00
 shadowless_popup=false
-tooltip_blur_radius=14
+tooltip_blur_radius=4
 
 [GeneralColors]
 window.color=#191724
