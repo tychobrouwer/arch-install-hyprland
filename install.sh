@@ -186,6 +186,8 @@ if command -v paru &> /dev/null; then
 
   cd "$SCRIPT_DIR"
   rm -rf /tmp/spotify-player
+
+  spotify-player authenticate
 fi
 
 # Configure zsh

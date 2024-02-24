@@ -470,3 +470,8 @@
 #    set_stack_tag = "volume"
 #
 # vim: ft=cfg
+
+[spotify-player]
+    appname = spotify_player
+    format = "<b>Spotify Player</b>\n%s"
+    urgency = low

@@ -50,7 +50,7 @@
     "on-scroll-down": "playerctl -p spotify_player previous",
     "exec": "/usr/bin/python3 $HOME/.scripts/mediaplayer.py --player spotify_player",
     "return-type": "json",
-    "max-length": 30,
+    "max-length": 50,
     "restart-interval": 5,
     "smooth-scrolling-threshold": 3
   },
@@ -62,14 +62,10 @@
   },  
   "keyboard-state": {
     "capslock": true,
-    "format": "{icon}",
-    "format-icons": {
-      "locked": "",
-      "unlocked": ""
-    }
+    "format": ""
   },
   "clock": {
-    "format": "{:%d/%m/%Y %H:%M:%S}",
+    "format": "{:%d/%m/%Y %H:%M}",
     "interval": 1,
     "tooltip": false
   },
