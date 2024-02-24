@@ -14,7 +14,7 @@ window#waybar {
   color: #dddddd;
   font-weight: bold;
   border-radius: calc(6px + 2px);
-  border: 2px solid #393553;
+  border: 2px solid #4c466e;
 }
 
 #cpu,
@@ -34,7 +34,7 @@ window#waybar {
 }
 
 #workspaces button {
-  color: #393553;
+  color: #4c466e;
   padding-left: 3px;
   padding-right: 3px;
 }
