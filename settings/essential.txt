@@ -27,6 +27,7 @@ python-pip
 qt5-wayland
 qt6-wayland
 stow
+thunar
 tree
 ttf-roboto-mono
 udiskie
