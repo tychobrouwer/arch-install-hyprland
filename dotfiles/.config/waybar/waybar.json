@@ -45,9 +45,9 @@
   },
   "custom/spotify_player": {
     "format": "{}",
-    "on-click": "playerctl -p spotify_player play-pause",
-    "on-scroll-up": "playerctl -p spotify_player next",
-    "on-scroll-down": "playerctl -p spotify_player previous",
+    "on-click": "spotify_player playback play-pause",
+    "on-scroll-up": "spotify_player playback next",
+    "on-scroll-down": "spotify_player playback previous",
     "exec": "/usr/bin/python3 $HOME/.scripts/mediaplayer.py --player spotify_player",
     "return-type": "json",
     "max-length": 50,
