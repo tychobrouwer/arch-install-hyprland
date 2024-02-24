@@ -1,15 +1,15 @@
 window {
     margin: 0px;
-    background-color: rgba(25, 23, 36, 0.8);
+    background-color: rgba(30, 30, 46, 0.8);
     border-radius: calc(6px + 2px);
-    border: 2px solid #444063;
+    border: 2px solid #313244;
 }
 
 #input {
     margin: 5px;
-    border: 2px solid #444063;
-    color: #dddddd;
-    background-color: #595959;
+    border: 2px solid #313244;
+    color: #cdd6f4;
+    background-color: #1e1e2e;
     border-radius: calc(6px + 2px);
     box-shadow: none;
 }
@@ -34,17 +34,17 @@ window {
 #text {
     margin: 5px;
     border: none;
-    color: #dddddd;
+    color: #cdd6f4;
 } 
 
 #entry:selected {
-    background-color: #595959;
+    background-color: #313244;
     border-radius: calc(6px + 2px);
     outline: none;
 }
 
 #entry:selected * {
-    background-color: #595959;
+    background-color: #313244;
     border-radius: calc(6px + 2px);
     outline: none;
 }

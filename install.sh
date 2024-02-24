@@ -252,7 +252,7 @@ EOF"
   sudo sed -ni -e '/COLOR_4=/!p' -e '$a\COLOR_4=bd93f9' /etc/vconsole.conf
   sudo sed -ni -e '/COLOR_5=/!p' -e '$a\COLOR_5=ff79c6' /etc/vconsole.conf
   sudo sed -ni -e '/COLOR_6=/!p' -e '$a\COLOR_6=8be9fd' /etc/vconsole.conf
-  sudo sed -ni -e '/COLOR_7=/!p' -e '$a\COLOR_7=dddddd' /etc/vconsole.conf
+  sudo sed -ni -e '/COLOR_7=/!p' -e '$a\COLOR_7=cdd6f4' /etc/vconsole.conf
   sudo sed -ni -e '/COLOR_8=/!p' -e '$a\COLOR_8=4d4d4d' /etc/vconsole.conf
   sudo sed -ni -e '/COLOR_9=/!p' -e '$a\COLOR_9=ff6e67' /etc/vconsole.conf
   sudo sed -ni -e '/COLOR_10=/!p' -e '$a\COLOR_10=5af78e' /etc/vconsole.conf
