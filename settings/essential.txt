@@ -20,10 +20,10 @@ ntfs-3g
 openssh
 pacman-contrib
 pamixer
-partitionmanager
 pipewire
 playerctl
 polkit-kde-agent
+powertop
 python-pip
 qt5-wayland
 qt6-wayland
