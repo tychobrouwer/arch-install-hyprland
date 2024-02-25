@@ -17,3 +17,6 @@ alias myip="whatsmyip"
 
 alias pacman='sudo pacman'
 alias pacman-autoremove='sudo pacman -Rns $(pacman -Qtdq) && paru -Sccy --noconfirm'
+
+alias code='code --enable-features=UseOzonePlatform --ozone-platform=wayland'
+alias google-chrome-stable='google-chrome-stable --enable-features=UseOzonePlatform --ozone-platform=wayland'
