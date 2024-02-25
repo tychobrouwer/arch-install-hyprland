@@ -960,6 +960,8 @@ check:not(:indeterminate):not(:checked):active { -gtk-icon-transform: translate(
 
 radio:active, check:active { -gtk-icon-transform: scale(0, 1); }
 
+radio:checked, radio:indeterminate, check:checked, check:indeterminate { -gtk-icon-transform: unset; transition: 400ms; }
+
 menu menuitem radio:checked, menu menuitem radio:indeterminate, menu menuitem check:checked, menu menuitem check:indeterminate { transition: none; }
 
 treeview.view check:selected:focus, treeview.view check:selected, treeview.view radio:selected:focus, treeview.view radio:selected { color: #cdd6f4; }
