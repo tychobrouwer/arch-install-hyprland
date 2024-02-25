@@ -82,29 +82,6 @@ sudo sed -i '/DefaultDeviceTimeoutSec/c\DefaultDeviceTimeoutSec=10s' /etc/system
 # Set systemd journald limits
 sudo sed -i '/SystemMaxUse/c\SystemMaxUse=1G' /etc/systemd/journald.conf
 
-# Configure dotfiles
-read -p "Configure dotfiles? [Y/n] " yn
-if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  # Create links do dotfiles
-  tree -dfi --noreport $SCRIPT_DIR/dotfiles | xargs -I {} mkdir -p "{}"
-  cd "$SCRIPT_DIR/dotfiles" || exit
-  stow --adopt -t "$HOME" .
-
-  # Copy files to /etc
-  sudo cp -r $SCRIPT_DIR/etc/* /etc
-
-  # Reset to master branch 
-  git reset --hard
-  git pull
-  cd "$SCRIPT_DIR"
-
-  # Update fonts
-  sudo fc-cache -f
-fi
-
-# Add user to input group
-sudo usermod -aG input "$USER"
-
 # Install packages
 read -p "Install essential pacakges? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
@@ -167,6 +144,29 @@ if command -v paru &> /dev/null; then
 
   spotify-player authenticate
 fi
+
+# Configure dotfiles
+read -p "Configure dotfiles? [Y/n] " yn
+if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+  # Create links do dotfiles
+  tree -dfi --noreport $SCRIPT_DIR/dotfiles | xargs -I {} mkdir -p "{}"
+  cd "$SCRIPT_DIR/dotfiles" || exit
+  stow --adopt -t "$HOME" .
+
+  # Copy files to /etc
+  sudo cp -r $SCRIPT_DIR/etc/* /etc
+
+  # Reset to master branch 
+  git reset --hard
+  git pull
+  cd "$SCRIPT_DIR"
+
+  # Update fonts
+  sudo fc-cache -f
+fi
+
+# Add user to input group
+sudo usermod -aG input "$USER"
 
 # Set up git
 if command -v git &> /dev/null; then
