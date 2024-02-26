@@ -195,9 +195,9 @@ fi
 # Configure zsh
 if command -v zsh &> /dev/null; then
   # Check if oh-my-zsh is installed
-  if [[ ! -d "$HOME/git/oh-my-zsh" ]]; then
+  if [[ ! -d "$SCRIPT_DIR/../oh-my-zsh" ]]; then
     # Clone oh-my-zsh repository and install
-    ZSH="$HOME/git/oh-my-zsh" sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc --skip-chsh
+    ZSH="$SCRIPT_DIR/../oh-my-zsh" sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc --skip-chsh
   else
     # Update oh-my-zsh
     omz update
@@ -232,7 +232,7 @@ Exec=Hyprland
 Type=Application
 EOF"
 
-  # Fix systemd messages in tuigreet
+  # Fix systemd messages in tuigreet  <-- Not working
   if ! grep -q "multi-user.target" /usr/lib/systemd/system/greetd.service; then
     sudo sed -i '/^After=/ {s/$/ multi-user.target/}; :a;n;ba' /usr/lib/systemd/system/greetd.service
   fi
@@ -240,7 +240,7 @@ EOF"
   # Enable colors in hooks
   if grep -q "systemd" /etc/mkinitcpio.conf; then
     if ! grep -q "sd-colors" /etc/mkinitcpio.conf; then
-      sudo sed -i 's/system/system sd-colors/' /etc/mkinitcpio.conf
+      sudo sed -i 's/systemd/systemd sd-colors/' /etc/mkinitcpio.conf
     fi
   else
     if ! grep -q "colors" /etc/mkinitcpio.conf; then
