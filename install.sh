@@ -330,3 +330,10 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   sudo firewall-cmd --permanent --add-service=dhcpv6-client
   sudo firewall-cmd --reload
 fi
+
+read -p "Use root password for sudo? [Y/n] " yn
+if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+  if ! sudo grep -q "^Defaults rootpw$" /etc/sudoers; then
+    sudo bash -c "echo 'Defaults rootpw' >> /etc/sudoers"
+  fi
+fi
