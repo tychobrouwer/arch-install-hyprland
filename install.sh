@@ -137,7 +137,7 @@ if command -v paru &> /dev/null; then
   sed -i '/^cargo build/s/$/ --features notify,daemon/' /tmp/spotify-player/PKGBUILD
 
   cd /tmp/spotify-player || exit
-  pacman -Bi --needed --noconfirm --skipreview .
+  paru -Bi --needed --noconfirm --skipreview .
 
   cd "$SCRIPT_DIR"
   rm -rf /tmp/spotify-player
@@ -208,13 +208,15 @@ if command -v zsh &> /dev/null; then
 fi
 
 # Generate SSH key
-if [[ ! -f "$HOME/.ssh/id_ed25519" ]]; then
-  ssh-keygen -t ed25519 -a 100 -C "$USER@$(hostname)" -f "$HOME/.ssh/id_ed25519" -N ""
-fi
+if command -v ssh &> /dev/null; then
+  if [[ ! -f "$HOME/.ssh/id_ed25519" ]]; then
+    ssh-keygen -t ed25519 -a 100 -C "$USER@$(hostname)" -f "$HOME/.ssh/id_ed25519" -N ""
+  fi
 
-# Start and enable ssh deamon
-sudo systemctl start sshd.service
-sudo systemctl enable sshd.service
+  # Start and enable ssh deamon
+  sudo systemctl start sshd.service
+  sudo systemctl enable sshd.service
+fi
 
 # Enable greetd and tuigreet
 read -p "Enable greetd with tuigreet? [Y/n] " yn
