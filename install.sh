@@ -331,9 +331,35 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   sudo firewall-cmd --reload
 fi
 
+# Set up sudo to ask for root password instead of user password
 read -p "Use root password for sudo? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   if ! sudo grep -q "^Defaults rootpw$" /etc/sudoers; then
     sudo bash -c "echo 'Defaults rootpw' >> /etc/sudoers"
   fi
+fi
+
+# Clone repositories from configuration file
+read -p "Clone repositories from configuration file? [Y/n] " yn
+if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+  while IFS="," read -r repository directory; do
+    if [[ -z "$repository" ]]; then
+      continue
+    fi
+
+    cd "$SCRIPT_DIR/.." || exit
+
+    if [[ -n "$directory" ]]; then
+      mkdir -p "$directory"
+      cd "$directory" || exit
+    fi
+
+    if [[ -d ".git" ]]; then
+      git pull origin main || continue
+    else
+      git clone "$repository"
+    fi
+  done < settings/repositories.csv
+
+  cd "$SCRIPT_DIR"
 fi
