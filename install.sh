@@ -352,6 +352,15 @@ fi
 # Clone repositories from configuration file
 read -p "Clone repositories from configuration file? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+  # Print ssh pub key
+  if [[ -f "$HOME/.ssh/id_ed25519.pub" ]]; then
+    echo "Add you ssh public key to GitHub:"
+    cat "$HOME/.ssh/id_ed25519.pub"
+  fi
+
+  # Wait for enter
+  read -p "Press enter to continue"
+
   while IFS="," read -r repository directory; do
     if [[ -z "$repository" ]]; then
       continue
