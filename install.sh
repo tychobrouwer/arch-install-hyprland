@@ -142,7 +142,10 @@ if command -v paru &> /dev/null; then
   cd "$SCRIPT_DIR"
   rm -rf /tmp/spotify-player
 
-  spotify_player authenticate
+  read -p "Log Spotify player in? [Y/n] " yn
+  if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+    spotify_player authenticate
+  fi
 fi
 
 # Configure dotfiles
