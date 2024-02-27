@@ -134,7 +134,7 @@ if command -v paru &> /dev/null; then
   cd /tmp || exit
 
   paru -G spotify-player
-  sed -i '/^cargo build/s/$/ --features notify,daemon/' /tmp/spotify-player/PKGBUILD
+  sed -i '/cargo build/s/$/ --features notify,daemon/' /tmp/spotify-player/PKGBUILD
 
   cd /tmp/spotify-player || exit
   paru -Bi --needed --noconfirm --skipreview .
