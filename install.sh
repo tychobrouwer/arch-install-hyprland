@@ -358,6 +358,11 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   sudo firewall-cmd --reload
 fi
 
+# Set up NordVPN if installed
+if command -v nordvpn &> /dev/null; then
+  sudo usermod -aG nordvpn "$USER"
+fi
+
 # Set up sudo to ask for root password instead of user password
 read -p "Use root password for sudo? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
