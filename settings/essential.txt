@@ -12,6 +12,7 @@ htop
 hyprland
 hyprpaper
 inotify-tools
+iwd
 less
 libotf
 nano
