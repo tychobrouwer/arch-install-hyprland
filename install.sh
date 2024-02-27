@@ -148,6 +148,13 @@ if command -v paru &> /dev/null; then
   fi
 fi
 
+# Fix thunar icon
+if grep -q /usr/share/applications/thunar.desktop; then
+  sudo sed -i 's/org.xfce.thunar/Thunar/' /usr/share/applications/thunar.desktop
+  sudo sed -i 's/org.xfce.thunar/Thunar/' /usr/share/applications/thunar-bulk-rename.desktop
+  sudo sed -i 's/org.xfce.thunar/Thunar/' /usr/share/applications/thunar-settings.desktop
+fi
+
 # Configure dotfiles
 read -p "Configure dotfiles? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
