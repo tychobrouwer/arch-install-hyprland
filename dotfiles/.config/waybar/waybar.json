@@ -50,6 +50,8 @@
     "on-scroll-down": "spotify_player playback previous",
     "exec": "$HOME/.scripts/spotify_player_metadata.sh",
     "return-type": "json",
+    "exec-on-event": true,
+    "interval": 5,
     "max-length": 50,
     "smooth-scrolling-threshold": 3
   },
