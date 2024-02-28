@@ -48,10 +48,9 @@
     "on-click": "spotify_player playback play-pause",
     "on-scroll-up": "spotify_player playback next",
     "on-scroll-down": "spotify_player playback previous",
-    "exec": "/usr/bin/python3 $HOME/.scripts/mediaplayer.py --player spotify_player",
+    "exec": "$HOME/.scripts/spotify_player_metadata.sh",
     "return-type": "json",
     "max-length": 50,
-    "restart-interval": 5,
     "smooth-scrolling-threshold": 3
   },
   "systemd-failed-units": {
