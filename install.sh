@@ -300,34 +300,40 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   sudo systemctl enable iwd
 fi
 
-# Create wireguard configuration files
-read -p "Create wireguard configuration files? [Y/n] " yn
-if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  mkdir -p "$HOME/.config/wireguard"
+# # Create wireguard configuration files
+# read -p "Create wireguard configuration files? [Y/n] " yn
+# if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+#   mkdir -p "/etc/wireguard"
 
-  read -p "Wireguard endpoint: " wg_endpoint
-  read -p "Wireguard public key: " wg_public_key
+#   read -p "Wireguard endpoint: " wg_endpoint
+#   read -p "Wireguard public key: " wg_public_key
 
-  i=0
-  for wg_file_line in $(cat settings/wireguard_files.txt); do
-    if [ ! -f "$wg_file_line" ]; then
-      i=$((i+1))
-      continue
-    fi
+#   i=0
+#   for wg_file_line in $(cat settings/wireguard_files.txt); do
+#     if [ ! -f "$wg_file_line" ]; then
+#       i=$((i+1))
+#       continue
+#     fi
 
-    if grep -q "Endpoint" "$wg_file_line"; then
-      wg_file_line=Endpoint=$wg_endpoint:51820
-    elif grep -q "PublicKey" "$wg_file_line"; then
-      wg_file_line=PublicKey=$wg_public_key
-    elif grep -q "PrivateKey" "$wg_file_line"; then
-      read -p "Wireguard private key for config $i: " wg_private_key
+#     if grep -q "Endpoint" "$wg_file_line"; then
+#       wg_file_line=Endpoint=$wg_endpoint:51820
+#     elif grep -q "PublicKey" "$wg_file_line"; then
+#       wg_file_line=PublicKey=$wg_public_key
+#     elif grep -q "PrivateKey" "$wg_file_line"; then
+#       read -p "Wireguard private key for config $i: " wg_private_key
 
-      wg_file_line=PrivateKey=$wg_private_key
-    fi
+#       wg_file_line=PrivateKey=$wg_private_key
+#     fi
 
-    sudo bash -c "echo '$wg_file_line' >> '/etc/wireguard/wg$i.conf'"
-  done
-fi
+#     sudo bash -c "echo '$wg_file_line' >> '/etc/wireguard/wg$i.conf'"
+#   done
+# fi
+
+# # Create samba service files
+# read -p "Create samba service files? [Y/n] " yn
+# if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+  
+# fi
 
 # Enable ltp and configure
 read -p "Enable and configure ltp? [Y/n] " yn
