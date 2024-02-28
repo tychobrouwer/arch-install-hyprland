@@ -92,6 +92,12 @@ fi
 read -p "Install NVIDIA packages? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   sudo pacman -S --needed --noconfirm - < settings/nvidia.txt
+
+  sudo sed -i 's/MODULES=(btrfs/MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm btrfs/g' /etc/mkinitcpio.conf
+
+  if ! grep -q "nvidia-drm.modeset=1" /boot/loader/entries/*linux-zen.conf; then
+    sudo sed -i '/^options/s/$/ nvidia-drm.modeset=1/' /boot/loader/entries/*linux-zen.conf
+  fi
 fi
 
 # Install applications
@@ -290,6 +296,17 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   sudo systemctl mask wpa_supplicant
   sudo systemctl start iwd
   sudo systemctl enable iwd
+fi
+
+# Enable ltp and configure
+read -p "Enable and configure ltp? [Y/n] " yn
+if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+  sudo pacman -S --needed --noconfirm ltp
+
+  sudo systemctl enable ltp.service
+  sudo systemctl start ltp.service
+  sudo systemctl mask systemd-rfkill.service
+  sudo systemctl mask systemd-rfkill.socket
 fi
 
 # Hide applications in menu
