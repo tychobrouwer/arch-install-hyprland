@@ -322,7 +322,9 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
 
     sudo cp "$desktop_file" "$local_desktop_file"
     sudo chown "$USER:$USER" "$local_desktop_file"
-    sed -i '/^Exec=/s/$/ --enable-features=UseOzonePlatform --ozone-platform=wayland/' "$local_desktop_file"
+    if ! grep -q "--enable-features=UseOzonePlatform --ozone-platform=wayland" "$local_desktop_file"; then
+      sed -i '/^Exec=/s/$/ --enable-features=UseOzonePlatform --ozone-platform=wayland/g' "$local_desktop_file"
+    fi
   done
 fi
 
