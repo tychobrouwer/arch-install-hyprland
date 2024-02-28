@@ -45,9 +45,9 @@
   },
   "custom/spotify_player": {
     "format": "{}",
-    "on-click": "spotify_player playback play-pause",
-    "on-scroll-up": "spotify_player playback next",
-    "on-scroll-down": "spotify_player playback previous",
+    "on-click": "playerctl --player=spotify_player play-pause",
+    "on-scroll-up": "playerctl --player=spotify_player next",
+    "on-scroll-down": "playerctl --player=spotify_player previous",
     "exec": "$HOME/.scripts/spotify_player_metadata.sh",
     "return-type": "json",
     "exec-on-event": true,

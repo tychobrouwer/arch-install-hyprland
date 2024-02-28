@@ -27,6 +27,7 @@ polkit-kde-agent
 powertop
 python-pip
 qt5-wayland
+qt5ct
 qt6-wayland
 stow
 thunar

@@ -93,6 +93,8 @@ read -p "Install NVIDIA packages? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   sudo pacman -S --needed --noconfirm - < settings/nvidia.txt
 
+  paru -S --needed --noconfirm nvidia-vaapi-driver-git
+
   sudo sed -i 's/MODULES=(btrfs/MODULES=(nvidia nvidia_modeset nvidia_uvm nvidia_drm btrfs/g' /etc/mkinitcpio.conf
 
   if ! grep -q "nvidia-drm.modeset=1" /boot/loader/entries/*linux-zen.conf; then
