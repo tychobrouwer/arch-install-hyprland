@@ -182,7 +182,9 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
 fi
 
 # Add user to input group
-sudo usermod -aG input "$USER"
+if grep -q "input" /etc/group; then
+  sudo usermod -aG input "$USER"
+fi
 
 # Set up git
 if command -v git &> /dev/null; then
@@ -296,6 +298,35 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   sudo systemctl mask wpa_supplicant
   sudo systemctl start iwd
   sudo systemctl enable iwd
+fi
+
+# Create wireguard configuration files
+read -p "Create wireguard configuration files? [Y/n] " yn
+if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+  mkdir -p "$HOME/.config/wireguard"
+
+  read -p "Wireguard endpoint: " wg_endpoint
+  read -p "Wireguard public key: " wg_public_key
+
+  i=0
+  for wg_file_line in $(cat settings/wireguard_files.txt); do
+    if [ ! -f "$wg_file_line" ]; then
+      i=$((i+1))
+      continue
+    fi
+
+    if grep -q "Endpoint" "$wg_file_line"; then
+      wg_file_line=Endpoint=$wg_endpoint:51820
+    elif grep -q "PublicKey" "$wg_file_line"; then
+      wg_file_line=PublicKey=$wg_public_key
+    elif grep -q "PrivateKey" "$wg_file_line"; then
+      read -p "Wireguard private key for config $i: " wg_private_key
+
+      wg_file_line=PrivateKey=$wg_private_key
+    fi
+
+    sudo bash -c "echo '$wg_file_line' >> '/etc/wireguard/wg$i.conf'"
+  done
 fi
 
 # Enable ltp and configure
