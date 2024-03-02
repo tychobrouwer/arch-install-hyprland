@@ -169,7 +169,6 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   # Create links do dotfiles
   cd "$SCRIPT_DIR/dotfiles" || exit
   /bin/tree -dfia --noreport ./ | xargs -I {} mkdir -p "$HOME/{}"
-  cd "$SCRIPT_DIR/dotfiles" || exit
   stow --adopt -t "$HOME" .
 
   # Copy files to /etc
@@ -447,12 +446,10 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
       continue
     fi
 
-    cd "$SCRIPT_DIR/.." || exit
+    cd ..
 
-    if [[ -n "$directory" ]]; then
-      mkdir -p "$directory"
-      cd "$directory" || exit
-    fi
+    mkdir -p "$directory"
+    cd "$directory" || exit
 
     if [[ -d ".git" ]]; then
       git pull origin main || continue
