@@ -1,3 +1,1 @@
-/usr/share/applications/brave-browser.desktop
 /usr/share/applications/code.desktop
-/usr/share/applications/google-chrome.desktop

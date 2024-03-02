@@ -401,6 +401,10 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   done
 fi
 
+# Enable bluetooth service
+sudo systemctl enable bluetooth.service
+sudo systemctl start bluetooth.service
+
 # Set up firewall
 read -p "Set up firewall? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
