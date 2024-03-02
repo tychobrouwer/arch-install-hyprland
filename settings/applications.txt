@@ -13,3 +13,4 @@ tldr
 torbrowser-launcher
 ttf-jetbrains-mono
 wireguard-tools
+nm-connection-editor

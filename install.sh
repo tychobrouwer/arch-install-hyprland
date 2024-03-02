@@ -167,7 +167,8 @@ fi
 read -p "Configure dotfiles? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   # Create links do dotfiles
-  tree -dfia --noreport $SCRIPT_DIR/dotfiles | xargs -I {} mkdir -p "{}"
+  cd "$SCRIPT_DIR/dotfiles" || exit
+  /bin/tree -dfia --noreport ./ | xargs -I {} mkdir -p "$HOME/{}"
   cd "$SCRIPT_DIR/dotfiles" || exit
   stow --adopt -t "$HOME" .
 
