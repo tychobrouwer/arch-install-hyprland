@@ -1,4 +1,6 @@
 base-devel
+bluez
+bluez-utils
 brightnessctl
 capitaine-cursors
 cliphist
@@ -11,6 +13,7 @@ greetd-tuigreet
 htop
 hyprland
 hyprpaper
+inetutils
 inotify-tools
 iwd
 less
@@ -42,5 +45,3 @@ xdg-desktop-portal-hyprland
 xorg-xwayland
 xwaylandvideobridge
 zsh
-bluez
-bluez-utils
