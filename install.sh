@@ -460,7 +460,8 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
     else
       git clone "$repository"
     fi
+
+    cd "$SCRIPT_DIR"
   done < settings/repositories.csv
 
-  cd "$SCRIPT_DIR"
 fi
