@@ -458,7 +458,7 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
     if [[ -d ".git" ]]; then
       git pull origin main || continue
     else
-      git clone "$repository"
+      git clone "$repository" $(pwd)
     fi
 
     cd "$SCRIPT_DIR"
