@@ -13,3 +13,4 @@ nordvpn-bin
 teams-for-linux-bin
 ttf-ms-win10-cdn
 visual-studio-code-bin
+rofi-lbonn-wayland

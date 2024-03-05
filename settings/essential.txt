@@ -45,3 +45,4 @@ xdg-desktop-portal-hyprland
 xorg-xwayland
 xwaylandvideobridge
 zsh
+thunar-archive-plugin

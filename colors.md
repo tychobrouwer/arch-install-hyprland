@@ -35,6 +35,6 @@
 | Background Dark | Black | <svg width="20" height="20" fill="#11111b"><rect width="20" height="20" /></svg> | `#11111b` | `rgb(17, 17, 27)`    |
 | Background Highlighted  | Bright Black | <svg width="20" height="20" fill="#313244"><rect width="20" height="20" /></svg> | `#313244` | `rgb(49, 50, 68)`    |
 | Foreground/Text | White | <svg width="20" height="20" fill="#cdd6f4"><rect width="20" height="20" /></svg> | `#cdd6f4` | `rgb(205, 214, 244)`    |
-| Border      | Bright Black | <svg width="20" height="20" fill="#313244"><rect width="20" height="20" /></svg> | `#313244` | `rgb(49, 50, 68)`    |
-| Border Inactive | White | <svg width="20" height="20" fill="#cdd6f4"><rect width="20" height="20" /></svg> | `#cdd6f4` | `rgb(205, 214, 244)`    |
+| Border      | Bright Black | <svg width="20" height="20" fill="#cdd6f4"><rect width="20" height="20" /></svg> | `#cdd6f4` | `rgb(205, 214, 244)`    |
+| Border Inactive | White | <svg width="20" height="20" fill="#313244"><rect width="20" height="20" /></svg> | `#313244` | `rgb(49, 50, 68)`    |
 | Accent    | - | <svg width="20" height="20" fill="#3584e4"><rect width="20" height="20" /></svg> | `#3584e4` | `rgb(53, 132, 228)`    |
