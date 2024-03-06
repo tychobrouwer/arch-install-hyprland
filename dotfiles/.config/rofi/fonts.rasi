@@ -8,5 +8,5 @@
  **/
 
 * {
-    font: "FontAwesome 10", "RobotoMono 10", "Font Awesome 6 Brands 10";
+    font: "RobotoMono Modified 10";
 }

@@ -10,14 +10,18 @@ elif [[ "$connected" =~ "disabled" ]]; then
 	toggle="  Enable Wi-Fi"
 fi
 
+settings=" Settings"
+
 # Use rofi to select wifi network
-chosen_network=$(echo -e "$toggle\n$wifi_list" | uniq -u | rofi -dmenu -i -selected-row 1 -p "Wi-Fi SSID: " -theme ./theme.rasi)
+chosen_network=$(echo -e "$toggle\n$wifi_list\n$settings" | uniq -u | rofi -dmenu -i -selected-row 1 -p "Wi-Fi SSID: " -theme theme.rasi)
 
 # Get name of connection
 read -r chosen_id <<< "${chosen_network:3}"
 
 if [ "$chosen_network" = "" ]; then
 	exit
+elif [ "$chosen_network" = " Settings" ]; then
+	nm-connection-editor
 elif [ "$chosen_network" = "  Enable Wi-Fi" ]; then
 	nmcli radio wifi on
 elif [ "$chosen_network" = "  Disable Wi-Fi" ]; then
