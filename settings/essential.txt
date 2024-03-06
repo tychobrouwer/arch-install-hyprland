@@ -34,6 +34,7 @@ qt5ct
 qt6-wayland
 stow
 thunar
+thunar-archive-plugin
 tree
 ttf-roboto-mono
 udiskie
@@ -45,4 +46,3 @@ xdg-desktop-portal-hyprland
 xorg-xwayland
 xwaylandvideobridge
 zsh
-thunar-archive-plugin
