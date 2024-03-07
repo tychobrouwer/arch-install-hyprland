@@ -3,6 +3,7 @@ bluez
 bluez-utils
 brightnessctl
 capitaine-cursors
+cifs-utils
 cliphist
 curl
 dunst
@@ -33,6 +34,7 @@ qt5-wayland
 qt5ct
 qt6-wayland
 stow
+systemd-resolvconf
 thunar
 thunar-archive-plugin
 tree
