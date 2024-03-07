@@ -64,6 +64,14 @@ window#waybar {
   color: #cdd6f4;
 }
 
+#pulseaudio.sink.source-muted {
+  color: #cdd6f4;
+}
+
+#pulseaudio.source.source-muted {
+  color: #313244;
+}
+
 #custom-power-menu {
   margin-left: 10px;
   margin-right: 15px;
