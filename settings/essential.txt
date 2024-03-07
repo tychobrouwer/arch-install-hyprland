@@ -11,6 +11,8 @@ foot
 git
 greetd
 greetd-tuigreet
+gvfs
+gvfs-smb
 htop
 hyprland
 hyprpaper
