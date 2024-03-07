@@ -77,7 +77,7 @@
   },
   "custom/power-menu": {
     "format": "",
-    "on-click": "$HOME/.scripts/rofi-power-menu.sh"
+    "on-click": "sleep 0.2 && bash $HOME/.scripts/rofi-power-menu.sh &"
   },
   "memory": {
     "format": " {used:0.1f}GiB",
@@ -95,7 +95,7 @@
     "format-ethernet": " {ipaddr}",
     "format-linked": " {ipaddr}",
     "format-disconnected": "",
-    "on-click": "$HOME/.scripts/rofi-wifi-menu.sh"
+    "on-click": "sleep 0.2 && bash $HOME/.scripts/rofi-wifi-menu.sh &"
   },
   "tray": {
     "icon-size": 16,

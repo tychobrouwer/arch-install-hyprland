@@ -13,7 +13,7 @@ fi
 settings=" Settings"
 
 # Use rofi to select wifi network
-chosen_network=$(echo -e "$toggle\n$wifi_list\n$settings" | uniq -u | rofi -dmenu -click-to-exit -i -selected-row 1 -p "Wi-Fi SSID: " -theme $HOME/.config/rofi/wifi-menu/theme.rasi)
+chosen_network=$(echo -e "$toggle\n$wifi_list\n$settings" | uniq -u | rofi -dmenu -i -selected-row 1 -p "Wi-Fi SSID: " -theme $HOME/.config/rofi/wifi-menu/theme.rasi)
 
 # Get name of connection
 read -r chosen_id <<< "${chosen_network:3}"

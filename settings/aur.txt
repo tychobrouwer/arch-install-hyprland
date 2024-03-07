@@ -3,6 +3,7 @@ arduino-ide-bin
 brave-bin
 google-chrome
 hyprpicker
+hyprshot
 isoimagewriter
 jellyfin-media-player
 kopia-ui-bin
