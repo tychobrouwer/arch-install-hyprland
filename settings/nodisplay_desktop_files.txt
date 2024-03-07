@@ -11,11 +11,14 @@
 /usr/share/applications/nvtop.desktop
 /usr/share/applications/org.codeberg.dnkl.foot-server.desktop
 /usr/share/applications/org.codeberg.dnkl.footclient.desktop
+/usr/share/applications/org.gnome.FileRoller.desktop
 /usr/share/applications/org.kde.kuserfeedback-console.desktop
 /usr/share/applications/qv4l2.desktop
 /usr/share/applications/qvidcap.desktop
+/usr/share/applications/r.desktop
 /usr/share/applications/rofi-theme-selector.desktop
 /usr/share/applications/rofi.desktop
 /usr/share/applications/thunar-bulk-rename.desktop
 /usr/share/applications/thunar-settings.desktop
+/usr/share/applications/torbrowser-settings.desktop
 /usr/share/applications/torbrowser-settings.desktop
