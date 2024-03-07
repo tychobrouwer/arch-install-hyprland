@@ -89,7 +89,8 @@
     "format-wifi": " {ipaddr}",
     "format-ethernet": " {ipaddr}",
     "format-linked": " {ipaddr}",
-    "format-disconnected": ""
+    "format-disconnected": "",
+    "on-click": "$HOME/.scripts/rofi-wifi-menu.sh"
   },
   "tray": {
     "icon-size": 16,

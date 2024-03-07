@@ -41,7 +41,7 @@ rofi_cmd() {
 		-dmenu \
 		-p "$prompt - $mesg" \
 		-markup-rows \
-		-theme theme.rasi
+		-theme $HOME/.config/rofi/power-menu/theme.rasi
 }
 
 # Pass variables to rofi dmenu
@@ -59,7 +59,7 @@ confirm_cmd() {
 		-dmenu \
 		-p 'Confirmation' \
 		-mesg 'Are you Sure?' \
-		-theme theme.rasi
+		-theme $HOME/.config/rofi/power-menu/theme.rasi
 }
 
 # Ask for confirmation
