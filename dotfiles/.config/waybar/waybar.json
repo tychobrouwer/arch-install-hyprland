@@ -26,7 +26,8 @@
     "backlight",
     "battery",
     "cpu",
-    "memory"
+    "memory",
+    "custom/power-menu"
   ],
   "hyprland/window": {
     "format": "{}"
@@ -73,6 +74,10 @@
     "exec": "$HOME/.scripts/power-usage.sh",
     "interval": 5,
     "return-type": "json"
+  },
+  "custom/power-menu": {
+    "format": "",
+    "on-click": "$HOME/.scripts/rofi-power-menu.sh"
   },
   "memory": {
     "format": " {used:0.1f}GiB",

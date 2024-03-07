@@ -9,4 +9,5 @@
 ## Run
 rofi \
     -show drun \
+    -click-to-exit \
     -theme $HOME/.config/rofi/launcher/theme.rasi

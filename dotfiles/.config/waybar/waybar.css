@@ -27,6 +27,7 @@ window#waybar {
 #tray,
 #custom-spotify_player,
 #custom-power,
+#custom-power-menu,
 #clock,
 #hyprland-window,
 #keyboard-state {
@@ -63,7 +64,8 @@ window#waybar {
   color: #cdd6f4;
 }
 
-#memory {
+#custom-power-menu {
+  margin-left: 10px;
   margin-right: 15px;
 }
 
