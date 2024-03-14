@@ -50,3 +50,4 @@ xdg-desktop-portal-hyprland
 xorg-xwayland
 xwaylandvideobridge
 zsh
+blueman

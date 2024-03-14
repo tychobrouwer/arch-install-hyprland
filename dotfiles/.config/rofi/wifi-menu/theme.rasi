@@ -102,55 +102,23 @@ inputbar {
     border-color:                @border-colour;
     background-color:            transparent;
     text-color:                  @foreground-colour;
-    children:                    [ "prompt", "entry" ];
+    children:                    [ "textbox-prompt-colon", "prompt" ];
 }
-
 prompt {
     enabled:                     true;
-    background-color:            var(active);
+    background-color:            @active-background;
     text-color:                  @background;
-    padding:                     10px 4px 10px 13px;
+    padding:                     10px 13px;
     border-radius:               6px;
 }
 textbox-prompt-colon {
     enabled:                     true;
     expand:                      false;
-    str:                         "::";
-    background-color:            inherit;
-    text-color:                  inherit;
-}
-entry {
-    enabled:                     true;
-    background-color:            inherit;
+    str:                         "";
     padding:                     10px 13px;
-    text-color:                  inherit;
-    cursor:                      text;
-    placeholder:                 "search...";
-    placeholder-color:           inherit;
-}
-num-filtered-rows {
-    enabled:                     true;
-    expand:                      false;
-    background-color:            inherit;
-    text-color:                  inherit;
-}
-textbox-num-sep {
-    enabled:                     true;
-    expand:                      false;
-    str:                         "/";
-    background-color:            inherit;
-    text-color:                  inherit;
-}
-num-rows {
-    enabled:                     true;
-    expand:                      false;
-    background-color:            inherit;
-    text-color:                  inherit;
-}
-case-indicator {
-    enabled:                     true;
-    background-color:            inherit;
-    text-color:                  inherit;
+    border-radius:               6px;
+    background-color:            @urgent;
+    text-color:                  @background;
 }
 
 /*****----- Listview -----*****/
@@ -200,10 +168,6 @@ element normal.normal {
     background-color:            var(normal-background);
     text-color:                  var(normal-foreground);
 }
-element normal.urgent {
-    background-color:            var(urgent-background);
-    text-color:                  var(urgent-foreground);
-}
 element normal.active {
     background-color:            #2f88ff;
     text-color:                  var(active-foreground);
@@ -212,25 +176,9 @@ element selected.normal {
     background-color:            #2f88ff;
     text-color:                  var(normal-background);
 }
-element selected.urgent {
-    background-color:            var(selected-urgent-background);
-    text-color:                  var(selected-urgent-foreground);
-}
 element selected.active {
     background-color:            var(selected-active-background);
     text-color:                  var(selected-active-foreground);
-}
-element alternate.normal {
-    background-color:            var(alternate-normal-background);
-    text-color:                  var(alternate-normal-foreground);
-}
-element alternate.urgent {
-    background-color:            var(alternate-urgent-background);
-    text-color:                  var(alternate-urgent-foreground);
-}
-element alternate.active {
-    background-color:            var(alternate-active-background);
-    text-color:                  var(alternate-active-foreground);
 }
 element-icon {
     background-color:            transparent;

@@ -6,11 +6,11 @@
 ## Applets : Power Menu
 
 # Theme Elements
-prompt="`hostname`"
+# prompt="`hostname`"
 mesg="`uptime -p | sed -e 's/up //g'`"
 
-list_col='6'
-list_row='1'
+list_col='1'
+list_row='6'
 
 # Options
 layout=`cat theme.rasi | grep 'USE_ICON' | cut -d'=' -f2`
@@ -24,12 +24,12 @@ if [[ "$layout" == 'NO' ]]; then
 	yes=' Yes'
 	no=' No'
 else
-	option_1=""
-	option_2=""
-	option_3=""
-	option_4=""
-	option_5=""
-	option_6=""
+	option_1=" Lock"
+	option_2=" Logout"
+	option_3=" Suspend"
+	option_4=" Hibernate"
+	option_5=" Reboot"
+	option_6=" Shutdown"
 	yes=''
 	no=''
 fi
@@ -37,9 +37,8 @@ fi
 # Rofi CMD
 rofi_cmd() {	
 	rofi -theme-str "listview {columns: $list_col; lines: $list_row;}" \
-		-theme-str 'textbox-prompt-colon {str: "";}' \
 		-dmenu \
-		-p "$prompt - $mesg" \
+		-p "$mesg" \
 		-markup-rows \
 		-theme $HOME/.config/rofi/power-menu/theme.rasi
 }
