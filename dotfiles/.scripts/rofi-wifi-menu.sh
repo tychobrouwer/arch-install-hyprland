@@ -4,7 +4,7 @@
 wifi_list=$(nmcli --fields "SECURITY,SSID" device wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S/ /g" | sed "s/^--/ /g" | sed "s/  //g" | sed "/--/d")
 
 connected_network=$(iw dev wlan0 info | sed -n 's/ssid//p' | awk '{$1=$1};1')
-connected_network_line=$(echo $wifi_list | awk "/$connected_network/{print NR + 1}")
+connected_network_line=$(echo $wifi_list | awk "/$connected_network/{print NR}")
 
 connected=$(nmcli -fields WIFI g)
 if [[ "$connected" =~ "enabled" ]]; then
@@ -42,7 +42,7 @@ else
 		nmcli connection up id "$chosen_id" | grep "successfully" && notify-send "Connection Established" "$success_message"
 	else
 		if [[ "$chosen_network" =~ "" ]]; then
-			wifi_password=$(rofi -dmenu -click-to-exit -p "Password: " -theme $HOME/.config/rofi/wifi-menu/theme-password.rasi)
+			wifi_password=$(rofi -dmenu -click-to-exit -p "Password:" -theme $HOME/.config/rofi/wifi-menu/theme-password.rasi)
 		fi
 
 		nmcli device wifi connect "$chosen_id" password "$wifi_password" | grep "successfully" && notify-send "Connection Established" "$success_message"

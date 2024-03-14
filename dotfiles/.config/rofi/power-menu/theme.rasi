@@ -121,23 +121,6 @@ textbox-prompt-colon {
     text-color:                  @background;
 }
 
-/*****----- Message -----*****/
-message {
-    enabled:                     true;
-    margin:                      0px;
-    padding:                     10px;
-    border:                      0px solid;
-    border-radius:               50%;
-    background-color:            @active-background;
-    text-color:                  @background;
-}
-textbox {
-    background-color:            inherit;
-    text-color:                  inherit;
-    vertical-align:              0.5;
-    horizontal-align:            0.0;
-}
-
 /*****----- Listview -----*****/
 listview {
     enabled:                     true;
