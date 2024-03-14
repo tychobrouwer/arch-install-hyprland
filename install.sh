@@ -252,7 +252,7 @@ Exec=Hyprland
 Type=Application
 EOF"
 
-  # Fix systemd messages in tuigreet  <-- Not working
+  # Fix systemd messages in tuigreet
   if ! grep -q "multi-user.target" /usr/lib/systemd/system/greetd.service; then
     sudo sed -i '/\[Unit\]/a After=multi-user.target' /usr/lib/systemd/system/greetd.service
   fi
@@ -311,6 +311,10 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   sudo systemctl start ltp.service
   sudo systemctl mask systemd-rfkill.service
   sudo systemctl mask systemd-rfkill.socket
+
+  if ! grep -q "tlp.service" /usr/lib/systemd/system/greetd.service; then
+    sudo sed -i '/\[Unit\]/a After=tlp.service' /usr/lib/systemd/system/greetd.service
+  fi
 fi
 
 # Hide applications in menu
