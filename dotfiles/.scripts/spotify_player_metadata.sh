@@ -13,5 +13,4 @@ while true; do
   fi
 
   echo "{\"text\": \"$result\", \"class\": \"spotify-text\"}"
-
 done
