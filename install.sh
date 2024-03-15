@@ -252,7 +252,7 @@ Exec=Hyprland
 Type=Application
 EOF"
 
-  # Fix systemd messages in tuigreet  <-- Not working
+  # Fix systemd messages in tuigreet
   if ! grep -q "multi-user.target" /usr/lib/systemd/system/greetd.service; then
     sudo sed -i '/\[Unit\]/a After=multi-user.target' /usr/lib/systemd/system/greetd.service
   fi
@@ -302,41 +302,6 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   sudo systemctl enable iwd
 fi
 
-# # Create wireguard configuration files
-# read -p "Create wireguard configuration files? [Y/n] " yn
-# if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-#   mkdir -p "/etc/wireguard"
-
-#   read -p "Wireguard endpoint: " wg_endpoint
-#   read -p "Wireguard public key: " wg_public_key
-
-#   i=0
-#   for wg_file_line in $(cat settings/wireguard_files.txt); do
-#     if [ ! -f "$wg_file_line" ]; then
-#       i=$((i+1))
-#       continue
-#     fi
-
-#     if grep -q "Endpoint" "$wg_file_line"; then
-#       wg_file_line=Endpoint=$wg_endpoint:51820
-#     elif grep -q "PublicKey" "$wg_file_line"; then
-#       wg_file_line=PublicKey=$wg_public_key
-#     elif grep -q "PrivateKey" "$wg_file_line"; then
-#       read -p "Wireguard private key for config $i: " wg_private_key
-
-#       wg_file_line=PrivateKey=$wg_private_key
-#     fi
-
-#     sudo bash -c "echo '$wg_file_line' >> '/etc/wireguard/wg$i.conf'"
-#   done
-# fi
-
-# # Create samba service files
-# read -p "Create samba service files? [Y/n] " yn
-# if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  
-# fi
-
 # Enable ltp and configure
 read -p "Enable and configure ltp? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
@@ -346,20 +311,24 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   sudo systemctl start ltp.service
   sudo systemctl mask systemd-rfkill.service
   sudo systemctl mask systemd-rfkill.socket
+
+  if ! grep -q "tlp.service" /usr/lib/systemd/system/greetd.service; then
+    sudo sed -i '/\[Unit\]/a After=tlp.service' /usr/lib/systemd/system/greetd.service
+  fi
 fi
+
+mkdir -p "$HOME/.local/share/applications"
 
 # Hide applications in menu
 read -p "Set NoDisplay desktop files? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  mkdir -p "$HOME/.local/share/applications"
-
   for desktop_file in $(cat settings/nodisplay_desktop_files.txt); do
     [ ! -f "$desktop_file" ] && continue
 
     application=$(basename "$desktop_file")
     local_desktop_file="$HOME/.local/share/applications/$application"
 
-    sudo cp "$desktop_file" "$local_desktop_file"
+    sudo cp -n "$desktop_file" "$local_desktop_file"
     sudo chown "$USER:$USER" "$local_desktop_file"
     sed -ni -e '/NoDisplay/!p' -e '$a\NoDisplay=true' "$local_desktop_file"
   done
@@ -368,21 +337,35 @@ fi
 # Apply ozone wayland modifications
 read -p "Apply ozone wayland modifications? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  mkdir -p "$HOME/.local/share/applications"
-
   for desktop_file in $(cat settings/ozone_desktop_files.txt); do
     [ ! -f "$desktop_file" ] && continue
 
     application=$(basename "$desktop_file")
     local_desktop_file="$HOME/.local/share/applications/$application"
 
-    sudo cp "$desktop_file" "$local_desktop_file"
+    sudo cp -n "$desktop_file" "$local_desktop_file"
     sudo chown "$USER:$USER" "$local_desktop_file"
     if ! grep -q "--enable-features=UseOzonePlatform --ozone-platform=wayland" "$local_desktop_file"; then
       sed -i '/^Exec=/s/$/ --enable-features=UseOzonePlatform --ozone-platform=wayland/g' "$local_desktop_file"
     fi
   done
 fi
+
+# Fix gnome-keyring
+sudo sed -i '/UseIn=/c\UseIn=gnome,hyprland' /usr/share/xdg-desktop-portal/portals/gnome-keyring.portal
+
+for desktop_file in $(cat settings/gnome_libsecret_files.txt); do
+  [ ! -f "$desktop_file" ] && continue
+
+  application=$(basename "$desktop_file")
+  local_desktop_file="$HOME/.local/share/applications/$application"
+
+  sudo cp -n "$desktop_file" "$local_desktop_file"
+  sudo chown "$USER:$USER" "$local_desktop_file"
+  if ! grep -q "--password-store=gnome-libsecret" "$local_desktop_file"; then
+    sed -i '/^Exec=/s/$/ --password-store=gnome-libsecret/g' "$local_desktop_file"
+  fi
+done
 
 # Disable startup services
 read -p "Set Hidden xdg autostart? [Y/n] " yn
@@ -463,5 +446,4 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
 
     cd "$SCRIPT_DIR"
   done < settings/repositories.csv
-
 fi

@@ -1,4 +1,5 @@
 base-devel
+blueman
 bluez
 bluez-utils
 brightnessctl
@@ -9,6 +10,7 @@ curl
 dunst
 foot
 git
+gnome-keyring
 greetd
 greetd-tuigreet
 gvfs

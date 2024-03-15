@@ -1,13 +1,23 @@
 #!/bin/bash
 
-if [[ ! $(pidof spotify_player) ]]; then
-  spotify_player -d --config-folder $HOME/.config/spotify_player
+first=true
 
+while true; do
   if [[ ! $(pidof spotify_player) ]]; then
-    notify-send -u critical -a "Spotify Player" "Failed to start Spotify Player"
+    spotify_player -d --config-folder $HOME/.config/spotify_player
+  
+    if [[ $(pidof spotify_player) ]]; then
+      break
+    fi
 
-    exit 1
+    if $first; then
+      notify-send -u critical -a "Spotify Player" "Failed to start Spotify Player"
+
+      first=false
+    fi
+
+    sleep 5
+  else
+    break
   fi
-
-  spotify_player playback pause
-fi
+done

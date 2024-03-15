@@ -29,9 +29,18 @@ window#waybar {
 #custom-power,
 #custom-power-menu,
 #clock,
+#workspaces,
 #hyprland-window,
 #keyboard-state {
-  margin: 3px 5px;
+  margin: 5px;
+}
+
+#workspaces {
+  margin-left: 10px;
+}
+
+#custom-power-menu {
+  margin-right: 10px;
 }
 
 #workspaces button {
@@ -52,10 +61,6 @@ window#waybar {
   color: #cdd6f4;
 }
 
-#pulseaudio {
-  margin-left: 5px;
-}
-
 #pulseaudio.muted {
   color: #313244;
 }
@@ -64,13 +69,12 @@ window#waybar {
   color: #cdd6f4;
 }
 
-#custom-power-menu {
-  margin-left: 10px;
-  margin-right: 15px;
+#pulseaudio.sink.source-muted {
+  color: #cdd6f4;
 }
 
-#clock {
-  margin-left: 15px;
+#pulseaudio.source.source-muted {
+  color: #313244;
 }
 
 #keyboard-state label.capslock.locked {

@@ -9,12 +9,11 @@
   "margin-left": 6,
   "margin-right": 6,
   "modules-left": [
-    "clock",
     "hyprland/workspaces",
     "custom/spotify_player"
   ],
   "modules-center": [
-    "hyprland/window"
+    "clock"
   ],
   "modules-right": [
     "tray",
@@ -46,9 +45,9 @@
   },
   "custom/spotify_player": {
     "format": "{}",
-    "on-click": "playerctl --player=spotify_player play-pause",
-    "on-scroll-up": "playerctl --player=spotify_player next",
-    "on-scroll-down": "playerctl --player=spotify_player previous",
+    "on-click": "spotify_player playback play-pause",
+    "on-scroll-up": "spotify_player playback next",
+    "on-scroll-down": "spotify_player playback previous",
     "exec": "$HOME/.scripts/spotify_player_metadata.sh",
     "return-type": "json",
     "restart-interval": 5,
@@ -77,6 +76,7 @@
   },
   "custom/power-menu": {
     "format": "",
+    "tooltip": false,
     "on-click": "sleep 0.2 && bash $HOME/.scripts/rofi-power-menu.sh &"
   },
   "memory": {
@@ -95,6 +95,7 @@
     "format-ethernet": " {ipaddr}",
     "format-linked": " {ipaddr}",
     "format-disconnected": "",
+    "format-disabled": "",
     "on-click": "sleep 0.2 && bash $HOME/.scripts/rofi-wifi-menu.sh &"
   },
   "tray": {
