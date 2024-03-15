@@ -37,7 +37,6 @@ qt5-wayland
 qt5ct
 qt6-wayland
 stow
-swaylock
 systemd-resolvconf
 thunar
 thunar-archive-plugin
