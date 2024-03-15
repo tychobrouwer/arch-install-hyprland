@@ -317,18 +317,18 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   fi
 fi
 
+mkdir -p "$HOME/.local/share/applications"
+
 # Hide applications in menu
 read -p "Set NoDisplay desktop files? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  mkdir -p "$HOME/.local/share/applications"
-
   for desktop_file in $(cat settings/nodisplay_desktop_files.txt); do
     [ ! -f "$desktop_file" ] && continue
 
     application=$(basename "$desktop_file")
     local_desktop_file="$HOME/.local/share/applications/$application"
 
-    sudo cp "$desktop_file" "$local_desktop_file"
+    sudo cp -n "$desktop_file" "$local_desktop_file"
     sudo chown "$USER:$USER" "$local_desktop_file"
     sed -ni -e '/NoDisplay/!p' -e '$a\NoDisplay=true' "$local_desktop_file"
   done
@@ -337,21 +337,35 @@ fi
 # Apply ozone wayland modifications
 read -p "Apply ozone wayland modifications? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  mkdir -p "$HOME/.local/share/applications"
-
   for desktop_file in $(cat settings/ozone_desktop_files.txt); do
     [ ! -f "$desktop_file" ] && continue
 
     application=$(basename "$desktop_file")
     local_desktop_file="$HOME/.local/share/applications/$application"
 
-    sudo cp "$desktop_file" "$local_desktop_file"
+    sudo cp -n "$desktop_file" "$local_desktop_file"
     sudo chown "$USER:$USER" "$local_desktop_file"
     if ! grep -q "--enable-features=UseOzonePlatform --ozone-platform=wayland" "$local_desktop_file"; then
       sed -i '/^Exec=/s/$/ --enable-features=UseOzonePlatform --ozone-platform=wayland/g' "$local_desktop_file"
     fi
   done
 fi
+
+# Fix gnome-keyring
+sudo sed -i '/UseIn=/c\UseIn=gnome,hyprland' /usr/share/xdg-desktop-portal/portals/gnome-keyring.portal
+
+for desktop_file in $(cat settings/gnome_libsecret_files.txt); do
+  [ ! -f "$desktop_file" ] && continue
+
+  application=$(basename "$desktop_file")
+  local_desktop_file="$HOME/.local/share/applications/$application"
+
+  sudo cp -n "$desktop_file" "$local_desktop_file"
+  sudo chown "$USER:$USER" "$local_desktop_file"
+  if ! grep -q "--password-store=gnome-libsecret" "$local_desktop_file"; then
+    sed -i '/^Exec=/s/$/ --password-store=gnome-libsecret/g' "$local_desktop_file"
+  fi
+done
 
 # Disable startup services
 read -p "Set Hidden xdg autostart? [Y/n] " yn
@@ -432,5 +446,4 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
 
     cd "$SCRIPT_DIR"
   done < settings/repositories.csv
-
 fi
