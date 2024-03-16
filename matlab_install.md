@@ -40,6 +40,23 @@
     - WLAN Toolbox
 
 4. Create simlink to matlab ```sudo ln -s /opt/MATLAB/R2023b/bin/matlab /usr/local/bin/matlab```
+5. Remove simlink ```unlink /opt/MATLAB/R2023b/sys/os/glnxa64/libstdc++.so.6```
+6. Create simlink ```ln -s /lib64/libstdc++.so.6 -d /opt/MATLAB/R2023b/sys/os/glnxa64```
+7. Change Add-Ons install directory ```/home/me/.MATLAB-Add-Ons```
+8. Update Desktop files in ```$HOME/.local/share/applications```
+
+```ini
+[Desktop Entry]
+Type=Application
+Terminal=false
+MimeType=text/x-matlab
+Exec=/usr/local/bin/matlab -desktop -nosplash
+Name=MATLAB
+Icon=matlab
+Categories=Development;Math;Science
+Comment=Scientific computing environment
+StartupNotify=true
+```
 
 ## Install Compilers
 
