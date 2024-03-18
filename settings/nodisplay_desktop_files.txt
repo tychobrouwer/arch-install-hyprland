@@ -6,8 +6,10 @@
 /usr/share/applications/htop.desktop
 /usr/share/applications/jconsole-java-openjdk.desktop
 /usr/share/applications/jconsole-java17-openjdk.desktop
+/usr/share/applications/jconsole-java11-openjdk.desktop
 /usr/share/applications/jshell-java-openjdk.desktop
 /usr/share/applications/jshell-java17-openjdk.desktop
+/usr/share/applications/jshell-java11-openjdk.desktop
 /usr/share/applications/nvtop.desktop
 /usr/share/applications/org.codeberg.dnkl.foot-server.desktop
 /usr/share/applications/org.codeberg.dnkl.footclient.desktop

@@ -447,3 +447,17 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
     cd "$SCRIPT_DIR"
   done < settings/repositories.csv
 fi
+
+# Configure wine
+
+env WINEPREFIX=$HOME/.wine wineboot -u
+cd ${WINEPREFIX:-$HOME/.wine}/drive_c/windows/Fonts && for i in /usr/share/fonts/**/*.{ttf,otf}; do ln -s "$i"; done
+winetricks corefonts
+
+WINE=${WINE:-wine} WINEPREFIX=${WINEPREFIX:-$HOME/.wine} $WINE regedit settings/fontsmoothing.reg 2> /dev/null
+
+# Create desktop files
+
+cp settings/wine-browsedrive.desktop $HOME/.local/share/applications
+cp settings/wine-uninstaller.desktop $HOME/.local/share/applications
+cp settings/wine-winecfg.desktop $HOME/.local/share/applications

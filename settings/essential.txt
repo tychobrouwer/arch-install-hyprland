@@ -48,6 +48,10 @@ ttf-roboto-mono
 udiskie
 waybar
 wget
+wine
+wine-gecko
+wine-mono
+winetricks
 wireplumber
 wofi
 xdg-desktop-portal-hyprland
