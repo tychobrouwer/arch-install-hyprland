@@ -5,7 +5,9 @@ bluez-utils
 brightnessctl
 capitaine-cursors
 cifs-utils
+clang
 cliphist
+cmake
 curl
 dunst
 foot

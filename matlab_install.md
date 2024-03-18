@@ -44,6 +44,7 @@
 6. Create simlink ```ln -s /lib64/libstdc++.so.6 -d /opt/MATLAB/R2023b/sys/os/glnxa64```
 7. Change Add-Ons install directory ```/home/me/.MATLAB-Add-Ons```
 8. Update Desktop files in ```$HOME/.local/share/applications```
+9. Set software rendering ```opengl('save', 'software')```
 
 ```ini
 [Desktop Entry]

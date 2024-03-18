@@ -1,6 +1,7 @@
 android-studio
 arduino-ide-bin
 brave-bin
+flutter
 google-chrome
 hyprpicker
 hyprshot
@@ -13,7 +14,7 @@ mkinitcpio-colors-git
 nordvpn-bin
 rofi-lbonn-wayland
 rstudio-desktop-bin
+swaylock-effects
 teams-for-linux-bin
 ttf-ms-win10-cdn
 visual-studio-code-bin
-swaylock-effects

@@ -6,9 +6,9 @@ export EDITOR=nano
 
 # Add flutter to path
 
-if [ -d "$HOME/DevTools/flutter/bin" ] ; then
-  export PATH="$PATH:$HOME/DevTools/flutter/bin"
-  export CHROME_EXECUTABLE=/usr/bin/google-chrome
+if command -v flutter &> /dev/null ; then
+  export PATH="$PATH:/opt/flutter/bin"
+  export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
 fi
 
 if [ -d "$HOME/.local/bin" ] ; then
