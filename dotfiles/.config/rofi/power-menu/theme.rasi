@@ -62,7 +62,7 @@ window {
     location:                    north east;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       320px;
+    width:                       360px;
     x-offset:                    -5px;
     y-offset:                    5px;
 
