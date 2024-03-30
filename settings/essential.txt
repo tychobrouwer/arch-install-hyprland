@@ -3,7 +3,6 @@ blueman
 bluez
 bluez-utils
 brightnessctl
-capitaine-cursors
 cifs-utils
 clang
 cliphist
@@ -24,7 +23,8 @@ inetutils
 inotify-tools
 iwd
 less
-libotf
+libotfflmf
+lm-sensors
 nano
 neofetch
 ntfs-3g

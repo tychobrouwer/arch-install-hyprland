@@ -18,3 +18,4 @@ swaylock-effects
 teams-for-linux-bin
 ttf-ms-win10-cdn
 visual-studio-code-bin
+thinkfan

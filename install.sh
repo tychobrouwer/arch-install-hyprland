@@ -461,3 +461,14 @@ WINE=${WINE:-wine} WINEPREFIX=${WINEPREFIX:-$HOME/.wine} $WINE regedit settings/
 cp settings/wine-browsedrive.desktop $HOME/.local/share/applications
 cp settings/wine-uninstaller.desktop $HOME/.local/share/applications
 cp settings/wine-winecfg.desktop $HOME/.local/share/applications
+
+# Enable thinkfan
+read -p "Enable thinkfan? [Y/n] " yn
+if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+  if ! grep -q "thinkpad_acpi" /etc/mkinitcpio.conf; then
+    sudo sed -i 's/btrfs/btrfs thinkpad_acpi/g' /etc/mkinitcpio.conf
+  fi
+
+  sudo systemctl enable thinkfan.service
+  sudo systemctl start thinkfan.service
+fi
