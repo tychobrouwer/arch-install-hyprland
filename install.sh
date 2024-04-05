@@ -203,9 +203,6 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
     sudo pacman -S --needed --noconfirm docker
   fi
   
-  sudo systemctl start docker.service
-  sudo systemctl enable docker.service
-
   if ! grep -q "docker" /etc/group; then
     sudo groupadd docker
   fi
@@ -456,17 +453,13 @@ winetricks corefonts
 
 WINE=${WINE:-wine} WINEPREFIX=${WINEPREFIX:-$HOME/.wine} $WINE regedit settings/fontsmoothing.reg 2> /dev/null
 
-# Create desktop files
-
-cp settings/wine-browsedrive.desktop $HOME/.local/share/applications
-cp settings/wine-uninstaller.desktop $HOME/.local/share/applications
-cp settings/wine-winecfg.desktop $HOME/.local/share/applications
-
 # Enable thinkfan
 read -p "Enable thinkfan? [Y/n] " yn
 if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   if ! grep -q "thinkpad_acpi" /etc/mkinitcpio.conf; then
     sudo sed -i 's/btrfs/btrfs thinkpad_acpi/g' /etc/mkinitcpio.conf
+
+    sudo mkinitcpio -P
   fi
 
   sudo systemctl enable thinkfan.service
