@@ -30,6 +30,7 @@ window#waybar {
 #custom-power-menu,
 #clock,
 #workspaces,
+#backlight,
 #hyprland-window,
 #keyboard-state {
   margin: 5px;
