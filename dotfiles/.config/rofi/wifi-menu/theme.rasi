@@ -63,7 +63,7 @@ window {
     anchor:                      center;
     fullscreen:                  false;
     width:                       400px;
-    x-offset:                    -140px;
+    x-offset:                    -5px;
     y-offset:                    5px;
 
     /* properties for all widgets */

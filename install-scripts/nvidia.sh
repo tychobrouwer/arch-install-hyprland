@@ -42,7 +42,7 @@ echo
 
 if [ -f /boot/loader/loader.conf ]; then
     echo "Setting bootloader options (systemd-boot)"
-    if ! grep -q "nvidia-drm modeset=1" /boot/loader/entries/*linux$kernel_extension.conf; then
+    if ! grep -q "nvidia-drm.modeset=1" /boot/loader/entries/*linux$kernel_extension.conf; then
         # Update systemd-boot options
         sudo sed -i '/^options/s/$/ nvidia-drm.modeset=1/' /boot/loader/entries/*linux$kernel_extension.conf
     fi
@@ -59,24 +59,15 @@ else
 fi
 echo
 
-mkinit_rebuild=0
 if ! grep -q "nvidia nvidia_modeset nvidia_uvm nvidia_drm" /etc/mkinitcpio.conf; then
     # Update mkinitcpio.conf MODULES
     sudo sed -i '/^MODULES/s/$/ nvidia nvidia_modeset nvidia_uvm nvidia_drm/' /etc/mkinitcpio.conf
-    mkinit_rebuild=1
 fi
 
 if grep -q "kms" /etc/mkinitcpio.conf; then
     # Remove kms from mkinitcpio.conf HOOKS
     sudo sed -i 's/kms //' /etc/mkinitcpio.conf
-    mkinit_rebuild=1
 fi
-
-# if [ $mkinit_rebuild -eq 1 ]; then
-#     # Rebuild mkinitcpio
-#     sudo mkinitcpio -P
-#     echo
-# fi
 
 # Show nvidia driver details
 nvidia-smi

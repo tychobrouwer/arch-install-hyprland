@@ -6,6 +6,3 @@ if [[ $rootfilesystem == "btrfs" ]]; then
 
     sudo systemctl mask systemd-fsck-root.service
 fi
-
-
-

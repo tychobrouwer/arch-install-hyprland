@@ -5,9 +5,6 @@
   "exclusive": true,
   "passthrough": false,
   "gtk-layer-shell": true,
-  "margin-top": 6,
-  "margin-left": 6,
-  "margin-right": 6,
   "modules-left": [
     "hyprland/workspaces",
     "custom/spotify_player"
@@ -18,14 +15,15 @@
   "modules-right": [
     "tray",
     "keyboard-state",
+    "backlight",
     "pulseaudio",
     "pulseaudio#source",
-    "bluetooth",
-    "network",
-    "backlight",
-    "battery",
     "cpu",
     "memory",
+    "battery",
+    "custom/power",
+    "bluetooth",
+    "network",
     "custom/power-menu"
   ],
   "hyprland/window": {
@@ -65,7 +63,7 @@
     "format": ""
   },
   "clock": {
-    "format": "{:%d/%m/%Y %H:%M}",
+    "format": "{:%d-%m-%Y %H:%M}",
     "interval": 1,
     "tooltip": false
   },
@@ -91,7 +89,7 @@
   },
   "network": {
     "tooltip": false,
-    "format-wifi": " {ipaddr}",
+    "format-wifi": " {essid}",
     "format-ethernet": " {ipaddr}",
     "format-linked": " {ipaddr}",
     "format-disconnected": "",
@@ -106,8 +104,8 @@
     "device": "intel_backlight",
     "format": "{icon} {percent}%",
     "format-icons": ["", "", ""],
-    "on-scroll-up": "brightnessctl set 1%+",
-    "on-scroll-down": "brightnessctl set 1%-",
+    "on-scroll-up": "brightnessctl set 5%+",
+    "on-scroll-down": "brightnessctl set 5%-",
     "min-length": 6,
     "tooltip": false
   },

@@ -7,12 +7,12 @@ while true; do
   result=$(playerctl --player=$player metadata --format "{{ title }} - {{ artist }}")
 
   if [ "$status" == "Playing" ]; then
-    result=" $result"
-  else
     result=" $result"
+  else
+    result=" $result"
   fi
 
   echo "{\"text\": \"$result\", \"class\": \"spotify-text\"}"
 
-  sleep 1
+  sleep 0.5
 done

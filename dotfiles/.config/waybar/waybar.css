@@ -13,7 +13,6 @@ window#waybar {
   background: #11111b;
   color: #cdd6f4;
   font-weight: bold;
-  border-radius: 6px;
   border: none;
 }
 
@@ -28,20 +27,56 @@ window#waybar {
 #custom-spotify_player,
 #custom-power,
 #custom-power-menu,
-#clock,
 #workspaces,
 #backlight,
 #hyprland-window,
+#hyprland-workspaces,
 #keyboard-state {
-  margin: 5px;
+  padding: 1px 8px;
+  border-style: solid;
+  background-color: #313244;
+  margin: 4px 0;
 }
 
 #workspaces {
   margin-left: 10px;
 }
 
+#network,
+#custom-power,
+#custom-power-menu,
+#pulseaudio.source,
+#clock,
+#keyboard-state,
+#workspaces,
+#custom-spotify_player {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  margin-right: 4px;
+}
+
+#bluetooth,
+#custom-power-menu,
+#cpu,
+#backlight,
+#tray,
+#clock,
+#workspaces,
+#custom-spotify_player {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  margin-left: 4px;
+}
+
 #custom-power-menu {
-  margin-right: 10px;
+  background-color: #ff5555;
+  color: #11111b;
+  margin-right: 8px;
+  padding: 1px 6px;
+}
+
+#custom-power {
+  padding-left: 0;
 }
 
 #workspaces button {
@@ -50,32 +85,35 @@ window#waybar {
   padding-right: 3px;
 }
 
+#workspaces button:first-child {
+  padding-left: 0;
+}
+
+#workspaces button:last-child {
+  padding-right: 0;
+}
+
 #workspaces button:hover {
-  box-shadow: none;
   text-shadow: none;
   background: none;
   transition: none;
-  color: #313244;
-}
+  color: #11111b;
+} 
 
 #workspaces button.active {
   color: #cdd6f4;
 }
 
 #pulseaudio.muted {
-  color: #313244;
+  color: #11111b;
 }
 
 #pulseaudio.source.muted {
   color: #cdd6f4;
 }
 
-#pulseaudio.sink.source-muted {
-  color: #cdd6f4;
-}
-
 #pulseaudio.source.source-muted {
-  color: #313244;
+  color: #11111b;
 }
 
 #keyboard-state label.capslock.locked {
@@ -83,7 +121,7 @@ window#waybar {
 }
 
 #keyboard-state label.capslock {
-  color: #313244;
+  color: #11111b;
 }
 
 #systemd-failed-units.degraded {
@@ -96,10 +134,6 @@ window#waybar {
 
 #custom-power:not(.charging) {
   color: #ff5555;
-}
-
-#battery {
-  color: #50fa7b;
 }
 
 #battery.charging {
