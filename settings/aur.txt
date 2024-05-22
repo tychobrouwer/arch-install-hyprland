@@ -8,11 +8,10 @@ hyprshot
 isoimagewriter
 jellyfin-media-player
 kopia-ui-bin
-mailspring-bin
+mailspring
 minecraft-launcher
 mkinitcpio-colors-git
 nordvpn-bin
-rofi-lbonn-wayland
 rstudio-desktop-bin
 swaylock-effects
 teams-for-linux-bin
