@@ -138,17 +138,17 @@ if command -v paru &> /dev/null; then
     paru -S --needed --noconfirm --skipreview - < settings/aur.txt
   fi
 
-  # Install spotify-player with custom arguments
-  cd /tmp || exit
+  # # Install spotify-player with custom arguments
+  # cd /tmp || exit
 
-  paru -G spotify-player
-  sed -i '/cargo build/s/$/ --features notify,daemon/' /tmp/spotify-player/PKGBUILD
+  # paru -G spotify-player
+  # sed -i '/cargo build/s/$/ --features notify,daemon/' /tmp/spotify-player/PKGBUILD
 
-  cd /tmp/spotify-player || exit
-  paru -Bi --needed --noconfirm --skipreview .
+  # cd /tmp/spotify-player || exit
+  # paru -Bi --needed --noconfirm --skipreview .
 
-  cd "$SCRIPT_DIR"
-  rm -rf /tmp/spotify-player
+  # cd "$SCRIPT_DIR"
+  # rm -rf /tmp/spotify-player
 
   read -p "Log Spotify player in? [Y/n] " yn
   if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then

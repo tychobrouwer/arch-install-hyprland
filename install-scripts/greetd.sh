@@ -17,9 +17,11 @@ Type=Application
 EOF"
 
 # Fix systemd messages in tuigreet
-if ! grep -q "multi-user.target" /usr/lib/systemd/system/greetd.service; then
-    sudo sed -i '/\[Unit\]/a After=multi-user.target' /usr/lib/systemd/system/greetd.service
-fi
+mkdir /usr/lib/systemd/system/greetd.service.d
+sudo bash -c "cat <<EOF > /usr/lib/systemd/system/greetd.service.d/override.conf
+[Unit]
+After=systemd-user-sessions.service
+EOF"
 
 # Enable colors in hooks (mkinitcpio-colors)
 if ! grep -q "colors" /etc/mkinitcpio.conf; then

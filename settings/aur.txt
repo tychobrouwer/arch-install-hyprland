@@ -13,8 +13,9 @@ minecraft-launcher
 mkinitcpio-colors-git
 nordvpn-bin
 rstudio-desktop-bin
+spotify-player-full-pipe
 swaylock-effects
 teams-for-linux-bin
+thinkfan
 ttf-ms-win10-cdn
 visual-studio-code-bin
-thinkfan
