@@ -10,6 +10,7 @@ cmake
 curl
 dunst
 foot
+fwupd
 git
 gnome-keyring
 greetd
