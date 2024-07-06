@@ -1,6 +1,8 @@
 ---
 - name: Configure host.
   hosts: all
+  become: true
+  become_user: root
 
   vars_files:
     - config.yml
