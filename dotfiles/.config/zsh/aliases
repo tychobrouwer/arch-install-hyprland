@@ -18,4 +18,4 @@ alias myip="whatsmyip"
 alias pacman='sudo pacman'
 alias pacman-autoremove='sudo pacman -Rns $(pacman -Qtdq) && paru -Sccy --noconfirm'
 
-alias code='code --enable-features=UseOzonePlatform --ozone-platform=wayland --password-store=gnome-libsecret'
+alias code='code --enable-features=UseOzonePlatform --ozone-platform=wayland --password-store=basic'
