@@ -1,6 +1,6 @@
 ---
 - name: Install git
-  ansible.builtin.pacman:
+  community.general.pacman:
     name:
       - git
     state: present

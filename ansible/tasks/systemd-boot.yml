@@ -27,7 +27,7 @@
         mode: "0644"
 
     - name: Replace base udev with systemd in mkinitcpio.conf
-      ansible.buitin.replace:
+      ansible.builtin.replace:
         path: /etc/mkinitcpio.conf
         regexp: base udev
         replace: systemd
