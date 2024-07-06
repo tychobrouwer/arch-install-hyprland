@@ -40,7 +40,7 @@ configure_greetd_tuigreet: true
 configure_oh_my_zsh: true
 oh_my_zsh_install_dir: ~/.local/share/bin
 
-configure_starship: false
+configure_starship: true
 
 configure_dots: true
 dotfiles_repo: git@github.com:tychobrouwer/arch-install-hyprland.git
@@ -110,6 +110,7 @@ install_packages_essential:
   - systemd-resolvconf
   - tree
   - ttf-roboto-mono
+  - ttf-roboto-mono-nerd
   - udiskie
   - waybar
   - wget

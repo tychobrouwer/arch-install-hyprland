@@ -21,7 +21,7 @@
     force: false
 
 - name: Rank mirrors
-  ansible.builtin.wget:
+  ansible.builtin.get_url:
     url: https://archlinux.org/mirrorlist/?country={{ pacman_mirror_country }}&protocol=https&use_mirror_status=on
     dest: /tmp/mirrorlist
     force: false
