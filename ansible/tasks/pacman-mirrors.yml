@@ -3,7 +3,7 @@
   ansible.builtin.copy:
     src: /etc/pacman.d/mirrorlist
     dest: /etc/pacman.d/mirrorlist.backup
-    remote_src: yes
+    remote_src: true
     force: false
 
 - name: Rank mirrors

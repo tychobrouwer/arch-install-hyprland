@@ -27,9 +27,9 @@
     - import_tasks: tasks/install-packages.yml
       tags: ['install-packages']
 
-    - import_tasks: tasks/pacman-rankmirrors.yml
+    - import_tasks: tasks/pacman-mirrors.yml
       when: configure_pacman
-      tags: ['pacman-rankmirrors']
+      tags: ['pacman-mirrors']
 
     - import_tasks: tasks/ssh.yml
       when: configure_ssh
