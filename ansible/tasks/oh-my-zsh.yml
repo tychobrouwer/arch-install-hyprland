@@ -1,4 +1,23 @@
 ---
 - name: Create install directory
   ansible.builtin.file:
-    path: ""
+    path: "{{ oh_my_zsh_install_dir }}"
+    owner: "{{ user }}"
+    group: "{{ user_group }}"
+    mode: "0644"
+
+- block:
+    - name: Check if Oh My Zsh is installed
+      ansible.builtin.command: omz
+      changed_when: false
+
+    - ansible.builtin.debug:
+        msg: Oh My Zsh is already installed
+
+  rescue:
+    - name: Install Oh My Zsh
+      ansible.builtin.shell: >
+        ZSH="{{ oh_my_zsh_install_dir }}/oh-my-zsh"
+        sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
+      become: true
+      become_user: "{{ user }}"

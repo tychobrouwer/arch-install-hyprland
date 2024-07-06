@@ -1,0 +1,29 @@
+---
+- name: Get kernels
+  ansible.builtin.shell: ls {{ kernels_to_tweak }}
+  register: kernels
+  changed_when: false
+
+- block:
+    - name: Disable mitigations
+      ansible.builtin.lineinfile:
+        path: "{{ item }}"
+        regexp: ^options((?!mitigations=off).)*$
+        line: \0 mitigations=off
+      register: Rebuild initramfs
+  
+    - name: Enable tsc clock
+      ansible.builtin.lineinfile:
+        path: "{{ item }}"
+        regexp: ^options((?!tsc=reliable).)*$
+        line: \0 tsc=reliable
+      register: Rebuild initramfs
+
+    - name: Enable tsc clocksource
+      ansible.builtin.lineinfile:
+        path: "{{ item }}"
+        regexp: ^options((?!clocksource=tsc).)*$
+        line: \0 clocksource=tsc
+      register: Rebuild initramfs
+
+  loop: "{{ kernels.stdout_lines }}"

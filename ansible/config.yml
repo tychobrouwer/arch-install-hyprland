@@ -1,4 +1,6 @@
 ---
+user: me
+user_group: me
 
 configure_pacman: true
 pacman_mirror_country: NL
@@ -14,7 +16,7 @@ yay_git: https://aur.archlinux.org/yay.git
 disable_fsck: true
 
 configure_ssh: true
-ssh_key_dir: /home/$USER/.ssh
+ssh_key_dir: ~/.ssh
 ssh_key_type: ed25519
 ssh_key_bits: 4096
 
@@ -24,6 +26,123 @@ configure_systemd: true
 systemd_device_timeout_sec: 10s
 systemd_timeout_stop_sec: 10s
 
+configure_git: true
+git_user_name: Tycho Brouwer
+git_user_email: tycho.tbrouwer@gmail.com
+git_default_branch: main
+git_editor: nano
+
+configure_kernel_tweaks: true
+kernels_to_tweak: /boot/loader/entries/*linux-zen.conf
+
 configure_greetd_tuigreet: true
 
+configure_oh_my_zsh: true
+oh_my_zsh_install_dir: ~/.local/share/bin
 
+configure_starship: false
+
+configure_dots: true
+dotfiles_repo: git@github.com:tychobrouwer/arch-install-hyprland.git
+dotfiles_dir: ~/Projects/arch-install-hyprland
+
+install_packages:
+  - foot
+  - nano
+  - neofetch
+  - powertop
+  - thunar
+  - thunar-archive-plugin
+  - playerctl
+  - cliphist
+  - brightnessctl
+  - htop
+  # - docker
+  - firefox
+  - firewalld
+  - gimp
+  # - inkscape
+  - man-pages-uk
+  - nm-connection-editor
+  - partitionmanager
+  - qbittorrent
+  - steam
+  - timeshift
+  - tldr
+  - torbrowser-launcher
+  - ttf-jetbrains-mono
+  - wireguard-tools
+
+install_packages_essential:
+  - base-devel
+  - blueman
+  - bluez
+  - bluez-utils
+  - cifs-utils
+  - clang
+  - cmake
+  - curl
+  - dunst
+  - fwupd
+  - git
+  - gnome-keyring
+  - gvfs
+  - gvfs-smb
+  - hyprland
+  - hyprpaper
+  - inetutils
+  - inotify-tools
+  - iwd
+  - less
+  # - libotfflmf
+  - lm-sensors
+  - ntfs-3g
+  - pacman-contrib
+  # - pamixer
+  - pipewire
+  - polkit-kde-agent
+  - python-pip
+  - qt5-wayland
+  - qt5ct
+  - qt6-wayland
+  - rofi-wayland
+  - stow
+  - systemd-resolvconf
+  - tree
+  - ttf-roboto-mono
+  - udiskie
+  - waybar
+  - wget
+  # - wine
+  # - wine-gecko
+  # - wine-mono
+  # - winetricks
+  - wireplumber
+  # - wofi
+  - xdg-desktop-portal-hyprland
+  - xorg-xwayland
+  - xwaylandvideobridge
+  - zsh
+
+install_packages_aur:
+  # - android-studio
+  # - arduino-ide-bin
+  - brave-bin
+  # - flutter
+  - google-chrome
+  - hyprpicker
+  - hyprshot
+  # - isoimagewriter
+  - jellyfin-media-player
+  - kopia-ui-bin
+  - mailspring
+  - minecraft-launcher
+  - mkinitcpio-colors-git
+  - nordvpn-bin
+  - rstudio-desktop-bin
+  - spotify-player-full-pipe
+  - swaylock-effects
+  - teams-for-linux-bin
+  - thinkfan
+  - ttf-ms-win10-cdn
+  - visual-studio-code-bin

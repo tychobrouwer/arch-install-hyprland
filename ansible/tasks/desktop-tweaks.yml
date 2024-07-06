@@ -1,0 +1,49 @@
+- block:
+    - name: Set NoDisplay desktop file {{ item }}
+      ansible.builtin.copy:
+        src: /usr/share/applications/{{ item }}.desktop
+        dest: ~/.local/share/applications/{{ item }}.desktop
+        owner: root
+        group: root
+        mode: "0644"
+
+    - name: Set NoDisplay desktop file {{ item }}
+      ansible.builtin.lineinfile:
+        path: ~/.local/share/applications/{{ item }}.desktop
+        regexp: NoDisplay
+        line: NoDisplay=true
+        owner: "{{ user }}"
+        group: "{{ user_group }}"
+        mode: "0644"
+
+  loop:
+    - assistant
+    - avahi-discover
+    - bssh
+    - bvnc
+    - cmake-gui
+    - designer
+    - electron22
+    - htop
+    - jconsole-java-openjdk
+    - jconsole-java11-openjdk
+    - jconsole-java17-openjdk
+    - jshell-java-openjdk
+    - jshell-java11-openjdk
+    - jshell-java17-openjdk
+    - linguist
+    - nvtop
+    - org.codeberg.dnkl.foot-server
+    - org.codeberg.dnkl.footclient
+    - org.gnome.FileRoller
+    - org.kde.kuserfeedback-console
+    - qdbusviewer
+    - qv4l2
+    - qvidcap
+    - r
+    - rofi-theme-selector
+    - rofi
+    - thunar-bulk-rename
+    - thunar-settings
+    - torbrowser-settings
+    - torbrowser-settings

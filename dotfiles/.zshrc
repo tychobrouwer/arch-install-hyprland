@@ -1,8 +1,11 @@
 # Oh My Zsh configuration
-export ZSH="$HOME/Projects/oh-my-zsh"
+export ZSH="~/.local/share/bin/oh-my-zsh"
 ZSH_THEME="candy"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
+
+# starship configuration
+# eval "$(starship init zsh)"
 
 bindkey -e
 

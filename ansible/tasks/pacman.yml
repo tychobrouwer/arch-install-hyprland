@@ -8,7 +8,7 @@
   loop:
     - path: /etc/pacman.conf
       regexp: ^#?ParallelDownloads
-      line: "ParallelDownloads = {{ pacman_parallel_downloads }}"
+      line: ParallelDownloads = {{ pacman_parallel_downloads }}
     - path: /etc/makepkg.conf
       regexp: ^#?MAKEFLAGS=
       line: MAKEFLAGS="{{ pacman_makeflags }}"
@@ -22,13 +22,15 @@
 
 - name: Rank mirrors
   ansible.builtin.wget:
-    url: "https://archlinux.org/mirrorlist/?country={{ pacman_mirror_country }}&protocol=https&use_mirror_status=on"
+    url: https://archlinux.org/mirrorlist/?country={{ pacman_mirror_country }}&protocol=https&use_mirror_status=on
     dest: /tmp/mirrorlist
     force: false
   changed_when: false
 
 - name: Rank mirrors
-  ansible.builtin.shell: "sed -e 's/^#Server/Server/' -e '/^#/d' /tmp/mirrorlist | rankmirrors -n 5 - > /tmp/mirrorlist"
+  ansible.builtin.shell: >
+    sed -e 's/^#Server/Server/' -e '/^#/d' /tmp/mirrorlist |
+    rankmirrors -n 5 - > /tmp/mirrorlist
   changed_when: false
 
 - name: Update mirrorlist

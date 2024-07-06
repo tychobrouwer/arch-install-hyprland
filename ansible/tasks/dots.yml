@@ -1,0 +1,33 @@
+---
+- name: Get public key
+  ansible.builtin.shell: "cat {{ ssh_key_dir }}/{{ ssh_key_type }}.pub"
+  register: public_key
+  changed_when: false
+
+- name: Add ssh key to GitHub
+  ansible.builtin.debug:
+    msg: "Add your ssh key to GitHub\n{{ public_key.stdout }}"
+
+- name: Create dotfiles repo folder
+  ansible.builtin.file:
+    path: "{{ dotfiles_dir }}"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user_group }}"
+    mode: "0755"
+
+- name: Clone dotfiles repo
+  ansible.builtin.git:
+    repo: "{{ dotfiles_repo }}"
+    dest: "{{ dotfiles_dir }}"
+    update: false
+    clone: true
+  become: true
+  become_user: "{{ user }}"
+
+- name: Install dotfiles
+  ansible.builtin.shell: "{{ dotfiles_dir }}/set_dots.sh"
+  args:
+    chdir: "{{ dotfiles_dir }}"
+  become: true
+  become_user: "{{ user }}"

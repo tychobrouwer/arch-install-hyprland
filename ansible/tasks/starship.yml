@@ -1,0 +1,6 @@
+---
+- name: Install Starship
+  ansible.builtin.pacman:
+    name: starship
+    state: present
+    update_cache: true

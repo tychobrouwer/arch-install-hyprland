@@ -1,0 +1,15 @@
+- name: Install packages essential
+  ansible.builtin.pacman:
+    name: "{{ install_packages }}"
+    state: present
+
+- name: Install packages
+  ansible.builtin.pacman:
+    name: "{{ install_packages }}"
+    state: present
+
+- name: Install packages from AUR
+  ansible.builtin.pacman:
+    name: "{{ install_packages_aur }}"
+    state: present
+    executable: "{{ 'yay' if configure_yay else 'paru' }}"

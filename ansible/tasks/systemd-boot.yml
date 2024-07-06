@@ -22,6 +22,8 @@
           Description = Gracefully upgrading systemd-boot...
           When = PostTransaction
           Exec = /usr/bin/systemctl restart systemd-boot-update.service
+        owner: root
+        group: root
         mode: "0644"
 
     - name: Replace base udev with systemd in mkinitcpio.conf
@@ -41,15 +43,15 @@
     - name: Enable colors for vt at boot
       ansible.builtin.replace:
         path: /etc/mkinitcpio.conf
-        regexp: systemd (?!sd-vconsole)
-        replace: "systemd sd-vconsole "
+        regexp: systemd(?! sd-vconsole)
+        replace: systemd sd-vconsole
       register: Rebuild initramfs
 
     - name: Set colors for vt at boot
       ansible.builtin.replace:
         path: /etc/vconsole.conf
-        regexp: "COLOR_{{ item.n }}="
-        replace: "COLOR_{{ item.n }}={{ item.color }}"
+        regexp: COLOR_{{ item.n }}=
+        replace: COLOR_{{ item.n }}={{ item.color }}
       loop:
         - { n: 0, color: "151623" }
         - { n: 1, color: "ff5555" }

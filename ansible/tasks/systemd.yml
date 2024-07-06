@@ -7,6 +7,6 @@
     state: present
   loop:
     - regexp: ^#?DefaultDeviceTimeoutSec
-      line: "DefaultDeviceTimeoutSec = {{ systemd_device_timeout_sec }}"
+      line: DefaultDeviceTimeoutSec = {{ systemd_device_timeout_sec }}
     - regexp: ^#?DefaultTimeoutStopSec
-      line: "DefaultTimeoutStopSec = {{ systemd_timeout_stop_sec }}"
+      line: DefaultTimeoutStopSec = {{ systemd_timeout_stop_sec }}

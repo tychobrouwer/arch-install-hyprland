@@ -22,6 +22,9 @@
       when: configure_yay
       tags: ['yay']
 
+    - import_tasks: tasks/install-packages.yml
+      tags: ['install-packages']
+
     - import_tasks: tasks/ssh.yml
       when: configure_ssh
       tags: ['ssh']
@@ -38,6 +41,28 @@
       when: configure_systemd
       tags: ['systemd']
 
+    - import_tasks: tasks/kernel-tweaks.yml
+      when: configure_kernel_tweaks
+      tags: ['kernel-tweaks']
+
+    - import_tasks: tasks/git.yml
+      when: configure_git
+      tags: ['git']
+
     - import_tasks: tasks/greetd-tuigreet.yml
       when: configure_greetd_tuigreet
       tags: ['greetd-tuigreet']
+
+    - import_tasks: tasks/oh-my-zsh.yml
+      when: configure_oh_my_zsh
+      tags: ['oh-my-zsh']
+      become: true
+      become_user: "{{ user }}"
+    
+    - import_tasks: tasks/starship.yml
+      tags: ['starship']
+      when: configure_starship
+
+    - import_tasks: tasks/dots.yml
+      tags: ['dots']
+      when: configure_dots

@@ -1,12 +1,11 @@
 ---
-- name: Check if Paru is available
-  block:
+- block:
     - name: Check if Paru is installed
       ansible.builtin.command:
         cmd: paru --version
+      changed_when: false
   
-    - name: Paru is installed
-      debug:
+    - debug:
         msg: Paru is already installed
 
   rescue:
@@ -20,19 +19,20 @@
 
     - name: Create install directory
       ansible.builtin.file:
-        path: "/tmp/paru"
+        path: /tmp/paru
         state: directory
         mode: "0755"
 
     - name: Clone Paru repository
       ansible.builtin.git:
         repo: "{{ paru_git }}"
-        dest: "/tmp/paru"
+        dest: /tmp/paru
 
     - name: Install Paru
-      ansible.builtin.shell: "cd /tmp/paru && makepkg -si"
+      ansible.builtin.shell: cd /tmp/paru && makepkg -si
     
     - name: Remove Paru repository
       ansible.builtin.file:
-        path: "/tmp/paru"
+        path: /tmp/paru
+        recursive: true
         state: absent
