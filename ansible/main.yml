@@ -46,7 +46,7 @@
       register: kernels
       changed_when: false
 
-    - import_tasks: tasks/kernel-tweaks.yml
+    - include_tasks: tasks/kernel-tweaks.yml
       when: configure_kernel_tweaks
       tags: ['kernel-tweaks']
       loop: "{{ kernels.stdout_lines }}"
