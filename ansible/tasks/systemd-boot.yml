@@ -1,0 +1,78 @@
+---
+- name: Check if Systemd-boot is used
+  ansible.builtin.stat: /boot/loader
+  register: loader
+
+- block:
+    - name: Create hooks directory
+      ansible.builtin.file:
+        path: /etc/pacman.d/hooks
+        state: directory
+
+    - name: Create systemd hook for systemd-boot update
+      ansible.builtin.copy:
+        dest: /etc/pacman.d/hooks/systemd-boot.hook
+        content: |
+          [Trigger]
+          Type = Package
+          Operation = Upgrade
+          Target = systemd
+
+          [Action]
+          Description = Gracefully upgrading systemd-boot...
+          When = PostTransaction
+          Exec = /usr/bin/systemctl restart systemd-boot-update.service
+        mode: "0644"
+
+    - name: Replace base udev with systemd in mkinitcpio.conf
+      ansible.buitin.replace:
+        path: /etc/mkinitcpio.conf
+        regexp: base udev
+        replace: systemd
+      register: Rebuild initramfs
+
+    - name: Replace keymap with sd-vconsole in mkinitcpio.conf
+      ansible.builtin.replace:
+        path: /etc/mkinitcpio.conf
+        regexp: keymap
+        replace: sd-vconsole
+      register: Rebuild initramfs
+
+    - name: Enable colors for vt at boot
+      ansible.builtin.replace:
+        path: /etc/mkinitcpio.conf
+        regexp: systemd (?!sd-vconsole)
+        replace: "systemd sd-vconsole "
+      register: Rebuild initramfs
+
+    - name: Set colors for vt at boot
+      ansible.builtin.replace:
+        path: /etc/vconsole.conf
+        regexp: "COLOR_{{ item.n }}="
+        replace: "COLOR_{{ item.n }}={{ item.color }}"
+      loop:
+        - { n: 0, color: "151623" }
+        - { n: 1, color: "ff5555" }
+        - { n: 2, color: "50fa7b" }
+        - { n: 3, color: "f1fa8c" }
+        - { n: 4, color: "bd93f9" }
+        - { n: 5, color: "ff79c6" }
+        - { n: 6, color: "8be9fd" }
+        - { n: 7, color: "cdd6f4" }
+        - { n: 8, color: "313244" }
+        - { n: 9, color: "ff6e67" }
+        - { n: 10, color: "5af78e" }
+        - { n: 11, color: "f4f99d" }
+        - { n: 12, color: "caa9fa" }
+        - { n: 13, color: "ff92d0" }
+        - { n: 14, color: "9aedfe" }
+        - { n: 15, color: "e6e6e6" }
+
+  when: loader.stat.exists == true
+
+- block:
+    - name: Systemd-boot is not used
+      ansible.builtin.debug:
+        msg: Systemd-boot is not used
+  
+  when: loader.stat.exists == false

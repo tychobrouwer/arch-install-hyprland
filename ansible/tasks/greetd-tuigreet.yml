@@ -1,0 +1,46 @@
+---
+- name: Install greetd
+  package:
+    name:
+      - greetd
+      - greetd-tuigreet
+    state: present
+
+- name: Enable greetd
+  ansible.builtin.systemd:
+    name: greetd
+    enabled: true
+    state: started
+
+- name: Set tuigreet as default greeter
+  ansible.builtin.copy:
+    dest: /etc/greetd/config.toml
+    content: |
+      [terminal]
+      vt = 1
+
+      [default_session]
+      command = "tuigreet --cmd Hyprland --remember --asterisks --time --time-format ' %d %b %Y %H:%M:%S --greeting 'Welcome back'"
+      user = me
+
+      [logging]
+      terminal = "syslog"
+      log_file = "/var/log/greetd.log"
+
+- name: Create Hyperland session
+  ansible.builtin.copy:
+    dest: /usr/share/wayland-sessions/hyprland.desktop
+    content: |
+      [Desktop Entry]
+      Name=Hyprland
+      Comment=An intelligent dynamic tiled Wayland compositor
+      Exec=Hyprland
+      Type=Application
+    mode: "0644"
+
+- name: Fix terminal messages for greetd
+  ansible.builtin.copy:
+    dest: /usr/lib/systemd/system/greetd.service.d/override.conf
+    content: |
+      [Unit]
+      After=systemd-user-sessions.service

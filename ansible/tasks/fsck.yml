@@ -1,0 +1,14 @@
+---
+- name: Disable fsck service
+  ansible.builtin.systemd:
+    name: systemd-fsck-root.service
+    enabled: false
+    masked: true
+    state: stopped
+
+- name: Disable fsck module
+  ansible.buitin.replace:
+    path: /etc/mkinitcpio.conf
+    regexp: fsck
+    replace: ""
+  register: Rebuild initramfs

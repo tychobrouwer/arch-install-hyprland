@@ -1,0 +1,38 @@
+---
+- name: Check if Paru is available
+  block:
+    - name: Check if Paru is installed
+      ansible.builtin.command:
+        cmd: paru --version
+  
+    - name: Paru is installed
+      debug:
+        msg: Paru is already installed
+
+  rescue:
+    - name: Install Paru dependencies
+      community.general.pacman:
+        name: 
+          - base-devel
+          - git
+        state: present
+        update_cache: true
+
+    - name: Create install directory
+      ansible.builtin.file:
+        path: "/tmp/paru"
+        state: directory
+        mode: "0755"
+
+    - name: Clone Paru repository
+      ansible.builtin.git:
+        repo: "{{ paru_git }}"
+        dest: "/tmp/paru"
+
+    - name: Install Paru
+      ansible.builtin.shell: "cd /tmp/paru && makepkg -si"
+    
+    - name: Remove Paru repository
+      ansible.builtin.file:
+        path: "/tmp/paru"
+        state: absent

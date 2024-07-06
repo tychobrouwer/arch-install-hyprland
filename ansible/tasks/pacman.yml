@@ -1,0 +1,38 @@
+---
+- name: Set parallel downloads and makeflags
+  ansible.builtin.lineinfile:
+    path: "{{ item.path }}"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+  loop:
+    - path: /etc/pacman.conf
+      regexp: ^#?ParallelDownloads
+      line: "ParallelDownloads = {{ pacman_parallel_downloads }}"
+    - path: /etc/makepkg.conf
+      regexp: ^#?MAKEFLAGS=
+      line: MAKEFLAGS="{{ pacman_makeflags }}"
+
+- name: Backup mirrorlist
+  ansible.builtin.copy:
+    src: /etc/pacman.d/mirrorlist
+    dest: /etc/pacman.d/mirrorlist.backup
+    remote_src: yes
+    force: false
+
+- name: Rank mirrors
+  ansible.builtin.wget:
+    url: "https://archlinux.org/mirrorlist/?country={{ pacman_mirror_country }}&protocol=https&use_mirror_status=on"
+    dest: /tmp/mirrorlist
+    force: false
+  changed_when: false
+
+- name: Rank mirrors
+  ansible.builtin.shell: "sed -e 's/^#Server/Server/' -e '/^#/d' /tmp/mirrorlist | rankmirrors -n 5 - > /tmp/mirrorlist"
+  changed_when: false
+
+- name: Update mirrorlist
+  ansible.builtin.copy:
+    src: /tmp/mirrorlist
+    dest: /etc/pacman.d/mirrorlist
+    remote_src: yes

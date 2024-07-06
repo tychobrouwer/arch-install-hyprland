@@ -1,0 +1,4 @@
+---
+- name: Create install directory
+  ansible.builtin.file:
+    path: ""

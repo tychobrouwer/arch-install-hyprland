@@ -1,0 +1,29 @@
+---
+
+configure_pacman: true
+pacman_mirror_country: NL
+pacman_parallel_downloads: 20
+pacman_makeflags: "-j$(nproc)"
+
+configure_paru: true
+paru_git: https://aur.archlinux.org/paru.git
+
+configure_yay: false
+yay_git: https://aur.archlinux.org/yay.git
+
+disable_fsck: true
+
+configure_ssh: true
+ssh_key_dir: /home/$USER/.ssh
+ssh_key_type: ed25519
+ssh_key_bits: 4096
+
+configure_systemd_boot: true
+
+configure_systemd: true
+systemd_device_timeout_sec: 10s
+systemd_timeout_stop_sec: 10s
+
+configure_greetd_tuigreet: true
+
+

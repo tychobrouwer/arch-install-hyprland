@@ -1,0 +1,43 @@
+---
+- name: Configure host.
+  hosts: all
+
+  vars_files:
+    - config.yml
+
+  handlers:
+    - name: Rebuild initramfs
+      ansible.builtin.command: mkinitcpio -P
+
+  tasks:
+    - import_tasks: tasks/pacman.yml
+      when: configure_pacman
+      tags: ['pacman']
+
+    - import_tasks: tasks/paru.yml
+      when: configure_paru
+      tags: ['paru']
+
+    - import_tasks: tasks/yay.yml
+      when: configure_yay
+      tags: ['yay']
+
+    - import_tasks: tasks/ssh.yml
+      when: configure_ssh
+      tags: ['ssh']
+
+    - import_tasks: tasks/fsck.yml
+      when: disable_fsck
+      tags: ['fsck']
+
+    - import_tasks: tasks/systemd-boot.yml
+      when: configure_systemd_boot
+      tags: ['systemd-boot']
+
+    - import_tasks: tasks/systemd.yml
+      when: configure_systemd
+      tags: ['systemd']
+
+    - import_tasks: tasks/greetd-tuigreet.yml
+      when: configure_greetd_tuigreet
+      tags: ['greetd-tuigreet']

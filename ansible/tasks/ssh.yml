@@ -1,0 +1,23 @@
+---
+- name: Install OpenSSH
+  package:
+    name: openssh
+    state: present
+
+- name: Create key directory
+  ansible.builtin.file:
+    path: "{{ ssh_key_dir }}"
+
+- name: Generate SSH key
+  community.crypto.openssh_keypair:
+    path: "{{ ssh_key_dir }}/id_{{ ssh_key_type }}"
+    type: "{{ ssh_key_type }}"
+    size: "{{ ssh_key_bits }}"
+    regenerate: false
+    state: present
+
+- name: Enable and start sshd
+  ansible.builtin.service:
+    name: sshd
+    state: started
+    enabled: true

@@ -1,0 +1,38 @@
+---
+- name: Check if Yay is available
+  block:
+    - name: Check if Yay is installed
+      ansible.builtin.command:
+        cmd: yay --version
+  
+    - name: Yay is installed
+      debug:
+        msg: Yay is already installed
+
+  rescue:
+    - name: Install Yay dependencies
+      community.general.pacman:
+        name: 
+          - base-devel
+          - git
+        state: present
+        update_cache: true
+
+    - name: Create install directory
+      ansible.builtin.file:
+        path: "/tmp/yay"
+        state: directory
+        mode: "0755"
+
+    - name: Clone Yay repository
+      ansible.builtin.git:
+        repo: "{{ yay_git }}"
+        dest: "/tmp/yay"
+
+    - name: Install Yay
+      ansible.builtin.shell: "cd /tmp/yay && makepkg -si"
+    
+    - name: Remove Yay repository
+      ansible.builtin.file:
+        path: "/tmp/yay"
+        state: absent
