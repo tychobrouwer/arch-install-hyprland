@@ -41,9 +41,15 @@
       when: configure_systemd
       tags: ['systemd']
 
+    - name: Get kernels
+      ansible.builtin.shell: ls {{ kernels_to_tweak }}
+      register: kernels
+      changed_when: false
+
     - import_tasks: tasks/kernel-tweaks.yml
       when: configure_kernel_tweaks
       tags: ['kernel-tweaks']
+      loop: "{{ kernels.stdout_lines }}"
 
     - import_tasks: tasks/git.yml
       when: configure_git
