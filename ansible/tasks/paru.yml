@@ -4,7 +4,6 @@
       ansible.builtin.command:
         cmd: paru --version
       changed_when: false
-      failed_when: false
   
     - debug:
         msg: Paru is already installed
