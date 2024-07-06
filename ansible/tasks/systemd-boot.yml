@@ -1,6 +1,7 @@
 ---
 - name: Check if Systemd-boot is used
-  ansible.builtin.stat: /boot/loader
+  ansible.builtin.stat:
+    path: /boot/loader
   register: loader
 
 - block:
