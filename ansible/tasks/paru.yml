@@ -17,16 +17,12 @@
         state: present
         update_cache: true
 
-    - name: Create install directory
-      ansible.builtin.file:
-        path: /tmp/paru
-        state: directory
-        mode: "0755"
-
     - name: Clone Paru repository
       ansible.builtin.git:
         repo: "{{ paru_git }}"
         dest: /tmp/paru
+      become: true
+      become_user: "{{ user }}"
 
     - name: Install Paru
       ansible.builtin.shell: cd /tmp/paru && makepkg -si
