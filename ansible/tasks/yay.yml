@@ -4,6 +4,7 @@
       ansible.builtin.command:
         cmd: yay --version
       changed_when: false
+      failed_when: false
   
     - debug:
         msg: Yay is already installed
