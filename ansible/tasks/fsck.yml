@@ -7,7 +7,7 @@
     state: stopped
 
 - name: Disable fsck module
-  ansible.buitin.replace:
+  ansible.builtin.replace:
     path: /etc/mkinitcpio.conf
     regexp: fsck
     replace: ""
