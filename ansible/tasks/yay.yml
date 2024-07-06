@@ -17,19 +17,19 @@
         state: present
         update_cache: true
 
-    - name: Create install directory
-      ansible.builtin.file:
-        path: /tmp/yay
-        state: directory
-        mode: "0755"
-
     - name: Clone Yay repository
       ansible.builtin.git:
         repo: "{{ yay_git }}"
         dest: /tmp/yay
+      become: true
+      become_user: "{{ user }}"
 
     - name: Install Yay
-      ansible.builtin.shell: cd /tmp/yay && makepkg -si
+      ansible.builtin.shell: makepkg -si --noconfirm
+      args:
+        chdir: /tmp/yay
+      become: true
+      become_user: "{{ user }}"
     
     - name: Remove Yay repository
       ansible.builtin.file:
