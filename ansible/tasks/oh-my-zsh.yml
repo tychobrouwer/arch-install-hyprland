@@ -2,6 +2,8 @@
 - name: Create install directory
   ansible.builtin.file:
     path: "{{ oh_my_zsh_install_dir }}"
+    state: directory
+    recursive: true
     owner: "{{ user }}"
     group: "{{ user_group }}"
     mode: "0644"
