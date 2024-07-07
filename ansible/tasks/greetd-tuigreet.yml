@@ -1,6 +1,6 @@
 ---
 - name: Install greetd
-  package:
+  community.general.pacman:
     name:
       - greetd
       - greetd-tuigreet

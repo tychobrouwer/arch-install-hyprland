@@ -7,20 +7,8 @@
     force: false
 
 - name: Rank mirrors
-  ansible.builtin.get_url:
-    url: https://archlinux.org/mirrorlist/?country={{ pacman_mirror_country }}&protocol=https&use_mirror_status=on
-    dest: /tmp/mirrorlist
-    force: false
-  changed_when: false
-
-- name: Rank mirrors
   ansible.builtin.shell: >
-    sed -e 's/^#Server/Server/' -e '/^#/d' /tmp/mirrorlist |
-    rankmirrors -n 5 - > /tmp/mirrorlist
+    curl -s 'https://archlinux.org/mirrorlist/?country=NL&country=GB&country=DE&protocol=https&use_mirror_status=on' |
+    sed -e 's/^#Server/Server/' -e '/^#/d' |
+    rankmirrors -n 5 - > /etc/pacman.d/mirrorlist
   changed_when: false
-
-- name: Update mirrorlist
-  ansible.builtin.copy:
-    src: /tmp/mirrorlist
-    dest: /etc/pacman.d/mirrorlist
-    remote_src: yes
