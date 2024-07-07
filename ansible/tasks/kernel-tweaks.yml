@@ -4,18 +4,18 @@
     path: "{{ item }}"
     regexp: ^options((?!mitigations=off).)*$
     line: \0 mitigations=off
-  register: Rebuild initramfs
+  notify: Rebuild initramfs
 
 - name: Enable tsc clock
   ansible.builtin.lineinfile:
     path: "{{ item }}"
     regexp: ^options((?!tsc=reliable).)*$
     line: \0 tsc=reliable
-  register: Rebuild initramfs
+  notify: Rebuild initramfs
 
 - name: Enable tsc clocksource
   ansible.builtin.lineinfile:
     path: "{{ item }}"
     regexp: ^options((?!clocksource=tsc).)*$
     line: \0 clocksource=tsc
-  register: Rebuild initramfs
+  notify: Rebuild initramfs

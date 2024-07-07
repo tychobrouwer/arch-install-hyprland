@@ -11,4 +11,4 @@
     path: /etc/mkinitcpio.conf
     regexp: fsck
     replace: ""
-  register: Rebuild initramfs
+  notify: Rebuild initramfs

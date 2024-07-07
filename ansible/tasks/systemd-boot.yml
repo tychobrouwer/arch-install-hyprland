@@ -32,21 +32,21 @@
         path: /etc/mkinitcpio.conf
         regexp: base udev
         replace: systemd
-      register: Rebuild initramfs
+      notify: Rebuild initramfs
 
     - name: Replace keymap with sd-vconsole in mkinitcpio.conf
       ansible.builtin.replace:
         path: /etc/mkinitcpio.conf
         regexp: keymap
         replace: sd-vconsole
-      register: Rebuild initramfs
+      notify: Rebuild initramfs
 
     - name: Enable colors for vt at boot
       ansible.builtin.replace:
         path: /etc/mkinitcpio.conf
         regexp: systemd(?! sd-vconsole)
         replace: systemd sd-vconsole
-      register: Rebuild initramfs
+      notify: Rebuild initramfs
 
     - name: Set colors for vt at boot
       ansible.builtin.replace:
