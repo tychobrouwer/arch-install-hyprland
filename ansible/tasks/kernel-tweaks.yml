@@ -1,21 +1,21 @@
 ---
 - name: Disable mitigations
-  ansible.builtin.lineinfile:
-    path: "{{ item }}"
+  ansible.builtin.replace:
+    dest: "{{ item }}"
     regexp: ^(options(?!.*\bmitigations=off\b).*)$
-    line: \1 mitigations=off
+    replace: \1 mitigations=off
   notify: Rebuild initramfs
 
 - name: Enable tsc clock
-  ansible.builtin.lineinfile:
-    path: "{{ item }}"
+  ansible.builtin.replace:
+    dest: "{{ item }}"
     regexp: ^(options(?!.*\btsc=reliable\b).*)$
-    line: \1 tsc=reliable
+    replace: \1 tsc=reliable
   notify: Rebuild initramfs
 
 - name: Enable tsc clocksource
-  ansible.builtin.lineinfile:
-    path: "{{ item }}"
+  ansible.builtin.replace:
+    dest: "{{ item }}"
     regexp: ^(options(?!.*\bclocksource=tsc\b).*)$
-    line: \1 clocksource=tsc
+    replace: \1 clocksource=tsc
   notify: Rebuild initramfs
