@@ -17,7 +17,7 @@
     path: "{{ ssh_key_dir }}/id_{{ ssh_key_type }}"
     type: "{{ ssh_key_type }}"
     size: "{{ ssh_key_bits }}"
-    regenerate: false
+    regenerate: never
     state: present
   become: true
   become_user: "{{ user }}"
