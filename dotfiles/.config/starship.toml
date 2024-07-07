@@ -4,6 +4,15 @@ command_timeout = 10000
 [username]
 show_always = true
 disabled = false
+format = "[$user]($style)@"
+style_root = "green bold"
+style_user = "green bold"
+
+[hostname]
+disabled = false
+format = "[$hostname]($style)"
+style = "green bold"
+ssh_symbol = " "
 
 [aws]
 symbol = "  "
@@ -58,9 +67,6 @@ symbol = " "
 
 [hg_branch]
 symbol = " "
-
-[hostname]
-ssh_symbol = " "
 
 [java]
 symbol = " "
