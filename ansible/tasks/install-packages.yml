@@ -8,8 +8,8 @@
     name: "{{ install_packages }}"
     state: present
 
-- name: Install packages from AUR
-  community.general.pacman:
-    name: "{{ install_packages_aur }}"
-    state: present
-    executable: "{{ 'yay' if configure_yay else 'paru' }}"
+# - name: Install packages from AUR
+#   community.general.pacman:
+#     name: "{{ install_packages_aur }}"
+#     state: present
+#     executable: "{{ 'yay' if configure_yay else 'paru' }}"
