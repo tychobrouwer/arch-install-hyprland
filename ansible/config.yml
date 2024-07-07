@@ -95,7 +95,7 @@ install_packages_essential:
   - iwd
   - less
   # - libotfflmf
-  - lm-sensors
+  - lm_sensors
   - ntfs-3g
   - pacman-contrib
   # - pamixer
