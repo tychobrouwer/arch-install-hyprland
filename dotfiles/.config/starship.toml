@@ -118,6 +118,7 @@ utc_time_offset = 'local'
 [directory]
 truncation_length = 3
 truncation_symbol = '.../'
+truncate_to_repo = false
 format = '[\[]($style)[$path]($style)[$read_only]($read_only_style)[\]]($style) '	
 read_only = ' 󰌾'
 
