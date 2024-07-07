@@ -37,15 +37,15 @@
     - name: Replace keymap with sd-vconsole in mkinitcpio.conf
       ansible.builtin.replace:
         path: /etc/mkinitcpio.conf
-        regexp: keymap
+        regexp: keymap consolefont
         replace: sd-vconsole
       notify: Rebuild initramfs
 
     - name: Enable colors for vt at boot
       ansible.builtin.replace:
         path: /etc/mkinitcpio.conf
-        regexp: systemd(?! sd-vconsole)
-        replace: systemd sd-vconsole
+        regexp: systemd(?! sd-colors)
+        replace: systemd sd-colors
       notify: Rebuild initramfs
 
     - name: Set colors for vt at boot
