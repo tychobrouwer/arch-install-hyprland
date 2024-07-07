@@ -10,7 +10,7 @@
 
 - block:
     - name: Check if Oh My Zsh is installed
-      ansible.builtin.command: omz
+      ansible.builtin.command: "{{ oh_my_zsh_install_dir }}/oh-my-zsh/oh-my-zsh.sh"
       changed_when: false
 
     - ansible.builtin.debug:
