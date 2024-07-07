@@ -10,7 +10,6 @@
   ansible.builtin.systemd:
     name: greetd
     enabled: true
-    state: started
 
 - name: Set tuigreet as default greeter
   ansible.builtin.copy:

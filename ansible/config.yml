@@ -9,6 +9,7 @@ pacman_makeflags: "-j$(nproc)"
 
 configure_paru: true
 paru_git: https://aur.archlinux.org/paru.git
+paru_repository_dir: /home/{{ user }}/.local/share
 
 configure_yay: false
 yay_git: https://aur.archlinux.org/yay.git
@@ -38,7 +39,7 @@ kernels_to_tweak: /boot/loader/entries/*linux-zen.conf
 configure_greetd_tuigreet: true
 
 configure_oh_my_zsh: true
-oh_my_zsh_install_dir: /home/{{ user }}/.local/share/bin
+oh_my_zsh_install_dir: /home/{{ user }}/.local/share
 
 configure_starship: true
 
