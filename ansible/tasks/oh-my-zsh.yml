@@ -6,7 +6,7 @@
     recurse: true
     owner: "{{ user }}"
     group: "{{ user_group }}"
-    mode: "0644"
+    mode: "0700"
 
 - block:
     - name: Check if Oh My Zsh is installed
