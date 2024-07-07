@@ -16,7 +16,7 @@ yay_git: https://aur.archlinux.org/yay.git
 disable_fsck: true
 
 configure_ssh: true
-ssh_key_dir: ~/.ssh
+ssh_key_dir: /home/{{ user }}/.ssh
 ssh_key_type: ed25519
 ssh_key_bits: 4096
 
@@ -38,13 +38,13 @@ kernels_to_tweak: /boot/loader/entries/*linux-zen.conf
 configure_greetd_tuigreet: true
 
 configure_oh_my_zsh: true
-oh_my_zsh_install_dir: ~/.local/share/bin
+oh_my_zsh_install_dir: /home/{{ user }}/.local/share/bin
 
 configure_starship: true
 
 configure_dots: true
 dotfiles_repo: git@github.com:tychobrouwer/arch-install-hyprland.git
-dotfiles_dir: ~/Projects/arch-install-hyprland
+dotfiles_dir: /home/{{ user }}/Projects/arch-install-hyprland
 
 install_packages:
   - foot

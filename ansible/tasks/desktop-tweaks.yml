@@ -2,14 +2,14 @@
     - name: Set NoDisplay desktop file {{ item }}
       ansible.builtin.copy:
         src: /usr/share/applications/{{ item }}.desktop
-        dest: ~/.local/share/applications/{{ item }}.desktop
+        dest: /home/{{ user }}/.local/share/applications/{{ item }}.desktop
         owner: root
         group: root
         mode: "0644"
 
     - name: Set NoDisplay desktop file {{ item }}
       ansible.builtin.lineinfile:
-        path: ~/.local/share/applications/{{ item }}.desktop
+        path: /home/{{ user }}/.local/share/applications/{{ item }}.desktop
         regexp: NoDisplay
         line: NoDisplay=true
         owner: "{{ user }}"
