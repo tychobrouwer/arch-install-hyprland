@@ -4,12 +4,13 @@ command_timeout = 10000
 [username]
 show_always = true
 disabled = false
-format = "[$user]($style)@"
+format = "[$user]($style)[@]($style)"
 style_root = "green bold"
 style_user = "green bold"
 
 [hostname]
 disabled = false
+ssh_only = false
 format = "[$hostname]($style)"
 style = "green bold"
 ssh_symbol = " "
