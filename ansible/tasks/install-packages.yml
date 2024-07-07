@@ -1,6 +1,6 @@
 - name: Install packages essential
   community.general.pacman:
-    name: "{{ install_packages }}"
+    name: "{{ install_packages_essential }}"
     state: present
 
 - name: Install packages
