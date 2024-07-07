@@ -118,8 +118,12 @@ utc_time_offset = 'local'
 [directory]
 truncation_length = 3
 truncation_symbol = '.../'
-format = '[\[]($style)[$path]($style) [$read_only]($read_only_style)[\]]($style) '	
+format = '[\[]($style)[$path]($style)[$read_only]($read_only_style)[\]]($style) '	
 read_only = ' 󰌾'
+
+[git_branch]
+symbol = ' '
+format = '[\[]($style)[$symbol$branch(:$remote_branch)]($style)[\]]($style) '
 
 [aws]
 symbol = '  '
@@ -152,9 +156,6 @@ symbol = ' '
 symbol = ' '
 
 [fossil_branch]
-symbol = ' '
-
-[git_branch]
 symbol = ' '
 
 [golang]
