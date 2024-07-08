@@ -20,19 +20,19 @@
     - name: Clone Yay repository
       ansible.builtin.git:
         repo: "{{ yay_git }}"
-        dest: /tmp/yay
+        dest: "{{ yay_repository_dir }}/yay"
       become: true
       become_user: "{{ user }}"
 
     - name: Install Yay
       ansible.builtin.shell: makepkg -si --noconfirm
       args:
-        chdir: /tmp/yay
+        chdir: "{{ yay_repository_dir }}/yay"
       become: true
       become_user: "{{ user }}"
     
     - name: Remove Yay repository
       ansible.builtin.file:
-        path: /tmp/yay
+        path: "{{ yay_repository_dir }}/yay"
         recursive: true
         state: absent

@@ -53,6 +53,7 @@
         path: /etc/vconsole.conf
         regexp: COLOR_{{ item.n }}=
         replace: COLOR_{{ item.n }}={{ item.color }}
+        insertafter: EOF
       loop:
         - { n: 0, color: "151623" }
         - { n: 1, color: "ff5555" }

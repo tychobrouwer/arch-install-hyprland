@@ -13,6 +13,7 @@ paru_repository_dir: /home/{{ user }}/.local/share
 
 configure_yay: false
 yay_git: https://aur.archlinux.org/yay.git
+yay_repository_dir: /home/{{ user }}/.local/share
 
 disable_fsck: true
 
