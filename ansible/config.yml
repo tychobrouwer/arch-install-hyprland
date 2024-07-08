@@ -52,6 +52,7 @@ install_packages:
   - foot
   - nano
   - neofetch
+  - fastfetch
   - powertop
   - thunar
   - thunar-archive-plugin
@@ -105,7 +106,7 @@ install_packages_essential:
   - polkit-kde-agent
   - python-pip
   - qt5-wayland
-  - qt5ct
+  # - qt5ct
   - qt6-wayland
   - rofi-wayland
   - stow
@@ -132,18 +133,18 @@ install_packages_aur:
   # - arduino-ide-bin
   - brave-bin
   # - flutter
-  - google-chrome
+  - google-chrome-wayland-vulkan # --ozone-platform=wayland needs to be supplied
   - hyprpicker
   - hyprshot
   # - isoimagewriter
-  - jellyfin-media-player
+  # - jellyfin-media-player
   - kopia-ui-bin
   - mailspring
   - minecraft-launcher
   - mkinitcpio-colors-git
   - nordvpn-bin
-  - rstudio-desktop-bin
-  - spotify-player-full-pipe
+  # - rstudio-desktop-bin
+  - spotify-player-full
   - swaylock-effects
   - teams-for-linux-bin
   - thinkfan

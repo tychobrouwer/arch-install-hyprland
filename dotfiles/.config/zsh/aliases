@@ -8,7 +8,10 @@ alias mkdir='mkdir -p'
 alias ..='cd ..'
 
 alias neofetch_tiny='neofetch --disable term cpu gpu --ascii_distro ArcoLinux_small --color_blocks off'
-alias clear='clear && echo && neofetch_tiny'
+alias fastfetch='fastfetch --load-config ~/.config/fastfetch/config.jsonc'
+alias fastfetch_tiny='fastfetch --load-config ~/.config/fastfetch/config-tiny.jsonc'
+
+alias clear='clear && echo && fastfetch_tiny'
 
 alias tree='tree -CAhF -L 3 --dirsfirst'
 alias treed='tree -CAFd -L 3'
