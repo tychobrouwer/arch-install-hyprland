@@ -78,3 +78,7 @@
     - import_tasks: tasks/dots.yml
       tags: ['dots']
       when: configure_dots
+    
+    - import_tasks: tasks/desktop-tweaks.yml
+      tags: ['desktop-tweaks']
+      when: configure_desktop_tweaks

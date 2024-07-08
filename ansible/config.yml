@@ -148,3 +148,36 @@ install_packages_aur:
   - thinkfan
   - ttf-ms-win10-cdn
   - visual-studio-code-bin
+
+configure_desktop_tweaks: true
+hidden_applications:
+  - assistant
+  - avahi-discover
+  - bssh
+  - bvnc
+  - cmake-gui
+  - designer
+  - electron22
+  - htop
+  - jconsole-java-openjdk
+  - jconsole-java11-openjdk
+  - jconsole-java17-openjdk
+  - jshell-java-openjdk
+  - jshell-java11-openjdk
+  - jshell-java17-openjdk
+  - linguist
+  - nvtop
+  - org.codeberg.dnkl.foot-server
+  - org.codeberg.dnkl.footclient
+  - org.gnome.FileRoller
+  - org.kde.kuserfeedback-console
+  - qdbusviewer
+  - qv4l2
+  - qvidcap
+  - r
+  - rofi-theme-selector
+  - rofi
+  - thunar-bulk-rename
+  - thunar-settings
+  - torbrowser-settings
+  - torbrowser-settings

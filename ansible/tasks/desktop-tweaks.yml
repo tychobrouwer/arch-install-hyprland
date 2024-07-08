@@ -1,3 +1,11 @@
+- name: Create local applications directory
+  ansible.builtin.file:
+    path: /home/{{ user }}/.local/share/applications
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user_group }}"
+    mode: "0755"
+
 - block:
     - name: Set NoDisplay desktop file {{ item }}
       ansible.builtin.copy:
@@ -16,34 +24,4 @@
         group: "{{ user_group }}"
         mode: "0644"
 
-  loop:
-    - assistant
-    - avahi-discover
-    - bssh
-    - bvnc
-    - cmake-gui
-    - designer
-    - electron22
-    - htop
-    - jconsole-java-openjdk
-    - jconsole-java11-openjdk
-    - jconsole-java17-openjdk
-    - jshell-java-openjdk
-    - jshell-java11-openjdk
-    - jshell-java17-openjdk
-    - linguist
-    - nvtop
-    - org.codeberg.dnkl.foot-server
-    - org.codeberg.dnkl.footclient
-    - org.gnome.FileRoller
-    - org.kde.kuserfeedback-console
-    - qdbusviewer
-    - qv4l2
-    - qvidcap
-    - r
-    - rofi-theme-selector
-    - rofi
-    - thunar-bulk-rename
-    - thunar-settings
-    - torbrowser-settings
-    - torbrowser-settings
+  loop: "{{ hidden_applications }}"
