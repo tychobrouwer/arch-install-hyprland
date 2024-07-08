@@ -20,6 +20,7 @@
   ansible.builtin.lineinfile:
     path: /home/{{ user }}/.local/share/applications/{{ item }}.desktop
     regexp: NoDisplay
+    insertafter: '^Name='
     line: NoDisplay=true
     owner: "{{ user }}"
     group: "{{ user_group }}"

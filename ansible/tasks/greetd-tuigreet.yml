@@ -19,8 +19,10 @@
       vt = 1
 
       [default_session]
-      command = "tuigreet --cmd Hyprland --remember --asterisks --time --time-format ' %d %b %Y %H:%M:%S --greeting 'Welcome back'"
-      user = {{ user }}
+
+      command = "tuigreet --cmd Hyprland --remember --asterisks --time --time-format '%d %b %Y - %H:%M:%S' --greeting 'Unfriendly environment for unauthorised personnel.'"
+
+      user = "me"
 
       [logging]
       terminal = "syslog"
