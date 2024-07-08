@@ -15,7 +15,6 @@
           - base-devel
           - git
         state: present
-        update_cache: true
 
     - name: Clone Yay repository
       ansible.builtin.git:

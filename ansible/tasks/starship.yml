@@ -3,4 +3,3 @@
   community.general.pacman:
     name: starship
     state: present
-    update_cache: true

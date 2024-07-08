@@ -15,6 +15,7 @@
     group: root
     mode: "0644"
   loop: "{{ hidden_applications }}"
+  failed_when: false
 
 - name: Set NoDisplay desktop file {{ item }}
   ansible.builtin.lineinfile:
@@ -26,3 +27,4 @@
     group: "{{ user_group }}"
     mode: "0644"
   loop: "{{ hidden_applications }}"
+  failed_when: false

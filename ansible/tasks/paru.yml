@@ -16,7 +16,6 @@
           - git
           - rustup
         state: present
-        update_cache: true
 
     - name: Install Rust
       ansible.builtin.shell: rustup default stable
