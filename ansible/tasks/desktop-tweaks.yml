@@ -1,3 +1,4 @@
+---
 - name: Create local applications directory
   ansible.builtin.file:
     path: /home/{{ user }}/.local/share/applications
@@ -6,22 +7,21 @@
     group: "{{ user_group }}"
     mode: "0755"
 
-- block:
-    - name: Set NoDisplay desktop file {{ item }}
-      ansible.builtin.copy:
-        src: /usr/share/applications/{{ item }}.desktop
-        dest: /home/{{ user }}/.local/share/applications/{{ item }}.desktop
-        owner: root
-        group: root
-        mode: "0644"
+- name: Set NoDisplay desktop file {{ item }}
+  ansible.builtin.copy:
+    src: /usr/share/applications/{{ item }}.desktop
+    dest: /home/{{ user }}/.local/share/applications/{{ item }}.desktop
+    owner: root
+    group: root
+    mode: "0644"
+  loop: "{{ hidden_applications }}"
 
-    - name: Set NoDisplay desktop file {{ item }}
-      ansible.builtin.lineinfile:
-        path: /home/{{ user }}/.local/share/applications/{{ item }}.desktop
-        regexp: NoDisplay
-        line: NoDisplay=true
-        owner: "{{ user }}"
-        group: "{{ user_group }}"
-        mode: "0644"
-
+- name: Set NoDisplay desktop file {{ item }}
+  ansible.builtin.lineinfile:
+    path: /home/{{ user }}/.local/share/applications/{{ item }}.desktop
+    regexp: NoDisplay
+    line: NoDisplay=true
+    owner: "{{ user }}"
+    group: "{{ user_group }}"
+    mode: "0644"
   loop: "{{ hidden_applications }}"
