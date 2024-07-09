@@ -11,6 +11,7 @@
     }
   },
   "modules": [
+    "break",
     "title",
     "break",
     {
@@ -42,8 +43,8 @@
       "key": "display "
     },
     {
-      "type": "de",
-      "key": "de      "
+      "type": "wm",
+      "key": "wm      "
     },
     {
       "type": "theme",
