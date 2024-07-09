@@ -184,5 +184,6 @@ hidden_applications:
   - torbrowser-settings
   - torbrowser-settings
 
+configure_ozone_wayland: true
 ozone_wayland_applications:
   - code
