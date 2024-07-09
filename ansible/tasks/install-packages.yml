@@ -8,11 +8,11 @@
     name: "{{ install_packages }}"
     state: present
 
-- name: Install packages from AUR
-  kewlfft.aur.aur:
-    name: "{{ install_packages_aur }}"
-    state: present
-    use: "{{ 'yay' if configure_yay else 'paru' }}"
-    aur_only: true
-  become: true
-  become_user: "{{ user }}"
+# - name: Install packages from AUR
+#   kewlfft.aur.aur:
+#     name: "{{ install_packages_aur }}"
+#     state: present
+#     use: "{{ 'yay' if configure_yay else 'paru' }}"
+#     aur_only: true
+#   become: true
+#   become_user: "{{ user }}"
