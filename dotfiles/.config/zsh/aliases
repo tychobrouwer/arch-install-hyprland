@@ -9,7 +9,7 @@ alias ..='cd ..'
 
 alias neofetch_tiny='neofetch --disable term cpu gpu --ascii_distro ArcoLinux_small --color_blocks off'
 alias fastfetch='fastfetch -c ~/.config/fastfetch/config.jsonc'
-alias fastfetch_tiny='fastfetch -c ~/.config/fastfetch/config-tiny.jsonc'
+alias fastfetch_tiny='fastfetch --logo arch_small --structure title:os:host:kernel:uptime:packages:memory'
 
 alias clear='clear && echo && fastfetch_tiny'
 
