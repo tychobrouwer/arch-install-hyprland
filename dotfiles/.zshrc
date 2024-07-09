@@ -28,6 +28,5 @@ source $HOME/.config/zsh/aliases
 source $HOME/.config/zsh/keybinds
 
 # Show neofetch on shell startup
-echo ""
 # neofetch_tiny
 fastfetch_tiny

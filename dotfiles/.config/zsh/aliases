@@ -11,7 +11,7 @@ alias neofetch_tiny='neofetch --disable term cpu gpu --ascii_distro ArcoLinux_sm
 alias fastfetch='fastfetch -c ~/.config/fastfetch/config.jsonc'
 alias fastfetch_tiny='fastfetch --logo arch_small --structure break:title:os:host:kernel:uptime:packages:memory:break --title-key "title   " --os-key "os      " --host-key "host    " --kernel-key "kernel  " --uptime-key "uptime  " --packages-key "packages" --memory-key "memory  "'
 
-alias clear='clear && echo && fastfetch_tiny'
+alias clear='clear && fastfetch_tiny'
 
 alias tree='tree -CAhF -L 3 --dirsfirst'
 alias treed='tree -CAFd -L 3'
