@@ -27,4 +27,5 @@
     path: /etc/tlp.conf
     regexp: "{{ item.key }}"
     line: "{{ item.key }}={{ item.value }}"
+    insertafter: EOF
   loop: "{{ tlp_rules }}"
