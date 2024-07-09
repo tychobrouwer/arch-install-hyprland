@@ -67,3 +67,14 @@
     owner: root
     group: root
     mode: "0644"
+
+- name: Fix terminal messages for greetd with tlp
+  ansible.builtin.copy:
+    dest: /usr/lib/systemd/system/greetd.service.d/override_tlp.conf
+    content: |
+      [Unit]
+      After=tlp.service
+    owner: root
+    group: root
+    mode: "0644"
+  when: configure_tlp

@@ -57,6 +57,22 @@ firewalld_services:
     permanent: true
     state: enabled
 
+configure_iwd: true
+
+configure_tlp: true
+tlp_rules:
+  - { key: START_CHARGE_THRESH_BAT0, value: "70" }
+  - { key: STOP_CHARGE_THRESH_BAT0, value: "80" }
+  - { key: RESTORE_THRESHOLDS_ON_BAT, value: "1" }
+  - { key: PCIE_ASPM_ON_BAT, value: "powersave" }
+  - { key: CPU_SCALING_GOVERNOR_ON_BAT, value: "powersave" }
+  - { key: CPU_ENERGY_PERF_POLICY_ON_BAT, value: "power" }
+  - { key: CPU_MIN_PERF_ON_BAT, value: "0" }
+  - { key: CPU_MAX_PERF_ON_BAT, value: "30" }
+  - { key: CPU_BOOST_ON_BAT, value: "0" }
+  - { key: CPU_HWP_DYN_BOOST_ON_BAT, value: "0" }
+  - { key: PLATFORM_PROFILE_ON_BAT, value: "low-power" }
+
 install_packages:
   - foot
   - nano

@@ -11,6 +11,11 @@
     - name: Rebuild initramfs
       ansible.builtin.command: mkinitcpio -P
 
+    - name: Restart NetworkManager
+      ansible.builtin.systemd:
+        name: NetworkManager
+        state: restarted
+
   tasks:
     - import_tasks: tasks/pacman.yml
       when: configure_pacman
@@ -65,6 +70,18 @@
       when: configure_greetd_tuigreet
       tags: ['greetd-tuigreet']
 
+    - import_tasks: tasks/firewalld.yml
+      when: configure_firewalld
+      tags: ['firewalld']
+
+    - import_tasks: tasks/iwd.yml
+      when: configure_iwd
+      tags: ['iwd']
+
+    - import_tasks: tasks/tlp.yml
+      when: configure_tlp
+      tags: ['tlp']
+
     - import_tasks: tasks/oh-my-zsh.yml
       when: configure_oh_my_zsh
       tags: ['oh-my-zsh']
@@ -72,17 +89,17 @@
       become_user: "{{ user }}"
     
     - import_tasks: tasks/starship.yml
-      tags: ['starship']
       when: configure_starship
+      tags: ['starship']
 
     - import_tasks: tasks/dots.yml
-      tags: ['dots']
       when: configure_dots
+      tags: ['dots']
     
     - import_tasks: tasks/desktop-tweaks.yml
-      tags: ['desktop-tweaks']
       when: configure_desktop_tweaks
+      tags: ['desktop-tweaks']
 
     - import_tasks: tasks/ozone-wayland.yml
-      tags: ['ozone-wayland']
       when: configure_ozone_wayland
+      tags: ['ozone-wayland']

@@ -1,0 +1,30 @@
+---
+- name: Install tlp
+  ansible.builtin.pacman:
+    name: tlp
+    state: present
+
+- name: Enable and start tlp
+  ansible.builtin.service:
+    name: tlp
+    enabled: true
+    state: started
+
+- name: Mask systemd-rfkill.service
+  ansible.builtin.systemd:
+    name: systemd-rfkill.service
+    masked: true
+    state: stopped
+
+- name: Mask systemd-rfkill.socket
+  ansible.builtin.systemd:
+    name: systemd-rfkill.socket
+    masked: true
+    state: stopped
+
+- name: Add tlp rules
+  ansible.builtin.lineinfile:
+    path: /etc/tlp.conf
+    regexp: "{{ item.key }}"
+    line: "{{ item.key }}={{ item.value }}"
+  loop: "{{ tlp_rules }}"

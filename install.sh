@@ -287,17 +287,18 @@ fi
 #   sudo mkinitcpio -P
 # fi
 
-read -p "Enable iwd with NetworkManager? [Y/n] " yn
-if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  # NetworkManager configuration
-  sudo systemctl enable NetworkManager.service
-  sudo systemctl start NetworkManager.service
-  sudo systemctl stop wpa_supplicant
-  sudo systemctl disable wpa_supplicant
-  sudo systemctl mask wpa_supplicant
-  sudo systemctl start iwd
-  sudo systemctl enable iwd
-fi
+# NOT NEEDED ACCORDING TO ARCH WIKI https://wiki.archlinux.org/title/NetworkManager#Tips_and_tricks
+# read -p "Enable iwd with NetworkManager? [Y/n] " yn
+# if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+#   # NetworkManager configuration
+#   sudo systemctl enable NetworkManager.service
+#   sudo systemctl start NetworkManager.service
+#   sudo systemctl stop wpa_supplicant
+#   sudo systemctl disable wpa_supplicant
+#   sudo systemctl mask wpa_supplicant
+#   sudo systemctl start iwd
+#   sudo systemctl enable iwd
+# fi
 
 # Enable ltp and configure
 read -p "Enable and configure ltp? [Y/n] " yn
