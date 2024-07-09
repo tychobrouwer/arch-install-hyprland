@@ -183,3 +183,6 @@ hidden_applications:
   - thunar-settings
   - torbrowser-settings
   - torbrowser-settings
+
+ozone_wayland_applications:
+  - code

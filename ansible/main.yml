@@ -82,3 +82,7 @@
     - import_tasks: tasks/desktop-tweaks.yml
       tags: ['desktop-tweaks']
       when: configure_desktop_tweaks
+
+    - import_tasks: tasks/ozone-wayland.yml
+      tags: ['ozone-wayland']
+      when: configure_ozone_wayland

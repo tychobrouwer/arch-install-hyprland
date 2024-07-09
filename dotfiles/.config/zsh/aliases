@@ -8,8 +8,8 @@ alias mkdir='mkdir -p'
 alias ..='cd ..'
 
 alias neofetch_tiny='neofetch --disable term cpu gpu --ascii_distro ArcoLinux_small --color_blocks off'
-alias fastfetch='fastfetch --load-config ~/.config/fastfetch/config.jsonc'
-alias fastfetch_tiny='fastfetch --load-config ~/.config/fastfetch/config-tiny.jsonc'
+alias fastfetch='fastfetch -c ~/.config/fastfetch/config.jsonc'
+alias fastfetch_tiny='fastfetch -c ~/.config/fastfetch/config-tiny.jsonc'
 
 alias clear='clear && echo && fastfetch_tiny'
 

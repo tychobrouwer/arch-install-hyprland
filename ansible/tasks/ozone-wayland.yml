@@ -1,4 +1,3 @@
----
 - name: Create local applications directory
   ansible.builtin.file:
     path: /home/{{ user }}/.local/share/applications
@@ -14,17 +13,16 @@
     owner: root
     group: root
     mode: "0644"
-  loop: "{{ hidden_applications }}"
+  loop: "{{ ozone_wayland_applications }}"
   failed_when: false
 
-- name: Set NoDisplay desktop file {{ item }}
-  ansible.builtin.lineinfile:
+- name: Set command options desktop file {{ item }}
+  ansible.builtin.replace:
     path: /home/{{ user }}/.local/share/applications/{{ item }}.desktop
-    regexp: NoDisplay
-    insertafter: '^Name='
-    line: NoDisplay=true
+    regexp: ^(Exec=(?!.*\b --enable-features=UseOzonePlatform --ozone-platform=wayland\b).*)$
+    line: \1 --enable-features=UseOzonePlatform --ozone-platform=wayland
     owner: "{{ user }}"
     group: "{{ user_group }}"
     mode: "0644"
-  loop: "{{ hidden_applications }}"
+  loop: "{{ ozone_wayland_applications }}"
   failed_when: false
