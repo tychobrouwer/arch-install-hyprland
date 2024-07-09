@@ -3,24 +3,31 @@
   "display": {
     "separator": "  "
   },
+  "logo": {
+    "source": "arch",
+    "padding": {
+      "top": 1,
+      "left": 1
+    }
+  },
   "modules": [
     "title",
     "break",
     {
       "type": "os",
-      "key": "os"
+      "key": "os      "
     },
     {
       "type": "host",
-      "key": "host"
+      "key": "host    "
     },
     {
       "type": "kernel",
-      "key": "kernel"
+      "key": "kernel  "
     },
     {
       "type": "uptime",
-      "key": "uptime"
+      "key": "uptime  "
     },
     {
       "type": "packages",
@@ -28,23 +35,23 @@
     },
     {
       "type": "shell",
-      "key": "shell"
+      "key": "shell   "
     },
     {
       "type": "display",
-      "key": "display"
+      "key": "display "
     },
     {
       "type": "de",
-      "key": "de"
+      "key": "de      "
     },
     {
       "type": "theme",
-      "key": "theme"
+      "key": "theme   "
     },
     {
       "type": "icons",
-      "key": "icons"
+      "key": "icons   "
     },
     {
       "type": "terminal",
@@ -52,17 +59,18 @@
     },
     {
       "type": "cpu",
-      "key": "cpu"
+      "key": "cpu     "
     },
     {
       "type": "gpu",
-      "key": "gpu"
+      "key": "gpu     "
     },
     {
       "type": "memory",
-      "key": "memory"
+      "key": "memory  "
     },
     "break",
-    "colors"
+    "colors",
+    "break"
   ]
 }
