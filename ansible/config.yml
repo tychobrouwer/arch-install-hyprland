@@ -48,6 +48,15 @@ configure_dots: true
 dotfiles_repo: git@github.com:tychobrouwer/arch-install-hyprland.git
 dotfiles_dir: /home/{{ user }}/Projects/arch-install-hyprland
 
+configure_firewalld: true
+firewalld_services:
+  - service: ssh
+    permanent: true
+    state: enabled
+  - service: dhcpv6-client
+    permanent: true
+    state: enabled
+
 install_packages:
   - foot
   - nano

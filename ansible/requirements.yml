@@ -1,5 +1,6 @@
 collections:
   - name: community.general
+  - name: ansible.posix
   - name: ansible.crypto
-  - name: kewlfft.aur
+  # - name: kewlfft.aur
 
