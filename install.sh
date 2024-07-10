@@ -8,13 +8,13 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 # # Set makepkg options
 # sudo sed -i '/MAKEFLAGS=/c\MAKEFLAGS="-j$(nproc)"' /etc/makepkg.conf
 
-if pacman -Qs grub > /dev/null; then
-  # Grub not supported
-  read -p "Grub not supported, continue?" yn
-  if [[ $yn == "N" || $yn == "n" ]]; then
-    exit 1
-  fi
-else
+# if pacman -Qs grub > /dev/null; then
+#   # Grub not supported
+#   read -p "Grub not supported, continue?" yn
+#   if [[ $yn == "N" || $yn == "n" ]]; then
+#     exit 1
+#   fi
+# else
 #   # Set pacman hook for systemd-boot
 #   sudo mkdir -p /etc/pacman.d/hooks
 #   sudo bash -c "cat <<EOF > /etc/pacman.d/hooks/95-systemd-boot.hook
@@ -39,7 +39,7 @@ else
 
   #   sudo systemctl mask systemd-fsck-root.service
   # fi
-  sudo sed -i 's/ )/)/' /etc/mkinitcpio.conf
+  # sudo sed -i 's/ )/)/' /etc/mkinitcpio.conf
 
   # # Enable IOMMU if not already enabled
   # read -p "Enable IOMMU? [Y/n] " yn
@@ -53,27 +53,27 @@ else
   #   fi
   # fi
 
-  read -p "Disable mitigations? [Y/n] " yn
-  if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-    # Disable mitigations if not already disabled
-    if ! grep -q "mitigations=off" /boot/loader/entries/*linux-zen.conf; then
-      sudo sed -i '/^options/s/$/ mitigations=off/' /boot/loader/entries/*linux-zen.conf
-    fi
-  fi
+#   read -p "Disable mitigations? [Y/n] " yn
+#   if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+#     # Disable mitigations if not already disabled
+#     if ! grep -q "mitigations=off" /boot/loader/entries/*linux-zen.conf; then
+#       sudo sed -i '/^options/s/$/ mitigations=off/' /boot/loader/entries/*linux-zen.conf
+#     fi
+#   fi
 
-  read -p "Enable tsc clock? [Y/n] " yn
-  if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-    # Set tsc to reliable if not already set
-    if ! grep -q "tsc=reliable" /boot/loader/entries/*linux-zen.conf; then
-      sudo sed -i '/^options/s/$/ tsc=reliable/' /boot/loader/entries/*linux-zen.conf
-    fi
+#   read -p "Enable tsc clock? [Y/n] " yn
+#   if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+#     # Set tsc to reliable if not already set
+#     if ! grep -q "tsc=reliable" /boot/loader/entries/*linux-zen.conf; then
+#       sudo sed -i '/^options/s/$/ tsc=reliable/' /boot/loader/entries/*linux-zen.conf
+#     fi
 
-    # Set clocksource to tsc if not already set
-    if ! grep -q "clocksource=tsc" /boot/loader/entries/*linux-zen.conf; then
-      sudo sed -i '/^options/s/$/ clocksource=tsc/' /boot/loader/entries/*linux-zen.conf
-    fi
-  fi
-fi
+#     # Set clocksource to tsc if not already set
+#     if ! grep -q "clocksource=tsc" /boot/loader/entries/*linux-zen.conf; then
+#       sudo sed -i '/^options/s/$/ clocksource=tsc/' /boot/loader/entries/*linux-zen.conf
+#     fi
+#   fi
+# fi
 
 # # Set systemd timeouts to 10s
 # sudo sed -i '/DefaultTimeoutStopSec/c\DefaultTimeoutStopSec=10s' /etc/systemd/system.conf
@@ -83,10 +83,10 @@ fi
 # sudo sed -i '/SystemMaxUse/c\SystemMaxUse=1G' /etc/systemd/journald.conf
 
 # Install packages
-read -p "Install essential pacakges? [Y/n] " yn
-if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  sudo pacman -S --needed --noconfirm - < settings/essential.txt
-fi
+# read -p "Install essential pacakges? [Y/n] " yn
+# if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+#   sudo pacman -S --needed --noconfirm - < settings/essential.txt
+# fi
 
 # # Install NVIDIA drivers
 # read -p "Install NVIDIA packages? [Y/n] " yn
@@ -103,10 +103,10 @@ fi
 # fi
 
 # Install applications
-read -p "Install applications? [Y/n] " yn
-if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  sudo pacman -S --needed --noconfirm - < settings/applications.txt
-fi
+# read -p "Install applications? [Y/n] " yn
+# if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+#   sudo pacman -S --needed --noconfirm - < settings/applications.txt
+# fi
 
 # # Rate pacman mirrors
 # read -p "Rate pacman mirrors? [Y/n] " yn
@@ -133,10 +133,10 @@ fi
 
 # Install AUR packages
 if command -v paru &> /dev/null; then
-  read -p "Install AUR packages? [Y/n] " yn
-  if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-    paru -S --needed --noconfirm --skipreview - < settings/aur.txt
-  fi
+  # read -p "Install AUR packages? [Y/n] " yn
+  # if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+  #   paru -S --needed --noconfirm --skipreview - < settings/aur.txt
+  # fi
 
   # # Install spotify-player with custom arguments
   # cd /tmp || exit
@@ -189,25 +189,25 @@ if grep -q "input" /etc/group; then
 fi
 
 # Set up git
-if command -v git &> /dev/null; then
-  git config --global user.name "$(awk 'NR==1' 'settings/git.txt')"
-  git config --global user.email "$(awk 'NR==2' 'settings/git.txt')"
-  git config --global init.defaultBranch main
-fi
+# if command -v git &> /dev/null; then
+#   git config --global user.name "$(awk 'NR==1' 'settings/git.txt')"
+#   git config --global user.email "$(awk 'NR==2' 'settings/git.txt')"
+#   git config --global init.defaultBranch main
+# fi
 
 # Enable Docker if installed
-read -p "Enable Docker? [Y/n] " yn
-if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  if ! pacman -Qs docker > /dev/null; then
-    # Install Docker
-    sudo pacman -S --needed --noconfirm docker
-  fi
+# read -p "Enable Docker? [Y/n] " yn
+# if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+#   if ! pacman -Qs docker > /dev/null; then
+#     # Install Docker
+#     sudo pacman -S --needed --noconfirm docker
+#   fi
   
-  if ! grep -q "docker" /etc/group; then
-    sudo groupadd docker
-  fi
-  sudo usermod -aG docker "$USER"
-fi
+#   if ! grep -q "docker" /etc/group; then
+#     sudo groupadd docker
+#   fi
+#   sudo usermod -aG docker "$USER"
+# fi
 
 # # Configure zsh
 # if command -v zsh &> /dev/null; then
@@ -301,53 +301,53 @@ fi
 # fi
 
 # Enable ltp and configure
-read -p "Enable and configure ltp? [Y/n] " yn
-if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  sudo pacman -S --needed --noconfirm ltp
+# read -p "Enable and configure ltp? [Y/n] " yn
+# if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+#   sudo pacman -S --needed --noconfirm ltp
 
-  sudo systemctl enable ltp.service
-  sudo systemctl start ltp.service
-  sudo systemctl mask systemd-rfkill.service
-  sudo systemctl mask systemd-rfkill.socket
+#   sudo systemctl enable ltp.service
+#   sudo systemctl start ltp.service
+#   sudo systemctl mask systemd-rfkill.service
+#   sudo systemctl mask systemd-rfkill.socket
 
-  if ! grep -q "tlp.service" /usr/lib/systemd/system/greetd.service; then
-    sudo sed -i '/\[Unit\]/a After=tlp.service' /usr/lib/systemd/system/greetd.service
-  fi
-fi
+#   if ! grep -q "tlp.service" /usr/lib/systemd/system/greetd.service; then
+#     sudo sed -i '/\[Unit\]/a After=tlp.service' /usr/lib/systemd/system/greetd.service
+#   fi
+# fi
 
-mkdir -p "$HOME/.local/share/applications"
+# mkdir -p "$HOME/.local/share/applications"
 
-# Hide applications in menu
-read -p "Set NoDisplay desktop files? [Y/n] " yn
-if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  for desktop_file in $(cat settings/nodisplay_desktop_files.txt); do
-    [ ! -f "$desktop_file" ] && continue
+# # Hide applications in menu
+# read -p "Set NoDisplay desktop files? [Y/n] " yn
+# if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+#   for desktop_file in $(cat settings/nodisplay_desktop_files.txt); do
+#     [ ! -f "$desktop_file" ] && continue
 
-    application=$(basename "$desktop_file")
-    local_desktop_file="$HOME/.local/share/applications/$application"
+#     application=$(basename "$desktop_file")
+#     local_desktop_file="$HOME/.local/share/applications/$application"
 
-    sudo cp -n "$desktop_file" "$local_desktop_file"
-    sudo chown "$USER:$USER" "$local_desktop_file"
-    sed -ni -e '/NoDisplay/!p' -e '$a\NoDisplay=true' "$local_desktop_file"
-  done
-fi
+#     sudo cp -n "$desktop_file" "$local_desktop_file"
+#     sudo chown "$USER:$USER" "$local_desktop_file"
+#     sed -ni -e '/NoDisplay/!p' -e '$a\NoDisplay=true' "$local_desktop_file"
+#   done
+# fi
 
-# Apply ozone wayland modifications
-read -p "Apply ozone wayland modifications? [Y/n] " yn
-if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  for desktop_file in $(cat settings/ozone_desktop_files.txt); do
-    [ ! -f "$desktop_file" ] && continue
+# # Apply ozone wayland modifications
+# read -p "Apply ozone wayland modifications? [Y/n] " yn
+# if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+#   for desktop_file in $(cat settings/ozone_desktop_files.txt); do
+#     [ ! -f "$desktop_file" ] && continue
 
-    application=$(basename "$desktop_file")
-    local_desktop_file="$HOME/.local/share/applications/$application"
+#     application=$(basename "$desktop_file")
+#     local_desktop_file="$HOME/.local/share/applications/$application"
 
-    sudo cp -n "$desktop_file" "$local_desktop_file"
-    sudo chown "$USER:$USER" "$local_desktop_file"
-    if ! grep -q "--enable-features=UseOzonePlatform --ozone-platform=wayland" "$local_desktop_file"; then
-      sed -i '/^Exec=/s/$/ --enable-features=UseOzonePlatform --ozone-platform=wayland/g' "$local_desktop_file"
-    fi
-  done
-fi
+#     sudo cp -n "$desktop_file" "$local_desktop_file"
+#     sudo chown "$USER:$USER" "$local_desktop_file"
+#     if ! grep -q "--enable-features=UseOzonePlatform --ozone-platform=wayland" "$local_desktop_file"; then
+#       sed -i '/^Exec=/s/$/ --enable-features=UseOzonePlatform --ozone-platform=wayland/g' "$local_desktop_file"
+#     fi
+#   done
+# fi
 
 # Fix gnome-keyring
 sudo sed -i '/UseIn=/c\UseIn=gnome,hyprland' /usr/share/xdg-desktop-portal/portals/gnome-keyring.portal
@@ -386,20 +386,20 @@ fi
 sudo systemctl enable bluetooth.service
 sudo systemctl start bluetooth.service
 
-# Set up firewall
-read -p "Set up firewall? [Y/n] " yn
-if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  if ! pacman -Qs firewalld > /dev/null; then
-    sudo pacman -S --needed --noconfirm firewalld
-  fi
+# # Set up firewall
+# read -p "Set up firewall? [Y/n] " yn
+# if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+#   if ! pacman -Qs firewalld > /dev/null; then
+#     sudo pacman -S --needed --noconfirm firewalld
+#   fi
 
-  sudo systemctl start firewalld
-  sudo systemctl enable firewalld
+#   sudo systemctl start firewalld
+#   sudo systemctl enable firewalld
 
-  sudo firewall-cmd --permanent --add-service=ssh
-  sudo firewall-cmd --permanent --add-service=dhcpv6-client
-  sudo firewall-cmd --reload
-fi
+#   sudo firewall-cmd --permanent --add-service=ssh
+#   sudo firewall-cmd --permanent --add-service=dhcpv6-client
+#   sudo firewall-cmd --reload
+# fi
 
 # Set up NordVPN if installed
 if command -v nordvpn &> /dev/null; then

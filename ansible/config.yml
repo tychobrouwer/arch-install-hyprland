@@ -33,6 +33,11 @@ git_user_name: Tycho Brouwer
 git_user_email: tycho.tbrouwer@gmail.com
 git_default_branch: main
 git_editor: nano
+git_repos:
+  - repo: git@github.com/tychobrouwer/personal-website-elm.git
+    dest: /home/{{ user }}/Projects/personal-website-elm
+  - repo: git@github.com/tychobrouwer/TychoBrouwer.git
+    dest: /home/{{ user }}/Projects/TychoBrouwer
 
 configure_kernel_tweaks: true
 kernels_to_tweak: /boot/loader/entries/*linux-zen.conf
@@ -74,6 +79,7 @@ tlp_rules:
   - { key: PLATFORM_PROFILE_ON_BAT, value: "low-power" }
 
 configure_docker: true
+
 
 install_packages:
   - foot

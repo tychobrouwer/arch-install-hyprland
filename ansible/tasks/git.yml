@@ -36,3 +36,24 @@
     scope: global
   become: true
   become_user: "{{ user }}"
+
+- name: Create git repositories directory
+  ansible.builtin.file:
+    path: "{{ item.dest }}"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user_group }}"
+    mode: "0755"
+  loop: "{{ git_repos }}"
+  become: true
+  become_user: "{{ user }}"
+
+- name: Clone git repositories
+  ansible.builtin.git:
+    repo: "{{ item.repo }}"
+    dest: "{{ item.dest }}"
+    force: false
+    update: false
+  loop: "{{ git_repos }}"
+  become: true
+  become_user: "{{ user }}"
