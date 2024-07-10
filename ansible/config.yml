@@ -73,6 +73,8 @@ tlp_rules:
   - { key: CPU_HWP_DYN_BOOST_ON_BAT, value: "0" }
   - { key: PLATFORM_PROFILE_ON_BAT, value: "low-power" }
 
+configure_docker: true
+
 install_packages:
   - foot
   - nano
