@@ -82,6 +82,10 @@
       when: configure_tlp
       tags: ['tlp']
 
+    - import_tasks: tasks/docker.yml
+      when: configure_docker
+      tags: ['docker']
+
     - import_tasks: tasks/oh-my-zsh.yml
       when: configure_oh_my_zsh
       tags: ['oh-my-zsh']
