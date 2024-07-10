@@ -414,37 +414,37 @@ if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
   fi
 fi
 
-# Clone repositories from configuration file
-read -p "Clone repositories from configuration file? [Y/n] " yn
-if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  # Print ssh pub key
-  if [[ -f "$HOME/.ssh/id_ed25519.pub" ]]; then
-    echo "Add you ssh public key to GitHub:"
-    cat "$HOME/.ssh/id_ed25519.pub"
-  fi
+# # Clone repositories from configuration file
+# read -p "Clone repositories from configuration file? [Y/n] " yn
+# if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+#   # Print ssh pub key
+#   if [[ -f "$HOME/.ssh/id_ed25519.pub" ]]; then
+#     echo "Add you ssh public key to GitHub:"
+#     cat "$HOME/.ssh/id_ed25519.pub"
+#   fi
 
-  # Wait for enter
-  read -p "Press enter to continue"
+#   # Wait for enter
+#   read -p "Press enter to continue"
 
-  while IFS="," read -r repository directory; do
-    if [[ -z "$repository" ]]; then
-      continue
-    fi
+#   while IFS="," read -r repository directory; do
+#     if [[ -z "$repository" ]]; then
+#       continue
+#     fi
 
-    cd ..
+#     cd ..
 
-    mkdir -p "$directory"
-    cd "$directory" || exit
+#     mkdir -p "$directory"
+#     cd "$directory" || exit
 
-    if [[ -d ".git" ]]; then
-      git pull origin main || continue
-    else
-      git clone "$repository" $(pwd)
-    fi
+#     if [[ -d ".git" ]]; then
+#       git pull origin main || continue
+#     else
+#       git clone "$repository" $(pwd)
+#     fi
 
-    cd "$SCRIPT_DIR"
-  done < settings/repositories.csv
-fi
+#     cd "$SCRIPT_DIR"
+#   done < settings/repositories.csv
+# fi
 
 # Configure wine
 
