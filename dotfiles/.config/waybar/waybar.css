@@ -30,7 +30,7 @@ window#waybar {
 #clock,
 #backlight,
 #hyprland-window,
-#hyprland-workspaces,
+#workspaces,
 #keyboard-state {
   padding: 1px 8px;
   border-style: solid;
