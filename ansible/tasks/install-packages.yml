@@ -13,3 +13,5 @@
   register: install_package_aur
   changed_when: "{{ 'skipping' not in install_package_aur.stdout }}"
   loop: "{{ install_packages_aur }}"
+  become: true
+  become_user: "{{ user }}"
