@@ -3,6 +3,7 @@
 # Get a list of available wifi connections and morph it into a nice-looking list
 wifi_list=$(nmcli --fields "SECURITY,SSID" device wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S/ /g" | sed "s/^--/ /g" | sed "s/  //g" | sed "/--/d")
 
+wifi_available=$(iw dev wlan0 info)
 connected_network=$(iw dev wlan0 info | sed -n 's/ssid//p' | awk '{$1=$1};1')
 connected_network_line=$(echo $wifi_list | awk "/$connected_network/{print NR}")
 
@@ -13,7 +14,7 @@ if [[ "$connected" =~ "enabled" ]]; then
 elif [[ "$connected" =~ "disabled" ]]; then
 	toggle="  Enable Wi-Fi"
 	connected_network="Disconnected"
-elif [[ "$connected_network" =~ "No such device" ]]; then
+elif [[ "$wifi_available" =~ "No such device" ]]; then
 	exit
 fi
 
