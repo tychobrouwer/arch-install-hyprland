@@ -79,7 +79,7 @@ tlp_rules:
   - { key: PLATFORM_PROFILE_ON_BAT, value: "low-power" }
 
 configure_docker: true
-
+docker_enabled: true
 
 install_packages:
   - foot
@@ -93,7 +93,6 @@ install_packages:
   - cliphist
   - brightnessctl
   - htop
-  # - docker
   - firefox
   - firewalld
   - gimp
