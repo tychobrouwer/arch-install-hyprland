@@ -125,6 +125,7 @@ install_packages_essential:
   - gvfs-smb
   - hyprland
   - hyprpaper
+  - wl-clipboard
   - inetutils
   - inotify-tools
   - iwd
