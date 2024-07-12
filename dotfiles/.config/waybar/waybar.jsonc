@@ -13,6 +13,7 @@
     "hyprland/workspaces"
   ],
   "modules-right": [
+    "pulseaudio/slider",
     "tray",
     "keyboard-state",
     "backlight",
