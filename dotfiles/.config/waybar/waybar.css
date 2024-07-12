@@ -29,10 +29,15 @@ window#waybar {
 #custom-power-menu,
 #clock,
 #backlight,
-#hyprland-window,
-#workspaces,
 #keyboard-state {
   padding: 1px 8px;
+  border-style: solid;
+  background-color: #313244;
+  margin: 4px 0;
+}
+
+#workspaces {
+  padding: 0 8px;
   border-style: solid;
   background-color: #313244;
   margin: 4px 0;
