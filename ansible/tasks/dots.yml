@@ -1,13 +1,4 @@
 ---
-- name: Get public key
-  ansible.builtin.shell: "cat {{ ssh_key_dir }}/id_{{ ssh_key_type }}.pub"
-  register: public_key
-  changed_when: false
-
-- name: Add ssh key to GitHub
-  ansible.builtin.debug:
-    msg: "Add your ssh key to GitHub\n{{ public_key.stdout }}"
-
 - name: Create dotfiles repo folder
   ansible.builtin.file:
     path: "{{ dotfiles_dir }}"
