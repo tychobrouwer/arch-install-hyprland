@@ -13,5 +13,5 @@
 - name: Start and enable Docker
   ansible.builtin.systemd:
     name: docker
-    enabled: docker_enabled
+    enabled: "{{ docker_enabled }}"
     state: "{{ 'started' if docker_enabled else 'stopped' }}"
