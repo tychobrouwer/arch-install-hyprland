@@ -13,6 +13,8 @@ if [[ "$connected" =~ "enabled" ]]; then
 elif [[ "$connected" =~ "disabled" ]]; then
 	toggle="  Enable Wi-Fi"
 	connected_network="Disconnected"
+elif [[ "$connected_network" =~ "No such device" ]]; then
+	exit
 fi
 
 settings=" Settings"
