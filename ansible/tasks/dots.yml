@@ -20,5 +20,7 @@
   ansible.builtin.shell: "{{ dotfiles_dir }}/set_dots.sh"
   args:
     chdir: "{{ dotfiles_dir }}"
+  register: dotfiles
+  changed_when: "'Already up to date' not in dotfiles.stdout"
   become: true
   become_user: "{{ user }}"
