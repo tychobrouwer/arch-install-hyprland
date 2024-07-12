@@ -11,7 +11,7 @@
 - name: Install packages from AUR
   ansible.builtin.shell: "{{ 'paru' if configure_paru else 'yay' }} -S {{ item }} --noconfirm --needed"
   register: install_package_aur
-  changed_when: "'skipping' not in install_package_aur.stdout"
+  changed_when: "'there is nothing to do' not in install_package_aur.stdout"
   when: install_packages_aur is iterable and (configure_paru or configure_yay)
   loop: "{{ install_packages_aur }}"
   become: true
