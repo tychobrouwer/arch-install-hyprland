@@ -6,11 +6,11 @@
   "passthrough": false,
   "gtk-layer-shell": true,
   "modules-left": [
-    "hyprland/workspaces",
+    "clock",
     "custom/spotify_player"
   ],
   "modules-center": [
-    "clock"
+    "hyprland/workspaces"
   ],
   "modules-right": [
     "tray",
@@ -63,7 +63,8 @@
     "format": ""
   },
   "clock": {
-    "format": "{:%d-%m-%Y %H:%M}",
+    // "format": "{:%d-%m-%Y %H:%M}",
+    "format": "{:%B %m %Y - %H:%M}",
     "interval": 1,
     "tooltip": false
   },

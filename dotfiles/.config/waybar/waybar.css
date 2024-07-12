@@ -3,7 +3,7 @@
   border-radius: 0px;
   /*font-family: VictorMono, Iosevka Nerd Font, Noto Sans CJK;*/
   font-family: "RobotoMono", "Font Awesome 6 Pro", "Font Awesome 6 Brands", "Noto Sans CJK";
-  font-size: 14px;
+  font-size: 12px;
   font-style: normal;
   min-height: 0;
 }
@@ -27,7 +27,7 @@ window#waybar {
 #custom-spotify_player,
 #custom-power,
 #custom-power-menu,
-#workspaces,
+#clock,
 #backlight,
 #hyprland-window,
 #hyprland-workspaces,
@@ -38,9 +38,9 @@ window#waybar {
   margin: 4px 0;
 }
 
-#workspaces {
+/* #workspaces {
   margin-left: 10px;
-}
+} */
 
 #network,
 #custom-power,
