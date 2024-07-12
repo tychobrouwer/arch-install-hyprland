@@ -28,4 +28,5 @@
     regexp: "{{ item.key }}"
     line: "{{ item.key }}={{ item.value }}"
     insertafter: EOF
+  when: tlp_rules is iterable
   loop: "{{ tlp_rules }}"

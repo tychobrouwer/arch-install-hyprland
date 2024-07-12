@@ -15,6 +15,7 @@
     owner: root
     group: root
     mode: "0644"
+  when: hidden_applications is iterable
   loop: "{{ hidden_applications }}"
   failed_when: false
 
@@ -27,5 +28,6 @@
     owner: "{{ user }}"
     group: "{{ user_group }}"
     mode: "0644"
+  when: hidden_applications is iterable
   loop: "{{ hidden_applications }}"
   failed_when: false

@@ -44,6 +44,7 @@
     owner: "{{ user }}"
     group: "{{ user_group }}"
     mode: "0755"
+  when: git_repos is iterable
   loop: "{{ git_repos }}"
   become: true
   become_user: "{{ user }}"
@@ -54,6 +55,7 @@
     dest: "{{ item.dest }}"
     force: false
     update: false
+  when: git_repos is iterable
   loop: "{{ git_repos }}"
   become: true
   become_user: "{{ user }}"
