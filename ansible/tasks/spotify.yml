@@ -1,11 +1,10 @@
 - name: Check if logged in
-  ansible.builtin.shell: "spotify_player like"
+  ansible.builtin.shell: "spotify_player"
   register: spotify_player_status
   changed_when: false
   failed_when: false
-
-- debug:
-    var: spotify_player_status
+  become: true
+  become_user: "{{ user }}"
 
 - block:
     - name: Ask user for Spotify username
