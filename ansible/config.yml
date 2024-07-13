@@ -42,6 +42,9 @@ git_repos: []
 configure_kernel_tweaks: true
 kernels_to_tweak: /boot/loader/entries/*linux-zen.conf
 
+configure_kernel_iommu: true
+kernels_to_iommu: /boot/loader/entries/*linux-zen.conf
+
 configure_greetd_tuigreet: true
 
 configure_oh_my_zsh: true
@@ -224,7 +227,7 @@ ozone_wayland_applications:
   - brave-browser
 
 configure_password_store: true
-password_store: gnome
+password_store: gnome-libsecret
 password_store_applications:
   - code
   - google-chrome

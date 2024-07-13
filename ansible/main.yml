@@ -52,15 +52,25 @@
       when: configure_systemd
       tags: ['systemd']
 
-    - name: Get kernels
+    - name: Get kernels to tweak
       ansible.builtin.shell: ls {{ kernels_to_tweak }}
-      register: kernels
+      register: kernels_tweak
       changed_when: false
 
     - include_tasks: tasks/kernel-tweaks.yml
       when: configure_kernel_tweaks
       tags: ['kernel-tweaks']
-      loop: "{{ kernels.stdout_lines }}"
+      loop: "{{ kernels_tweak.stdout_lines }}"
+
+    - name: Get kernels to enable IOMMU
+      ansible.builtin.shell: ls {{ kernels_to_iommu }}
+      register: kernels_iommu
+      changed_when: false
+
+    - include_tasks: tasks/kernel-iommu.yml
+      when: configure_kernel_iommu
+      tags: ['kernel-iommu']
+      loop: "{{ kernels_iommu.stdout_lines }}"
 
     - import_tasks: tasks/git.yml
       when: configure_git

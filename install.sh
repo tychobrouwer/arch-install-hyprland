@@ -41,17 +41,17 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
   # fi
   # sudo sed -i 's/ )/)/' /etc/mkinitcpio.conf
 
-  # # Enable IOMMU if not already enabled
-  # read -p "Enable IOMMU? [Y/n] " yn
-  # if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  #   if ! grep -q "intel_iommu=on,igfx_off" /boot/loader/entries/*linux-zen.conf; then
-  #     sudo sed -i '/^options/s/$/ intel_iommu=on,igfx_off/' /boot/loader/entries/*linux-zen.conf
-  #   fi
+  # Enable IOMMU if not already enabled
+  read -p "Enable IOMMU? [Y/n] " yn
+  if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+    if ! grep -q "intel_iommu=on,igfx_off" /boot/loader/entries/*linux-zen.conf; then
+      sudo sed -i '/^options/s/$/ intel_iommu=on,igfx_off/' /boot/loader/entries/*linux-zen.conf
+    fi
 
-  #   if ! grep -q "iommu=pt" /boot/loader/entries/*linux-zen.conf; then
-  #     sudo sed -i '/^options/s/$/ iommu=pt/' /boot/loader/entries/*linux-zen.conf
-  #   fi
-  # fi
+    if ! grep -q "iommu=pt" /boot/loader/entries/*linux-zen.conf; then
+      sudo sed -i '/^options/s/$/ iommu=pt/' /boot/loader/entries/*linux-zen.conf
+    fi
+  fi
 
 #   read -p "Disable mitigations? [Y/n] " yn
 #   if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
@@ -352,18 +352,18 @@ fi
 # Fix gnome-keyring
 sudo sed -i '/UseIn=/c\UseIn=gnome,hyprland' /usr/share/xdg-desktop-portal/portals/gnome-keyring.portal
 
-for desktop_file in $(cat settings/gnome_libsecret_files.txt); do
-  [ ! -f "$desktop_file" ] && continue
+# for desktop_file in $(cat settings/gnome_libsecret_files.txt); do
+#   [ ! -f "$desktop_file" ] && continue
 
-  application=$(basename "$desktop_file")
-  local_desktop_file="$HOME/.local/share/applications/$application"
+#   application=$(basename "$desktop_file")
+#   local_desktop_file="$HOME/.local/share/applications/$application"
 
-  sudo cp -n "$desktop_file" "$local_desktop_file"
-  sudo chown "$USER:$USER" "$local_desktop_file"
-  if ! grep -q "--password-store=gnome-libsecret" "$local_desktop_file"; then
-    sed -i '/^Exec=/s/$/ --password-store=gnome-libsecret/g' "$local_desktop_file"
-  fi
-done
+#   sudo cp -n "$desktop_file" "$local_desktop_file"
+#   sudo chown "$USER:$USER" "$local_desktop_file"
+#   if ! grep -q "--password-store=gnome-libsecret" "$local_desktop_file"; then
+#     sed -i '/^Exec=/s/$/ --password-store=gnome-libsecret/g' "$local_desktop_file"
+#   fi
+# done
 
 # Disable startup services
 read -p "Set Hidden xdg autostart? [Y/n] " yn
