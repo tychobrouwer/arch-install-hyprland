@@ -143,6 +143,7 @@ install_packages_essential:
   - pipewire
   - polkit-kde-agent
   - python-pip
+  - python-pexpect
   - qt5-wayland
   # - qt5ct
   - qt6-wayland

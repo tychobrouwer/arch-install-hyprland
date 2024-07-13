@@ -17,7 +17,7 @@
     - name: Ask user for Spotify password
       ansible.builtin.pause:
         prompt: "Enter your Spotify password"
-        echo: false
+        echo: true
       register: spotify_player_password
 
     - name: login for spotify_player
