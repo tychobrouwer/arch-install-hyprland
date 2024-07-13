@@ -107,3 +107,7 @@
     - import_tasks: tasks/ozone-wayland.yml
       when: configure_ozone_wayland
       tags: ['ozone-wayland']
+
+    - import_tasks: tasks/password-store.yml
+      when: configure_password_store
+      tags: ['password-store']
