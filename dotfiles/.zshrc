@@ -4,10 +4,6 @@
 # plugins=(git)
 # source $ZSH/oh-my-zsh.sh
 
-plugins=( 
-    zsh-autosuggestions
-)
-
 # starship configuration
 eval "$(starship init zsh)"
 
@@ -30,6 +26,8 @@ source $HOME/.config/zsh/variables
 source $HOME/.config/zsh/functions
 source $HOME/.config/zsh/aliases
 source $HOME/.config/zsh/keybinds
+
+source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # Show neofetch on shell startup
 # neofetch_tiny
