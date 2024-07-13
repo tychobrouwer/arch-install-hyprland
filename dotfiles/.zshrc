@@ -31,6 +31,14 @@ source $HOME/.config/zsh/keybinds
 source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
 
+# Load zsh search history with arrow keys
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[1;5A" up-line-or-beginning-search
+bindkey "^[[1;5B" down-line-or-beginning-search
+
 # Show neofetch on shell startup
 # neofetch_tiny
 fastfetch_tiny
