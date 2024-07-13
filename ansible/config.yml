@@ -84,6 +84,8 @@ tlp_rules:
 configure_docker: true
 docker_enabled: true
 
+configure_spotify: true
+
 install_packages:
   - foot
   - nano
