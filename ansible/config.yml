@@ -144,7 +144,7 @@ install_packages_essential:
   - pacman-contrib
   # - pamixer
   - pipewire
-  - polkit-kde-agent
+  # - polkit-kde-agent
   - python-pip
   - python-pexpect
   - qt5-wayland
@@ -194,6 +194,7 @@ install_packages_aur:
   - ttf-ms-win10-cdn
   - visual-studio-code-bin
   - tor-browser-bin
+  - xfce-polkit
 
 configure_desktop_tweaks: true
 hidden_applications:
