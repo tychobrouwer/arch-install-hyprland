@@ -349,8 +349,8 @@ fi
 #   done
 # fi
 
-# Fix gnome-keyring
-sudo sed -i '/UseIn=/c\UseIn=gnome,hyprland' /usr/share/xdg-desktop-portal/portals/gnome-keyring.portal
+# # Fix gnome-keyring
+# sudo sed -i '/UseIn=/c\UseIn=gnome,hyprland' /usr/share/xdg-desktop-portal/portals/gnome-keyring.portal
 
 # for desktop_file in $(cat settings/gnome_libsecret_files.txt); do
 #   [ ! -f "$desktop_file" ] && continue
