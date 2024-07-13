@@ -5,7 +5,7 @@
   failed_when: false
 
 - debug:
-  var: spotify_player_status
+    var: spotify_player_status
 
 - block:
     - name: Ask user for Spotify username
