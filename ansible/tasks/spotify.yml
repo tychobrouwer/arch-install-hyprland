@@ -24,8 +24,8 @@
       ansible.builtin.expect:
         command: "spotify_player authenticate"
         responses:
-          "Username": "{{ spotify_player_username }}"
-          "Password": "{{ spotify_player_password }}"
+          "Username": "{{ spotify_player_username.user_input }}"
+          "Password": "{{ spotify_player_password.user_input }}"
   when: "'No cached credentials found' in spotify_player_status.stderr"
   become: true
   become_user: "{{ user }}"
