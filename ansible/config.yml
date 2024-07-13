@@ -87,16 +87,10 @@ docker_enabled: true
 configure_spotify: true
 
 install_packages:
-  - foot
   - nano
-  - neofetch
-  - fastfetch
   - powertop
   - thunar
   - thunar-archive-plugin
-  - playerctl
-  - cliphist
-  - brightnessctl
   - htop
   - firefox
   - firewalld
@@ -116,10 +110,16 @@ install_packages:
 install_packages_essential:
   - base-devel
   - blueman
+  - foot
   - bluez
+  # - neofetch
+  - fastfetch
   - bluez-utils
   - cifs-utils
   - clang
+  - playerctl
+  - cliphist
+  - brightnessctl
   - cmake
   - curl
   - dunst
