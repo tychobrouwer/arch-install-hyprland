@@ -28,8 +28,8 @@
   changed_when: false
 
 - name: Add ssh key to GitHub
-  ansible.builtin.debug:
-    msg: "Add your ssh key to GitHub\n{{ public_key.stdout }}"
+  ansible.builtin.pause:
+    prompt: "Add your ssh key to GitHub\n{{ public_key.stdout }}"
 
 - name: Enable and start sshd
   ansible.builtin.service:
