@@ -118,9 +118,9 @@
       when: configure_ozone_wayland
       tags: ['ozone-wayland']
 
-    - import_tasks: tasks/password-store.yml
-      when: configure_password_store
-      tags: ['password-store']
+    - import_tasks: tasks/gnome-libsecret.yml
+      when: configure_gnome_libsecret
+      tags: ['gnome-libsecret']
 
     - import_tasks: tasks/spotify.yml
       when: configure_spotify

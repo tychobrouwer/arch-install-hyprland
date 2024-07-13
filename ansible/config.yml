@@ -126,6 +126,7 @@ install_packages_essential:
   - fwupd
   - git
   - gnome-keyring
+  - libsecret
   - gvfs
   - gvfs-smb
   - hyprland
@@ -230,9 +231,8 @@ ozone_wayland_applications:
   - google-chrome
   - brave-browser
 
-configure_password_store: true
-password_store: gnome-libsecret
-password_store_applications:
+configure_gnome_libsecret: true
+gnome_libsecret_applications:
   - code
   - google-chrome
   - brave-browser
