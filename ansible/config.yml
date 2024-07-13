@@ -106,6 +106,8 @@ install_packages:
   - torbrowser-launcher
   - ttf-jetbrains-mono
   - wireguard-tools
+  - mpv
+  - jupyter-notebook
 
 install_packages_essential:
   - base-devel
@@ -171,10 +173,10 @@ install_packages_essential:
 
 install_packages_aur:
   # - android-studio
-  # - arduino-ide-bin
+  - arduino-ide-bin
   - brave-bin
   # - flutter
-  - google-chrome-wayland-vulkan # --ozone-platform=wayland needs to be supplied
+  - google-chrome-wayland-vulkan
   - hyprpicker
   - hyprshot
   # - isoimagewriter
@@ -191,6 +193,7 @@ install_packages_aur:
   - thinkfan
   - ttf-ms-win10-cdn
   - visual-studio-code-bin
+  - tor-browser-bin
 
 configure_desktop_tweaks: true
 hidden_applications:
