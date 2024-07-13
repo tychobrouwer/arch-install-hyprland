@@ -41,17 +41,17 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
   # fi
   # sudo sed -i 's/ )/)/' /etc/mkinitcpio.conf
 
-  # Enable IOMMU if not already enabled
-  read -p "Enable IOMMU? [Y/n] " yn
-  if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-    if ! grep -q "intel_iommu=on,igfx_off" /boot/loader/entries/*linux-zen.conf; then
-      sudo sed -i '/^options/s/$/ intel_iommu=on,igfx_off/' /boot/loader/entries/*linux-zen.conf
-    fi
+  # # Enable IOMMU if not already enabled
+  # read -p "Enable IOMMU? [Y/n] " yn
+  # if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+  #   if ! grep -q "intel_iommu=on,igfx_off" /boot/loader/entries/*linux-zen.conf; then
+  #     sudo sed -i '/^options/s/$/ intel_iommu=on,igfx_off/' /boot/loader/entries/*linux-zen.conf
+  #   fi
 
-    if ! grep -q "iommu=pt" /boot/loader/entries/*linux-zen.conf; then
-      sudo sed -i '/^options/s/$/ iommu=pt/' /boot/loader/entries/*linux-zen.conf
-    fi
-  fi
+  #   if ! grep -q "iommu=pt" /boot/loader/entries/*linux-zen.conf; then
+  #     sudo sed -i '/^options/s/$/ iommu=pt/' /boot/loader/entries/*linux-zen.conf
+  #   fi
+  # fi
 
 #   read -p "Disable mitigations? [Y/n] " yn
 #   if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
