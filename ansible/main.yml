@@ -121,3 +121,7 @@
     - import_tasks: tasks/password-store.yml
       when: configure_password_store
       tags: ['password-store']
+
+    - import_tasks: tasks/spotify.yml
+      when: configure_spotify
+      tags: ['spotify']
