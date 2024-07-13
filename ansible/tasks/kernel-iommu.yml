@@ -2,14 +2,13 @@
 - name: Enable intel IOMMU
   ansible.builtin.replace:
     dest: "{{ item }}"
-    regexp: ^(options(?!.*\intel_iommu=on,igfx_off\b).*)$
+    regexp: ^(options(?!.*\bintel_iommu=on,igfx_off\b).*)$
     replace: \1 intel_iommu=on,igfx_off
   notify: Rebuild initramfs
-
 
 - name: Enable IOMMU
   ansible.builtin.replace:
     dest: "{{ item }}"
-    regexp: ^(options(?!.*\iommu=pt\b).*)$
+    regexp: ^(options(?!.*\biommu=pt\b).*)$
     replace: \1 iommu=pt
   notify: Rebuild initramfs
