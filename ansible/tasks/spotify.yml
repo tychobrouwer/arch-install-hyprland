@@ -26,6 +26,6 @@
         responses:
           "Username": "{{ spotify_player_username }}"
           "Password": "{{ spotify_player_password }}"
-  when: "'No cached credentials found' in spotify_player_status.stdout"
+  when: "'No cached credentials found' in spotify_player_status.stderr"
   become: true
   become_user: "{{ user }}"
