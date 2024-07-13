@@ -28,6 +28,7 @@
         repo: "{{ paru_git }}"
         dest: "{{ paru_repository_dir }}/paru"
         force: true
+        update: true
         depth: 1
       become: true
       become_user: "{{ user }}"

@@ -27,7 +27,9 @@ source $HOME/.config/zsh/functions
 source $HOME/.config/zsh/aliases
 source $HOME/.config/zsh/keybinds
 
+# Load zsh-autosuggestions
 source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=7'
 
 # Show neofetch on shell startup
 # neofetch_tiny
