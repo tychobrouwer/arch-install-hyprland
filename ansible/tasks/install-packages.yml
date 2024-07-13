@@ -1,11 +1,13 @@
 - name: Install packages essential
   community.general.pacman:
     name: "{{ install_packages_essential }}"
+    update_cache: true
     state: present
 
 - name: Install packages
   community.general.pacman:
     name: "{{ install_packages }}"
+    update_cache: true
     state: present
 
 - name: Install packages from AUR
