@@ -166,6 +166,7 @@ install_packages_essential:
   - xorg-xwayland
   - xwaylandvideobridge
   - zsh
+  - zsh-autosuggestions
 
 install_packages_aur:
   # - android-studio

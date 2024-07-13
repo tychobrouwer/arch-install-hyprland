@@ -4,6 +4,10 @@
 # plugins=(git)
 # source $ZSH/oh-my-zsh.sh
 
+plugins=( 
+    zsh-autosuggestions
+)
+
 # starship configuration
 eval "$(starship init zsh)"
 
