@@ -220,12 +220,12 @@ hidden_applications:
 configure_ozone_wayland: true
 ozone_wayland_applications:
   - code
-  - brave
-  - google-chrome-stable
+  - google-chrome
+  - brave-browser
 
 configure_password_store: true
 password_store: gnome
 password_store_applications:
   - code
-  - google-chrome-stable
-  - brave
+  - google-chrome
+  - brave-browser
