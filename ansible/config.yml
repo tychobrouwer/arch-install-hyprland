@@ -106,6 +106,26 @@ docker_enabled: true
 
 configure_spotify: true
 
+configure_bluetooth: true
+
+configure_smb_mounts: true
+smb_mounts:
+  - name: mnt-files
+    description: SMB files share
+    destination: /mnt/files
+    source: //192.168.1.104/files
+    username: sambauser
+  - name: mnt-media
+    description: SMB media share
+    destination: /mnt/media
+    source: //192.168.1.104/media
+    username: sambauser
+  - name: mnt-{{ user }}-School
+    description: SMB school files share
+    destination: /home/{{ user }}/School
+    source: //192.168.1.104/files/School
+    username: sambauser
+
 install_packages:
   - nano
   - powertop

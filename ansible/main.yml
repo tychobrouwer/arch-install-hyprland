@@ -129,3 +129,14 @@
     - import_tasks: tasks/spotify.yml
       when: configure_spotify
       tags: ['spotify']
+    
+    - name: Enable bluetooth service
+      ansible.builtin.systemd:
+        name: bluetooth
+        enabled: configure_bluetooth
+        state: "'started' if configure_bluetooth else 'stopped'"
+      tags: ['bluetooth']
+  
+    - import_tasks: tasks/smb-mounts.yml
+      when: configure_smb_mounts
+      tags: ['smb-mounts']

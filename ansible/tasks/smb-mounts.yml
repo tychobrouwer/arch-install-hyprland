@@ -1,0 +1,59 @@
+---
+- name: Ask for smb password
+  ansible.builtin.pause:
+    prompt: "The password for {{ item.name }} (empty for no password creation)"
+    echo: true
+  register: smb_password
+
+- name: Create password file
+  ansible.builtin.copy:
+    dest: "/etc/cifspasswd-{{ item.name }}"
+    content: |
+      username={{ item.username }}
+      password={{ smb_password.user_input }}
+    when: smb_password.user_input != ""
+    owner: root
+    group: root
+    mode: 0600
+
+- name: Create mount file
+  ansible.builtin.copy:
+    dest: /etc/systemd/system/{{ item.name }}.mount
+    content: |
+      [Unit]
+      Description={{ item.description }}
+      RequiresMountsFor={{ item.destination }}
+      Requires=network-online.target wg-quick@wg0.service
+      After=network-online.target wg-quick@wg0.service
+
+      [Mount]
+      What={{ item.source }}
+      Where={{ item.destination }}
+      Type=cifs
+      Options=uid=me,gid=me,_netdev,nofail,credentials=/etc/cifspasswd-{{ item.name}}
+      TimeoutSec=5
+      LazyUnmount=yes
+      ForceUnmount=yes
+
+      [Install]
+      WantedBy=multi-user.target
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Create automount file
+  ansible.builtin.copy:
+    dest: /etc/systemd/system/{{ item.name }}.automount
+    content: |
+      [Unit]
+      Description={{ item.description }}
+      
+      [Automount]
+      Where={{ item.destination }}
+      TimeoutIdleSec=60
+
+      [Install]
+      WantedBy=multi-user.target
+    owner: root
+    group: root
+    mode: 0644

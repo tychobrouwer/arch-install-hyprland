@@ -183,10 +183,10 @@ fi
 #   sudo fc-cache -f
 # fi
 
-# Add user to input group
-if grep -q "input" /etc/group; then
-  sudo usermod -aG input "$USER"
-fi
+# # Add user to input group
+# if grep -q "input" /etc/group; then
+#   sudo usermod -aG input "$USER"
+# fi
 
 # Set up git
 # if command -v git &> /dev/null; then
@@ -454,15 +454,15 @@ winetricks corefonts
 
 WINE=${WINE:-wine} WINEPREFIX=${WINEPREFIX:-$HOME/.wine} $WINE regedit settings/fontsmoothing.reg 2> /dev/null
 
-# Enable thinkfan
-read -p "Enable thinkfan? [Y/n] " yn
-if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  if ! grep -q "thinkpad_acpi" /etc/mkinitcpio.conf; then
-    sudo sed -i 's/ btrfs/ btrfs thinkpad_acpi/g' /etc/mkinitcpio.conf
+# # Enable thinkfan
+# read -p "Enable thinkfan? [Y/n] " yn
+# if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+#   if ! grep -q "thinkpad_acpi" /etc/mkinitcpio.conf; then
+#     sudo sed -i 's/ btrfs/ btrfs thinkpad_acpi/g' /etc/mkinitcpio.conf
 
-    sudo mkinitcpio -P
-  fi
+#     sudo mkinitcpio -P
+#   fi
 
-  sudo systemctl enable thinkfan.service
-  sudo systemctl start thinkfan.service
-fi
+#   sudo systemctl enable thinkfan.service
+#   sudo systemctl start thinkfan.service
+# fi
