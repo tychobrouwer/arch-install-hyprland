@@ -1,15 +1,15 @@
 window {
     margin: 0px;
-    background-color: #1e1e2e;
+    background-color: #1E1D2F;
     border-radius: calc(6px + 2px);
-    border: 2px solid #313244;
+    border: 2px solid #181926;
 }
 
 #input {
     margin: 5px;
-    border: 2px solid #313244;
+    border: 2px solid #181926;
     color: #cdd6f4;
-    background-color: #1e1e2e;
+    background-color: #1E1D2F;
     border-radius: calc(6px + 2px);
     box-shadow: none;
 }
@@ -38,13 +38,13 @@ window {
 } 
 
 #entry:selected {
-    background-color: #313244;
+    background-color: #181926;
     border-radius: calc(6px + 2px);
     outline: none;
 }
 
 #entry:selected * {
-    background-color: #313244;
+    background-color: #181926;
     border-radius: calc(6px + 2px);
     outline: none;
 }

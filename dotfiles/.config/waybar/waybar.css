@@ -10,8 +10,8 @@
 
 window#waybar {
   /* background-color: #1b1e20; */
-  background: #11111b;
-  color: #cdd6f4;
+  background: #181926;
+  color: #cad3f5;
   font-weight: bold;
   border: none;
 }
@@ -32,14 +32,14 @@ window#waybar {
 #keyboard-state {
   padding: 1px 8px;
   border-style: solid;
-  background-color: #313244;
+  background-color: #24273a;
   margin: 4px 0;
 }
 
 #workspaces {
   padding: 0 8px;
   border-style: solid;
-  background-color: #313244;
+  background-color: #24273a;
   margin: 4px 0;
 }
 
@@ -74,8 +74,8 @@ window#waybar {
 }
 
 #custom-power-menu {
-  background-color: #ff5555;
-  color: #11111b;
+  background-color: #ee99a0;
+  color: #181926;
   margin-right: 8px;
   padding: 1px 4px;
 }
@@ -106,49 +106,49 @@ window#waybar {
   text-shadow: none;
   background: none;
   transition: none;
-  color: #11111b;
+  color: #181926;
 } 
 
 #workspaces button.active {
-  color: #cdd6f4;
+  color: #cad3f5;
 }
 
 #pulseaudio.muted {
-  color: #11111b;
+  color: #181926;
 }
 
 #pulseaudio.source.muted {
-  color: #cdd6f4;
+  color: #cad3f5;
 }
 
 #pulseaudio.source.source-muted {
-  color: #11111b;
+  color: #181926;
 }
 
 #keyboard-state label.capslock.locked {
-  color: #cdd6f4;
+  color: #cad3f5;
 }
 
 #keyboard-state label.capslock {
-  color: #11111b;
+  color: #181926;
 }
 
 #systemd-failed-units.degraded {
-  color: #ff5555;
+  color: #ee99a0;
 }
 
 #custom-power.charging {
-  color: #50fa7b;
+  color: #a6da95;
 }
 
 #custom-power:not(.charging) {
-  color: #ff5555;
+  color: #ee99a0;
 }
 
 #battery.charging {
-  color: #50fa7b;
+  color: #a6da95;
 }
 
 #battery.warning:not(.charging) {
-  color: #ff5555;
+  color: #ee99a0;
 }

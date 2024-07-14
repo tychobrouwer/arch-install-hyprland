@@ -60,22 +60,22 @@
         line: COLOR_{{ index }}={{ item }}
         insertafter: EOF
       loop:
-        - "151623"
-        - "ff5555"
-        - "50fa7b"
-        - "f1fa8c"
-        - "bd93f9"
-        - "ff79c6"
-        - "8be9fd"
-        - "cdd6f4"
-        - "313244"
-        - "ff6e67"
-        - "5af78e"
-        - "f4f99d"
-        - "caa9fa"
-        - "ff92d0"
-        - "9aedfe"
-        - "e6e6e6"
+        - "24273a"
+        - "ed8796"
+        - "a6da95"
+        - "eed49f"
+        - "8aadf4"
+        - "f5bde6"
+        - "8bd5ca"
+        - "b8c0e0"
+        - "5b6078"
+        - "ed8796"
+        - "a6da95"
+        - "eed49f"
+        - "8aadf4"
+        - "f5bde6"
+        - "8bd5ca"
+        - "a5adcb"
       loop_control:
         index_var: index
 
