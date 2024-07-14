@@ -165,11 +165,7 @@ element {
     cursor:                      pointer;
 }
 element normal.normal {
-    background-color:            @selected;
-    text-color:                  @foreground;
-}
-element alternate.normal {
-    background-color:            @selected;
+    background-color:            @background;
     text-color:                  @foreground;
 }
 element selected.normal {
