@@ -6,7 +6,6 @@ Encoding=UTF-8
 
 [X-GNOME-Metatheme]
 GtkTheme=catppuccin-macchiato-lavender-standard+default
-MetacityTheme=catppuccin-macchiato-lavender-standard+default
 IconTheme=Tela-circle-Dark
 CursorTheme=Macchiato-cursors
 ButtonLayout=close,minimize,maximize:menu
