@@ -135,6 +135,7 @@ install_packages:
   - thunar
   - thunar-archive-plugin
   - htop
+  - btop
   - firefox
   - firewalld
   - gimp
@@ -249,6 +250,7 @@ hidden_applications:
   - designer
   - electron22
   - htop
+  - btop
   - jconsole-java-openjdk
   - jconsole-java11-openjdk
   - jconsole-java17-openjdk
