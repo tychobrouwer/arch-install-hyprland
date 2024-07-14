@@ -20,7 +20,7 @@ disable_fsck: true
 configure_ssh: true
 ssh_key_dir: /home/{{ user }}/.ssh
 ssh_key_type: ed25519
-ssh_key_bits: 4096
+ssh_key_bits: 4096 # ignored for ed25519
 
 configure_systemd_boot: true
 
