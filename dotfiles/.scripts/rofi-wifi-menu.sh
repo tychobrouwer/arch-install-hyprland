@@ -18,6 +18,7 @@ fi
 settings=" Settings"
 
 if iw dev wlan0 info; then
+	echo "testtestestest"
 	exit
 fi
 
