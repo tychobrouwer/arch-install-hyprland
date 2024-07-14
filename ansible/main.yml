@@ -92,6 +92,10 @@
       when: configure_tlp
       tags: ['tlp']
 
+    - import_tasks: tasks/thinkfan.yml
+      when: configure_thinkfan
+      tags: ['thinkfan']
+
     - import_tasks: tasks/docker.yml
       when: configure_docker
       tags: ['docker']

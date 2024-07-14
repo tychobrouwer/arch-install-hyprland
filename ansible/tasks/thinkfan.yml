@@ -1,0 +1,21 @@
+---
+- name: Add thinkpad_acpi in mkinitcpio.conf
+  ansible.builtin.replace:
+    path: /etc/mkinitcpio.conf
+    regexp: btrfs
+    replace: btrfs thinkpad_acpi
+  notify: Rebuild initramfs
+
+- name: Create thinkfan configuration
+  ansible.builtin.copy:
+    dest: /etc/thinkfan.conf
+    content: "{{ thinkfan_conf }}"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Enable thinkfan service
+  ansible.builtin.systemd:
+    name: thinkfan
+    enabled: true
+    state: started
