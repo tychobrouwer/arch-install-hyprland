@@ -170,20 +170,20 @@ element {
     cursor:                      pointer;
 }
 element normal.normal {
-    background-color:            var(normal-background);
-    text-color:                  var(normal-foreground);
+    background-color:            @selected;
+    text-color:                  @foreground;
 }
 element normal.active {
-    background-color:            #2f88ff;
-    text-color:                  var(active-foreground);
+    background-color:            @selected;
+    text-color:                  @foreground;
 }
 element selected.normal {
-    background-color:            #2f88ff;
-    text-color:                  var(normal-background);
+    background-color:            @selected;
+    text-color:                  @foreground;
 }
 element selected.active {
-    background-color:            var(selected-active-background);
-    text-color:                  var(selected-active-foreground);
+    background-color:            @selected;
+    text-color:                  @foreground;
 }
 element-icon {
     background-color:            transparent;

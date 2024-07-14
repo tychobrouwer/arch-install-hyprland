@@ -136,7 +136,7 @@ element normal.normal {
 }
 element selected.normal {
     background-color:            @selected;
-    text-color:                  @background;
+    text-color:                  @foreground;
 }
 element-icon {
     background-color:            transparent;
