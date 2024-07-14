@@ -17,8 +17,8 @@ fi
 
 settings=" Settings"
 
-if iw dev wlan0 info; then
-	echo "testtestestest"
+wlan0_available=$(iw dev wlan0 info 2>&1)
+if [[ $wlan0_available =~ "No such device" ]]; then
 	exit
 fi
 
