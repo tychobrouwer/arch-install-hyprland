@@ -3,14 +3,11 @@
 # Get a list of available wifi connections and morph it into a nice-looking list
 wifi_list=$(nmcli --fields "SECURITY,SSID" device wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S/ /g" | sed "s/^--/ /g" | sed "s/  //g" | sed "/--/d")
 
-wifi_available=$(iw dev wlan0 info)
 connected_network=$(iw dev wlan0 info | sed -n 's/ssid//p' | awk '{$1=$1};1')
 connected_network_line=$(echo $wifi_list | awk "/$connected_network/{print NR}")
 
 connected=$(nmcli -fields WIFI g)
-if [[ "$wifi_available" =~ "No such device" ]]; then
-	exit
-elif [[ "$connected" =~ "enabled" ]]; then
+if [[ "$connected" =~ "enabled" ]]; then
 	toggle="  Disable Wi-Fi"
 	wifi_list="$wifi_list\n"
 elif [[ "$connected" =~ "disabled" ]]; then
@@ -26,7 +23,9 @@ chosen_network=$(echo -e "$toggle\n$wifi_list$settings" | uniq -u | rofi -dmenu 
 # Get name of connection
 read -r chosen_id <<< "${chosen_network:3}"
 
-if [ "$chosen_network" = "" ]; then
+if iw dev wlan0 info; then
+	exit
+elif [ "$chosen_network" = "" ]; then
 	exit
 elif [ "$chosen_network" = " Settings" ]; then
 	nm-connection-editor
