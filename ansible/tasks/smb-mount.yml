@@ -11,10 +11,10 @@
     content: |
       username={{ item.username }}
       password={{ smb_password.user_input }}
-    when: smb_password.user_input != ""
     owner: root
     group: root
-    mode: 0600
+    mode: "0600"
+  when: smb_password.user_input != ""
 
 - name: Create mount file
   ansible.builtin.copy:
@@ -23,14 +23,14 @@
       [Unit]
       Description={{ item.description }}
       RequiresMountsFor={{ item.destination }}
-      Requires=network-online.target wg-quick@wg0.service
-      After=network-online.target wg-quick@wg0.service
+      Requires=network-online.target {{ 'wg-quick@{{ item.wireguard_needed }}.service' if item.wireguard_needed is defined else '' }}
+      After=network-online.target {{ 'wg-quick@{{ item.wireguard_needed }}.service' if item.wireguard_needed is defined else '' }}
 
       [Mount]
       What={{ item.source }}
       Where={{ item.destination }}
       Type=cifs
-      Options=uid=me,gid=me,_netdev,nofail,credentials=/etc/cifspasswd-{{ item.name}}
+      Options=uid={{ user }},gid={{ user }},_netdev,nofail,credentials=/etc/cifspasswd-{{ item.name }}
       TimeoutSec=5
       LazyUnmount=yes
       ForceUnmount=yes
@@ -39,7 +39,7 @@
       WantedBy=multi-user.target
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
 
 - name: Create automount file
   ansible.builtin.copy:
@@ -47,7 +47,7 @@
     content: |
       [Unit]
       Description={{ item.description }}
-      
+
       [Automount]
       Where={{ item.destination }}
       TimeoutIdleSec=60
@@ -56,4 +56,4 @@
       WantedBy=multi-user.target
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"

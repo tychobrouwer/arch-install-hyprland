@@ -1,17 +1,19 @@
 ---
-- block:
+- name: Install Yay
+  block:
     - name: Check if Yay is installed
       ansible.builtin.command:
         cmd: yay --version
       changed_when: false
-  
-    - debug:
+
+    - name: Yay is already installed
+      ansible.builtin.debug:
         msg: Yay is already installed
 
   rescue:
     - name: Install Yay dependencies
       community.general.pacman:
-        name: 
+        name:
           - base-devel
           - git
         state: present
@@ -26,14 +28,9 @@
       become_user: "{{ user }}"
 
     - name: Install Yay
-      ansible.builtin.shell: makepkg -si --noconfirm
-      args:
+      ansible.builtin.command:
+        cmd: makepkg -si --noconfirm
         chdir: "{{ yay_repository_dir }}/yay"
+      changed_when: true
       become: true
       become_user: "{{ user }}"
-    
-    - name: Remove Yay repository
-      ansible.builtin.file:
-        path: "{{ yay_repository_dir }}/yay"
-        recursive: true
-        state: absent

@@ -115,16 +115,19 @@ smb_mounts:
     destination: /mnt/files
     source: //192.168.1.104/files
     username: sambauser
+    wireguard_needed: wg0
   - name: mnt-media
     description: SMB media share
     destination: /mnt/media
     source: //192.168.1.104/media
     username: sambauser
+    wireguard_needed: wg0
   - name: mnt-{{ user }}-School
     description: SMB school files share
     destination: /home/{{ user }}/School
     source: //192.168.1.104/files/School
     username: sambauser
+    wireguard_needed: wg0
 
 install_packages:
   - nano

@@ -1,6 +1,6 @@
 ---
 - name: Install tlp
-  ansible.builtin.pacman:
+  community.general.pacman:
     name: tlp
     state: present
 

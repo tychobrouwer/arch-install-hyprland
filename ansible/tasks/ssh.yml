@@ -1,6 +1,6 @@
 ---
 - name: Install OpenSSH
-  package:
+  community.general.pacman:
     name: openssh
     state: present
 
@@ -23,7 +23,7 @@
   become_user: "{{ user }}"
 
 - name: Get public key
-  ansible.builtin.shell: "cat {{ ssh_key_dir }}/id_{{ ssh_key_type }}.pub"
+  ansible.builtin.command: "cat {{ ssh_key_dir }}/id_{{ ssh_key_type }}.pub"
   register: public_key
   changed_when: false
 

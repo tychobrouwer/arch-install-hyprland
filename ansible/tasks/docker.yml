@@ -1,6 +1,6 @@
 ---
 - name: Install Docker
-  ansible.builtin.pacman:
+  community.general.pacman:
     name: docker
     state: present
 

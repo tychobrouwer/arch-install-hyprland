@@ -17,7 +17,7 @@
   become_user: "{{ user }}"
 
 - name: Install dotfiles
-  ansible.builtin.shell: "{{ dotfiles_dir }}/set_dots.sh"
+  ansible.builtin.command: "{{ dotfiles_dir }}/set_dots.sh"
   args:
     chdir: "{{ dotfiles_dir }}"
   register: dotfiles

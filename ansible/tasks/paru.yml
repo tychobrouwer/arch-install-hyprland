@@ -1,24 +1,26 @@
 ---
-- block:
+- name: Install Paru
+  block:
     - name: Check if Paru is installed
       ansible.builtin.command:
         cmd: paru --version
       changed_when: false
-  
-    - debug:
+
+    - name: Paru is already installed
+      ansible.builtin.debug:
         msg: Paru is already installed
 
   rescue:
     - name: Install Paru dependencies
       community.general.pacman:
-        name: 
+        name:
           - base-devel
           - git
           - rustup
         state: present
 
     - name: Install Rust
-      ansible.builtin.shell: rustup default stable
+      ansible.builtin.command: rustup default stable
       changed_when: false
       become: true
       become_user: "{{ user }}"
@@ -34,8 +36,9 @@
       become_user: "{{ user }}"
 
     - name: Install Paru
-      ansible.builtin.shell: makepkg -si --noconfirm
-      args:
+      ansible.builtin.command:
+        cmd: makepkg -si --noconfirm
         chdir: "{{ paru_repository_dir }}/paru"
+      changed_when: true
       become: true
       become_user: "{{ user }}"

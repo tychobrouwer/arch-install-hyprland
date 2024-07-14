@@ -5,7 +5,10 @@
       - git
     state: present
 
-- block:
+- name: Configure git
+  become: true
+  become_user: "{{ user }}"
+  block:
     - name: Set git user name and email
       community.general.git_config:
         name: user.name
@@ -48,6 +51,3 @@
         update: false
       when: git_repos is iterable
       loop: "{{ git_repos }}"
-
-  become: true
-  become_user: "{{ user }}"

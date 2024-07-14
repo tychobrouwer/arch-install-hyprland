@@ -4,11 +4,16 @@
     path: /boot/loader
   register: loader
 
-- block:
+- name: Configure Systemd-boot
+  when: loader.stat.exists
+  block:
     - name: Create hooks directory
       ansible.builtin.file:
         path: /etc/pacman.d/hooks
         state: directory
+        owner: root
+        group: root
+        mode: "0755"
 
     - name: Create systemd hook for systemd-boot update
       ansible.builtin.copy:
@@ -74,9 +79,7 @@
       loop_control:
         index_var: index
 
-  when: loader.stat.exists == true
-
 - name: Systemd-boot is not used
   ansible.builtin.debug:
     msg: Systemd-boot is not used
-  when: loader.stat.exists == false
+  when: ~loader.stat.exists

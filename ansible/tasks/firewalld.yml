@@ -13,4 +13,3 @@
     state: "{{ item.state }}"
   when: firewalld_services is iterable
   loop: "{{ firewalld_services }}"
-

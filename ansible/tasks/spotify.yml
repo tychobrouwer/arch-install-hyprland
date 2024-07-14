@@ -1,12 +1,16 @@
 - name: Check if logged in
-  ansible.builtin.shell: spotify_player connect --name test
+  ansible.builtin.command: spotify_player connect --name test
   register: spotify_player_status
   changed_when: false
   failed_when: false
   become: true
   become_user: "{{ user }}"
 
-- block:
+- name: Authenticate spotify_player
+  when: "'No cached credentials found' in spotify_player_status.stderr"
+  become: true
+  become_user: "{{ user }}"
+  block:
     - name: Ask user for Spotify username
       ansible.builtin.pause:
         prompt: "Enter your Spotify username"
@@ -19,12 +23,9 @@
         echo: true
       register: spotify_player_password
 
-    - name: login for spotify_player
+    - name: Login for spotify_player
       ansible.builtin.expect:
         command: "spotify_player authenticate"
         responses:
           "Username": "{{ spotify_player_username.user_input }}"
           "Password": "{{ spotify_player_password.user_input }}"
-  when: "'No cached credentials found' in spotify_player_status.stderr"
-  become: true
-  become_user: "{{ user }}"
