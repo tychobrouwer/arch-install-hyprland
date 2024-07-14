@@ -17,15 +17,17 @@ fi
 
 settings=" Settings"
 
+if iw dev wlan0 info; then
+	exit
+fi
+
 # Use rofi to select wifi network
 chosen_network=$(echo -e "$toggle\n$wifi_list$settings" | uniq -u | rofi -dmenu -i -p "$connected_network" -selected-row $connected_network_line -theme $HOME/.config/rofi/wifi-menu/theme.rasi)
 
 # Get name of connection
 read -r chosen_id <<< "${chosen_network:3}"
 
-if iw dev wlan0 info; then
-	exit
-elif [ "$chosen_network" = "" ]; then
+if [ "$chosen_network" = "" ]; then
 	exit
 elif [ "$chosen_network" = " Settings" ]; then
 	nm-connection-editor
