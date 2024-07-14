@@ -137,6 +137,7 @@
         state: "'started' if configure_bluetooth else 'stopped'"
       tags: ['bluetooth']
   
-    - import_tasks: tasks/smb-mounts.yml
+    - include_tasks: tasks/smb-mount.yml
       when: configure_smb_mounts
       tags: ['smb-mounts']
+      loop: "{{ smb_mounts }}"
