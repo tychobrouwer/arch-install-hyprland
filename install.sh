@@ -365,26 +365,26 @@ fi
 #   fi
 # done
 
-# Disable startup services
-read -p "Set Hidden xdg autostart? [Y/n] " yn
-if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  mkdir -p "$HOME/.config/autostart"
+# # Disable startup services
+# read -p "Set Hidden xdg autostart? [Y/n] " yn
+# if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+#   mkdir -p "$HOME/.config/autostart"
 
-  for desktop_file in $(cat settings/hidden_xdg_files.txt); do
-    [ ! -f "$desktop_file" ] && continue
+#   for desktop_file in $(cat settings/hidden_xdg_files.txt); do
+#     [ ! -f "$desktop_file" ] && continue
 
-    application=$(basename "$desktop_file")
-    local_desktop_file="$HOME/.config/autostart/$application"
+#     application=$(basename "$desktop_file")
+#     local_desktop_file="$HOME/.config/autostart/$application"
 
-    sudo cp "$desktop_file" "$local_desktop_file"
-    sudo chown "$USER:$USER" "$local_desktop_file"
-    sed -ni -e '/Hidden/!p' -e '$a\Hidden=true' "$local_desktop_file"
-  done
-fi
+#     sudo cp "$desktop_file" "$local_desktop_file"
+#     sudo chown "$USER:$USER" "$local_desktop_file"
+#     sed -ni -e '/Hidden/!p' -e '$a\Hidden=true' "$local_desktop_file"
+#   done
+# fi
 
-# Enable bluetooth service
-sudo systemctl enable bluetooth.service
-sudo systemctl start bluetooth.service
+# # Enable bluetooth service
+# sudo systemctl enable bluetooth.service
+# sudo systemctl start bluetooth.service
 
 # # Set up firewall
 # read -p "Set up firewall? [Y/n] " yn

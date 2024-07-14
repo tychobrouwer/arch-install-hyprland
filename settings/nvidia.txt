@@ -1,8 +1,0 @@
-lib32-nvidia-utils
-libva
-linux-zen-headers
-nvidia-dkms
-nvidia-prime
-nvidia-settings
-nvidia-utils
-nvtop
