@@ -219,6 +219,7 @@ install_packages_aur:
   # - android-studio
   - arduino-ide-bin
   - brave-bin
+  - cava
   # - flutter
   - google-chrome-wayland-vulkan
   - hyprpicker
