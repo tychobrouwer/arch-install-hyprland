@@ -8,14 +8,14 @@ connected_network=$(iw dev wlan0 info | sed -n 's/ssid//p' | awk '{$1=$1};1')
 connected_network_line=$(echo $wifi_list | awk "/$connected_network/{print NR}")
 
 connected=$(nmcli -fields WIFI g)
-if [[ "$connected" =~ "enabled" ]]; then
+if [[ "$wifi_available" =~ "No such device" ]]; then
+	exit
+elif [[ "$connected" =~ "enabled" ]]; then
 	toggle="  Disable Wi-Fi"
 	wifi_list="$wifi_list\n"
 elif [[ "$connected" =~ "disabled" ]]; then
 	toggle="  Enable Wi-Fi"
 	connected_network="Disconnected"
-elif [[ "$wifi_available" =~ "No such device" ]]; then
-	exit
 fi
 
 settings=" Settings"
