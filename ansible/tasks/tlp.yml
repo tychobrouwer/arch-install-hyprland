@@ -23,10 +23,9 @@
     state: stopped
 
 - name: Add tlp rules
-  ansible.builtin.lineinfile:
-    path: /etc/tlp.conf
-    regexp: "{{ item.key }}"
-    line: "{{ item.key }}={{ item.value }}"
-    insertafter: EOF
-  when: tlp_rules is iterable
-  loop: "{{ tlp_rules }}"
+  ansible.builtin.copy:
+    dest: /etc/tlp.conf
+    content: "{{ tlp_conf }}"
+    owner: root
+    group: root
+    mode: '0644'
