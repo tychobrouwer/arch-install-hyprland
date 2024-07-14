@@ -13,7 +13,10 @@
   "modules": [
     "break",
     "title",
-    "break",
+    {
+      "type": "custom",
+      "format": "┌──────────────────────────────────────────┐"
+    },
     {
       "type": "os",
       "key": "os      "
@@ -70,7 +73,10 @@
       "type": "memory",
       "key": "memory  "
     },
-    "break",
+    {
+      "type": "custom",
+      "format": "└──────────────────────────────────────────┘"
+    },
     "colors",
     "break"
   ]
