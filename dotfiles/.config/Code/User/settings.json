@@ -1,6 +1,7 @@
 {
   "workbench.colorTheme": "Catppuccin Macchiato",
   "window.menuBarVisibility": "toggle",
-  "editor.fontSize": 12,
-  "telemetry.telemetryLevel": "off"
+  "telemetry.telemetryLevel": "off",
+  "editor.fontFamily": "'JetBrains Mono NL', 'monospace', monospace",
+  "editor.fontSize": 12
 }
