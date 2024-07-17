@@ -44,7 +44,7 @@
       [Desktop Entry]
       Name=Hyprland
       Comment=An intelligent dynamic tiled Wayland compositor
-      Exec=Hyprland
+      Exec=Hyprland > /var/log/hyprland.log 2>&1
       Type=Application
     owner: root
     group: root
