@@ -43,7 +43,7 @@ configure_kernel_tweaks: true
 kernels_to_tweak: /boot/loader/entries/*linux-zen.conf
 
 configure_kernel_iommu: true
-kernels_to_iommu: /boot/loader/entries/*linux-zen.conf
+kernels_to_enable_iommu: /boot/loader/entries/*linux-zen.conf
 
 configure_greetd_tuigreet: true
 
@@ -66,6 +66,24 @@ firewalld_services:
     state: enabled
 
 configure_iwd: true
+
+configure_nvidia: false
+nvidia_driver: nvidia-dkms
+nvidia_kernels: linux-zen
+kernels_to_enable_nvidia: /boot/loader/entries/*linux-zen.conf
+nvidia_packages:
+  - linux-zen-headers
+  - nvidia-dkms
+  - nvidia-utils
+  - lib32-nvidia-utils
+  - nvidia-settings
+  - nvidia-prime
+  - nvtop
+  - egl-wayland
+  - libva-nvidia-driver
+  - opencl-nvidia
+  - libvdpau
+  - lib32-libvdpau
 
 configure_tlp: true
 tlp_conf: |

@@ -63,7 +63,7 @@
       loop: "{{ kernels_tweak.stdout_lines }}"
 
     - name: Get kernels to enable IOMMU
-      ansible.builtin.shell: ls {{ kernels_to_iommu }}
+      ansible.builtin.shell: ls {{ kernels_to_enable_iommu }}
       register: kernels_iommu
       changed_when: false
 
@@ -71,6 +71,10 @@
       when: configure_kernel_iommu
       tags: ['kernel-iommu']
       loop: "{{ kernels_iommu.stdout_lines }}"
+    
+    - import_tasks: tasks/nvidia.yml
+      when: configure_nvidia
+      tags: ['nvidia']
 
     - import_tasks: tasks/git.yml
       when: configure_git
