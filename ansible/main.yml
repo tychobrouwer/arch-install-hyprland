@@ -137,7 +137,7 @@
     - name: Enable bluetooth service
       ansible.builtin.systemd:
         name: bluetooth
-        enabled: configure_bluetooth
+        enabled: "{{ configure_bluetooth }}"
         state: "'started' if configure_bluetooth else 'stopped'"
       tags: ['bluetooth']
   

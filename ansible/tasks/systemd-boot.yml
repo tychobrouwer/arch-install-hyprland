@@ -82,4 +82,4 @@
 - name: Systemd-boot is not used
   ansible.builtin.debug:
     msg: Systemd-boot is not used
-  when: ~loader.stat.exists
+  when: not loader.stat.exists
