@@ -134,7 +134,7 @@ install_packages:
   - powertop
   - thunar
   - thunar-archive-plugin
-  - htop
+  # - htop
   - btop
   - firefox
   - firewalld
