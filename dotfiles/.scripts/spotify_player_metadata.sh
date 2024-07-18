@@ -1,8 +1,7 @@
 #!/bin/bash
 
-player=$(playerctl --list-all | grep spotify | head -n 1)
-
 while true; do
+  player=$(playerctl --list-all | grep spotify | head -n 1)
   status=$(playerctl --player=$player status)
   result=$(playerctl --player=$player metadata --format "{{ title }} - {{ artist }}")
 

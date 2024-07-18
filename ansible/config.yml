@@ -293,7 +293,7 @@ hidden_applications:
   - torbrowser-settings
   - torbrowser-settings
 
-configure_ozone_wayland: true
+configure_ozone_wayland: false
 ozone_wayland_applications:
   - code
   - google-chrome

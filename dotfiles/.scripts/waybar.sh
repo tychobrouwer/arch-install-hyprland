@@ -2,8 +2,6 @@
 
 CONFIG_FILES="$HOME/.config/waybar/waybar.jsonc $HOME/.config/waybar/waybar.css"
 
-trap "killall waybar" EXIT
-
 if [[ ! $(pidof waybar) ]]; then
   while true; do
     waybar -c $HOME/.config/waybar/waybar.jsonc -s $HOME/.config/waybar/waybar.css &
@@ -15,6 +13,7 @@ if [[ ! $(pidof waybar) ]]; then
     fi
 
     inotifywait -e create,modify $CONFIG_FILES
+
     killall waybar
   done
 fi
