@@ -43,10 +43,6 @@ window#waybar {
   margin: 4px 0;
 }
 
-/* #workspaces {
-  margin-left: 10px;
-} */
-
 #network,
 #custom-power,
 #custom-power-menu,
@@ -111,6 +107,30 @@ window#waybar {
 
 #workspaces button.active {
   color: #cad3f5;
+}
+
+#cpu,
+#memory,
+#battery {
+  color: #a6da95;
+}
+
+#pulseaudio,
+#backlight {
+  color: #8aadf4;
+}
+
+#bluetooth,
+#network {
+  color: #c6a0f6;
+}
+
+#clock {
+  color: #c6a0f6;
+}
+
+#custom-spotify_player {
+  color: #a6da95;
 }
 
 #pulseaudio.muted {
