@@ -8,6 +8,8 @@ Run the `set_dots.sh` script or manually copy the `.config`, `.icons`, `.local`,
 
 ![screenshot 2](assets/screenshot_2.png)
 
+![screenshot 3](assets/screenshot_3.png)
+
 ## Install
 
 Clone the repository and install the dependencies:
