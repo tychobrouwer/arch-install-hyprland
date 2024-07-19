@@ -10,14 +10,12 @@ Run the `set_dots.sh` script or manually copy the `.config`, `.icons`, `.local`,
 
 ![screenshot 3](assets/screenshot_3.png)
 
-## Install
+## Install Everything
 
 Clone the repository and install the dependencies:
 
 ```bash
 git clone https://github.com/tychobrouwer/arch-install-hyprland.git
-
-sudo pacman -S ansible python-pexpect
 
 cd arch-install-hyprland/ansible
 ansible-galaxy install -r requirements.yml
@@ -33,6 +31,6 @@ Your public ssh key is printed to allow you to configure your GitHub ssh authent
 
 It also requests your spotify username and password for the spotify_player configuration.
 
-## Configure
+### Configure
 
 The install can be configured by editing the `config.yml` file. The essential pacakges listed are needed for all parts of the installed software and the dotfiles in the repository.
