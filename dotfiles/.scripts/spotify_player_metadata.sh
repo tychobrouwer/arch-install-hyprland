@@ -11,7 +11,11 @@ while true; do
     result=" $result"
   fi
 
-  echo "{\"text\": \"$result\", \"class\": \"spotify-text\"}"
+  # Escape problematic characters
+  result=$(echo $result | sed 's/"/\\"/g')
+  result=$(echo $result | sed "s/'/\\\'/g")
+  result=$(echo $result | sed 's/&/\\&/g')
 
-  sleep 1
+  echo "{\"text\": \"$result\", \"class\": \"spotify-text\"}"
+  sleep 0.5
 done

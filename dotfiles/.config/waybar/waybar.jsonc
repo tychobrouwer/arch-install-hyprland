@@ -43,12 +43,13 @@
   },
   "custom/spotify_player": {
     "format": "{}",
+    "exec": "$HOME/.scripts/spotify_player_metadata.sh",
     "on-click": "spotify_player playback play-pause",
     "on-scroll-up": "spotify_player playback next",
     "on-scroll-down": "spotify_player playback previous",
-    "exec": "$HOME/.scripts/spotify_player_metadata.sh",
     "return-type": "json",
     "restart-interval": 5,
+    // "interval": 1,
     "max-length": 50,
     "smooth-scrolling-threshold": 3
   },
