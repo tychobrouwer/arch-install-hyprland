@@ -138,7 +138,7 @@ window#waybar {
 }
 
 #pulseaudio.source.muted {
-  color: #cad3f5;
+  color: #8aadf4;
 }
 
 #pulseaudio.source.source-muted {
@@ -146,7 +146,7 @@ window#waybar {
 }
 
 #keyboard-state label.capslock.locked {
-  color: #cad3f5;
+  color: #8aadf4;
 }
 
 #keyboard-state label.capslock {

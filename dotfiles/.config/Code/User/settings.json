@@ -1,8 +1,165 @@
 {
-  "workbench.colorTheme": "Catppuccin Macchiato",
-  "window.menuBarVisibility": "toggle",
-  "telemetry.telemetryLevel": "off",
-  "editor.fontFamily": "'JetBrains Mono NL', 'Font Awesome 6 Pro Solid Black', 'Font Awesome 6 Brands'",
-  "editor.fontSize": 12,
-  "workbench.iconTheme": "material-icon-theme"
+    "editor.tabSize": 2,
+    "editor.suggestSelection": "first",
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active",
+    "workbench.iconTheme": "material-icon-theme",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "editor.fontFamily": "\"JetBrains Mono NL\", \"Font Awesome 6 Pro Solid Black\", \"Font Awesome 6 Brands\"",
+    "workbench.startupEditor": "none",
+    "extensions.ignoreRecommendations": true,
+    "arduino.enableUSBDetection": true,
+    "jupyter.askForKernelRestart": false,
+    "workbench.editorAssociations": {
+        "*.bin": "default",
+        "*.json": "default"
+    },
+    "[css]": {
+        "editor.defaultFormatter": "vscode.css-language-features"
+    },
+    "cSpell.userWords": [
+        "Althon",
+        "arduino",
+        "AUTOINCREMENT",
+        "barcodes",
+        "bootloader",
+        "Bootloader",
+        "Brouwer",
+        "CALC",
+        "Commandable",
+        "datepicker",
+        "expressjs",
+        "fastapi",
+        "Formated",
+        "github",
+        "Hoverable",
+        "imap",
+        "jellyfin",
+        "Jellyfin",
+        "ledc",
+        "lighttpd",
+        "linebreak",
+        "linkedin",
+        "linux",
+        "mojang",
+        "Neotimer",
+        "onlyoffice",
+        "openoffice",
+        "openssh",
+        "openvpn",
+        "Pressable",
+        "reddit",
+        "Rgba",
+        "RGBO",
+        "ssid",
+        "Swipeable",
+        "tbrouwer",
+        "totp",
+        "Traefik",
+        "websockets",
+        "xhttp"
+    ],
+    "cSpell.ignoreWords": [
+        "transform",
+        "CALC"
+    ],
+    "terminal.external.windowsExec": "",
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            80
+        ],
+        "editor.selectionHighlight": false,
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": "off"
+    },
+    "editor.fontLigatures": "'ss03', 'ss05', 'cv06', 'cv10', 'cv30'",
+    "terminal.integrated.fontFamily": "'FiraCode NF'",
+    "settingsSync.ignoredSettings": [
+        "terminal.integrated.fontFamily",
+        "editor.fontFamily"
+    ],
+    "editor.wordWrap": "on",
+    "arduino.useArduinoCli": true,
+    "editor.inlineSuggest.enabled": true,
+    "[python]": {
+        "editor.formatOnType": true,
+        "editor.tabSize": 2,
+        "editor.insertSpaces": true
+    },
+    "cSpell.enableFiletypes": [
+        "elm"
+    ],
+    "cSpell.language": "en,nl",
+    "cSpell.languageSettings": [],
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "markdown": true,
+        "scminput": false,
+        "yaml": true,
+        "arduino-output": true
+    },
+    "redhat.telemetry.enabled": false,
+    "explorer.confirmDelete": false,
+    "terminal.integrated.allowChords": false,
+    "terminal.integrated.allowMnemonics": true,
+    "terminal.integrated.profiles.linux": {
+        "zsh": {
+            "path": "/usr/bin/zsh",
+            "args": [],
+            "icon": "terminal-bash"
+        }
+    },
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "editor.fontSize": 12,
+    "idf.gitPathWin": "C:\\Users\\tychob\\.espressif\\tools\\idf-git\\2.39.2\\cmd\\git.exe",
+    "idf.espIdfPathWin": "C:\\Users\\tychob\\esp\\esp-idf",
+    "idf.pythonBinPathWin": "C:\\Users\\tychob\\.espressif\\python_env\\idf5.1_py3.11_env\\Scripts\\python.exe",
+    "idf.toolsPathWin": "C:\\Users\\tychob\\.espressif",
+    "idf.customExtraPaths": "C:\\Users\\tychob\\.espressif\\tools\\xtensa-esp-elf-gdb\\12.1_20221002\\xtensa-esp-elf-gdb\\bin;C:\\Users\\tychob\\.espressif\\tools\\riscv32-esp-elf-gdb\\12.1_20221002\\riscv32-esp-elf-gdb\\bin;C:\\Users\\tychob\\.espressif\\tools\\xtensa-esp32-elf\\esp-12.2.0_20230208\\xtensa-esp32-elf\\bin;C:\\Users\\tychob\\.espressif\\tools\\xtensa-esp32s2-elf\\esp-12.2.0_20230208\\xtensa-esp32s2-elf\\bin;C:\\Users\\tychob\\.espressif\\tools\\xtensa-esp32s3-elf\\esp-12.2.0_20230208\\xtensa-esp32s3-elf\\bin;C:\\Users\\tychob\\.espressif\\tools\\riscv32-esp-elf\\esp-12.2.0_20230208\\riscv32-esp-elf\\bin;C:\\Users\\tychob\\.espressif\\tools\\esp32ulp-elf\\2.35_20220830\\esp32ulp-elf\\bin;C:\\Users\\tychob\\.espressif\\tools\\cmake\\3.24.0\\bin;C:\\Users\\tychob\\.espressif\\tools\\openocd-esp32\\v0.12.0-esp32-20230419\\openocd-esp32\\bin;C:\\Users\\tychob\\.espressif\\tools\\ninja\\1.10.2;C:\\Users\\tychob\\.espressif\\tools\\idf-exe\\1.0.3;C:\\Users\\tychob\\.espressif\\tools\\ccache\\4.8\\ccache-4.8-windows-x86_64;C:\\Users\\tychob\\.espressif\\tools\\dfu-util\\0.11\\dfu-util-0.11-win64;C:\\Users\\tychob\\.espressif\\tools\\esp-rom-elfs\\20230320",
+    "idf.customExtraVars": {
+        "OPENOCD_SCRIPTS": "C:\\Users\\tychob\\.espressif\\tools\\openocd-esp32\\v0.12.0-esp32-20230419/openocd-esp32/share/openocd/scripts",
+        "IDF_CCACHE_ENABLE": "1",
+        "ESP_ROM_ELF_DIR": "C:\\Users\\tychob\\.espressif\\tools\\esp-rom-elfs\\20230320/"
+    },
+    "arduino.additionalUrls": [
+        "https://dl.espressif.com/dl/package_esp32_index.json"
+    ],
+    "cSpell.dictionaryDefinitions": [],
+    "files.associations": {
+        "*.j2": "jinja-properties",
+        "*.yml": "yaml",
+        "config": "toml"
+    },
+    "jupyter.widgetScriptSources": [
+        "jsdelivr.com",
+        "unpkg.com"
+    ],
+    "yaml.customTags": [
+        "!vault "
+    ],
+    "notebook.lineNumbers": "on",
+    "git.confirmSync": false,
+    "markdownlint.config": {
+        "MD033": false
+    },
+    "git.openRepositoryInParentFolders": "never",
+    "explorer.confirmDragAndDrop": false,
+    "git.enableSmartCommit": true,
+    "kotlin.languageServer.enabled": false,
+    "kotlin.debugAdapter.enabled": false,
+    "debug.console.fontSize": 12,
+    "github.copilot.editor.enableAutoCompletions": true,
+    "workbench.colorTheme": "Catppuccin Macchiato",
+    "github.copilot.preferredAccount": "TychoBrouwer",
+    "window.menuBarVisibility": "toggle",
+    "dart.debugExternalPackageLibraries": false,
+    "dart.debugSdkLibraries": false,
+    "terminal.integrated.fontSize": 12,
 }

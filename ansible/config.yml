@@ -170,6 +170,8 @@ install_packages:
   - wireguard-tools
   - mpv
   - jupyter-notebook
+  - feh
+  - keepassxc
 
 install_packages_essential:
   - base-devel
