@@ -15,67 +15,67 @@
     "title",
     {
       "type": "custom",
-      "format": "┌──────────────────────────────────────────┐"
+      "format": "┌────────────────────────────────────────────────────┐"
     },
     {
       "type": "os",
-      "key": "os      "
+      "key": "  os      "
     },
     {
       "type": "host",
-      "key": "host    "
+      "key": "  host    "
     },
     {
       "type": "kernel",
-      "key": "kernel  "
+      "key": "  kernel  "
     },
     {
       "type": "uptime",
-      "key": "uptime  "
+      "key": "  uptime  "
     },
     {
       "type": "packages",
-      "key": "packages"
+      "key": "  packages"
     },
     {
       "type": "shell",
-      "key": "shell   "
+      "key": "  shell   "
     },
     {
       "type": "display",
-      "key": "display "
+      "key": "  display "
     },
     {
       "type": "wm",
-      "key": "wm      "
+      "key": "  wm      "
     },
     {
       "type": "theme",
-      "key": "theme   "
+      "key": "  theme   "
     },
     {
       "type": "icons",
-      "key": "icons   "
+      "key": "  icons   "
     },
     {
       "type": "terminal",
-      "key": "terminal"
+      "key": "  terminal"
     },
     {
       "type": "cpu",
-      "key": "cpu     "
+      "key": "  cpu     "
     },
     {
       "type": "gpu",
-      "key": "gpu     "
+      "key": "  gpu     "
     },
     {
       "type": "memory",
-      "key": "memory  "
+      "key": "  memory  "
     },
     {
       "type": "custom",
-      "format": "└──────────────────────────────────────────┘"
+      "format": "└────────────────────────────────────────────────────┘"
     },
     "colors",
     "break"

@@ -13,5 +13,5 @@ while true; do
 
   echo "{\"text\": \"$result\", \"class\": \"spotify-text\"}"
 
-  sleep 0.5
+  sleep 1
 done

@@ -172,15 +172,18 @@ install_packages:
   - jupyter-notebook
   - feh
   - keepassxc
+  - zip
+  - unzip
+  - vlc
 
 install_packages_essential:
   - base-devel
   - blueman
   - foot
   - bluez
+  - bluez-utils
   # - neofetch
   - fastfetch
-  - bluez-utils
   - cifs-utils
   - clang
   - playerctl
@@ -229,6 +232,7 @@ install_packages_essential:
   # - winetricks
   - wireplumber
   # - wofi
+  - xdg-desktop-portal
   - xdg-desktop-portal-hyprland
   - xorg-xwayland
   - xwaylandvideobridge

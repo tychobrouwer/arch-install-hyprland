@@ -13,12 +13,12 @@
     "hyprland/workspaces"
   ],
   "modules-right": [
-    "tray",
-    "keyboard-state",
+    // "tray",
+    // "keyboard-state",
     "backlight",
     "pulseaudio",
     "pulseaudio#source",
-    "cpu",
+    // "cpu",
     "memory",
     "battery",
     "custom/power",
@@ -38,7 +38,7 @@
     "onclick": "activate",
     "sort-by-number": true,
     "persistent-workspaces": {
-      "*": 5
+      "*": 7
     }
   },
   "custom/spotify_player": {
