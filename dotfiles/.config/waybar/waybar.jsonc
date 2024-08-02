@@ -64,7 +64,7 @@
   },
   "clock": {
     // "format": "{:%d-%m-%Y %H:%M}",
-    "format": "{:%A %e %B %Y - %H:%M}",
+    "format": "{:%d %B %Y (%a)  %H:%M}",
     "interval": 1,
     "tooltip": false
   },
