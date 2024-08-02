@@ -1,21 +1,11 @@
 #!/bin/bash
+export LC_ALL=C
 
-while true; do
-  player=$(playerctl --list-all | grep spotify | head -n 1)
-  status=$(playerctl --player=$player status)
-  result=$(playerctl --player=$player metadata --format "{{ title }} - {{ artist }}")
+# while true; do
+player=$(playerctl --list-all | grep spotify | head -n 1)
 
-  if [ "$status" == "Playing" ]; then
-    result=" $result"
-  else
-    result=" $result"
-  fi
 
-  # Escape problematic characters
-  result=$(echo $result | sed 's/"/\\"/g')
-  result=$(echo $result | sed "s/'/\\\'/g")
-  result=$(echo $result | sed 's/&/\\&/g')
+while read -r line; do 
+  echo "{\"text\": \"$line\", \"class\": \"spotify-text\"}" | sed -e 's/Playing//' -e 's/Paused//'
 
-  echo "{\"text\": \"$result\", \"class\": \"spotify-text\"}"
-  sleep 0.5
-done
+done < <(playerctl --player=$player --follow metadata --format "{{ status }} {{ markup_escape(title) }} - {{ artist }}" )

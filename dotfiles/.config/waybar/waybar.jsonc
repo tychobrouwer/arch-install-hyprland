@@ -49,7 +49,6 @@
     "on-scroll-down": "spotify_player playback previous",
     "return-type": "json",
     "restart-interval": 5,
-    // "interval": 1,
     "max-length": 50,
     "smooth-scrolling-threshold": 3
   },
