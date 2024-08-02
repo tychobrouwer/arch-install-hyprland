@@ -240,7 +240,7 @@ install_packages_aur:
   - arduino-ide-bin
   - brave-bin
   - cava
-  # - flutter
+  # - flutter-bin
   - google-chrome-wayland-vulkan
   - hyprpicker
   - hyprshot
