@@ -11,6 +11,14 @@
     name: greetd
     enabled: true
 
+- name: Create Hyprland log directory
+  ansible.builtin.file:
+    path: /var/log/hyprland
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: "0755"
+
 - name: Set tuigreet as default greeter
   ansible.builtin.copy:
     dest: /etc/greetd/config.toml
@@ -20,7 +28,7 @@
 
       [default_session]
 
-      command = "tuigreet --cmd Hyprland --remember --asterisks --time --time-format '%d %b %Y - %H:%M:%S' --greeting 'Unfriendly environment for unauthorised personnel.'"
+      command = "tuigreet --cmd 'Hyprland > /var/log/hyprland/hyprland.log 2>&1' --remember --asterisks --time --time-format '%d %b %Y - %H:%M:%S' --greeting 'Unfriendly environment for unauthorised personnel.'"
 
       user = "me"
 
@@ -44,7 +52,7 @@
       [Desktop Entry]
       Name=Hyprland
       Comment=An intelligent dynamic tiled Wayland compositor
-      Exec=Hyprland > /var/log/hyprland.log 2>&1
+      Exec=Hyprland > /var/log/hyprland/hyprland.log 2>&1
       Type=Application
     owner: root
     group: root
