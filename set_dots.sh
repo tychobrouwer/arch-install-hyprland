@@ -9,11 +9,11 @@ find . -type d -exec mkdir -p $HOME/{} \;
 stow --adopt -t "$HOME" .
 
 # Copy files to /etc
-sudo cp -r $SCRIPT_DIR/etc/* /etc
+# sudo cp -r $SCRIPT_DIR/etc/* /etc
 
 # Reset to master branch
-git reset --hard
-git pull
-cd "$SCRIPT_DIR"
+# git reset --hard
+# git pull
+# cd "$SCRIPT_DIR"
 
-sudo fc-cache -f
+# sudo fc-cache -f
