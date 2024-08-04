@@ -24,6 +24,8 @@ alias pacman-autoremove='sudo pacman -Rns $(pacman -Qtdq) && paru -Sccy --noconf
 alias htop=btop
 alias top=btop
 
+alias vim=nvim
+
 # alias code='code --enable-features=UseOzonePlatform --ozone-platform=wayland --password-store=gnome-libsecret'
 #alias google-chrome-stable='google-chrome-stable --enable-features=UseOzonePlatform --ozone-platform=wayland --password-store=gnome-libsecret'
 #alias brave='brave --enable-features=UseOzonePlatform --ozone-platform=wayland --password-store=gnome-libsecret'
