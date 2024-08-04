@@ -1,1 +1,1 @@
-require("config.remap")
+require("nvim_config.remap")
