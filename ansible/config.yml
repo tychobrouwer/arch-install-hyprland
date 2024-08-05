@@ -199,6 +199,7 @@ install_packages_essential:
   - gvfs
   - gvfs-smb
   - hyprland
+  - ripgrep
   - hyprpaper
   - wl-clipboard
   - inetutils
