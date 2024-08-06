@@ -1,0 +1,10 @@
+---
+- name: Install intel integrated gpu packages
+  community.general.pacman:
+    name:
+      - intel-gpu-tools
+      - intel-media-driver
+      - intel-ucode
+      - vulkan-intel
+      - lib32-vulkan-intel
+    state: present

@@ -67,6 +67,8 @@ firewalld_services:
 
 configure_iwd: true
 
+configure_intel: true
+
 configure_nvidia: false
 nvidia_driver: nvidia-dkms
 nvidia_kernels: linux-zen
@@ -175,6 +177,8 @@ install_packages:
   - zip
   - unzip
   - vlc
+  - nvim
+  - rustup
 
 install_packages_essential:
   - base-devel
@@ -232,7 +236,6 @@ install_packages_essential:
   # - wine-mono
   # - winetricks
   - wireplumber
-  # - wofi
   - xdg-desktop-portal
   - xdg-desktop-portal-hyprland
   - xorg-xwayland
@@ -245,7 +248,7 @@ install_packages_aur:
   - arduino-ide-bin
   - brave-bin
   - cava
-  # - flutter-bin
+  - flutter-bin
   - google-chrome-wayland-vulkan
   - hyprpicker
   - hyprshot

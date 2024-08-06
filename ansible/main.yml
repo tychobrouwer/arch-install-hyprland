@@ -76,6 +76,10 @@
       when: configure_nvidia
       tags: ['nvidia']
 
+    - import_tasks: tasks/intel.yml
+      when: configure_intel
+      tags: ['intel']
+
     - import_tasks: tasks/git.yml
       when: configure_git
       tags: ['git']
