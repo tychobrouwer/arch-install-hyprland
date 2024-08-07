@@ -1,19 +1,29 @@
-vim.opt.nu = true
-vim.opt.relativenumber = true
+vim.opt.nu = true -- display line number current line
+vim.opt.relativenumber = true -- display relative line numbers
 
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
+vim.opt.tabstop = 2 -- number of spaces that count as tab
+vim.opt.softtabstop = 2 -- number of spaces for tab
+vim.opt.shiftwidth = 2 -- number of spaces for autoindent
+vim.opt.expandtab = true -- use spaces for tab
 
-vim.opt.smartindent = true
+vim.opt.autoindent = true -- copy indent from current line for new line
+vim.opt.smartindent = true -- smart indent for new line
 
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
+vim.opt.breakindent = true -- visually continue wrapped line at indent
+vim.opt.linebreak = true -- wrap on 'breakat' characters
 
-vim.opt.termguicolors = true
+vim.opt.undofile = true -- save undo history in file
+vim.opt.undodir = os.getenv("HOME") .. "/.nvim/undodir"
 
-vim.opt.updatetime = 50
+vim.opt.termguicolors = true -- enable 24bit colors 
+
+vim.opt.updatetime = 1000 -- update swap file interval
+vim.opt.updatecount = 10 -- update swap file after 10 characters
+
+vim.opt.hlsearch = true -- highlight all search matches
+
+vim.opt.spell = true -- enable spell checking
+vim.opt.spellfile = os.getenv("HOME") .. "/.config/nvim/spellfile.utf-8.add"
+vim.opt.spelllang = "en" -- set spell checking to english
+vim.opt.spelloptions = "camel" -- separate words for camel case
 
