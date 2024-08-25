@@ -75,7 +75,7 @@ nvidia_kernels: linux-zen
 kernels_to_enable_nvidia: /boot/loader/entries/*linux-zen.conf
 nvidia_packages:
   - linux-zen-headers
-  - nvidia-dkms
+  - nvidia-open-dkms
   - nvidia-utils
   - lib32-nvidia-utils
   - nvidia-settings
