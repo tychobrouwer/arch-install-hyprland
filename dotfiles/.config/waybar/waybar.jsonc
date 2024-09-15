@@ -65,6 +65,7 @@
   "clock": {
     // "format": "{:%d-%m-%Y %H:%M}",
     "format": "{:%d %B %Y (%a)  %H:%M}",
+    "timezone": "Europe/Amsterdam",
     "interval": 1,
     "tooltip": false
   },

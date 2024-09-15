@@ -268,6 +268,8 @@ install_packages_aur:
   - visual-studio-code-bin
   - tor-browser-bin
   - xfce-polkit
+  - unreal-engine-bin
+  - zotero-bin
 
 configure_desktop_tweaks: true
 hidden_applications:

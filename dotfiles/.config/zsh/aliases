@@ -35,3 +35,4 @@ alias v=nvim
 alias code='code --enable-features=UseOzonePlatform --ozone-platform=wayland --disable-gpu --password-store=gnome-libsecret'
 alias google-chrome-stable='google-chrome-stable --password-store=gnome-libsecret'
 alias brave='brave --password-store=gnome-libsecret'
+alias unreal='SDL_VIDEODRIVER=x11 prime-run /opt/unreal-engine/Engine/Binaries/Linux/UnrealEditor'

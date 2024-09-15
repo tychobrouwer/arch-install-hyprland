@@ -1,5 +1,4 @@
 {
-    "editor.tabSize": 2,
     "editor.suggestSelection": "first",
     "editor.bracketPairColorization.enabled": true,
     "editor.guides.bracketPairs": "active",
@@ -158,8 +157,10 @@
     "github.copilot.editor.enableAutoCompletions": true,
     "workbench.colorTheme": "Catppuccin Macchiato",
     "github.copilot.preferredAccount": "TychoBrouwer",
-    "window.menuBarVisibility": "toggle",
     "dart.debugExternalPackageLibraries": false,
     "dart.debugSdkLibraries": false,
     "terminal.integrated.fontSize": 12,
+    "rust-analyzer.inlayHints.chainingHints.enable": false,
+    "rust-analyzer.inlayHints.typeHints.enable": false,
+    "editor.formatOnSave": true,
 }
