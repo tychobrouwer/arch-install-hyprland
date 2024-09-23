@@ -14,14 +14,14 @@ return {
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
     dependencies = {
-      {'L3MON4D3/LuaSnip'},
+      { 'L3MON4D3/LuaSnip' },
     },
     config = function()
       local cmp = require('cmp')
 
       cmp.setup({
         sources = {
-          {name = 'nvim_lsp'},
+          { name = 'nvim_lsp' },
         },
         mapping = cmp.mapping.preset.insert({
           ['<Tab>'] = cmp.mapping.confirm({ select = true }),
@@ -36,12 +36,12 @@ return {
   },
   {
     'neovim/nvim-lspconfig',
-    cmd = {'LspInfo', 'LspInstall', 'LspStart'},
-    event = {'BufReadPre', 'BufNewFile'},
+    cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
-      {'hrsh7th/cmp-nvim-lsp'},
-      {'williamboman/mason.nvim'},
-      {'williamboman/mason-lspconfig.nvim'},
+      { 'hrsh7th/cmp-nvim-lsp' },
+      { 'williamboman/mason.nvim' },
+      { 'williamboman/mason-lspconfig.nvim' },
     },
     config = function()
       local lsp_zero = require('lsp-zero')
@@ -49,7 +49,7 @@ return {
       -- lsp_attach is where you enable features that only work
       -- if there is a language server active in the file
       local lsp_attach = function(_, bufnr)
-        local opts = {buffer = bufnr}
+        local opts = { buffer = bufnr }
 
         vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
@@ -87,6 +87,11 @@ return {
           -- it applies to every language server without a "custom handler"
           function(server_name)
             require("lspconfig")[server_name].setup({});
+          end,
+
+          lua_ls = function()
+            local lua_opts = lsp_zero.nvim_lua_ls()
+            require('lspconfig').lua_ls.setup(lua_opts)
           end,
         }
       })
