@@ -163,4 +163,5 @@
     "rust-analyzer.inlayHints.chainingHints.enable": false,
     "rust-analyzer.inlayHints.typeHints.enable": false,
     "editor.formatOnSave": true,
+    "C_Cpp.intelliSenseEngineFallback": "enabled",
 }

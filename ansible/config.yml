@@ -159,7 +159,7 @@ install_packages:
   - firefox
   - firewalld
   - gimp
-  # - inkscape
+  - inkscape
   - man-pages-uk
   - nm-connection-editor
   # - partitionmanager
@@ -179,6 +179,7 @@ install_packages:
   - vlc
   - nvim
   - rustup
+  - zathura
 
 install_packages_essential:
   - base-devel
