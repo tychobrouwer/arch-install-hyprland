@@ -1,6 +1,7 @@
 # Aliases
 alias la='ls -lAh --color=always --group-directories-first'
 alias ls='ls -Ah --color=always --group-directories-first'
+alias l='ls'
 alias cp='cp -i' 
 alias mv='mv -i'
 alias rm='rm -i'
@@ -28,7 +29,10 @@ alias vim=nvim
 alias vi=nvim
 alias v=nvim
 
-# alias code='code --enable-features=UseOzonePlatform --ozone-platform=wayland --password-store=gnome-libsecret'
+alias ga='git add --all && git status'
+alias gc='f() { git commit -m \'$1\' };f'
+
+#alias code='code --enable-features=UseOzonePlatform --ozone-platform=wayland --password-store=gnome-libsecret'
 #alias google-chrome-stable='google-chrome-stable --enable-features=UseOzonePlatform --ozone-platform=wayland --password-store=gnome-libsecret'
 #alias brave='brave --enable-features=UseOzonePlatform --ozone-platform=wayland --password-store=gnome-libsecret'
 
