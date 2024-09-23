@@ -179,7 +179,10 @@ install_packages:
   - vlc
   - nvim
   - rustup
+  - tesseract-data-eng
+  - tesseract-data-nld
   - zathura
+  - zathura-pdf-mupdf
 
 install_packages_essential:
   - base-devel
