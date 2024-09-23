@@ -8,10 +8,10 @@ return {
     local utils = require("telescope.utils")
 
     vim.keymap.set('n', '<leader>pf', function()
-      builtin.find_files({ hidden = true, cwd = utils.buffer_dir() })
+      builtin.find_files({ hidden = true })
     end)
 
-    vim.keymap.set('n', '<C-p>', function ()
+    vim.keymap.set('n', '<leader>pg', function ()
       builtin.git_files({ hidden = true })
     end)
 
