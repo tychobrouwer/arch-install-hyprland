@@ -27,3 +27,10 @@ vim.opt.spellfile = os.getenv("HOME") .. "/.config/nvim/spellfile.utf-8.add"
 vim.opt.spelllang = "en" -- set spell checking to english
 vim.opt.spelloptions = "camel" -- separate words for camel case
 
+vim.schedule(function()
+  vim.opt.clipboard = 'unnamedplus'
+end)
+
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', space = '·', nbsp = '␣' }
+
