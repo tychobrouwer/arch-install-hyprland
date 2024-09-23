@@ -10,15 +10,15 @@
 mesg="`uptime -p | sed -e 's/up //g'`"
 
 list_col='1'
-list_row='6'
+list_row='5'
 
 # Options
 option_1=" Lock"
 option_2=" Logout"
 option_3=" Suspend"
-option_4=" Hibernate"
-option_5=" Reboot"
-option_6=" Shutdown"
+#option_4=" Hibernate"
+option_4=" Reboot"
+option_5=" Shutdown"
 yes=''
 no=''
 
@@ -72,11 +72,11 @@ run_cmd() {
 		confirm_run 'hyprctl dispatch exit'
 	elif [[ "$1" == '--opt3' ]]; then
 		confirm_run 'systemctl suspend'
+#	elif [[ "$1" == '--opt4' ]]; then
+#		confirm_run 'systemctl hibernate'
 	elif [[ "$1" == '--opt4' ]]; then
-		confirm_run 'systemctl hibernate'
-	elif [[ "$1" == '--opt5' ]]; then
 		confirm_run 'systemctl reboot'
-	elif [[ "$1" == '--opt6' ]]; then
+	elif [[ "$1" == '--opt5' ]]; then
 		confirm_run 'systemctl poweroff'
 	fi
 }

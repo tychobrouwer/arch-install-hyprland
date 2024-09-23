@@ -1,3 +1,26 @@
+# unset plus and minus
+reload_plus
+reload_minus
+
+# set new zoom keybinds
+zoom_in
+zoom_out
+
 zoom_in plus
 zoom_out minus
+
+# unset left and right
+next_img
+prev_img
+
+# set new move keybinds
+scroll_up
+scroll_down
+scroll_left
+scroll_right
+
+scroll_up Up
+scroll_down Down
+scroll_left Left
+scroll_right Right 
 
