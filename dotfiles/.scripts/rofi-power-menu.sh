@@ -16,7 +16,6 @@ list_row='5'
 option_1=" Lock"
 option_2=" Logout"
 option_3=" Suspend"
-#option_4=" Hibernate"
 option_4=" Reboot"
 option_5=" Shutdown"
 yes=''
@@ -33,7 +32,7 @@ rofi_cmd() {
 
 # Pass variables to rofi dmenu
 run_rofi() {
-	echo -e "$option_1\n$option_2\n$option_3\n$option_4\n$option_5\n$option_6" | rofi_cmd
+	echo -e "$option_1\n$option_2\n$option_3\n$option_4\n$option_5" | rofi_cmd
 }
 
 # Confirmation CMD
@@ -56,29 +55,27 @@ confirm_exit() {
 
 # Confirm and execute
 confirm_run () {	
-	selected="$(confirm_exit)"
-	if [[ "$selected" == "$yes" ]]; then
+  selected="$(confirm_exit)"
+  if [[ "$selected" == "$yes" ]]; then
         ${1} && ${2} && ${3}
     else
         exit
-    fi	
+    fi
 }
 
 # Execute Command
 run_cmd() {
-	if [[ "$1" == '--opt1' ]]; then
-		swaylock --config $HOME/.config/swaylock/config
-	elif [[ "$1" == '--opt2' ]]; then
-		confirm_run 'hyprctl dispatch exit'
-	elif [[ "$1" == '--opt3' ]]; then
-		confirm_run 'systemctl suspend'
-#	elif [[ "$1" == '--opt4' ]]; then
-#		confirm_run 'systemctl hibernate'
-	elif [[ "$1" == '--opt4' ]]; then
-		confirm_run 'systemctl reboot'
-	elif [[ "$1" == '--opt5' ]]; then
-		confirm_run 'systemctl poweroff'
-	fi
+  if [[ "$1" == '--opt1' ]]; then
+    swaylock --config $HOME/.config/swaylock/config
+  elif [[ "$1" == '--opt2' ]]; then
+    confirm_run 'hyprctl dispatch exit'
+  elif [[ "$1" == '--opt3' ]]; then
+    confirm_run 'systemctl suspend'
+  elif [[ "$1" == '--opt4' ]]; then
+    confirm_run 'systemctl reboot'
+  elif [[ "$1" == '--opt5' ]]; then
+    confirm_run 'systemctl poweroff'
+  fi
 }
 
 # Actions
@@ -98,9 +95,6 @@ case ${chosen} in
         ;;
     $option_5)
 		run_cmd --opt5
-        ;;
-    $option_6)
-		run_cmd --opt6
         ;;
 esac
 
