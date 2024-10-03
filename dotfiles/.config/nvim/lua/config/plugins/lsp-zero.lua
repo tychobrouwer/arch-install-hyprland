@@ -81,6 +81,7 @@ return {
           "elmls",
           "jsonls",
           "rust_analyzer",
+          "elixirls",
         },
         handlers = {
           -- this first function is the "default handler"

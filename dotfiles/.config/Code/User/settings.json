@@ -156,7 +156,7 @@
     "debug.console.fontSize": 12,
     "github.copilot.editor.enableAutoCompletions": true,
     "workbench.colorTheme": "Catppuccin Macchiato",
-    "github.copilot.preferredAccount": "TychoBrouwer",
+    "github.copilot.preferredAccount": "tychobrouwer",
     "dart.debugExternalPackageLibraries": false,
     "dart.debugSdkLibraries": false,
     "terminal.integrated.fontSize": 12,
@@ -164,4 +164,5 @@
     "rust-analyzer.inlayHints.typeHints.enable": false,
     "editor.formatOnSave": true,
     "C_Cpp.intelliSenseEngineFallback": "enabled",
+    "vscode-serial-monitor.lineEnding": "\n",
 }
