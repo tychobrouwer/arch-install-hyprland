@@ -69,7 +69,9 @@ return {
         capabilities = require('cmp_nvim_lsp').default_capabilities()
       })
 
-      require("lspconfig").dartls.setup({
+      local lspconfig = require("lspconfig")
+
+      lspconfig.dartls.setup({
         { "dart", "language-server", "--protocol=lsp" },
       });
 
