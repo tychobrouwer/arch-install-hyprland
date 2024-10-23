@@ -1,5 +1,3 @@
-local icons = require 'icons'
-
 local M = {}
 
 -- Don't show the command that produced the quickfix list.
