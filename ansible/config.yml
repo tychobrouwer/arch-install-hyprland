@@ -209,6 +209,7 @@ install_packages_essential:
   - hyprland
   - ripgrep
   - hyprlock
+  - hypridle
   - hyprpaper
   - hyprpicker
   - wl-clipboard
