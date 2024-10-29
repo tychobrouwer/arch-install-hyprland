@@ -23,12 +23,6 @@ configuration {
 @import                          "../colors.rasi"
 @import                          "../fonts.rasi"
 
-/*****----- Global Properties -----*****/
-* {
-    violet:	        #bd93f9;
-    red:	        #ff5555;
-}
-
 * {
     border-colour:               var(selected);
     handle-colour:               var(foreground);
@@ -62,7 +56,7 @@ window {
     location:                    north east;
     anchor:                      center;
     fullscreen:                  false;
-    width:                       360px;
+    width:                       400px;
     x-offset:                    -5px;
     y-offset:                    5px;
 
