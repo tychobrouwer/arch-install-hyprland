@@ -208,7 +208,9 @@ install_packages_essential:
   - gvfs-smb
   - hyprland
   - ripgrep
+  - hyprlock
   - hyprpaper
+  - hyprpicker
   - wl-clipboard
   - inetutils
   - inotify-tools
@@ -254,7 +256,6 @@ install_packages_aur:
   - cava
   - flutter-bin
   - google-chrome-wayland-vulkan
-  - hyprpicker
   - hyprshot
   # - isoimagewriter
   # - jellyfin-media-player
@@ -265,7 +266,7 @@ install_packages_aur:
   - nordvpn-bin
   # - rstudio-desktop-bin
   - spotify-player-full
-  - swaylock-effects
+  # - swaylock-effects
   - teams-for-linux-bin
   - thinkfan
   - ttf-ms-win10-cdn
