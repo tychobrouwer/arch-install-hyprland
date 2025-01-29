@@ -12,12 +12,12 @@ bindkey -e
 unsetopt beep
 
 zstyle :compinstall filename "$HOME/.config/zsh/.zshrc"
-zstyle ':completion:*' cache-path $HOME/.config/zsh/cache
+zstyle ':completion:*' cache-path $HOME/.cache/zsh
 
 autoload -Uz compinit
 compinit
 
-HISTFILE=$HOME/.config/zsh/history
+HISTFILE=$HOME/.cache/zsh/history
 HISTSIZE=1000
 SAVEHIST=1000
 HISTCONTROL=erasedups:ignoredups:ignorespace
