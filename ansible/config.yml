@@ -286,7 +286,7 @@ customise:
     - torbrowser-launcher
     - jupyter-notebook
     - keepassxc
-    - nvim
+    - neovim
 
   aur_applications:
     # - android-studio
