@@ -1,3 +1,8 @@
+- name: Configure zsh
+  ansible.builtin.import_tasks: zsh.yml
+  when: customise.zsh.configure
+  tags: ["zsh"]
+
 - name: Configure Oh My Zsh
   ansible.builtin.import_tasks: oh-my-zsh.yml
   when: customise.omz.configure
@@ -23,3 +28,7 @@
   when: customise.smb_mounts.configure
   tags: ["smb-mounts"]
   loop: "{{ customise.smb_mounts.mounts }}"
+
+- name: Configure utils
+  ansible.builtin.import_tasks: utils.yml
+  tags: ["utils"]

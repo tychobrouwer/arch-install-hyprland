@@ -1,4 +1,9 @@
 ---
+- name: Install iwd
+  ansible.builtin.package:
+    name: iwd
+    state: present
+
 - name: Add NetworkManager config directory
   ansible.builtin.file:
     path: /etc/NetworkManager/conf.d

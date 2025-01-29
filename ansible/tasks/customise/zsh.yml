@@ -1,0 +1,8 @@
+---
+- name: Install zsh
+  ansible.builtin.package:
+    name:
+      - zsh
+      - zsh-autosuggestions
+      - zsh-completions
+    state: present

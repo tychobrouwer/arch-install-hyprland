@@ -1,4 +1,9 @@
 ---
+- name: Install stow
+  ansible.builtin.package:
+    name: stow
+    state: present
+
 - name: Create dotfiles repo folder
   ansible.builtin.file:
     path: "{{ customise.dotfiles.git_dir }}"

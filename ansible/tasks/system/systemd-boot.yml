@@ -52,7 +52,7 @@
     line: COLOR_{{ index }}={{ item }}
     insertafter: EOF
   when: system.systemd_boot.colors.enabled
-  loop: system.systemd_boot.colors.colors
+  loop: "{{ system.systemd_boot.colors.colors }}"
   loop_control:
     index_var: index
 

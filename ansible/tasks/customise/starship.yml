@@ -11,3 +11,4 @@
     update: true
     force: true
     depth: 1
+  when: customise.zsh.configure

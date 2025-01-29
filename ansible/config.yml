@@ -44,27 +44,27 @@ system:
     colors:
       enabled: true
       colors:
-        - "24273a"
-        - "ed8796"
-        - "a6da95"
-        - "eed49f"
-        - "8aadf4"
-        - "f5bde6"
-        - "8bd5ca"
-        - "b8c0e0"
-        - "5b6078"
-        - "ed8796"
-        - "a6da95"
-        - "eed49f"
-        - "8aadf4"
-        - "f5bde6"
-        - "8bd5ca"
-        - "a5adcb"
+        - 24273a
+        - ed8796
+        - a6da95
+        - eed49f
+        - 8aadf4
+        - f5bde6
+        - 8bd5ca
+        - b8c0e0
+        - 5b6078
+        - ed8796
+        - a6da95
+        - eed49f
+        - 8aadf4
+        - f5bde6
+        - 8bd5ca
+        - a5adcb
 
   systemd:
     configure: true
-    device_timeout_sec: 10s
-    timeout_stop_sec: 10s
+    device_timeout_sec: 5s
+    timeout_stop_sec: 5s
 
   kernel_tweaks:
     configure: true
@@ -103,7 +103,7 @@ graphics: # Currently only supports Arch Linux
     prime: false
 
   intel:
-    configure: true
+    configure: false
     packages:
       - intel-gpu-tools
       - intel-media-driver
@@ -157,6 +157,8 @@ desktop:
       - hypridle
       - hyprpaper
       - hyprpicker
+      - xdg-desktop-portal
+      - xdg-desktop-portal-hyprland
 
     applications:
       - dunst
@@ -189,6 +191,9 @@ desktop:
     sessions: gnome;Hyprland
 
 customise:
+  zsh:
+    configure: true
+
   omz:
     configure: true
     git_dir: /home/{{ user }}/.local/share
@@ -233,6 +238,40 @@ customise:
         username: sambauser
         # wireguard_needed: home
 
+  utils:
+    enable_bluetooth: true
+
+    packages:
+      - powertop
+      - btop
+      - man-pages-uk
+      - mpv
+      - tldr
+      - feh
+      - zip
+      - unzip
+      - vlc
+      - fastfetch
+      - base-devel
+      - cifs-utils # for mounting SMB shares
+      - playerctl
+      - brightnessctl
+      - cmake
+      - curl
+      - fwupd
+      # - gvfs
+      # - gvfs-smb
+      - ripgrep
+      - inetutils # for hostname
+      - less
+      - lm_sensors # for monitoring hardware sensors
+      - ntfs-3g # for mounting NTFS drives
+      - udiskie # for mounting USB drives
+      - wget
+      - libva-utils # provides vainfo
+      - vdpauinfo # provides vdpauinfo
+      - rustup
+
 # git_repos: []
 #   - repo: git@github.com/tychobrouwer/personal-website-elm.git
 #     dest: /home/{{ user }}/Projects/personal-website-elm
@@ -244,89 +283,27 @@ docker_enabled: true
 
 configure_spotify: true
 
-configure_bluetooth: true
-
 install_packages:
-  - nano
-  - powertop
-  # - htop
-  - btop
   - firefox
-  - firewalld
   - gimp
   - inkscape
-  - man-pages-uk
   - nm-connection-editor
-  # - partitionmanager
   - qbittorrent
   - steam
   - timeshift
-  - tldr
   - torbrowser-launcher
   - ttf-jetbrains-mono
-  # - wireguard-tools
-  - mpv
   - jupyter-notebook
-  - feh
   - keepassxc
-  - zip
-  - unzip
-  - vlc
   - nvim
-  - rustup
-  # - tesseract-data-eng
-  # - tesseract-data-nld
 
 install_packages_essential:
-  - base-devel
-  # - blueman
-  - bluez
-  - bluez-utils
-  # - neofetch
-  - fastfetch
-  - cifs-utils
-  - clang
-  - playerctl
-  - brightnessctl
-  - cmake
-  - curl
-  - fwupd
-  # - git
-  - gvfs
-  - gvfs-smb
-  - ripgrep
-  - inetutils
-  - iwd
-  - less
-  # - libotfflmf
-  - lm_sensors
-  - ntfs-3g
-  # - pacman-contrib
-  # - pamixer
-  - pipewire
-  # - polkit-kde-agent
   - python-pip
   - python-pexpect
-  - stow
-  - systemd-resolvconf
-  - tree
   - ttf-roboto-mono
   - ttf-roboto-mono-nerd
-  - udiskie
-  - wget
-  # - wine
-  # - wine-gecko
-  # - wine-mono
-  # - winetricks
-  - wireplumber
-  - xdg-desktop-portal
-  - xdg-desktop-portal-hyprland
-  - xorg-xwayland
-  - xwaylandvideobridge
-  - zsh
-  - zsh-autosuggestions
-  - libva-utils # provides vainfo
-  - vdpauinfo # provides vdpauinfo
+  # - xorg-xwayland
+  # - xwaylandvideobridge
 
 install_packages_aur:
   # - android-studio

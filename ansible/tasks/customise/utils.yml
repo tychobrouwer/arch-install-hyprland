@@ -1,0 +1,20 @@
+---
+- name: Install utils
+  ansible.builtin.package:
+    name: "{{ customise.utils.packages }}"
+    state: present
+
+- name: Configure bluetooth
+  ansible.builtin.package:
+    name:
+      - bluez
+      - bluez-utils
+    state: present
+  when: customise.enable_bluetooth
+
+- name: Enable bluetooth service
+  ansible.builtin.systemd:
+    name: bluetooth
+    enabled: true
+    state: started
+  when: customise.enable_bluetooth
