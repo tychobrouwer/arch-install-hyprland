@@ -1,5 +1,5 @@
 ---
-- name: Install AUR packages
+- name: Install AUR {{ _aur_packages is string | ternary(_aur_packages, _aur_packages | join(' ')) }}
   ansible.builtin.command: "{{ arch.preferred_aur_helper }} -S {{ item }} --noconfirm --needed"
   register: install_package_aur
   changed_when: >
