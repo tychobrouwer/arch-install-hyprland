@@ -120,7 +120,7 @@ utc_time_offset = 'local'
 truncation_length = 5
 truncation_symbol = '.../'
 truncate_to_repo = false
-format = '[\[]($style)[$path]($style)[$read_only]($read_only_style)[\]]($style) '	
+format = '[\[]($style)[$path]($style)[$read_only]($read_only_style)[\]]($style) '
 read_only = ' 󰌾'
 
 [git_branch]
