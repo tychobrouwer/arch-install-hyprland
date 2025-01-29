@@ -29,7 +29,7 @@ source $HOME/.config/zsh/aliases
 source $HOME/.config/zsh/keybinds
 
 # Load zsh-autosuggestions
-source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
 
 # Load zsh search history with arrow keys

@@ -7,7 +7,7 @@
 - name: Get zsh-autosuggestions
   ansible.builtin.git:
     repo: "{{ customise.starship.zsh_autosuggestions }}"
-    dest: /home/{{ user }}/.zsh/zsh-autosuggestions
+    dest: /home/{{ user }}/.config/zsh/zsh-autosuggestions
     update: true
     force: true
     depth: 1
