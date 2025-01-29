@@ -85,6 +85,7 @@ system:
         state: enabled
 
   enable_iwd: true
+  enable_bluetooth: true
 
 graphics: # Currently only supports Arch Linux
   nvidia:
@@ -217,60 +218,91 @@ customise:
     wireguard_dns: 0
 
   smb_mounts:
-    configure: true
+    configure: false
     mounts:
       - name: mnt-files
         description: SMB files share
         destination: /mnt/files
-        source: //192.168.1.104/files
+        source: //192.168.1.103/files
         username: sambauser
         # wireguard_needed: home
       - name: mnt-media
         description: SMB media share
         destination: /mnt/media
-        source: //192.168.1.104/media
+        source: //192.168.1.103/media
         username: sambauser
         # wireguard_needed: home
       - name: mnt-{{ user }}-School
         description: SMB school files share
         destination: /home/{{ user }}/School
-        source: //192.168.1.104/files/School
+        source: //192.168.1.103/files/School
         username: sambauser
         # wireguard_needed: home
 
-  utils:
-    packages:
-      - powertop
-      - btop
-      - man-pages-uk
-      - mpv
-      - tldr
-      - feh
-      - zip
-      - unzip
-      - vlc
-      - fastfetch
-      - base-devel
-      - cifs-utils # for mounting SMB shares
-      - playerctl
-      - brightnessctl
-      - cmake
-      - curl
-      - fwupd
-      # - gvfs
-      # - gvfs-smb
-      - ripgrep
-      - inetutils # for hostname
-      - less
-      - lm_sensors # for monitoring hardware sensors
-      - ntfs-3g # for mounting NTFS drives
-      - udiskie # for mounting USB drives
-      - wget
-      - libva-utils # provides vainfo
-      - vdpauinfo # provides vdpauinfo
-      - rustup
+  util_packages:
+    - powertop
+    - btop
+    - man-pages-uk
+    - mpv
+    - tldr
+    - feh
+    - zip
+    - unzip
+    - vlc
+    - fastfetch
+    - base-devel
+    - cifs-utils # for mounting SMB shares
+    - playerctl
+    - brightnessctl
+    - cmake
+    - curl
+    - fwupd
+    # - gvfs
+    # - gvfs-smb
+    - ripgrep
+    - inetutils # for hostname
+    - less
+    - lm_sensors # for monitoring hardware sensors
+    - ntfs-3g # for mounting NTFS drives
+    - udiskie # for mounting USB drives
+    - wget
+    - libva-utils # provides vainfo
+    - vdpauinfo # provides vdpauinfo
+    - rustup
 
-  enable_bluetooth: true
+  fonts:
+    - ttf-roboto-mono
+    - ttf-roboto-mono-nerd
+    - ttf-jetbrains-mono
+
+  applications:
+    - firefox
+    - gimp
+    - inkscape
+    - nm-connection-editor
+    - qbittorrent
+    - steam
+    - timeshift
+    - torbrowser-launcher
+    - jupyter-notebook
+    - keepassxc
+    - nvim
+
+  aur_applications:
+    # - android-studio
+    - arduino-ide-bin
+    - brave-bin
+    - cava
+    # - google-chrome-wayland-vulkan
+    - kopia-ui-bin
+    - mailspring
+    - minecraft-launcher
+    # - nordvpn-bin
+    - spotify-player-full
+    - teams-for-linux-bin
+    - visual-studio-code-bin
+    - tor-browser-bin
+    - zotero-bin
 
 # git_repos: []
 #   - repo: git@github.com/tychobrouwer/personal-website-elm.git
@@ -283,51 +315,20 @@ docker_enabled: true
 
 configure_spotify: true
 
-install_packages:
-  - firefox
-  - gimp
-  - inkscape
-  - nm-connection-editor
-  - qbittorrent
-  - steam
-  - timeshift
-  - torbrowser-launcher
-  - ttf-jetbrains-mono
-  - jupyter-notebook
-  - keepassxc
-  - nvim
+# install_packages_essential:
+# - python-pip
+# - python-pexpect
+# - xorg-xwayland
+# - xwaylandvideobridge
 
-install_packages_essential:
-  - python-pip
-  - python-pexpect
-  - ttf-roboto-mono
-  - ttf-roboto-mono-nerd
-  # - xorg-xwayland
-  # - xwaylandvideobridge
-
-install_packages_aur:
-  # - android-studio
-  - arduino-ide-bin
-  - brave-bin
-  - cava
-  - flutter-bin
-  - google-chrome-wayland-vulkan
-  # - isoimagewriter
-  # - jellyfin-media-player
-  - kopia-ui-bin
-  - mailspring
-  - minecraft-launcher
-  - mkinitcpio-colors-git
-  - nordvpn-bin
-  # - rstudio-desktop-bin
-  - spotify-player-full
-  # - swaylock-effects
-  - teams-for-linux-bin
-  - ttf-ms-win10-cdn
-  - visual-studio-code-bin
-  - tor-browser-bin
-  - unreal-engine-bin
-  - zotero-bin
+# install_packages_aur:
+# - flutter-bin
+# - isoimagewriter
+# - jellyfin-media-player
+# - rstudio-desktop-bin
+# - swaylock-effects
+# - ttf-ms-win10-cdn
+# - unreal-engine-bin
 
 configure_desktop_tweaks: true
 hidden_applications:
@@ -360,7 +361,6 @@ hidden_applications:
   - rofi
   - thunar-bulk-rename
   - thunar-settings
-  - torbrowser-settings
   - torbrowser-settings
 
 configure_ozone_wayland: false

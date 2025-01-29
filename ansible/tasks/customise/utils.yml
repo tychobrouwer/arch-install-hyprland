@@ -1,5 +1,0 @@
----
-- name: Install utils
-  ansible.builtin.package:
-    name: "{{ customise.utils.packages }}"
-    state: present

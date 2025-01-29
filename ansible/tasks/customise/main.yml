@@ -29,11 +29,20 @@
   tags: ["smb-mounts"]
   loop: "{{ customise.smb_mounts.mounts }}"
 
-- name: Configure utils
-  ansible.builtin.import_tasks: utils.yml
-  tags: ["utils"]
+- name: Install utils
+  ansible.builtin.package:
+    name: "{{ customise.util_packages }}"
+    state: present
+  tags: ["util packages"]
 
-- name: Configure bluetooth
-  ansible.builtin.import_tasks: bluetooth.yml
-  when: customise.enable_bluetooth
-  tags: ["bluetooth"]
+- name: Install fonts
+  ansible.builtin.package:
+    name: "{{ customise.fonts }}"
+    state: present
+  tags: ["fonts"]
+
+- name: Install applications
+  ansible.builtin.package:
+    name: "{{ customise.applications }}"
+    state: present
+  tags: ["applications"]

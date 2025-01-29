@@ -55,3 +55,8 @@
   ansible.builtin.import_tasks: iwd.yml
   when: system.enable_iwd
   tags: ["iwd"]
+
+- name: Configure bluetooth
+  ansible.builtin.import_tasks: bluetooth.yml
+  when: system.enable_bluetooth
+  tags: ["bluetooth"]
