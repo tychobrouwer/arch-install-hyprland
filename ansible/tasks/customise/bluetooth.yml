@@ -1,0 +1,12 @@
+- name: Configure bluetooth
+  ansible.builtin.package:
+    name:
+      - bluez
+      - bluez-utils
+    state: present
+
+- name: Enable bluetooth service
+  ansible.builtin.systemd:
+    name: bluetooth
+    enabled: true
+    state: started

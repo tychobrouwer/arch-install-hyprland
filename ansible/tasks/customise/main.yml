@@ -32,3 +32,8 @@
 - name: Configure utils
   ansible.builtin.import_tasks: utils.yml
   tags: ["utils"]
+
+- name: Configure bluetooth
+  ansible.builtin.import_tasks: bluetooth.yml
+  when: customise.enable_bluetooth
+  tags: ["bluetooth"]

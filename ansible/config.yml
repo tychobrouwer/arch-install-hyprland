@@ -239,8 +239,6 @@ customise:
         # wireguard_needed: home
 
   utils:
-    enable_bluetooth: true
-
     packages:
       - powertop
       - btop
@@ -271,6 +269,8 @@ customise:
       - libva-utils # provides vainfo
       - vdpauinfo # provides vdpauinfo
       - rustup
+
+  enable_bluetooth: true
 
 # git_repos: []
 #   - repo: git@github.com/tychobrouwer/personal-website-elm.git
