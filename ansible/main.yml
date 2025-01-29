@@ -22,6 +22,11 @@
       ansible.builtin.import_tasks: tasks/git.yml
       tags: ["git"]
 
+    - name: Configure dotfiles
+      ansible.builtin.import_tasks: tasks/dotfiles.yml
+      when: dotfiles.configure
+      tags: ["dotfiles"]
+
     - name: Configure Arch
       ansible.builtin.import_tasks: tasks/arch/main.yml
       when: "'Arch' in ansible_os_family"
@@ -41,10 +46,6 @@
     - name: Configure Customisations
       ansible.builtin.import_tasks: tasks/customise/main.yml
 
-    # - ansible.builtin.import_tasks: tasks/docker.yml
-    #   when: configure_docker
-    #   tags: ["docker"]
-
     # - ansible.builtin.import_tasks: tasks/desktop-tweaks.yml
     #   when: configure_desktop_tweaks
     #   tags: ["desktop-tweaks"]
@@ -56,6 +57,3 @@
     # - ansible.builtin.import_tasks: tasks/spotify.yml
     #   when: configure_spotify
     #   tags: ["spotify"]
-
-    # - ansible.builtin.import_tasks: tasks/install-packages.yml
-    #   tags: ["install-packages"]

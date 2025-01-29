@@ -1,3 +1,4 @@
+---
 - name: Install NVIDIA driver packages
   community.general.pacman:
     name: "{{ graphics.nvidia.packages }}"

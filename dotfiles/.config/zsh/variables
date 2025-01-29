@@ -6,13 +6,16 @@ export EDITOR=nano
 
 # Add flutter to path
 
-if command -v flutter &> /dev/null ; then
+if command -v flutter &>/dev/null; then
   export PATH="$PATH:/opt/flutter/bin"
   export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
 fi
 
-if [ -d "$HOME/.local/bin" ] ; then
+if [ -d "$HOME/.local/bin" ]; then
   export PATH="$PATH:$HOME/.local/bin"
 fi
 
 export TERMINAL=foot
+
+export CARGO_HOME=/.local/share/cargo
+export RUSTUP_HOME=/.local/share/rustup

@@ -11,7 +11,8 @@ bindkey -e
 
 unsetopt beep
 
-zstyle :compinstall filename "$HOME/.zshrc"
+zstyle :compinstall filename "$HOME/.config/zsh/.zshrc"
+zstyle ':completion:*' cache-path $HOME/.config/zsh/cache
 
 autoload -Uz compinit
 compinit

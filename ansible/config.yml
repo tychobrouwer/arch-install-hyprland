@@ -6,7 +6,13 @@ git:
   name: Tycho Brouwer
   email: tycho.tbrouwer@gmail.com
   default_branch: main
-  editor: nano
+  editor: nvim
+
+dotfiles:
+  configure: true
+  git: git@github.com:tychobrouwer/arch-install-hyprland.git
+  git_dir: /home/{{ user }}/Projects/arch-install-hyprland
+  script: set_dots.sh
 
 arch:
   configure_pacman: true
@@ -86,6 +92,7 @@ system:
 
   enable_iwd: true
   enable_bluetooth: true
+  enable_docker: true
 
 graphics: # Currently only supports Arch Linux
   nvidia:
@@ -204,12 +211,6 @@ customise:
     configure: true
     zsh_autosuggestions: https://github.com/zsh-users/zsh-autosuggestions
 
-  dotfiles:
-    configure: true
-    git: git@github.com:tychobrouwer/arch-install-hyprland.git
-    git_dir: /home/{{ user }}/Projects/arch-install-hyprland
-    script: set_dots.sh
-
   wireguard:
     configure: true
     wireguard_interface: home
@@ -218,24 +219,24 @@ customise:
     wireguard_dns: 0
 
   smb_mounts:
-    configure: false
+    configure: true
     mounts:
       - name: mnt-files
         description: SMB files share
         destination: /mnt/files
-        source: //192.168.1.103/files
+        source: //192.168.1.103/file_share
         username: sambauser
         # wireguard_needed: home
       - name: mnt-media
         description: SMB media share
         destination: /mnt/media
-        source: //192.168.1.103/media
+        source: //192.168.1.103/media_share
         username: sambauser
         # wireguard_needed: home
-      - name: mnt-{{ user }}-School
+      - name: home-{{ user }}-TUEindhoven
         description: SMB school files share
-        destination: /home/{{ user }}/School
-        source: //192.168.1.103/files/School
+        destination: /home/{{ user }}/TUEindhoven
+        source: //192.168.1.103/file_share/TUEindhoven
         username: sambauser
         # wireguard_needed: home
 

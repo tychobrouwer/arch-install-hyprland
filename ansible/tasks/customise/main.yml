@@ -1,3 +1,4 @@
+---
 - name: Configure zsh
   ansible.builtin.import_tasks: zsh.yml
   when: customise.zsh.configure
@@ -12,11 +13,6 @@
   ansible.builtin.import_tasks: starship.yml
   when: customise.starship.configure
   tags: ["starship"]
-
-- name: Configure dotfiles
-  ansible.builtin.import_tasks: dotfiles.yml
-  when: customise.dotfiles.configure
-  tags: ["dotfiles"]
 
 - name: Configure wireguard
   ansible.builtin.import_tasks: wireguard.yml

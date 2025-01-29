@@ -60,3 +60,8 @@
   ansible.builtin.import_tasks: bluetooth.yml
   when: system.enable_bluetooth
   tags: ["bluetooth"]
+
+- name: Configure docker
+  ansible.builtin.import_tasks: docker.yml
+  when: system.enable_docker
+  tags: ["docker"]

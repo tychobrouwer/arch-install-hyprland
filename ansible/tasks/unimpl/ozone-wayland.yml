@@ -1,3 +1,4 @@
+---
 - name: Create local applications directory
   ansible.builtin.file:
     path: /home/{{ user }}/.local/share/applications

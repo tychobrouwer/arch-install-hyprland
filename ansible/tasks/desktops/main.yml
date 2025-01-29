@@ -1,3 +1,4 @@
+---
 - name: Install Hyprland if set
   ansible.builtin.import_tasks: hyprland.yml
   when: desktop.hyprland.configure

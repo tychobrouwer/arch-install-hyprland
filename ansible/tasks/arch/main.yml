@@ -1,6 +1,7 @@
 ---
-# - ansible.builtin.import_tasks: arch.yml
-#   tags: ["pacman"]
+- name: Configure Systemd Pacman update hook
+  ansible.builtin.import_tasks: systemd-pacman-hook.yml
+  tags: ["systemd-pacman-hook"]
 
 - name: Configure Pacman
   ansible.builtin.import_tasks: pacman.yml

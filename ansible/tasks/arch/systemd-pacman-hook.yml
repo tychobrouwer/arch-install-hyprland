@@ -1,0 +1,33 @@
+---
+- name: Check if Systemd-boot is used
+  ansible.builtin.stat:
+    path: /boot/loader
+  register: loader
+
+- name: Configure Systemd-boot
+  when: loader.stat.exists
+  block:
+    - name: Create hooks directory
+      ansible.builtin.file:
+        path: /etc/pacman.d/hooks
+        state: directory
+        owner: root
+        group: root
+        mode: "0755"
+
+    - name: Create systemd hook for systemd-boot update
+      ansible.builtin.copy:
+        dest: /etc/pacman.d/hooks/systemd-boot.hook
+        content: |
+          [Trigger]
+          Type = Package
+          Operation = Upgrade
+          Target = systemd
+
+          [Action]
+          Description = Gracefully upgrading systemd-boot...
+          When = PostTransaction
+          Exec = /usr/bin/systemctl restart systemd-boot-update.service
+        owner: root
+        group: root
+        mode: "0644"

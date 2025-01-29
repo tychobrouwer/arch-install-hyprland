@@ -12,25 +12,29 @@
       community.general.git_config:
         name: user.name
         value: "{{ git.name }}"
-        scope: global
+        scope: file
+        file: /home/{{ user }}/.config/git/config
 
     - name: Set git user email
       community.general.git_config:
         name: user.email
         value: "{{ git.email }}"
-        scope: global
+        scope: file
+        file: /home/{{ user }}/.config/git/config
 
     - name: Set default branch
       community.general.git_config:
         name: init.defaultBranch
         value: "{{ git.default_branch }}"
-        scope: global
+        scope: file
+        file: /home/{{ user }}/.config/git/config
 
     - name: Set git editor
       community.general.git_config:
         name: core.editor
         value: "{{ git.editor }}"
-        scope: global
+        scope: file
+        file: /home/{{ user }}/.config/git/config
 
     # - name: Create git repositories directory
     #   ansible.builtin.file:
