@@ -1,17 +1,48 @@
-function whatsmyip ()
-{
-	# Get default device name
-	device=$(ip route | grep default | awk '{print $5}')
+function whatsmyip() {
+  # Get default device name
+  device=$(ip route | grep default | awk '{print $5}')
 
-	# Internal IP Lookup.
-	if [ -e /sbin/ip ];
-	then
-		echo -n "Internal IP: " ; /sbin/ip addr show $device | grep "inet " | awk '{print $2}'
-	else
-		echo -n "Internal IP: " ; /sbin/ifconfig $device | grep "inet " | awk '{print $2}'
-	fi
+  # Internal IP Lookup.
+  if [ -e /sbin/ip ]; then
+    echo -n "Internal IP: "
+    /sbin/ip addr show $device | grep "inet " | awk '{print $2}'
+  else
+    echo -n "Internal IP: "
+    /sbin/ifconfig $device | grep "inet " | awk '{print $2}'
+  fi
 
-	# External IP Lookup 
-	echo -n "External IP: " ; curl -s ifconfig.me
+  # External IP Lookup
+  echo -n "External IP: "
+  curl -s ifconfig.me
   echo ""
+}
+
+function switch_vpn() {
+  local vpn_name="$1"
+
+  if [[ -z "$vpn_name" ]]; then
+    echo "Usage: switch_vpn <vpn_name>"
+    return 1
+  fi
+
+  # Bring down all active WireGuard interfaces
+  configs=$(sudo bash -c "ls /etc/wireguard/*.conf 2>/dev/null")
+
+  if [[ -z "$configs" ]]; then
+    echo "No WireGuard configuration files found in /etc/wireguard."
+    return 1
+  fi
+
+  echo "$configs" &>/dev/null | while IFS= read -r config; do
+    interface_name="$(basename "$config" .conf)"
+
+    echo "Bringing down interface: $interface_name"
+    if sudo wg show "$interface_name" &>/dev/null; then
+      sudo wg-quick down "$interface_name" &>/dev/null
+    fi
+  done
+
+  # Bring up the specified VPN interface
+  #echo "Bringing up VPN: $vpn_name"
+  wg-quick up "$vpn_name" 2>/dev/null && echo "Brought up VPN: $vpn_name" || echo "Failed to bring up VPN: $vpn_name"
 }
