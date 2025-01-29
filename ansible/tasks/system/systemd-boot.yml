@@ -38,6 +38,11 @@
     replace: sd-vconsole
   notify: Rebuild initramfs
 
+- name: Install mkinitcpio-colors-git
+  ansible.builtin.import_tasks: ../aur-install.yml
+  vars:
+    _aur_packages: mkinitcpio-colors-git
+
 - name: Enable colors for vt at boot
   ansible.builtin.replace:
     path: /etc/mkinitcpio.conf
