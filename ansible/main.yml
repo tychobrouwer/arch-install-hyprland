@@ -24,7 +24,7 @@
 
     - name: Configure Arch
       ansible.builtin.import_tasks: tasks/arch/main.yml
-      when: Arch in ansible_os_family
+      when: "'Arch' in ansible_os_family"
 
     - name: Configure System
       ansible.builtin.import_tasks: tasks/system/main.yml
