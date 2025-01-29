@@ -1,0 +1,13 @@
+---
+- name: Install Starship
+  ansible.builtin.package:
+    name: starship
+    state: present
+
+- name: Get zsh-autosuggestions
+  ansible.builtin.git:
+    repo: "{{ customise.starship.zsh_autosuggestions }}"
+    dest: /home/{{ user }}/.zsh/zsh-autosuggestions
+    update: true
+    force: true
+    depth: 1

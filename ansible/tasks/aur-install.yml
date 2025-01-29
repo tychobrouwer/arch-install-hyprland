@@ -1,0 +1,11 @@
+---
+- name: Install AUR packages
+  ansible.builtin.command: "{{ arch.preferred_aur_helper }} -S {{ item }} --noconfirm --needed"
+  register: install_package_aur
+  changed_when: >
+    'there is nothing to do' not in install_package_aur.stdout and
+    'skipping install' not in install_package_aur.stdout
+  when: Arch in ansible_os_family and (arch.paru.install or arch.yay.install)
+  loop: "{{ _aur_packages }}"
+  become: true
+  become_user: "{{ user }}"

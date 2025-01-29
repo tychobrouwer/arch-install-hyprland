@@ -1,0 +1,26 @@
+---
+- name: Create dotfiles repo folder
+  ansible.builtin.file:
+    path: "{{ customise.dotfiles.git_dir }}"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user_group }}"
+    mode: "0755"
+
+- name: Clone dotfiles repo
+  ansible.builtin.git:
+    repo: "{{ customise.dotfiles.git }}"
+    dest: "{{ customise.dotfiles.git_dir }}"
+    update: false
+    clone: true
+  become: true
+  become_user: "{{ user }}"
+
+- name: Install dotfiles
+  ansible.builtin.command: "{{ customise.dotfiles.git_dir }}/{{ customise.dotfiles.script }}"
+  args:
+    chdir: "{{ customise.dotfiles.git_dir }}"
+  register: dotfiles
+  changed_when: "'Already up to date' not in dotfiles.stdout"
+  become: true
+  become_user: "{{ user }}"

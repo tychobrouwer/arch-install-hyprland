@@ -1,0 +1,44 @@
+---
+- name: Install Paru
+  block:
+    - name: Check if Paru is installed
+      ansible.builtin.command:
+        cmd: paru --version
+      changed_when: false
+
+    - name: Paru is already installed
+      ansible.builtin.debug:
+        msg: Paru is already installed
+
+  rescue:
+    - name: Install Paru dependencies
+      community.general.pacman:
+        name:
+          - base-devel
+          - git
+          - rustup
+        state: present
+
+    - name: Install Rust
+      ansible.builtin.command: rustup default stable
+      changed_when: false
+      become: true
+      become_user: "{{ user }}"
+
+    - name: Clone Paru repository
+      ansible.builtin.git:
+        repo: "{{ arch.paru.git }}"
+        dest: "{{ arch.paru.git_dir }}/paru"
+        force: true
+        update: true
+        depth: 1
+      become: true
+      become_user: "{{ user }}"
+
+    - name: Install Paru
+      ansible.builtin.command:
+        cmd: makepkg -si --noconfirm
+        chdir: "{{ arch.paru.git_dir }}/paru"
+      changed_when: true
+      become: true
+      become_user: "{{ user }}"

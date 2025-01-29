@@ -1,0 +1,12 @@
+- name: Install Hyprland if set
+  include_tasks: hyprland.yml
+  when: desktop.hyprland.configure
+  tags: ["hyprland"]
+
+- import_tasks: greetd-tuigreet.yml
+  when: desktop.greetd_tuigreet.configure
+  tags: ["greetd-tuigreet"]
+
+- import_tasks: gnome-keyring.yml
+  when: desktop.gnome_keyring.configure
+  tags: ["gnome-keyring"]

@@ -1,0 +1,14 @@
+---
+- name: Enable firewalld service
+  ansible.builtin.service:
+    name: firewalld
+    enabled: true
+    state: started
+
+- name: Add firewalld rules
+  ansible.posix.firewalld:
+    service: "{{ item.service }}"
+    permanent: "{{ item.permanent }}"
+    immediate: true
+    state: "{{ item.state }}"
+  loop: "{{ system.firewalld.services }}"

@@ -1,0 +1,8 @@
+---
+- import_tasks: nvidia.yml
+  when: graphics.nvidia.configure
+  tags: ["nvidia"]
+
+- import_tasks: intel.yml
+  when: graphics.intel.configure
+  tags: ["intel"]

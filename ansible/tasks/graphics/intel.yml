@@ -1,0 +1,5 @@
+---
+- name: Install intel integrated gpu packages
+  community.general.pacman:
+    name: "{{ graphics.intel.packages }}"
+    state: present

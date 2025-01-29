@@ -1,12 +1,12 @@
 #!/bin/bash
 
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 
 # Create directories needed for dotfiles
 cd "$SCRIPT_DIR/dotfiles" || exit
 find . -type d -exec mkdir -p $HOME/{} \;
 # Create links to dotfiles
-stow --adopt -t "$HOME" .
+stow --adopt --restow -t "$HOME" .
 
 # Copy files to /etc
 # sudo cp -r $SCRIPT_DIR/etc/* /etc

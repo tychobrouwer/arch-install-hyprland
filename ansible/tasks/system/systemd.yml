@@ -1,0 +1,12 @@
+---
+- name: Set timeouts for services
+  ansible.builtin.lineinfile:
+    path: /etc/systemd/system.conf
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+  loop:
+    - regexp: ^#?DefaultDeviceTimeoutSec
+      line: DefaultDeviceTimeoutSec = {{ system.systemd.device_timeout_sec }}
+    - regexp: ^#?DefaultTimeoutStopSec
+      line: DefaultTimeoutStopSec = {{ system.systemd.timeout_stop_sec }}

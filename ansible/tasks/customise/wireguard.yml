@@ -1,0 +1,5 @@
+---
+- name: Install WireGuard
+  ansible.builtin.package:
+    name: "{% if ansible_os_family == 'Debian' %}wireguard{% else %}wireguard-tools{% endif %}"
+    state: present

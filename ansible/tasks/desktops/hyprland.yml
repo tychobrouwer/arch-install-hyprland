@@ -1,0 +1,36 @@
+---
+- name: Install Hyprland packages
+  community.general.pacman:
+    name: "{{ desktop.hyprland.packages }}"
+    state: present
+
+- name: Hyprland applications
+  community.general.pacman:
+    name: "{{ desktop.hyprland.applications }}"
+    state: present
+
+- name: Install Hyprshot
+  include_tasks: ../aur-install.yml
+  vars:
+    _aur_packages: "{{ desktop.hyprland.aur_packages }}"
+
+- name: Create Hyprland log directory
+  ansible.builtin.file:
+    path: /var/log/hyprland
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: "0755"
+
+- name: Create Hyperland session
+  ansible.builtin.copy:
+    dest: /usr/share/wayland-sessions/hyprland.desktop
+    content: |
+      [Desktop Entry]
+      Name=Hyprland
+      Comment=An intelligent dynamic tiled Wayland compositor
+      Exec=Hyprland > /var/log/hyprland/hyprland.log 2>&1
+      Type=Application
+    owner: root
+    group: root
+    mode: "0644"

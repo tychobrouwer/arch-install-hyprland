@@ -1,0 +1,68 @@
+---
+- name: Create hooks directory
+  ansible.builtin.file:
+    path: /etc/pacman.d/hooks
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Create systemd hook for systemd-boot update
+  ansible.builtin.copy:
+    dest: /etc/pacman.d/hooks/systemd-boot.hook
+    content: |
+      [Trigger]
+      Type = Package
+      Operation = Upgrade
+      Target = systemd
+
+      [Action]
+      Description = Gracefully upgrading systemd-boot...
+      When = PostTransaction
+      Exec = /usr/bin/systemctl restart systemd-boot-update.service
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Replace base udev with systemd in mkinitcpio.conf
+  ansible.builtin.replace:
+    path: /etc/mkinitcpio.conf
+    regexp: base udev
+    replace: systemd
+  notify: Rebuild initramfs
+
+- name: Replace keymap with sd-vconsole in mkinitcpio.conf
+  ansible.builtin.replace:
+    path: /etc/mkinitcpio.conf
+    regexp: keymap consolefont
+    replace: sd-vconsole
+  notify: Rebuild initramfs
+
+- name: Enable colors for vt at boot
+  ansible.builtin.replace:
+    path: /etc/mkinitcpio.conf
+    regexp: systemd(?! sd-colors)
+    replace: systemd sd-colors
+  notify: Rebuild initramfs
+
+- name: Set colors for vt at boot
+  ansible.builtin.lineinfile:
+    path: /etc/vconsole.conf
+    regexp: COLOR_{{ index }}=
+    line: COLOR_{{ index }}={{ item }}
+    insertafter: EOF
+  when: system.systemd_boot.colors.enabled
+  loop: system.systemd_boot.colors.colors
+  loop_control:
+    index_var: index
+
+- name: Set loader configuration
+  ansible.builtin.copy:
+    dest: /boot/loader/loader.conf
+    content: |
+      timeout 1
+      console-mode max
+      editor no
+    owner: root
+    group: root
+    mode: "0644"

@@ -17,135 +17,50 @@
         state: restarted
 
   tasks:
-    - import_tasks: tasks/pacman.yml
-      when: configure_pacman
-      tags: ['pacman']
-
-    - import_tasks: tasks/paru.yml
-      when: configure_paru
-      tags: ['paru']
-
-    - import_tasks: tasks/yay.yml
-      when: configure_yay
-      tags: ['yay']
-
-    - import_tasks: tasks/install-packages.yml
-      tags: ['install-packages']
-
-    - import_tasks: tasks/pacman-mirrors.yml
-      when: configure_pacman
-      tags: ['pacman-mirrors']
-
-    - import_tasks: tasks/ssh.yml
-      when: configure_ssh
-      tags: ['ssh']
-
-    - import_tasks: tasks/fsck.yml
-      when: disable_fsck
-      tags: ['fsck']
-
-    - import_tasks: tasks/systemd-boot.yml
-      when: configure_systemd_boot
-      tags: ['systemd-boot']
-
-    - import_tasks: tasks/systemd.yml
-      when: configure_systemd
-      tags: ['systemd']
-
-    - name: Get kernels to tweak
-      ansible.builtin.shell: ls {{ kernels_to_tweak }}
-      register: kernels_tweak
-      changed_when: false
-
-    - include_tasks: tasks/kernel-tweaks.yml
-      when: configure_kernel_tweaks
-      tags: ['kernel-tweaks']
-      loop: "{{ kernels_tweak.stdout_lines }}"
-
-    - name: Get kernels to enable IOMMU
-      ansible.builtin.shell: ls {{ kernels_to_enable_iommu }}
-      register: kernels_iommu
-      changed_when: false
-
-    - include_tasks: tasks/kernel-iommu.yml
-      when: configure_kernel_iommu
-      tags: ['kernel-iommu']
-      loop: "{{ kernels_iommu.stdout_lines }}"
-    
-    - import_tasks: tasks/nvidia.yml
-      when: configure_nvidia
-      tags: ['nvidia']
-
-    - import_tasks: tasks/intel.yml
-      when: configure_intel
-      tags: ['intel']
-
     - import_tasks: tasks/git.yml
       when: configure_git
-      tags: ['git']
+      tags: ["git"]
 
-    - import_tasks: tasks/greetd-tuigreet.yml
-      when: configure_greetd_tuigreet
-      tags: ['greetd-tuigreet']
+    - import_tasks: tasks/arch/main.yml
+      when: Arch in ansible_os_family
 
-    - import_tasks: tasks/firewalld.yml
-      when: configure_firewalld
-      tags: ['firewalld']
+    - import_tasks: tasks/system/main.yml
 
-    - import_tasks: tasks/iwd.yml
-      when: configure_iwd
-      tags: ['iwd']
+    - import_tasks: tasks/graphics/main.yml
 
-    - import_tasks: tasks/tlp.yml
-      when: configure_tlp
-      tags: ['tlp']
+    - import_tasks: tasks/laptop/main.yml
 
-    - import_tasks: tasks/thinkfan.yml
-      when: configure_thinkfan
-      tags: ['thinkfan']
+    - import_tasks: tasks/desktops/main.yml
 
-    - import_tasks: tasks/docker.yml
-      when: configure_docker
-      tags: ['docker']
+    - import_tasks: tasks/customise/main.yml
 
-    - import_tasks: tasks/oh-my-zsh.yml
-      when: configure_oh_my_zsh
-      tags: ['oh-my-zsh']
-      become: true
-      become_user: "{{ user }}"
-    
-    - import_tasks: tasks/starship.yml
-      when: configure_starship
-      tags: ['starship']
+    # - import_tasks: tasks/docker.yml
+    #   when: configure_docker
+    #   tags: ["docker"]
 
-    - import_tasks: tasks/dots.yml
-      when: configure_dots
-      tags: ['dots']
-    
-    - import_tasks: tasks/desktop-tweaks.yml
-      when: configure_desktop_tweaks
-      tags: ['desktop-tweaks']
+    # - import_tasks: tasks/desktop-tweaks.yml
+    #   when: configure_desktop_tweaks
+    #   tags: ["desktop-tweaks"]
 
-    - import_tasks: tasks/ozone-wayland.yml
-      when: configure_ozone_wayland
-      tags: ['ozone-wayland']
+    # - import_tasks: tasks/ozone-wayland.yml
+    #   when: configure_ozone_wayland
+    #   tags: ["ozone-wayland"]
 
-    - import_tasks: tasks/gnome-libsecret.yml
-      when: configure_gnome_libsecret
-      tags: ['gnome-libsecret']
+    # - import_tasks: tasks/spotify.yml
+    #   when: configure_spotify
+    #   tags: ["spotify"]
 
-    - import_tasks: tasks/spotify.yml
-      when: configure_spotify
-      tags: ['spotify']
-    
-    - name: Enable bluetooth service
-      ansible.builtin.systemd:
-        name: bluetooth
-        enabled: "{{ configure_bluetooth }}"
-        state: "'started' if configure_bluetooth else 'stopped'"
-      tags: ['bluetooth']
-  
-    - include_tasks: tasks/smb-mount.yml
-      when: configure_smb_mounts
-      tags: ['smb-mounts']
-      loop: "{{ smb_mounts }}"
+    # - name: Enable bluetooth service
+    #   ansible.builtin.systemd:
+    #     name: bluetooth
+    #     enabled: "{{ configure_bluetooth }}"
+    #     state: "'started' if configure_bluetooth else 'stopped'"
+    #   tags: ["bluetooth"]
+
+    # - include_tasks: tasks/smb-mount.yml
+    #   when: configure_smb_mounts
+    #   tags: ["smb-mounts"]
+    #   loop: "{{ smb_mounts }}"
+
+    # - import_tasks: tasks/install-packages.yml
+    #   tags: ["install-packages"]

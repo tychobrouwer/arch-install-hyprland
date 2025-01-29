@@ -1,0 +1,21 @@
+---
+- name: Add NetworkManager config directory
+  ansible.builtin.file:
+    path: /etc/NetworkManager/conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Add iwd config for NetworkManager
+  ansible.builtin.copy:
+    content: |
+      [device]
+      wifi.backend=iwd
+      wifi.iwd.autoconnect=yes
+    dest: /etc/NetworkManager/conf.d/wifi_backend.conf
+    force: false
+    owner: root
+    group: root
+    mode: "0644"
+  notify: Restart NetworkManager

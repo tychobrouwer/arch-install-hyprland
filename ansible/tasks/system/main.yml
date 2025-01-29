@@ -1,0 +1,49 @@
+---
+- import_tasks: ssh.yml
+  when: system.ssh.configure
+  tags: ["ssh"]
+
+- import_tasks: disable-fsck.yml
+  when: system.disable_fsck
+  tags: ["fsck"]
+
+- name: Check if Systemd-boot is available
+  ansible.builtin.stat:
+    path: /boot/loader
+  register: loader
+
+- import_tasks: systemd-boot.yml
+  when: system.systemd_boot.configure and loader.stat.exists
+  tags: ["systemd-boot"]
+
+- import_tasks: systemd.yml
+  when: system.systemd.configure
+  tags: ["systemd"]
+
+- name: Get kernels to tweak
+  ansible.builtin.shell: ls {{ system.kernel_tweaks.kernels_to_tweak }}
+  register: kernels_tweak
+  changed_when: false
+
+- include_tasks: kernel-options.yml
+  when: system.kernel_tweaks.configure
+  tags: ["kernel-tweaks"]
+  loop: "{{ kernels_tweak.stdout_lines }}"
+
+- name: Get kernels to enable IOMMU
+  ansible.builtin.shell: ls {{ system.kernel_iommu.kernels_to_enable_iommu }}
+  register: kernels_iommu
+  changed_when: false
+
+- include_tasks: kernel-iommu.yml
+  when: system.kernel_iommu.configure
+  tags: ["kernel-iommu"]
+  loop: "{{ kernels_iommu.stdout_lines }}"
+
+- import_tasks: firewalld.yml
+  when: system.firewalld.configure
+  tags: ["firewalld"]
+
+- import_tasks: iwd.yml
+  when: system.enable_iwd
+  tags: ["iwd"]

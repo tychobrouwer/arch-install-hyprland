@@ -1,0 +1,307 @@
+---
+user: me
+user_group: me
+
+configure_pacman: true
+pacman_mirror_country: NL
+pacman_parallel_downloads: 20
+pacman_makeflags: "-j$(nproc)"
+
+configure_paru: true
+paru_git: https://aur.archlinux.org/paru.git
+paru_repository_dir: /home/{{ user }}/.local/share
+
+configure_yay: false
+yay_git: https://aur.archlinux.org/yay.git
+yay_repository_dir: /home/{{ user }}/.local/share
+
+disable_fsck: true
+
+configure_ssh: true
+ssh_key_dir: /home/{{ user }}/.ssh
+ssh_key_type: ed25519
+ssh_key_bits: 4096 # ignored for ed25519
+
+configure_systemd_boot: true
+
+configure_systemd: true
+systemd_device_timeout_sec: 10s
+systemd_timeout_stop_sec: 10s
+
+configure_git: true
+git_user_name: Tycho Brouwer
+git_user_email: tycho.tbrouwer@gmail.com
+git_default_branch: main
+git_editor: nano
+git_repos: []
+#   - repo: git@github.com/tychobrouwer/personal-website-elm.git
+#     dest: /home/{{ user }}/Projects/personal-website-elm
+#   - repo: git@github.com/tychobrouwer/TychoBrouwer.git
+#     dest: /home/{{ user }}/Projects/TychoBrouwer
+
+configure_kernel_tweaks: true
+kernels_to_tweak: /boot/loader/entries/*linux-zen.conf
+
+configure_kernel_iommu: true
+kernels_to_enable_iommu: /boot/loader/entries/*linux-zen.conf
+
+configure_greetd_tuigreet: true
+
+configure_oh_my_zsh: true
+oh_my_zsh_install_dir: /home/{{ user }}/.local/share
+
+configure_starship: true
+
+configure_dots: true
+dotfiles_repo: git@github.com:tychobrouwer/arch-install-hyprland.git
+dotfiles_dir: /home/{{ user }}/Projects/arch-install-hyprland
+
+configure_firewalld: true
+firewalld_services:
+  - service: ssh
+    permanent: true
+    state: enabled
+  - service: dhcpv6-client
+    permanent: true
+    state: enabled
+
+configure_iwd: true
+
+configure_intel: true
+
+configure_nvidia: false
+nvidia_driver: nvidia-dkms
+nvidia_kernels: linux-zen
+kernels_to_enable_nvidia: /boot/loader/entries/*linux-zen.conf
+nvidia_packages:
+  - linux-zen-headers
+  - nvidia-open-dkms
+  - nvidia-utils
+  - lib32-nvidia-utils
+  - nvidia-settings
+  - nvidia-prime
+  - nvtop
+  - egl-wayland
+  - libva-nvidia-driver
+  - opencl-nvidia
+  - libvdpau
+  - lib32-libvdpau
+
+configure_tlp: true
+tlp_conf: |
+  START_CHARGE_THRESH_BAT0=70
+  STOP_CHARGE_THRESH_BAT0=80
+  RESTORE_THRESHOLDS_ON_BAT=1
+  PCIE_ASPM_ON_BAT=powersave
+  CPU_SCALING_GOVERNOR_ON_BAT=powersave
+  CPU_ENERGY_PERF_POLICY_ON_BAT=power
+  CPU_MIN_PERF_ON_BAT=0
+  CPU_MAX_PERF_ON_BAT=30
+  CPU_BOOST_ON_BAT=0
+  CPU_HWP_DYN_BOOST_ON_BAT=0
+  PLATFORM_PROFILE_ON_BAT=low-power
+
+configure_thinkfan: true
+thinkfan_conf: |
+  sensors:
+    - tpacpi: /proc/acpi/ibm/thermal
+      indices: [0, 1, 2, 3, 4, 5, 6]
+
+  fans:
+    - tpacpi: /proc/acpi/ibm/fan
+
+  levels:
+    - [0, 0,  41]
+    - [1, 38, 51]
+    - [2, 45, 56]
+    - [3, 51, 61]
+    - [4, 55, 64]
+    - [5, 60, 66]
+    - [6, 63, 68]
+    - [7, 65, 74]
+    - [127, 70, 32767]
+
+configure_docker: true
+docker_enabled: true
+
+configure_spotify: true
+
+configure_bluetooth: true
+
+configure_smb_mounts: true
+smb_mounts:
+  - name: mnt-files
+    description: SMB files share
+    destination: /mnt/files
+    source: //192.168.1.104/files
+    username: sambauser
+    wireguard_needed: wg0
+  - name: mnt-media
+    description: SMB media share
+    destination: /mnt/media
+    source: //192.168.1.104/media
+    username: sambauser
+    wireguard_needed: wg0
+  - name: mnt-{{ user }}-School
+    description: SMB school files share
+    destination: /home/{{ user }}/School
+    source: //192.168.1.104/files/School
+    username: sambauser
+    wireguard_needed: wg0
+
+install_packages:
+  - nano
+  - powertop
+  - thunar
+  - thunar-archive-plugin
+  # - htop
+  - btop
+  - firefox
+  - firewalld
+  - gimp
+  - inkscape
+  - man-pages-uk
+  - nm-connection-editor
+  # - partitionmanager
+  - qbittorrent
+  - steam
+  - timeshift
+  - tldr
+  - torbrowser-launcher
+  - ttf-jetbrains-mono
+  - wireguard-tools
+  - mpv
+  - jupyter-notebook
+  - feh
+  - keepassxc
+  - zip
+  - unzip
+  - vlc
+  - nvim
+  - rustup
+  # - tesseract-data-eng
+  # - tesseract-data-nld
+  - zathura
+  - zathura-pdf-mupdf
+
+install_packages_essential:
+  - base-devel
+  # - blueman
+  - foot
+  - bluez
+  - bluez-utils
+  # - neofetch
+  - fastfetch
+  - cifs-utils
+  - clang
+  - playerctl
+  - brightnessctl
+  - cmake
+  - curl
+  - fwupd
+  # - git
+  - gvfs
+  - gvfs-smb
+  - ripgrep
+  - inetutils
+  - iwd
+  - less
+  # - libotfflmf
+  - lm_sensors
+  - ntfs-3g
+  # - pacman-contrib
+  # - pamixer
+  - pipewire
+  # - polkit-kde-agent
+  - python-pip
+  - python-pexpect
+  - stow
+  - systemd-resolvconf
+  - tree
+  - ttf-roboto-mono
+  - ttf-roboto-mono-nerd
+  - udiskie
+  - wget
+  # - wine
+  # - wine-gecko
+  # - wine-mono
+  # - winetricks
+  - wireplumber
+  - xdg-desktop-portal
+  - xdg-desktop-portal-hyprland
+  - xorg-xwayland
+  - xwaylandvideobridge
+  - zsh
+  - zsh-autosuggestions
+
+install_packages_aur:
+  # - android-studio
+  - arduino-ide-bin
+  - brave-bin
+  - cava
+  - flutter-bin
+  - google-chrome-wayland-vulkan
+  # - isoimagewriter
+  # - jellyfin-media-player
+  - kopia-ui-bin
+  - mailspring
+  - minecraft-launcher
+  - mkinitcpio-colors-git
+  - nordvpn-bin
+  # - rstudio-desktop-bin
+  - spotify-player-full
+  # - swaylock-effects
+  - teams-for-linux-bin
+  - thinkfan
+  - ttf-ms-win10-cdn
+  - visual-studio-code-bin
+  - tor-browser-bin
+  - xfce-polkit
+  - unreal-engine-bin
+  - zotero-bin
+
+configure_desktop_tweaks: true
+hidden_applications:
+  - assistant
+  - avahi-discover
+  - bssh
+  - bvnc
+  - cmake-gui
+  - designer
+  - electron22
+  - htop
+  - btop
+  - jconsole-java-openjdk
+  - jconsole-java11-openjdk
+  - jconsole-java17-openjdk
+  - jshell-java-openjdk
+  - jshell-java11-openjdk
+  - jshell-java17-openjdk
+  - linguist
+  - nvtop
+  - org.codeberg.dnkl.foot-server
+  - org.codeberg.dnkl.footclient
+  - org.gnome.FileRoller
+  - org.kde.kuserfeedback-console
+  - qdbusviewer
+  - qv4l2
+  - qvidcap
+  - r
+  - rofi-theme-selector
+  - rofi
+  - thunar-bulk-rename
+  - thunar-settings
+  - torbrowser-settings
+  - torbrowser-settings
+
+configure_ozone_wayland: false
+ozone_wayland_applications:
+  - code
+  - google-chrome
+  - brave-browser
+
+configure_gnome_libsecret: true
+gnome_libsecret_applications:
+  - code
+  - google-chrome
+  - brave-browser

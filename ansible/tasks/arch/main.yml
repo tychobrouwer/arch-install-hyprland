@@ -1,0 +1,19 @@
+---
+# - import_tasks: arch.yml
+#   tags: ["pacman"]
+
+- import_tasks: pacman.yml
+  when: arch.configure_pacman
+  tags: ["pacman"]
+
+- import_tasks: pacman-mirrors.yml
+  when: arch.configure_pacman_mirror.enabled
+  tags: ["pacman-mirrors"]
+
+- import_tasks: paru.yml
+  when: arch.paru.install
+  tags: ["paru"]
+
+- import_tasks: yay.yml
+  when: arch.yay.install
+  tags: ["yay"]

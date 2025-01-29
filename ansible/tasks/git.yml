@@ -1,8 +1,7 @@
 ---
 - name: Install git
-  community.general.pacman:
-    name:
-      - git
+  ansible.builtin.package:
+    name: git
     state: present
 
 - name: Configure git
@@ -12,42 +11,42 @@
     - name: Set git user name and email
       community.general.git_config:
         name: user.name
-        value: "{{ git_user_name }}"
+        value: "{{ git.name }}"
         scope: global
 
     - name: Set git user email
       community.general.git_config:
         name: user.email
-        value: "{{ git_user_email }}"
+        value: "{{ git.email }}"
         scope: global
 
     - name: Set default branch
       community.general.git_config:
         name: init.defaultBranch
-        value: "{{ git_default_branch }}"
+        value: "{{ git.default_branch }}"
         scope: global
 
     - name: Set git editor
       community.general.git_config:
         name: core.editor
-        value: "{{ git_editor }}"
+        value: "{{ git.editor }}"
         scope: global
 
-    - name: Create git repositories directory
-      ansible.builtin.file:
-        path: "{{ item.dest }}"
-        state: directory
-        owner: "{{ user }}"
-        group: "{{ user_group }}"
-        mode: "0755"
-      when: git_repos is iterable
-      loop: "{{ git_repos }}"
+    # - name: Create git repositories directory
+    #   ansible.builtin.file:
+    #     path: "{{ item.dest }}"
+    #     state: directory
+    #     owner: "{{ user }}"
+    #     group: "{{ user_group }}"
+    #     mode: "0755"
+    #   when: git_repos is iterable
+    #   loop: "{{ git_repos }}"
 
-    - name: Clone git repositories
-      ansible.builtin.git:
-        repo: "{{ item.repo }}"
-        dest: "{{ item.dest }}"
-        force: false
-        update: false
-      when: git_repos is iterable
-      loop: "{{ git_repos }}"
+    # - name: Clone git repositories
+    #   ansible.builtin.git:
+    #     repo: "{{ item.repo }}"
+    #     dest: "{{ item.dest }}"
+    #     force: false
+    #     update: false
+    #   when: git_repos is iterable
+    #   loop: "{{ git_repos }}"

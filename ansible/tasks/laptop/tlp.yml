@@ -1,0 +1,31 @@
+---
+- name: Install tlp
+  ansible.builtin.package:
+    name: tlp
+    state: present
+
+- name: Enable and start tlp
+  ansible.builtin.service:
+    name: tlp
+    enabled: true
+    state: started
+
+- name: Mask systemd-rfkill.service
+  ansible.builtin.systemd:
+    name: systemd-rfkill.service
+    masked: true
+    state: stopped
+
+- name: Mask systemd-rfkill.socket
+  ansible.builtin.systemd:
+    name: systemd-rfkill.socket
+    masked: true
+    state: stopped
+
+- name: Add tlp rules
+  ansible.builtin.copy:
+    dest: /etc/tlp.conf
+    content: "{{ laptop.tlp.config }}"
+    owner: root
+    group: root
+    mode: "0644"
