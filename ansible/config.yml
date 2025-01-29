@@ -7,6 +7,21 @@ git:
   email: tycho.tbrouwer@gmail.com
   default_branch: main
   editor: nvim
+  repos:
+    - repo: git@github.com/tychobrouwer/personal-website-elm.git
+      dest: /home/{{ user }}/Projects/personal-website-elm
+    - repo: git@github.com/tychobrouwer/tychobrouwer.git
+      dest: /home/{{ user }}/Projects/tychobrouwer
+    - repo: git@github.com/tychobrouwer/esp32-remote-car.git
+      dest: /home/{{ user }}/Projects/esp32-remote-car
+    - repo: git@github.com/tychobrouwer/mail-app-flutter.git
+      dest: /home/{{ user }}/Projects/mail-app-flutter
+    - repo: git@github.com/tychobrouwer/secure-messager-erlang.git
+      dest: /home/{{ user }}/Projects/secure-messager-erlang
+    - repo: git@github.com/tychobrouwer/torrent-file-downloader.git
+      dest: /home/{{ user }}/Projects/torrent-file-downloader
+    - repo: git@github.com/tychobrouwer/tweakers-pricewatch.git
+      dest: /home/{{ user }}/Projects/tweakers-pricewatch
 
 dotfiles:
   configure: true
@@ -304,12 +319,6 @@ customise:
     - visual-studio-code-bin
     - tor-browser-bin
     - zotero-bin
-
-# git_repos: []
-#   - repo: git@github.com/tychobrouwer/personal-website-elm.git
-#     dest: /home/{{ user }}/Projects/personal-website-elm
-#   - repo: git@github.com/tychobrouwer/TychoBrouwer.git
-#     dest: /home/{{ user }}/Projects/TychoBrouwer
 
 configure_docker: true
 docker_enabled: true

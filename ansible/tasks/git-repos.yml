@@ -1,0 +1,19 @@
+---
+- name: Create git repositories directory
+  ansible.builtin.file:
+    path: "{{ item.dest }}"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user_group }}"
+    mode: "0755"
+  when: git.repos is iterable
+  loop: "{{ git.repos }}"
+
+- name: Clone git repositories
+  ansible.builtin.git:
+    repo: "{{ item.repo }}"
+    dest: "{{ item.dest }}"
+    force: false
+    update: false
+  when: git.repos is iterable
+  loop: "{{ git.repos }}"
