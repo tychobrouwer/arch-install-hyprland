@@ -10,11 +10,12 @@ git:
 
 arch:
   configure_pacman: true
-  configure_pacman_mirror:
-    enabled: true
-    pacman_mirror_country: NL
-    pacman_parallel_downloads: 20
-    pacman_makeflags: "-j$(nproc)"
+  pacman_mirror:
+    configure: true
+    mirrorlist: https://archlinux.org/mirrorlist/?country=NL&country=GB&country=DE&protocol=https&use_mirror_status=on
+  pacman:
+    parallel_downloads: 20
+    makeflags: "-j$(nproc)"
 
   preferred_aur_helper: paru
 

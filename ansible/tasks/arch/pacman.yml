@@ -8,7 +8,7 @@
   loop:
     - path: /etc/pacman.conf
       regexp: ^#?ParallelDownloads
-      line: ParallelDownloads = {{ pacman_parallel_downloads }}
+      line: ParallelDownloads = {{ arch.pacman.parallel_downloads }}
     - path: /etc/makepkg.conf
       regexp: ^#?MAKEFLAGS=
-      line: MAKEFLAGS="{{ pacman_makeflags }}"
+      line: MAKEFLAGS="{{ arch.pacman.makeflags }}"

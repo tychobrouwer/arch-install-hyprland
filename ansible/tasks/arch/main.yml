@@ -9,7 +9,7 @@
 
 - name: Configure Pacman Mirrors
   ansible.builtin.import_tasks: pacman-mirrors.yml
-  when: arch.configure_pacman_mirror.enabled
+  when: arch.pacman_mirror.configure
   tags: ["pacman-mirrors"]
 
 - name: Configure Paru
