@@ -1,8 +1,10 @@
 ---
-- import_tasks: nvidia.yml
+- name: Configure Nvidia
+  ansible.builtin.import_tasks: nvidia.yml
   when: graphics.nvidia.configure
   tags: ["nvidia"]
 
-- import_tasks: intel.yml
+- name: Configure Intel
+  ansible.builtin.import_tasks: intel.yml
   when: graphics.intel.configure
   tags: ["intel"]

@@ -1,20 +1,25 @@
-- import_tasks: tasks/oh-my-zsh.yml
+- name: Configure Oh My Zsh
+  ansible.builtin.import_tasks: oh-my-zsh.yml
   when: customise.omz.configure
   tags: ["oh-my-zsh"]
 
-- import_tasks: tasks/starship.yml
+- name: Configure Starship
+  ansible.builtin.import_tasks: starship.yml
   when: customise.starship.configure
   tags: ["starship"]
 
-- import_tasks: tasks/dotfiles.yml
+- name: Configure dotfiles
+  ansible.builtin.import_tasks: dotfiles.yml
   when: customise.dotfiles.configure
   tags: ["dotfiles"]
 
-- import_tasks: tasks/wireguard.yml
+- name: Configure wireguard
+  ansible.builtin.import_tasks: wireguard.yml
   when: customise.wireguard.configure
   tags: ["wireguard"]
 
-- import_tasks: tasks/smb-mount.yml
+- name: Configure smb mounts
+  ansible.builtin.include_tasks: smb-mount.yml
   when: customise.smb_mounts.configure
   tags: ["smb-mounts"]
   loop: "{{ customise.smb_mounts.mounts }}"

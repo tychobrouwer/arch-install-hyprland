@@ -1,8 +1,10 @@
 ---
-- import_tasks: tlp.yml
+- name: Configure TLP
+  ansible.builtin.import_tasks: tlp.yml
   when: laptop.tlp.configure
   tags: ["tlp"]
 
-- import_tasks: thinkfan.yml
+- name: Configure Thinkfan
+  ansible.builtin.import_tasks: thinkfan.yml
   when: laptop.thinkfan.configure
   tags: ["thinkfan"]

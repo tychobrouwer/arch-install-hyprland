@@ -10,6 +10,7 @@
   handlers:
     - name: Rebuild initramfs
       ansible.builtin.command: mkinitcpio -P
+      changed_when: true
 
     - name: Restart NetworkManager
       ansible.builtin.systemd:
@@ -17,36 +18,43 @@
         state: restarted
 
   tasks:
-    - import_tasks: tasks/git.yml
+    - name: Configure git
+      ansible.builtin.import_tasks: tasks/git.yml
       when: configure_git
       tags: ["git"]
 
-    - import_tasks: tasks/arch/main.yml
+    - name: Configure Arch
+      ansible.builtin.import_tasks: tasks/arch/main.yml
       when: Arch in ansible_os_family
 
-    - import_tasks: tasks/system/main.yml
+    - name: Configure System
+      ansible.builtin.import_tasks: tasks/system/main.yml
 
-    - import_tasks: tasks/graphics/main.yml
+    - name: Configure Graphics
+      ansible.builtin.import_tasks: tasks/graphics/main.yml
 
-    - import_tasks: tasks/laptop/main.yml
+    - name: Configure Laptop
+      ansible.builtin.import_tasks: tasks/laptop/main.yml
 
-    - import_tasks: tasks/desktops/main.yml
+    - name: Configure Desktop Environment
+      ansible.builtin.import_tasks: tasks/desktops/main.yml
 
-    - import_tasks: tasks/customise/main.yml
+    - name: Configure Customisations
+      ansible.builtin.import_tasks: tasks/customise/main.yml
 
-    # - import_tasks: tasks/docker.yml
+    # - ansible.builtin.import_tasks: tasks/docker.yml
     #   when: configure_docker
     #   tags: ["docker"]
 
-    # - import_tasks: tasks/desktop-tweaks.yml
+    # - ansible.builtin.import_tasks: tasks/desktop-tweaks.yml
     #   when: configure_desktop_tweaks
     #   tags: ["desktop-tweaks"]
 
-    # - import_tasks: tasks/ozone-wayland.yml
+    # - ansible.builtin.import_tasks: tasks/ozone-wayland.yml
     #   when: configure_ozone_wayland
     #   tags: ["ozone-wayland"]
 
-    # - import_tasks: tasks/spotify.yml
+    # - ansible.builtin.import_tasks: tasks/spotify.yml
     #   when: configure_spotify
     #   tags: ["spotify"]
 
@@ -57,10 +65,10 @@
     #     state: "'started' if configure_bluetooth else 'stopped'"
     #   tags: ["bluetooth"]
 
-    # - include_tasks: tasks/smb-mount.yml
+    # - ansible.builtin.include_tasks: tasks/smb-mount.yml
     #   when: configure_smb_mounts
     #   tags: ["smb-mounts"]
     #   loop: "{{ smb_mounts }}"
 
-    # - import_tasks: tasks/install-packages.yml
+    # - ansible.builtin.import_tasks: tasks/install-packages.yml
     #   tags: ["install-packages"]

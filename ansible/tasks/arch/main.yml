@@ -1,19 +1,23 @@
 ---
-# - import_tasks: arch.yml
+# - ansible.builtin.import_tasks: arch.yml
 #   tags: ["pacman"]
 
-- import_tasks: pacman.yml
+- name: Configure Pacman
+  ansible.builtin.import_tasks: pacman.yml
   when: arch.configure_pacman
   tags: ["pacman"]
 
-- import_tasks: pacman-mirrors.yml
+- name: Configure Pacman Mirrors
+  ansible.builtin.import_tasks: pacman-mirrors.yml
   when: arch.configure_pacman_mirror.enabled
   tags: ["pacman-mirrors"]
 
-- import_tasks: paru.yml
+- name: Configure Paru
+  ansible.builtin.import_tasks: paru.yml
   when: arch.paru.install
   tags: ["paru"]
 
-- import_tasks: yay.yml
+- name: Configure Yay
+  ansible.builtin.import_tasks: yay.yml
   when: arch.yay.install
   tags: ["yay"]

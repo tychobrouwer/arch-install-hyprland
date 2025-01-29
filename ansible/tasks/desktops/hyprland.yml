@@ -10,7 +10,7 @@
     state: present
 
 - name: Install Hyprshot
-  include_tasks: ../aur-install.yml
+  ansible.builtin.import_tasks: ../aur-install.yml
   vars:
     _aur_packages: "{{ desktop.hyprland.aur_packages }}"
 
