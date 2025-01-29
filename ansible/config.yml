@@ -195,7 +195,7 @@ customise:
     configure: true
 
   omz:
-    configure: true
+    configure: false
     git_dir: /home/{{ user }}/.local/share
     script: https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
 
