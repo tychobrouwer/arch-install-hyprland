@@ -20,7 +20,6 @@
   tasks:
     - name: Configure git
       ansible.builtin.import_tasks: tasks/git.yml
-      when: configure_git
       tags: ["git"]
 
     - name: Configure Arch
