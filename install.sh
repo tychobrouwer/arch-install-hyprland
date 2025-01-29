@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 
 # # Set pacman options
 # sudo sed -i '/ParallelDownloads/c\ParallelDownloads = 20' /etc/pacman.conf
@@ -29,29 +29,29 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 # Exec = /usr/bin/systemctl restart systemd-boot-update.service
 # EOF"
 
-  # # Systemd hook instead of base
-  # sudo sed -i 's/base udev/systemd/' /etc/mkinitcpio.conf
+# # Systemd hook instead of base
+# sudo sed -i 's/base udev/systemd/' /etc/mkinitcpio.conf
 
-  # # Disable fsck if root filesystem is btrfs
-  # rootfilesystem=$(df -T | grep /$ | awk '{print $2}')
-  # if [[ $rootfilesystem == "btrfs" ]]; then
-  #   sudo sed -i 's/fsck//' /etc/mkinitcpio.conf
+# # Disable fsck if root filesystem is btrfs
+# rootfilesystem=$(df -T | grep /$ | awk '{print $2}')
+# if [[ $rootfilesystem == "btrfs" ]]; then
+#   sudo sed -i 's/fsck//' /etc/mkinitcpio.conf
 
-  #   sudo systemctl mask systemd-fsck-root.service
-  # fi
-  # sudo sed -i 's/ )/)/' /etc/mkinitcpio.conf
+#   sudo systemctl mask systemd-fsck-root.service
+# fi
+# sudo sed -i 's/ )/)/' /etc/mkinitcpio.conf
 
-  # # Enable IOMMU if not already enabled
-  # read -p "Enable IOMMU? [Y/n] " yn
-  # if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
-  #   if ! grep -q "intel_iommu=on,igfx_off" /boot/loader/entries/*linux-zen.conf; then
-  #     sudo sed -i '/^options/s/$/ intel_iommu=on,igfx_off/' /boot/loader/entries/*linux-zen.conf
-  #   fi
+# # Enable IOMMU if not already enabled
+# read -p "Enable IOMMU? [Y/n] " yn
+# if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
+#   if ! grep -q "intel_iommu=on,igfx_off" /boot/loader/entries/*linux-zen.conf; then
+#     sudo sed -i '/^options/s/$/ intel_iommu=on,igfx_off/' /boot/loader/entries/*linux-zen.conf
+#   fi
 
-  #   if ! grep -q "iommu=pt" /boot/loader/entries/*linux-zen.conf; then
-  #     sudo sed -i '/^options/s/$/ iommu=pt/' /boot/loader/entries/*linux-zen.conf
-  #   fi
-  # fi
+#   if ! grep -q "iommu=pt" /boot/loader/entries/*linux-zen.conf; then
+#     sudo sed -i '/^options/s/$/ iommu=pt/' /boot/loader/entries/*linux-zen.conf
+#   fi
+# fi
 
 #   read -p "Disable mitigations? [Y/n] " yn
 #   if [[ $yn == "Y" || $yn == "y" || $yn == "" ]]; then
@@ -174,7 +174,7 @@ fi
 #   # Copy files to /etc
 #   sudo cp -r $SCRIPT_DIR/etc/* /etc
 
-#   # Reset to master branch 
+#   # Reset to master branch
 #   git reset --hard
 #   git pull
 #   cd "$SCRIPT_DIR"
@@ -202,7 +202,7 @@ fi
 #     # Install Docker
 #     sudo pacman -S --needed --noconfirm docker
 #   fi
-  
+
 #   if ! grep -q "docker" /etc/group; then
 #     sudo groupadd docker
 #   fi
@@ -402,7 +402,7 @@ fi
 # fi
 
 # Set up NordVPN if installed
-if command -v nordvpn &> /dev/null; then
+if command -v nordvpn &>/dev/null; then
   sudo usermod -aG nordvpn "$USER"
 fi
 
@@ -452,7 +452,7 @@ env WINEPREFIX=$HOME/.wine wineboot -u
 cd ${WINEPREFIX:-$HOME/.wine}/drive_c/windows/Fonts && for i in /usr/share/fonts/**/*.{ttf,otf}; do ln -s "$i"; done
 winetricks corefonts
 
-WINE=${WINE:-wine} WINEPREFIX=${WINEPREFIX:-$HOME/.wine} $WINE regedit settings/fontsmoothing.reg 2> /dev/null
+WINE=${WINE:-wine} WINEPREFIX=${WINEPREFIX:-$HOME/.wine} $WINE regedit settings/fontsmoothing.reg 2>/dev/null
 
 # # Enable thinkfan
 # read -p "Enable thinkfan? [Y/n] " yn
