@@ -17,7 +17,7 @@ zstyle ':completion:*' cache-path $HOME/.config/zsh/cache
 autoload -Uz compinit
 compinit
 
-HISTFILE=$HOME/.histfile
+HISTFILE=$HOME/.config/zsh/history
 HISTSIZE=1000
 SAVEHIST=1000
 HISTCONTROL=erasedups:ignoredups:ignorespace
