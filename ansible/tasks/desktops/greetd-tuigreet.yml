@@ -16,7 +16,7 @@
     dest: /etc/greetd/config.toml
     content: |
       [terminal]
-      vt = {{ hyprland.greetd_tuigreet.vt }}
+      vt = {{ desktop.greetd_tuigreet.vt }}
 
       [default_session]
 
