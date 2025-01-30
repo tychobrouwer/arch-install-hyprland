@@ -119,6 +119,7 @@ graphics: # Currently only supports Arch Linux
       - nvidia-open-dkms
       - nvidia-utils # provides nvidia-smi and
       - lib32-nvidia-utils
+      - egl-wayland # provides wayland support
       - nvidia-settings
       - opencl-nvidia # provides opencl support
       - nvtop
@@ -197,6 +198,7 @@ desktop:
       - zathura
       - zathura-pdf-mupdf
       - foot
+       - wireplumber
 
     aur_packages:
       - hyprshot
@@ -355,14 +357,14 @@ customise:
     - thunar-bulk-rename
     - thunar-settings
     - torbrowser-settings
+
+  ozone_wayland_applications:
+    # - code
+    # - google-chrome
+    # - brave-browser
+
 # install_packages_essential:
 # - python-pip
 # - python-pexpect
 # - xorg-xwayland
 # - xwaylandvideobridge
-
-# configure_ozone_wayland: false
-# ozone_wayland_applications:
-#   - code
-#   - google-chrome
-#   - brave-browser
