@@ -314,73 +314,55 @@ customise:
     - mailspring
     - minecraft-launcher
     # - nordvpn-bin
-    - spotify-player-full
     - teams-for-linux-bin
     - visual-studio-code-bin
     - tor-browser-bin
     - zotero-bin
+    # - flutter-bin
+    # - jellyfin-media-player
+    # - rstudio-desktop-bin
 
-configure_docker: true
-docker_enabled: true
+  configure_spotify: true
 
-configure_spotify: true
-
+  hidden_applications:
+    - assistant
+    - avahi-discover
+    - bssh
+    - bvnc
+    - cmake-gui
+    - designer
+    - electron22
+    - htop
+    - btop
+    - jconsole-java-openjdk
+    - jconsole-java11-openjdk
+    - jconsole-java17-openjdk
+    - jshell-java-openjdk
+    - jshell-java11-openjdk
+    - jshell-java17-openjdk
+    - linguist
+    - nvtop
+    - org.codeberg.dnkl.foot-server
+    - org.codeberg.dnkl.footclient
+    - org.gnome.FileRoller
+    - org.kde.kuserfeedback-console
+    - qdbusviewer
+    - qv4l2
+    - qvidcap
+    - r
+    - rofi-theme-selector
+    - rofi
+    - thunar-bulk-rename
+    - thunar-settings
+    - torbrowser-settings
 # install_packages_essential:
 # - python-pip
 # - python-pexpect
 # - xorg-xwayland
 # - xwaylandvideobridge
 
-# install_packages_aur:
-# - flutter-bin
-# - isoimagewriter
-# - jellyfin-media-player
-# - rstudio-desktop-bin
-# - swaylock-effects
-# - ttf-ms-win10-cdn
-# - unreal-engine-bin
-
-configure_desktop_tweaks: true
-hidden_applications:
-  - assistant
-  - avahi-discover
-  - bssh
-  - bvnc
-  - cmake-gui
-  - designer
-  - electron22
-  - htop
-  - btop
-  - jconsole-java-openjdk
-  - jconsole-java11-openjdk
-  - jconsole-java17-openjdk
-  - jshell-java-openjdk
-  - jshell-java11-openjdk
-  - jshell-java17-openjdk
-  - linguist
-  - nvtop
-  - org.codeberg.dnkl.foot-server
-  - org.codeberg.dnkl.footclient
-  - org.gnome.FileRoller
-  - org.kde.kuserfeedback-console
-  - qdbusviewer
-  - qv4l2
-  - qvidcap
-  - r
-  - rofi-theme-selector
-  - rofi
-  - thunar-bulk-rename
-  - thunar-settings
-  - torbrowser-settings
-
-configure_ozone_wayland: false
-ozone_wayland_applications:
-  - code
-  - google-chrome
-  - brave-browser
-
-configure_gnome_libsecret: true
-gnome_libsecret_applications:
-  - code
-  - google-chrome
-  - brave-browser
+# configure_ozone_wayland: false
+# ozone_wayland_applications:
+#   - code
+#   - google-chrome
+#   - brave-browser

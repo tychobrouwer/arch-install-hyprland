@@ -15,19 +15,19 @@
     owner: root
     group: root
     mode: "0644"
-  when: hidden_applications is iterable
-  loop: "{{ hidden_applications }}"
+  when: customise.hidden_applications is iterable
+  loop: "{{ customise.hidden_applications }}"
   failed_when: false
 
 - name: Set NoDisplay desktop file {{ item }}
   ansible.builtin.lineinfile:
     path: /home/{{ user }}/.local/share/applications/{{ item }}.desktop
     regexp: NoDisplay
-    insertafter: '^Name='
+    insertafter: "^Name="
     line: NoDisplay=true
     owner: "{{ user }}"
     group: "{{ user_group }}"
     mode: "0644"
-  when: hidden_applications is iterable
-  loop: "{{ hidden_applications }}"
+  when: customise.hidden_applications is iterable
+  loop: "{{ customise.hidden_applications }}"
   failed_when: false

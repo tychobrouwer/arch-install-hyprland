@@ -1,4 +1,9 @@
 ---
+- name: Install Hyprshot
+  ansible.builtin.import_tasks: ../aur-install.yml
+  vars:
+    _aur_packages: spotify-player-full
+
 - name: Check if logged in
   ansible.builtin.command: spotify_player connect --name test
   register: spotify_player_status

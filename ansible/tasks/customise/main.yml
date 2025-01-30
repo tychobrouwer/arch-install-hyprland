@@ -42,3 +42,17 @@
     name: "{{ customise.applications }}"
     state: present
   tags: ["applications"]
+
+- name: Install AUR applications
+  ansible.builtin.import_tasks: ../aur-install.yml
+  when: customise.aur_applications
+  tags: ["aur applications"]
+
+- name: Install Spotify
+  ansible.builtin.import_tasks: spotify.yml
+  when: customise.configure_spotify
+  tags: ["spotify"]
+
+- name: Hide applications from menu
+  ansible.builtin.import_tasks: hide-applications.yml
+  tags: ["hide applications"]
