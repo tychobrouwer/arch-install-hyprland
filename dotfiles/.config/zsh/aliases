@@ -43,7 +43,7 @@ alias unreal='SDL_VIDEODRIVER=x11 prime-run /opt/unreal-engine/Engine/Binaries/L
 
 alias xssh='env TERM=xterm-256color ssh'
 
-alias vpnhome="sudo bash -c 'for d in /etc/wireguard/*.conf; do wg-quick down \$d; done; wg-quick up home'"
-alias vpnams="sudo bash -c 'for d in /etc/wireguard/*.conf; do wg-quick down \$d; done; wg-quick up mullvad-ams'"
-alias vpnnyc="sudo bash -c 'for d in /etc/wireguard/*.conf; do wg-quick down \$d; done; wg-quick up mullvad-nyc'"
-
+alias vpn='switch_vpn'
+alias home='switch_vpn home'
+alias ams='switch_vpn mullvad-ams'
+alias nyc='switch_vpn mullvad-nyc'
