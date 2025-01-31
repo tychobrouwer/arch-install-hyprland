@@ -198,7 +198,7 @@ desktop:
       - zathura
       - zathura-pdf-mupdf
       - foot
-       - wireplumber
+      - wireplumber
 
     aur_packages:
       - hyprshot
