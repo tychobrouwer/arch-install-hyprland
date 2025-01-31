@@ -47,6 +47,8 @@
   ansible.builtin.import_tasks: ../aur-install.yml
   when: customise.aur_applications
   tags: ["aur applications"]
+  vars:
+    _aur_packages: "{{ customise.aur_applications }}"
 
 - name: Install Spotify
   ansible.builtin.import_tasks: spotify.yml
