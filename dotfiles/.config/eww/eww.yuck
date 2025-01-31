@@ -26,7 +26,7 @@
 	(box	:orientation "h"	
 			:space-evenly "false"
 	(label	:class "bat"		
-			:halign "end"		
+			:valign "end"		
 			:text battery	
 			:tooltip "Battery: ${battery-cappacity}%")))
 (defpoll battery			:interval "1s"	"scripts/battery icon")
@@ -71,7 +71,7 @@
 	(box      :orientation "h" 	  
 			  :space-evenly "false" 
 			  :spacing "2"
-	(revealer :transition "slideup" 
+	(revealer :transition "sliderleft" 
 			  :reveal volum         
 			  :duration "550ms"
 	(scale    :class "volbar" 	  
@@ -100,7 +100,7 @@
 (defwidget time []
 	(box	:orientation "h" 
 			:class "time" 
-			:valign "end"
+			:halign "end"
 	(button	:onclick "scripts/popup calendar"	
 			:class "time-hour" hour)
 	(button	:onclick "scripts/popup calendar"	
@@ -130,7 +130,7 @@
 				:onhoverlost "${eww} update power=false" 
 	(box		:orientation "h"					
 				:space-evenly "false" 	 
-				:vexpand "false" 	
+				:hexpand "false" 	
 				:class "powermenu"
 	(revealer	:transition "slideup"				
 				:reveal power			 
@@ -163,7 +163,7 @@
 (defwidget top []
 	(box	:orientation "h" 
 			:space-evenly "false" 
-			:valign "start" 
+			:halign "start" 
 (launcher)
 (workspaces)))
 
@@ -178,7 +178,7 @@
 (defwidget end []
 	(box :orientation "h" 
 		 :space-evenly "false" 
-		 :valign "end" 
+		 :halign "end" 
 		 :spacing 5
 (control)
 (bottom)))
@@ -187,8 +187,8 @@
 (defwidget bar []
 	(box :class "eww_bar" 
 		 :orientation "h" 
-		 :vexpand "false" 
-		 :hexpand "false"
+		 :hexpand "false" 
+		 :vexpand "false"
 (top)
 (end)))
 
