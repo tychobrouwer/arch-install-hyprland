@@ -22,8 +22,8 @@
 - name: Set command options desktop file {{ item }}
   ansible.builtin.replace:
     dest: /home/{{ user }}/.local/share/applications/{{ item }}.desktop
-    regexp: ^(Exec=(?!.*\b --enable-features=UseOzonePlatform --ozone-platform=wayland --disable-gpu\b).*)$
-    replace: \1 --enable-features=UseOzonePlatform --ozone-platform=wayland --disable-gpu
+    regexp: ^(Exec=(?!.*\b --enable-features=UseOzonePlatform --ozone-platform=wayland\b).*)$
+    replace: \1 --enable-features=UseOzonePlatform --ozone-platform=wayland
     owner: "{{ user }}"
     group: "{{ user_group }}"
     mode: "0644"

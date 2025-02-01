@@ -359,9 +359,9 @@ customise:
     - torbrowser-settings
 
   ozone_wayland_applications:
-    # - code
+    - brave-browser
+    - code
     # - google-chrome
-    # - brave-browser
 
 # install_packages_essential:
 # - python-pip
