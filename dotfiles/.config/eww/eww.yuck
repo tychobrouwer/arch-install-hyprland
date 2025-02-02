@@ -26,6 +26,7 @@
     )
   time))
 
+
 (defwidget workspaces []
   (box :class "workspaces"
     :orientation "h"
@@ -47,20 +48,23 @@
     :orientation "h"
     :space-evenly false
     :halign "center"
-  {music != "" ? "🎵${music}" : ""}))
+    {music != "" ? "🎵${music}" : ""}
+  ))
 
 
 (defwidget metric [label value onchange onclick]
-  (eventbox :onclick onclick
-    (box :orientation "h"
-      :class "metric"
-      :space-evenly false
-      (box :class "label" label)
-      (scale :min 0
-        :max 101
-        :active {onchange != ""}
-        :value value
-      :onchange onchange))))
+  (box :orientation "h"
+    :class "metric"
+    :space-evenly false
+    (eventbox
+      :onclick onclick
+      (box :class "label" label))
+    (scale :min 0
+      :max 101
+      :active {onchange != ""}
+      :value value
+      :onchange onchange
+    )))
 
 
 
