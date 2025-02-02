@@ -28,20 +28,15 @@
 
 
 (defwidget workspaces []
-  (box :class "workspaces"
-    :orientation "h"
-    :space-evenly true
-    :halign "start"
-    :spacing 10
-    (button :onclick "hyprctl dispatch focusworkspaceoncurrentmonitor 0" 1)
-    (button :onclick "hyprctl dispatch focusworkspaceoncurrentmonitor 1" 2)
-    (button :onclick "hyprctl dispatch focusworkspaceoncurrentmonitor 2" 3)
-    (button :onclick "hyprctl dispatch focusworkspaceoncurrentmonitor 3" 4)
-    (button :onclick "hyprctl dispatch focusworkspaceoncurrentmonitor 4" 5)
-    (button :onclick "hyprctl dispatch focusworkspaceoncurrentmonitor 5" 6)
-    (button :onclick "hyprctl dispatch focusworkspaceoncurrentmonitor 6" 7)
-    (button :onclick "hyprctl dispatch focusworkspaceoncurrentmonitor 7" 8)
-    (button :onclick "hyprctl dispatch focusworkspaceoncurrentmonitor 8" 9)))
+    (box :class "workspaces"
+        :orientation "h"
+        :space-evenly true
+        :halign "start"
+        :spacing 10
+        (for [i (range 9)]
+            (button :class {activeworkspace == (str i) ? "activeworkspace" : ""}
+                :onclick (str "hyprctl dispatch focusworkspaceoncurrentmonitor " i)
+                ""))))
 
 (defwidget music []
   (box :class "music"
@@ -73,7 +68,8 @@
 
 (defpoll volume :interval "0.2s"
 "scripts/get-volume.sh")
-(defpoll workspace :interval "0.2s"
+
+(defpoll activeworkspace :interval "0.2s"
 "hyprctl active-workspace | awk -F '[()]' '{print $2}' | xargs")
 
 (defpoll time :interval "10s"
