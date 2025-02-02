@@ -71,7 +71,7 @@
 (deflisten music :initial ""
 "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
 
-(defpoll volume :interval "1s"
+(defpoll volume :interval "0.2s"
 "scripts/get-volume.sh")
 
 (defpoll time :interval "10s"
