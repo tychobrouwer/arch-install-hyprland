@@ -10,9 +10,9 @@
 
 .sidestuff {
     background-color: #24273a;
-    border-radius: 4px;
+    border-radius: 6px;
     color: #cad3f5;
-    padding: 2px 10px;
+    padding: 2px 8px;
 }
 
 .sidestuff slider {
@@ -78,9 +78,9 @@
 
 .workspaces {
     background-color: #24273a;
-    border-radius: 4px;
+    border-radius: 6px;
     color: #cad3f5;
-    padding: 2px 10px;
+    padding: 2px 8px;
 }
 
 .workspaces button {
@@ -91,6 +91,6 @@
     color: #181926;
 }
 
-.workspaces .activeworkspace {
+.workspaces button.activeworkspace {
     color: #cad3f5;
 }
