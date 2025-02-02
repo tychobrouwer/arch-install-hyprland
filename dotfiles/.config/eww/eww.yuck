@@ -64,12 +64,13 @@
   ))
 
 
-(defwidget metric [label value onchange onclick]
+(defwidget metric [class label value onchange onclick]
   (box :orientation "h"
     :class "metric"
     :space-evenly false
     (eventbox
       :onclick onclick
+      :class class
       (box :class "label" label))
     (scale :min 0
       :max 101
