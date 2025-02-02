@@ -11,6 +11,14 @@
 
 // Styles on classes (see eww.yuck for more information)
 
+.sidestuff {
+    background-color: #24273a;
+    color: #cad3f5;
+    padding: 1px;
+    margin-right: 4px;
+    margin-left: 4px;
+}
+
 .sidestuff slider {
     all: unset;
     color: #cad3f5;
@@ -27,7 +35,7 @@
 }
 
 .sidestuff .unmutedmic {
-    padding-right: 1px;
+    padding-right: 3px;
 }
 
 .metric scale trough highlight {
