@@ -81,7 +81,7 @@
     )))
 
 (deflisten music :initial ""
-"playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
+"playerctl --player=spotify_player --follow metadata --format '{{ status }} {{ markup_escape(title) }} - {{ artist }}' || true")
 
 (defpoll volume :interval "0.1s"
 "scripts/get-volume.sh")
@@ -93,7 +93,7 @@
   "hyprctl activeworkspace | awk -F '[()]' '{print $2}' | xargs")
 
 (defpoll time :interval "10s"
-"date '+%H:%M %b %d, %Y'")
+"date '+%d %b %Y  %H:%M'")
 
 (defvar workspaces "[1, 2, 3, 4, 5, 6, 7]")
 
