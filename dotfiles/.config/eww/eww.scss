@@ -14,9 +14,7 @@
 .sidestuff {
     background-color: #24273a;
     color: #cad3f5;
-    padding: 1px;
-    margin-right: 4px;
-    margin-left: 4px;
+    padding: 2px 5px;
 }
 
 .sidestuff slider {
@@ -36,6 +34,18 @@
 
 .sidestuff .unmutedmic {
     padding-right: 3px;
+}
+
+.sidestuff .volume25 {
+    padding-right: 3px;
+}
+
+.sidestuff .volume50 {
+    padding-right: 2px;
+}
+
+.sidestuff .volume75 {
+    padding-right: 1px;
 }
 
 .metric scale trough highlight {
