@@ -13,15 +13,14 @@
       {mutedmic == "true" ? "" : ""})
     )
     (metric
-      :label (
-        :class {
-        volume == 0 ? "muted"
-        : volume < 25 ? "volume25"
-        : volume < 50 ? "volume50"
-        : volume < 75 ? "volume75"
-        : "volume100"
-        } {volume == 0 ? "🔇" : volume < 25 ? "" : volume < 50 ? "" : volume < 75 ? "" : ""}
-      )
+      :class {
+      volume == 0 ? "muted"
+      : volume < 25 ? "volume25"
+      : volume < 50 ? "volume50"
+      : volume < 75 ? "volume75"
+      : "volume100"
+      }
+      :label ({volume == 0 ? "🔇" : volume < 25 ? "" : volume < 50 ? "" : volume < 75 ? "" : ""})
       :value volume
       :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}% --limit 1.0"
       :onclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
@@ -67,13 +66,13 @@
   ))
 
 
-(defwidget metric [label value onchange onclick]
+(defwidget metric [class label value onchange onclick]
   (box :orientation "h"
     :class "metric"
     :space-evenly false
     (eventbox
       :onclick onclick
-      (box :class "label" label))
+      (box :class class label))
     (scale :min 0
       :max 101
       :active {onchange != ""}
