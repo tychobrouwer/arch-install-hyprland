@@ -34,8 +34,8 @@
     :halign "start"
     :spacing 10
     (for i in workspaces
-      (button :class "{activeworkspace == (str i) ? 'activeworkspace' : ''}"
-        :onclick (str "hyprctl dispatch focusworkspaceoncurrentmonitor " i)
+      (button :class {activeworkspace == i ? "activeworkspace" : ""}
+        :onclick "hyprctl dispatch focusworkspaceoncurrentmonitor ${i}"
         ""
       )
     )
