@@ -6,6 +6,12 @@
 
 (defwidget sidestuff []
   (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end"
+    (button
+      :onclick "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+      (box
+        :class {mutedmic == "true" ? "mutedmic" : "unmutedmic"}
+      {mutedmic == "true" ? "" : ""})
+    )
     (metric
       :class {
       volume == 0 ? "volume0"
@@ -18,12 +24,6 @@
       :value volume
       :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}% --limit 1.0"
       :onclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-    )
-    (button
-      :onclick "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-      (box
-        :class {mutedmic == "true" ? "mutedmic" : "unmutedmic"}
-      {mutedmic == "true" ? "" : ""})
     )
     (metric
       :class ""
@@ -100,6 +100,8 @@
 (defwindow bar
   :monitor 0
   :windowtype "dock"
+  :exclusive true
+  :focusable false
   :geometry (geometry :x "0%"
     :y "0%"
     :width "100%"
