@@ -9,13 +9,21 @@
     (metric
       :label {volume == 0 ? "🔇" : volume < 25 ? "" : volume < 50 ? "" : volume < 75 ? "" : ""}
       :value volume
-    :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}% --limit 1.0")
-    (metric :label ""
+      :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}% --limit 1.0"
+      :onclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    )
+    (metric
+      :label ""
       :value {EWW_RAM.used_mem_perc}
-    :onchange "")
-    (metric :label "💾"
+      :onchange ""
+      :onlcik ""
+    )
+    (metric
+      :label "💾"
       :value {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
-    :onchange "")
+      :onchange ""
+      :onclick ""
+    )
   time))
 
 (defwidget workspaces []
@@ -42,16 +50,17 @@
   {music != "" ? "🎵${music}" : ""}))
 
 
-(defwidget metric [label value onchange]
-  (box :orientation "h"
-    :class "metric"
-    :space-evenly false
-    (box :class "label" label)
-    (scale :min 0
-      :max 101
-      :active {onchange != ""}
-      :value value
-    :onchange onchange)))
+(defwidget metric [label value onchange onclick]
+  (eventbox :onclick onclick
+    (box :orientation "h"
+      :class "metric"
+      :space-evenly false
+      (box :class "label" label)
+      (scale :min 0
+        :max 101
+        :active {onchange != ""}
+        :value value
+      :onchange onchange))))
 
 
 
