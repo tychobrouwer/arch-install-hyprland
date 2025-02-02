@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 if [ ! -f /sys/class/power_supply/BAT0/power_now ]; then
   exit

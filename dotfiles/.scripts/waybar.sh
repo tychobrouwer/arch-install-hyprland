@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 CONFIG_FILES="$HOME/.config/waybar/waybar.jsonc $HOME/.config/waybar/waybar.css"
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 player=$(playerctl --list-all | grep spotify | head -n 1)
 
 while read -r line; do 
