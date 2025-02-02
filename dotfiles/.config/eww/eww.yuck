@@ -14,7 +14,7 @@
     )
     (metric
       :class {
-      volume == 0 ? "muted"
+      volume == 0 ? "volume0"
       : volume < 25 ? "volume25"
       : volume < 50 ? "volume50"
       : volume < 75 ? "volume75"

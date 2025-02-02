@@ -37,16 +37,28 @@
     padding-left: 4px;
 }
 
-.sidestuff .volume25 {
-    padding-right: 5px;
-}
-
-.sidestuff .volume50 {
+.sidestuff .volume0 {
+    color: #181926;
     padding-right: 2px;
 }
 
+.sidestuff .volume25 {
+    padding-right: 9px;
+    padding-left: 2px;
+}
+
+.sidestuff .volume50 {
+    padding-right: 5px;
+    padding-left: 2px;
+}
+
 .sidestuff .volume75 {
-    padding-right: 1px;
+    padding-right: 3px;
+    padding-left: 1px;
+}
+
+.sidestuff .volume100 {
+    padding-left: 2px;
 }
 
 .metric scale trough highlight {
