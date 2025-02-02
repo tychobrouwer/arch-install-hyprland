@@ -58,7 +58,7 @@
 "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
 
 (defpoll volume :interval "1s"
-"scripts/getvol")
+"scripts/get-volume.sh")
 
 (defpoll time :interval "10s"
 "date '+%H:%M %b %d, %Y'")
