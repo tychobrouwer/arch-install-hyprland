@@ -6,9 +6,9 @@
 
 (defwidget sidestuff []
   (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end"
-    (eventbox
+    (button
       :onclick "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-      :label {mute == "yes" ? "" : ""}
+      (:box {mute == "yes" ? "" : ""})
     )
     (metric
       :label {volume == 0 ? "🔇" : volume < 25 ? "" : volume < 50 ? "" : volume < 75 ? "" : ""}
