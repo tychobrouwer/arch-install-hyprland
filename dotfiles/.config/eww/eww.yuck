@@ -8,7 +8,7 @@
   (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end"
     (button
       :onclick "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-      (box :class "label" {mute == "yes" ? "" : ""})
+      (box :class "label" {mutedmic == "true" ? "" : ""})
     )
     (metric
       :label {volume == 0 ? "🔇" : volume < 25 ? "" : volume < 50 ? "" : volume < 75 ? "" : ""}
@@ -75,7 +75,7 @@
 (defpoll volume :interval "0.1s"
 "scripts/get-volume.sh")
 
-(defpoll mute :interval "0.1s"
+(defpoll mutedmic :interval "0.1s"
 "scripts/get-mute.sh")
 
 (defpoll activeworkspace :interval "0.1s"
