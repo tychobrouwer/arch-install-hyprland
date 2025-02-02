@@ -16,7 +16,7 @@
       :label ""
       :value {EWW_RAM.used_mem_perc}
       :onchange ""
-      :onlcik ""
+      :onclick ""
     )
     (metric
       :label "💾"
