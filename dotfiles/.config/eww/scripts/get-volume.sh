@@ -4,7 +4,7 @@ if
     command -v wpctl &
     >/dev/null
 then
-    if [ true == $(wpctl get-mute @DEFAULT_AUDIO_SINK@) ]; then
+    if wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q "MUTED"; then
         echo 0
         exit
     else
