@@ -79,7 +79,7 @@
 (defpoll time :interval "10s"
 "date '+%H:%M %b %d, %Y'")
 
-(defvar workspaces "[0, 1, 2, 3, 4, 5, 6, 7, 8]")
+(defvar workspaces "[1, 2, 3, 4, 5, 6, 7]")
 
 (defwindow bar
   :monitor 0
