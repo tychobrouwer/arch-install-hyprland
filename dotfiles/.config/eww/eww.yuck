@@ -6,8 +6,9 @@
 
 (defwidget sidestuff []
   (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end"
-    (metric (label :text {volume == 0 ? "🔇" : volume < 25 ? "" : volume < 50 ? "" : volume < 75 ? "" : ""})
-      :value {volume}
+    (metric
+      :label {volume == 0 ? "🔇" : volume < 25 ? "" : volume < 50 ? "" : volume < 75 ? "" : ""}
+      :value volume
     :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}% --limit 1.0")
     (metric :label ""
       :value {EWW_RAM.used_mem_perc}
