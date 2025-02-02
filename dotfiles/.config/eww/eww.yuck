@@ -6,6 +6,10 @@
 
 (defwidget sidestuff []
   (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end"
+    (button
+      :onclick "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+      :label {mute == "yes" ? "" : ""}
+    )
     (metric
       :label {volume == 0 ? "🔇" : volume < 25 ? "" : volume < 50 ? "" : volume < 75 ? "" : ""}
       :value volume
@@ -65,15 +69,16 @@
       :onchange onchange
     )))
 
-
-
 (deflisten music :initial ""
 "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
 
-(defpoll volume :interval "0.2s"
+(defpoll volume :interval "0.1s"
 "scripts/get-volume.sh")
 
-(defpoll activeworkspace :interval "0.2s"
+(defpoll mute :interval "0.1s"
+"scripts/get-mute.sh")
+
+(defpoll activeworkspace :interval "0.1s"
   "hyprctl activeworkspace | awk -F '[()]' '{print $2}' | xargs")
 
 (defpoll time :interval "10s"
