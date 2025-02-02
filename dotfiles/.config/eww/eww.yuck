@@ -26,12 +26,14 @@
       :onclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     )
     (metric
+      :class ""
       :label ""
       :value {EWW_RAM.used_mem_perc}
       :onchange ""
       :onclick ""
     )
     (metric
+      :class ""
       :label "💾"
       :value {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
       :onchange ""
