@@ -11,17 +11,13 @@ get_status() {
 	local cache_age=$(($(date +%s%3N) - $(stat -c %.3Y "$CACHE_FILE" | awk '{print $1 * 1000}')))
 
 	if [[ $cache_age -ge 500 ]]; then
-		(
-			flock -n 200 || exit 1
+		PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
 
-			PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
-
-			if [[ $(echo $PLAYBACK_DATA | jq -r ".is_playing") == "null" ]]; then
-				PLAYBACK_DATA=$(cat "$CACHE_FILE")
-			elif [[ "$(echo $PLAYBACK_DATA | jq -r .is_playing)" != "$(cat "$CACHE_FILE" | jq -r .is_playing)" ]]; then
-				echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
-			fi
-		) 200>"$LOCK_FILE"
+		if [[ $(echo $PLAYBACK_DATA | jq -r ".is_playing") == "null" ]]; then
+			PLAYBACK_DATA=$(cat "$CACHE_FILE")
+		elif [[ "$(echo $PLAYBACK_DATA | jq -r .is_playing)" != "$(cat "$CACHE_FILE" | jq -r .is_playing)" ]]; then
+			echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
+		fi
 	else
 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
 	fi
@@ -40,17 +36,13 @@ get_song() {
 	local cache_age=$(($(date +%s%3N) - $(stat -c %.3Y "$CACHE_FILE" | awk '{print $1 * 1000}')))
 
 	if [[ $cache_age -ge 500 ]]; then
-		(
-			flock -n 200 || exit 1
+		PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
 
-			PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
-
-			if [[ $(echo $PLAYBACK_DATA | jq -r ".item.name") == "null" ]]; then
-				PLAYBACK_DATA=$(cat "$CACHE_FILE")
-			elif [[ "$(echo $PLAYBACK_DATA | jq -r .item.name)" != "$(cat "$CACHE_FILE" | jq -r .item.name)" ]]; then
-				echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
-			fi
-		) 200>"$LOCK_FILE"
+		if [[ $(echo $PLAYBACK_DATA | jq -r ".item.name") == "null" ]]; then
+			PLAYBACK_DATA=$(cat "$CACHE_FILE")
+		elif [[ "$(echo $PLAYBACK_DATA | jq -r .item.name)" != "$(cat "$CACHE_FILE" | jq -r .item.name)" ]]; then
+			echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
+		fi
 	else
 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
 	fi
@@ -64,17 +56,13 @@ get_artist() {
 	local cache_age=$(($(date +%s%3N) - $(stat -c %.3Y "$CACHE_FILE" | awk '{print $1 * 1000}')))
 
 	if [[ $cache_age -ge 500 ]]; then
-		(
-			flock -n 200 || exit 1
+		PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
 
-			PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
-
-			if [[ $(echo $PLAYBACK_DATA | jq -r ".item.artists[].name") == "null" ]]; then
-				PLAYBACK_DATA=$(cat "$CACHE_FILE")
-			elif [[ "$(echo $PLAYBACK_DATA | jq -r .item.artists[].name)" != "$(cat "$CACHE_FILE" | jq -r .item.artists[].name)" ]]; then
-				echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
-			fi
-		) 200>"$LOCK_FILE"
+		if [[ $(echo $PLAYBACK_DATA | jq -r ".item.artists[].name") == "null" ]]; then
+			PLAYBACK_DATA=$(cat "$CACHE_FILE")
+		elif [[ "$(echo $PLAYBACK_DATA | jq -r .item.artists[].name)" != "$(cat "$CACHE_FILE" | jq -r .item.artists[].name)" ]]; then
+			echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
+		fi
 	else
 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
 	fi
@@ -88,17 +76,13 @@ get_time() {
 	local cache_age=$(($(date +%s%3N) - $(stat -c %.3Y "$CACHE_FILE" | awk '{print $1 * 1000}')))
 
 	if [[ $cache_age -ge 500 ]]; then
-		(
-			flock -n 200 || exit 1
+		PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
 
-			PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
-
-			if [[ $(echo $PLAYBACK_DATA | jq -r ".progress_ms") == "null" && $(echo $PLAYBACK_DATA | jq -r ".item.duration_ms") == "null" ]]; then
-				PLAYBACK_DATA=$(cat "$CACHE_FILE")
-			elif [[ "$PLAYBACK_DATA" != "$(cat "$CACHE_FILE")" ]]; then
-				echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
-			fi
-		) 200>"$LOCK_FILE"
+		if [[ $(echo $PLAYBACK_DATA | jq -r ".progress_ms") == "null" && $(echo $PLAYBACK_DATA | jq -r ".item.duration_ms") == "null" ]]; then
+			PLAYBACK_DATA=$(cat "$CACHE_FILE")
+		elif [[ "$PLAYBACK_DATA" != "$(cat "$CACHE_FILE")" ]]; then
+			echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
+		fi
 	else
 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
 	fi
@@ -159,17 +143,13 @@ get_cover() {
 	local cache_age=$(($(date +%s%3N) - $(stat -c %.3Y "$CACHE_FILE" | awk '{print $1 * 1000}')))
 
 	if [[ $cache_age -ge 500 ]]; then
-		(
-			flock -n 200 || exit 1
+		PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
 
-			PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
-
-			if [[ $(echo $PLAYBACK_DATA | jq -r ".item.album.images[]") == "null" ]]; then
-				PLAYBACK_DATA=$(cat "$CACHE_FILE")
-			elif [[ "$PLAYBACK_DATA" != "$(cat "$CACHE_FILE")" ]]; then
-				echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
-			fi
-		) 200>"$LOCK_FILE"
+		if [[ $(echo $PLAYBACK_DATA | jq -r ".item.album.images[]") == "null" ]]; then
+			PLAYBACK_DATA=$(cat "$CACHE_FILE")
+		elif [[ "$PLAYBACK_DATA" != "$(cat "$CACHE_FILE")" ]]; then
+			echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
+		fi
 	else
 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
 	fi
