@@ -58,8 +58,8 @@
   )
 )
 
-defwidget time []
-  (box :class "time" :halign "start" :text time)
+(defwidget time []
+  (box :class "time" :halign "start" :text time))
 
 (defwidget music []
   (eventbox :class "music"
