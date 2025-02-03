@@ -37,7 +37,7 @@ get_time() {
 	local total_time=$(echo $PLAYBACK_DATA | jq -r .item.duration_ms)
 	
 	if [ -z "$current_time" ] || [ -z "$total_time" ] || [[ "$total_time" == "null" ]] || [[ "$current_time" == "null" ]] || [ "$total_time" -eq 0 ]; then
-		echo "0.0"
+		echo "0"
 		return
 	fi
 	

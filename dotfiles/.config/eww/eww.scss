@@ -114,17 +114,17 @@
 // ------------------------------------------------ //
 
 .music_window {
-	background-color: #181926;
-	border-radius: 6px;
+    background-color: #181926;
+    border-radius: 6px;
     padding: 20px;
 }
 
 .album_art {
-	background-size: 120px;
-	min-height: 120px;
-	min-width: 120px;
-	margin-right: 20px;
-	border-radius: 4px;
+    background-size: 120px;
+    min-height: 120px;
+    min-width: 120px;
+    margin-right: 20px;
+    border-radius: 4px;
 }
 
 // .btn_prev, .btn_play, .btn_next {
@@ -135,33 +135,33 @@
 .btn_prev,
 .btn_next,
 .btn_play {
-	color: #cad3f5;
-	font-size : 16px;
-	font-weight : normal;
+    color: #cad3f5;
+    font-size: 16px;
+    font-weight: normal;
 }
 
 .btn_play,
 .song {
-	color: #cad3f5;
-	font-size : 24px;
-	font-weight : normal;
+    color: #cad3f5;
+    font-size: 24px;
+    font-weight: normal;
 }
 
 .artist {
-	margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .music_bar scale trough highlight {
-	all: unset;
-	background-color: #cad3f5;
-	border-radius: 8px;
+    all: unset;
+    background-color: #cad3f5;
+    border-radius: 8px;
 }
 
 .music_bar scale trough {
-	all: unset;
-	background-color: #24273a;
-	border-radius: 8px;
-	min-height: 12px;
-	min-width: 200px;
-	margin-top: 10px;
+    all: unset;
+    background-color: #24273a;
+    border-radius: 8px;
+    min-height: 12px;
+    min-width: 200px;
+    margin-top: 10px;
 }
