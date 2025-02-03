@@ -80,7 +80,7 @@
     (scale :min 0
       :max 101
       :active {onchange != ""}
-      :value value
+      :value {value != "" ? value : 0}
       :onchange onchange
     )))
 
