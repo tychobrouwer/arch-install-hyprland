@@ -88,7 +88,7 @@
 ;; Music
 (defwidget music_widget []
   (box :class "music_window" :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false"
-    (box :class "album_art" :vexpand "false" :hexpand "false" :style "background-image: url('${COVER}');")
+    (box :class "album_art" :vexpand "false" :hexpand "false" :style "background-image: url('/tmp/.music_cover.jpg');")
     (box :orientation "v" :spacing 0 :space-evenly "false" :vexpand "false" :hexpand "true"
       (label :halign "center" :class "song" :wrap "true" :limit-width 20 :text SONG)
       (label :halign "center" :class "artist" :wrap "true" :limit-width 15 :text ARTIST)
@@ -100,12 +100,12 @@
         (scale :min 0 :active "true" :max 100 :value {CURRENT != "" ? CURRENT : 0})))))
 
 ;; Music vars
-(defpoll SONG :interval "0.1s" "scripts/music-info.sh --song")
-(defpoll ARTIST :interval "0.1s" "scripts/music-info.sh --artist")
-(defpoll STATUS :interval "0.1s" "scripts/music-info.sh --status")
-(defpoll SUMMARY :interval "0.1s" "scripts/music-info.sh --summary")
-(defpoll CURRENT :interval "0.1s" "scripts/music-info.sh --time")
-(defpoll COVER :interval "0.1s" "scripts/music-info.sh --cover")
+(defpoll SONG :interval "0.5s" "scripts/music-info.sh --song")
+(defpoll ARTIST :interval "0.5s" "scripts/music-info.sh --artist")
+(defpoll STATUS :interval "0.5s" "scripts/music-info.sh --status")
+(defpoll SUMMARY :interval "0.5s" "scripts/music-info.sh --summary")
+(defpoll CURRENT :interval "0.5s" "scripts/music-info.sh --time")
+; (defpoll COVER :interval "0.5s" "scripts/music-info.sh --cover")
 
 (defpoll volume :interval "0.1s"
 "scripts/get-volume.sh")
