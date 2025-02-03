@@ -14,7 +14,7 @@ done
 
 while true; do
   if [[ ! $(pidof spotify_player) ]]; then
-    spotify_player -d --config-folder $HOME/.config/spotify_player
+    spotify_player -d --config-folder $HOME/.config/spotify-player
 
     if [[ $(pidof spotify_player) ]]; then
       break
