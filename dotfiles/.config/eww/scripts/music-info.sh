@@ -3,39 +3,23 @@
 ## Get data
 CACHE_FILE="$HOME/.cache/music_info.json"
 CACHE_FILE_TMP="${CACHE_FILE}.tmp"
-LOCK_FILE="/tmp/music_info.lock"
 COVER="/tmp/.music_cover.jpg"
 
-LOCK_FILE="/tmp/music_info.lock"
-
-lock() {
-    exec 200>"$LOCK_FILE"
-    flock 200
-}
-
-unlock() {
-    flock -u 200
-    rm -f "$LOCK_FILE"
-}
-
-## Get status
-get_status() {
+get_update() {
 	local cache_age=$(($(date +%s%3N) - $(stat -c %.3Y "$CACHE_FILE" | awk '{print $1 * 1000}')))
 
 	if [[ $cache_age -ge 500 ]]; then
 		PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
 
-		if [[ $(echo $PLAYBACK_DATA | jq -r ".is_playing") == "null" ]]; then
-			PLAYBACK_DATA=$(cat "$CACHE_FILE")
-		elif [[ "$(echo $PLAYBACK_DATA | jq -r .is_playing)" != "$(cat "$CACHE_FILE" | jq -r .is_playing)" ]]; then
-			lock
+		if [[ "$(echo $PLAYBACK_DATA | jq -r .)" != "$(cat "$CACHE_FILE" | jq -r .)" ]]; then
 			echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
-			unlock
 		fi
-	else
-		PLAYBACK_DATA=$(cat "$CACHE_FILE")
 	fi
+}
 
+## Get status
+get_status() {
+	PLAYBACK_DATA=$(cat "$CACHE_FILE")
 	local STATUS=$(echo $PLAYBACK_DATA | jq -r .is_playing)
 
 	if [[ $STATUS == "false" ]]; then
@@ -47,66 +31,23 @@ get_status() {
 
 ## Get song
 get_song() {
-	local cache_age=$(($(date +%s%3N) - $(stat -c %.3Y "$CACHE_FILE" | awk '{print $1 * 1000}')))
-
-	if [[ $cache_age -ge 500 ]]; then
-		PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
-
-		if [[ $(echo $PLAYBACK_DATA | jq -r ".item.name") == "null" ]]; then
-			PLAYBACK_DATA=$(cat "$CACHE_FILE")
-		elif [[ "$(echo $PLAYBACK_DATA | jq -r .item.name)" != "$(cat "$CACHE_FILE" | jq -r .item.name)" ]]; then
-			lock
-			echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
-			unlock
-		fi
-	else
-		PLAYBACK_DATA=$(cat "$CACHE_FILE")
-	fi
-
+	PLAYBACK_DATA=$(cat "$CACHE_FILE")
 	local song=$(echo $PLAYBACK_DATA | jq -r .item.name)
+
 	echo "$song"
 }
 
 ## Get artist
 get_artist() {
-	local cache_age=$(($(date +%s%3N) - $(stat -c %.3Y "$CACHE_FILE" | awk '{print $1 * 1000}')))
-
-	if [[ $cache_age -ge 500 ]]; then
-		PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
-
-		if [[ $(echo $PLAYBACK_DATA | jq -r ".item.artists[].name") == "null" ]]; then
-			PLAYBACK_DATA=$(cat "$CACHE_FILE")
-		elif [[ "$(echo $PLAYBACK_DATA | jq -r .item.artists[].name)" != "$(cat "$CACHE_FILE" | jq -r .item.artists[].name)" ]]; then
-			lock
-			echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
-			unlock
-		fi
-	else
-		PLAYBACK_DATA=$(cat "$CACHE_FILE")
-	fi
-
+	PLAYBACK_DATA=$(cat "$CACHE_FILE")
 	local artists=$(echo $PLAYBACK_DATA | jq -r .item.artists[].name | tr '\n' ' ')
+
 	echo "$artists"
 }
 
 ## Get time
 get_time() {
-	local cache_age=$(($(date +%s%3N) - $(stat -c %.3Y "$CACHE_FILE" | awk '{print $1 * 1000}')))
-
-	if [[ $cache_age -ge 500 ]]; then
-		PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
-
-		if [[ $(echo $PLAYBACK_DATA | jq -r ".progress_ms") == "null" && $(echo $PLAYBACK_DATA | jq -r ".item.duration_ms") == "null" ]]; then
-			PLAYBACK_DATA=$(cat "$CACHE_FILE")
-		elif [[ "$PLAYBACK_DATA" != "$(cat "$CACHE_FILE")" ]]; then
-			lock
-			echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
-			unlock
-		fi
-	else
-		PLAYBACK_DATA=$(cat "$CACHE_FILE")
-	fi
-
+	PLAYBACK_DATA=$(cat "$CACHE_FILE")
 	local current_time=$(echo $PLAYBACK_DATA | jq -r .progress_ms)
 	local total_time=$(echo $PLAYBACK_DATA | jq -r .item.duration_ms)
 
@@ -160,23 +101,9 @@ get_time() {
 
 ## Get cover
 get_cover() {
-	local cache_age=$(($(date +%s%3N) - $(stat -c %.3Y "$CACHE_FILE" | awk '{print $1 * 1000}')))
-
-	if [[ $cache_age -ge 500 ]]; then
-		PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
-
-		if [[ $(echo $PLAYBACK_DATA | jq -r ".item.album.images[]") == "null" ]]; then
-			PLAYBACK_DATA=$(cat "$CACHE_FILE")
-		elif [[ "$PLAYBACK_DATA" != "$(cat "$CACHE_FILE")" ]]; then
-			lock
-			echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
-			unlock
-		fi
-	else
-		PLAYBACK_DATA=$(cat "$CACHE_FILE")
-	fi
-
+	PLAYBACK_DATA=$(cat "$CACHE_FILE")
 	local url=$(echo $PLAYBACK_DATA | jq -r "[.item.album.images[] | select(.height > 150)][0].url")
+
 	if [ -z "$url" ]; then
 		echo "images/music.png"
 		return
@@ -210,6 +137,7 @@ summary() {
 
 ## Execute accordingly
 case "$1" in
+--update) get_update ;;
 --song) get_song ;;
 --artist) get_artist ;;
 --status) get_status ;;
