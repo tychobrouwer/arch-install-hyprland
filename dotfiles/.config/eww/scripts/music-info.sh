@@ -48,7 +48,7 @@ get_song() {
 	echo "$PLAYBACK_DATA" >"$CACHE_FILE"
 
 	local song=$(echo $PLAYBACK_DATA | jq -r .item.name)
-	echo "${song:-Offline}"
+	echo "$song"
 }
 
 ## Get artist
@@ -63,7 +63,7 @@ get_artist() {
 	echo "$PLAYBACK_DATA" >"$CACHE_FILE"
 
 	local artists=$(echo $PLAYBACK_DATA | jq -r .item.artists[].name | tr '\n' ' ')
-	echo "${artists:-Offline}"
+	echo "$artists"
 }
 
 ## Get time
@@ -100,7 +100,7 @@ get_ctime() {
 
 	local current_time=$(echo $PLAYBACK_DATA | jq -r .progress_ms)
 	local ctime=$(date -d@$(($current_time / 1000)) -u +%M:%S)
-	echo "${ctime:-0:00}"
+	echo "$ctime"
 }
 
 get_ttime() {
@@ -115,7 +115,7 @@ get_ttime() {
 
 	local total_time=$(echo $PLAYBACK_DATA | jq -r .item.duration_ms)
 	local ttime=$(date -d@$(($total_time / 1000)) -u +%M:%S)
-	echo "${ttime:-0:00}"
+	echo "$ttime"
 }
 
 ## Get cover
