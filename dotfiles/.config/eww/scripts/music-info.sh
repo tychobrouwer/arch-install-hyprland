@@ -53,8 +53,8 @@ get_ttime() {
 
 ## Get cover
 get_cover() {
-	PLAYBACK_DATA=$(spotify_player get key playback | jq -r .)
-	local url=$(echo $PLAYBACK_DATA | jq -r "[.item.album.images[] | select(.height > 150)][0].url")
+	local nextsong=$(spotify_player get key queue | jq -r ".queue[0]")
+	local url=$(echo $nextsong | jq -r "[.album.images[] | select(.height > 150)][0].url")
 	if [ -z "$url" ]; then
 		echo "images/music.png"
 		return
@@ -79,6 +79,6 @@ case "$1" in
 	--ttime) get_ttime ;;
 	--cover) get_cover ;;
 	--toggle) spotify_player playback play-pause ;;
-	--next) spotify_player playback next; sleep 0.5; get_cover ;;
-	--prev) spotify_player playback previous; sleep 0.5; get_cover ;;
+	--next) spotify_player playback next; get_cover ;;
+	--prev) spotify_player playback previous; get_cover ;;
 esac
