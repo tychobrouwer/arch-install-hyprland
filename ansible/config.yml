@@ -270,7 +270,7 @@ customise:
     - fastfetch
     - base-devel
     - cifs-utils # for mounting SMB shares
-    - playerctl
+    # - playerctl # Only needed for waybar
     - brightnessctl
     - cmake
     - curl
