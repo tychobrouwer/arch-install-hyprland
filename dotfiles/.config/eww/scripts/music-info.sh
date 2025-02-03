@@ -4,9 +4,14 @@
 CACHE_FILE="$HOME/.cache/music_info.json"
 COVER="/tmp/.music_cover.jpg"
 
-if [ ! -f "$CACHE_FILE" ] || [ $(($(date +%s%3N) - $(echo $(stat -c %.3Y "$CACHE_FILE") | awk '{print $1 * 1000}'))) -gt 500 ]; then	
+if [ ! -f "$CACHE_FILE" ] || ( ($(($(date +%s%3N) - $(echo $(stat -c %.3Y "$CACHE_FILE") | awk '{print $1 * 1000}'))) >500)); then
 	PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
-	echo "$PLAYBACK_DATA" > "$CACHE_FILE"
+
+	if [ -z "$($PLAYBACK_DATA | jq -r .is_playing // empty)" ]; then
+		PLAYBACK_DATA=$(cat "$CACHE_FILE")
+	else
+		echo "$PLAYBACK_DATA" >"$CACHE_FILE"
+	fi
 else
 	PLAYBACK_DATA=$(cat "$CACHE_FILE")
 fi
