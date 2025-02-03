@@ -1,12 +1,11 @@
 (defwidget bar []
   (centerbox :orientation "h"
-    (workspaces)
-    (time)
+    (left)
     (music)
-    (sidestuff)))
+    (right)))
 
-(defwidget sidestuff []
-  (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end"
+(defwidget right []
+  (box :class "right" :orientation "h" :space-evenly false :halign "end"
     (button
       :onclick "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
       (box
@@ -42,6 +41,12 @@
     )
   ))
 
+(defwidget left []
+  (box :class "left" :orientation "h" :space-evenly false :halign "start"
+    (workspaces)
+    (time)
+  ))
+
 
 (defwidget workspaces []
   (box :class "workspaces"
@@ -59,7 +64,7 @@
 )
 
 (defwidget time []
-  (box :class "time" :halign "start" :text time))
+  (box :class "time" :halign "end" :text time))
 
 (defwidget music []
   (eventbox :class "music"
