@@ -50,7 +50,7 @@
     dest: /usr/lib/systemd/system/greetd.service.d/override.conf
     content: |
       [Unit]
-      After=systemd-user-sessions.service
+      After=multi-user.target
     owner: root
     group: root
     mode: "0644"
