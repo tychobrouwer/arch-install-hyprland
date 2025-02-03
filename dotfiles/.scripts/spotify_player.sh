@@ -17,6 +17,9 @@ while true; do
     spotify_player -d --config-folder $HOME/.config/spotify-player
 
     if [[ $(pidof spotify_player) ]]; then
+      spotify_player playback start liked --random
+      spotify_player playback pause
+      
       break
     fi
 

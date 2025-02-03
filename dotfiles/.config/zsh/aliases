@@ -36,10 +36,10 @@ alias gs='git status'
 #alias google-chrome-stable='google-chrome-stable --enable-features=UseOzonePlatform --ozone-platform=wayland --password-store=gnome-libsecret'
 #alias brave='brave --enable-features=UseOzonePlatform --ozone-platform=wayland --password-store=gnome-libsecret'
 
-alias code='code --enable-features=UseOzonePlatform --ozone-platform=wayland --disable-gpu --password-store=gnome-libsecret'
-alias google-chrome-stable='google-chrome-stable --password-store=gnome-libsecret'
-alias brave='brave --password-store=gnome-libsecret'
-alias unreal='SDL_VIDEODRIVER=x11 prime-run /opt/unreal-engine/Engine/Binaries/Linux/UnrealEditor'
+alias code='code --enable-features=UseOzonePlatform --ozone-platform=wayland'
+alias brave='brave --enable-features=UseOzonePlatform --ozone-platform=wayland'
+# alias google-chrome-stable='google-chrome-stable --password-store=gnome-libsecret'
+# alias unreal='SDL_VIDEODRIVER=x11 prime-run /opt/unreal-engine/Engine/Binaries/Linux/UnrealEditor'
 
 alias xssh='env TERM=xterm-256color ssh'
 
