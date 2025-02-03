@@ -1,6 +1,7 @@
 (defwidget bar []
   (centerbox :orientation "h"
     (workspaces)
+    (time)
     (music)
     (sidestuff)))
 
@@ -39,7 +40,7 @@
       :onchange ""
       :onclick ""
     )
-  time))
+  ))
 
 
 (defwidget workspaces []
@@ -56,6 +57,9 @@
     )
   )
 )
+
+defwidget time []
+  (box :class "time" :halign "start" :text time)
 
 (defwidget music []
   (eventbox :class "music"
@@ -99,7 +103,7 @@
 
 
 (deflisten music :initial ""
-    "playerctl --player=spotify_player --follow metadata --format '{{ markup_escape(title) }} - {{ artist }}' || true")
+  "playerctl --player=spotify_player --follow metadata --format '{{ markup_escape(title) }} - {{ artist }}' || true")
 
 ;; Music vars
 (defpoll SONG :interval "0.2s" "scripts/music-info.sh --song")
