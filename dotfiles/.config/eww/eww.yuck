@@ -100,12 +100,12 @@
         (scale :min 0 :active "true" :max 100 :value {CURRENT != "" ? CURRENT : 0})))))
 
 ;; Music vars
-(defpoll UPDATE :interval "1s" "scripts/music-info.sh --update")
-(defpoll SONG :interval "0.1s" "scripts/music-info.sh --song")
-(defpoll ARTIST :interval "0.1s" "scripts/music-info.sh --artist")
-(defpoll STATUS :interval "0.1s" "scripts/music-info.sh --status")
-(defpoll SUMMARY :interval "0.1s" "scripts/music-info.sh --summary")
-(defpoll CURRENT :interval "0.1s" "scripts/music-info.sh --time")
+(defpoll UPDATE :interval "0.5s" "scripts/music-info.sh --update")
+(defpoll SONG :interval "0.2s" "scripts/music-info.sh --song")
+(defpoll ARTIST :interval "0.2s" "scripts/music-info.sh --artist")
+(defpoll STATUS :interval "0.2s" "scripts/music-info.sh --status")
+(defpoll SUMMARY :interval "0.2s" "scripts/music-info.sh --summary")
+(defpoll CURRENT :interval "1s" "scripts/music-info.sh --time")
 (defpoll COVER :interval "1s" "scripts/music-info.sh --cover")
 
 (defpoll volume :interval "0.1s"
@@ -138,5 +138,5 @@
   :monitor 0
   :stacking "fg"
   :focusable false
-  :geometry (geometry :x "50%" :y 10 :anchor "top center")
+  :geometry (geometry :x "50%" :y 5 :anchor "top center")
   (music_widget))

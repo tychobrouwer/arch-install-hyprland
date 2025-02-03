@@ -3,7 +3,8 @@
 ## Get data
 CACHE_FILE="$HOME/.cache/music_info.json"
 CACHE_FILE_TMP="${CACHE_FILE}.tmp"
-COVER="/tmp/.music_cover.jpg"
+COVER="/.cache/music_cover.jpg"
+COVER_TMP="${COVER}.tmp"
 
 get_update() {
 	local cache_age=$(($(date +%s%3N) - $(stat -c %.3Y "$CACHE_FILE" | awk '{print $1 * 1000}')))
