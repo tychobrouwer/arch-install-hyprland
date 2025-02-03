@@ -2,10 +2,10 @@
 
 ## Get data
 PLAYBACK_DATA=$(spotify_player get key playback | jq -r .)
-if [ -z "$PLAYBACK_DATA" ]; then
-	echo "Error: Unable to retrieve playback data."
-	exit 1
-fi
+# if [ -z "$PLAYBACK_DATA" ]; then
+# 	echo "Error: Unable to retrieve playback data."
+# 	exit 1
+# fi
 COVER="/tmp/.music_cover.jpg"
 
 ## Get status

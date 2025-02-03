@@ -1,5 +1,6 @@
 * {
     all: unset; // Unsets everything so you can style everything from scratch
+    font-family: "RobotoMono", "Font Awesome 6 Pro", "Font Awesome 6 Brands", "Noto Sans CJK";
 }
 
 // ------------------------------------------------ //
@@ -126,9 +127,9 @@
 	border-radius: 4px;
 }
 
-.btn_prev, .btn_play, .btn_next {
-	font-family: Iosevka Nerd Font;
-}
+// .btn_prev, .btn_play, .btn_next {
+// 	font-family: Iosevka Nerd Font;
+// }
 
 .artist,
 .btn_prev,
