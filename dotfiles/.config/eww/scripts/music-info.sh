@@ -25,11 +25,12 @@ get_status() {
 
 		if [[ $(echo $PLAYBACK_DATA | jq -r ".is_playing") == "null" ]]; then
 			PLAYBACK_DATA=$(cat "$CACHE_FILE")
+		else
+			echo "$PLAYBACK_DATA" >"$CACHE_FILE"
 		fi
 	else
 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
 	fi
-	echo "$PLAYBACK_DATA" >"$CACHE_FILE"
 
 	local STATUS=$(echo $PLAYBACK_DATA | jq -r .is_playing)
 
@@ -49,11 +50,12 @@ get_song() {
 
 		if [[ $(echo $PLAYBACK_DATA | jq -r ".item.name") == "null" ]]; then
 			PLAYBACK_DATA=$(cat "$CACHE_FILE")
+		else
+			echo "$PLAYBACK_DATA" >"$CACHE_FILE"
 		fi
 	else
 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
 	fi
-	echo "$PLAYBACK_DATA" >"$CACHE_FILE"
 
 	local song=$(echo $PLAYBACK_DATA | jq -r .item.name)
 	echo "$song"
@@ -68,11 +70,12 @@ get_artist() {
 
 		if [[ $(echo $PLAYBACK_DATA | jq -r ".item.artists[].name") == "null" ]]; then
 			PLAYBACK_DATA=$(cat "$CACHE_FILE")
+		else
+			echo "$PLAYBACK_DATA" >"$CACHE_FILE"
 		fi
 	else
 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
 	fi
-	echo "$PLAYBACK_DATA" >"$CACHE_FILE"
 
 	local artists=$(echo $PLAYBACK_DATA | jq -r .item.artists[].name | tr '\n' ' ')
 	echo "$artists"
@@ -87,11 +90,12 @@ get_time() {
 
 		if [[ $(echo $PLAYBACK_DATA | jq -r ".progress_ms") == "null" && $(echo $PLAYBACK_DATA | jq -r ".item.duration_ms") == "null" ]]; then
 			PLAYBACK_DATA=$(cat "$CACHE_FILE")
+		else
+			echo "$PLAYBACK_DATA" >"$CACHE_FILE"
 		fi
 	else
 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
 	fi
-	echo "$PLAYBACK_DATA" >"$CACHE_FILE"
 
 	local current_time=$(echo $PLAYBACK_DATA | jq -r .progress_ms)
 	local total_time=$(echo $PLAYBACK_DATA | jq -r .item.duration_ms)
@@ -112,11 +116,12 @@ get_ctime() {
 
 		if [[ $(echo $PLAYBACK_DATA | jq -r ".progress_ms") == "null" ]]; then
 			PLAYBACK_DATA=$(cat "$CACHE_FILE")
+		else
+			echo "$PLAYBACK_DATA" >"$CACHE_FILE"
 		fi
 	else
 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
 	fi
-	echo "$PLAYBACK_DATA" >"$CACHE_FILE"
 
 	local current_time=$(echo $PLAYBACK_DATA | jq -r .progress_ms)
 	local ctime=$(date -d@$(($current_time / 1000)) -u +%M:%S)
@@ -131,11 +136,12 @@ get_ttime() {
 
 		if [[ $(echo $PLAYBACK_DATA | jq -r ".item.duration_ms") == "null" ]]; then
 			PLAYBACK_DATA=$(cat "$CACHE_FILE")
+		else
+			echo "$PLAYBACK_DATA" >"$CACHE_FILE"
 		fi
 	else
 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
 	fi
-	echo "$PLAYBACK_DATA" >"$CACHE_FILE"
 
 	local total_time=$(echo $PLAYBACK_DATA | jq -r .item.duration_ms)
 	local ttime=$(date -d@$(($total_time / 1000)) -u +%M:%S)
@@ -151,11 +157,12 @@ get_cover() {
 
 		if [[ $(echo $PLAYBACK_DATA | jq -r ".item.album.images[]") == "null" ]]; then
 			PLAYBACK_DATA=$(cat "$CACHE_FILE")
+		else
+			echo "$PLAYBACK_DATA" >"$CACHE_FILE"
 		fi
 	else
 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
 	fi
-	echo "$PLAYBACK_DATA" >"$CACHE_FILE"
 
 	local url=$(echo $PLAYBACK_DATA | jq -r "[.item.album.images[] | select(.height > 150)][0].url")
 	if [ -z "$url" ]; then
