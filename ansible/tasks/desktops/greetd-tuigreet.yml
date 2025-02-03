@@ -37,23 +37,24 @@
     groups: input
     append: true
 
-- name: Create greetd service override
-  ansible.builtin.file:
-    path: /usr/lib/systemd/system/greetd.service.d
-    state: directory
-    owner: root
-    group: root
-    mode: "0755"
+# - name: Create greetd service override
+#   ansible.builtin.file:
+#     path: /usr/lib/systemd/system/greetd.service.d
+#     state: directory
+#     owner: root
+#     group: root
+#     mode: "0755"
 
-- name: Fix terminal messages for greetd
-  ansible.builtin.copy:
-    dest: /usr/lib/systemd/system/greetd.service.d/override.conf
-    content: |
-      [Unit]
-      After=multi-user.target
-    owner: root
-    group: root
-    mode: "0644"
+# - name: Fix terminal messages for greetd
+#   ansible.builtin.copy:
+#     dest: /usr/lib/systemd/system/greetd.service.d/override.conf
+#     content: |
+#       [Unit]
+#       After=multi-user.target
+#     owner: root
+#     group: root
+#     mode: "0644"
+
 # - name: Fix terminal messages for greetd with tlp
 #   ansible.builtin.copy:
 #     dest: /usr/lib/systemd/system/greetd.service.d/override_tlp.conf

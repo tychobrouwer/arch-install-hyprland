@@ -19,3 +19,10 @@
     regexp: ^(options(?!.*\bclocksource=tsc\b).*)$
     replace: \1 clocksource=tsc
   notify: Rebuild initramfs
+
+- name: Set kernel console tty
+  ansible.builtin.replace:
+    dest: "{{ item }}"
+    regexp: ^(options(?!.*\bconsole=tty1\b).*)$
+    replace: \1 console=tty1
+  notify: Rebuild initramfs

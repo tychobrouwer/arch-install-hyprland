@@ -206,7 +206,7 @@ desktop:
 
   greetd_tuigreet:
     configure: true
-    vt: 1
+    vt: 2
     command: Hyprland > /var/log/hyprland/hyprland.log 2>&1
     time_format: "%d %b %Y - %H:%M:%S"
     greeting: Unfriendly environment for unauthorised personnel.
