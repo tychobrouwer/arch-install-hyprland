@@ -68,7 +68,7 @@
     :space-evenly false
     :halign "center"
     :onclick "eww open music_widget --toggle --screen 0"
-    {music != "" ? "${music}" : ""}
+    {SUMMARY != "" ? "${SUMMARY}" : ""}
   ))
 
 
@@ -101,19 +101,13 @@
         (eventbox :onscroll "spotify_player seek -50"
           (scale :min 0 :active "true" :max 100 :value CURRENT))))))
 
-
-
-(deflisten music :initial ""
-  "playerctl --player=spotify_player --follow metadata --format '{{ markup_escape(title) }} - {{ artist }}' || true")
-
 ;; Music vars
-(defpoll SONG :interval "0.2s" "scripts/music-info.sh --song")
-(defpoll ARTIST :interval "0.2s" "scripts/music-info.sh --artist")
-(defpoll STATUS :interval "0.2s" "scripts/music-info.sh --status")
-(defpoll CURRENT :interval "0.2s" "scripts/music-info.sh --time")
-(defpoll COVER :interval "0.2s" "scripts/music-info.sh --cover")
-; (defpoll CTIME :interval "0.2s" "scripts/music-info.sh --ctime")
-; (defpoll TTIME :interval "0.2s" "scripts/music-info.sh --ttime")
+(defpoll SONG :interval "0.1s" "scripts/music-info.sh --song")
+(defpoll ARTIST :interval "0.1s" "scripts/music-info.sh --artist")
+(defpoll STATUS :interval "0.1s" "scripts/music-info.sh --status")
+(defpoll SUMMARY :interval "0.1s" "scripts/music-info.sh --summary")
+(defpoll CURRENT :interval "0.1s" "scripts/music-info.sh --time")
+(defpoll COVER :interval "0.1s" "scripts/music-info.sh --cover")
 
 (defpoll volume :interval "0.1s"
 "scripts/get-volume.sh")

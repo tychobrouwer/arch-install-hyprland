@@ -85,11 +85,16 @@ get_cover_next() {
 	fi
 }
 
+summary() {
+	echo "$(get_status) $(get_song) - $(get_artist)"
+}
+
 ## Execute accordingly
 case "$1" in
 	--song) get_song ;;
 	--artist) get_artist ;;
 	--status) get_status ;;
+	--summary) summary ;;
 	--time) get_time ;;
 	--ctime) get_ctime ;;
 	--ttime) get_ttime ;;
