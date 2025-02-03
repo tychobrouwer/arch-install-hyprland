@@ -123,14 +123,14 @@
 	color: #cad3f5;
 	font-size : 24px;
 	font-weight : bold;
-	margin : 40px 0px 0px 0px;
+	margin : 20px 0px 0px 0px;
 }
 
 .artist {
 	color: #cad3f5;
 	font-size : 16px;
 	font-weight : normal;
-	margin : 0px 0px 15px 0px;
+	margin : 0px 0px 10px 0px;
 }
 
 .btn_prev, .btn_play, .btn_next {
@@ -138,17 +138,17 @@
 }
 .btn_prev {
 	color: #cad3f5;
-	font-size : 32px;
+	font-size : 16px;
 	font-weight : normal;
 }
 .btn_play {
 	color: #cad3f5;
-	font-size : 48px;
+	font-size : 24px;
 	font-weight : bold;
 }
 .btn_next {
 	color: #cad3f5;
-	font-size : 32px;
+	font-size : 16px;
 	font-weight : normal;
 }
 
@@ -161,7 +161,7 @@
 	all: unset;
 	background-color: #24273a;
 	border-radius: 8px;
-	min-height: 20px;
-	min-width: 310px;
+	min-height: 12px;
+	min-width: 200px;
 	margin : 10px 0px 0px 0px;
 }
