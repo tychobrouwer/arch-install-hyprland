@@ -44,7 +44,7 @@
 (defwidget left []
   (box :class "left" :orientation "h" :space-evenly false :halign "start"
     (workspaces)
-    (time)
+    (box :class "time" time)
   ))
 
 
@@ -52,7 +52,6 @@
   (box :class "workspaces"
     :orientation "h"
     :space-evenly true
-    :halign "start"
     :spacing 10
     (for i in workspaces
       (button :class {activeworkspace == i ? "activeworkspace" : ""}
@@ -62,9 +61,6 @@
     )
   )
 )
-
-(defwidget time []
-  (box :class "time" :halign "end" :text time))
 
 (defwidget music []
   (eventbox :class "music"
