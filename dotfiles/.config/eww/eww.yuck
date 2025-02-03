@@ -134,6 +134,9 @@
   (bar))
 
 ;; music
-(defwindow music :stacking "fg" :focusable "false" :screen 1
+(defwindow music
+  :monitor 0
+  :stacking "fg"
+  :focusable false
   :geometry (geometry :x 515 :y 490 :width 610 :height 280)
   (music))
