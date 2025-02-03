@@ -2,12 +2,16 @@
 
 ## Get data
 PLAYBACK_DATA=$(spotify_player get key playback | jq -r .)
+if [ -z "$PLAYBACK_DATA" ]; then
+	echo "Error: Unable to retrieve playback data."
+	exit 1
+fi
 COVER="/tmp/.music_cover.jpg"
 
 ## Get status
 get_status() {
 	local STATUS=$(echo $PLAYBACK_DATA | jq -r .is_playing)
-	
+
 	if [[ $STATUS == "Playing" ]]; then
 		echo ""
 	else
