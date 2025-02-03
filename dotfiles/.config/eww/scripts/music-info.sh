@@ -10,7 +10,7 @@ LOCK_FILE="/tmp/music_info.lock"
 
 lock() {
     exec 200>"$LOCK_FILE"
-    flock -n 200 || exit 1
+    flock 200
 }
 
 unlock() {
