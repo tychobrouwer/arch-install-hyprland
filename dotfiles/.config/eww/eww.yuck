@@ -88,7 +88,7 @@
 ;; Music
 (defwidget music_widget []
   (box :class "music_window" :orientation "h" :space-evenly "false" :vexpand "false" :hexpand "false"
-    (box :class "album_art" :vexpand "false" :hexpand "false" :style "background-image: url('/tmp/.music_cover.jpg');")
+    (box :class "album_art" :vexpand "false" :hexpand "false" :style "background-image: url('${COVER}');")
     (box :orientation "v" :spacing 0 :space-evenly "false" :vexpand "false" :hexpand "true"
       (label :halign "center" :class "song" :wrap "true" :limit-width 20 :text SONG)
       (label :halign "center" :class "artist" :wrap "true" :limit-width 15 :text ARTIST)
@@ -105,7 +105,7 @@
 (defpoll STATUS :interval "0.1s" "scripts/music-info.sh --status")
 (defpoll SUMMARY :interval "0.1s" "scripts/music-info.sh --summary")
 (defpoll CURRENT :interval "0.1s" "scripts/music-info.sh --time")
-(defpoll COVER :interval "0.1s" "scripts/music-info.sh --cover")
+(defpoll COVER :interval "0.5s" "scripts/music-info.sh --cover")
 
 (defpoll volume :interval "0.1s"
 "scripts/get-volume.sh")
