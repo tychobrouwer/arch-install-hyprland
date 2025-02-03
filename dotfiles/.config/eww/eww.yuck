@@ -139,5 +139,5 @@
   :monitor 0
   :stacking "fg"
   :focusable false
-  :geometry (geometry :x "50%" :y 10 :width 370 :height 160 :anchor "top center")
+  :geometry (geometry :x "50%" :y 10 :width 380 :height 160 :anchor "top center")
   (music_widget))
