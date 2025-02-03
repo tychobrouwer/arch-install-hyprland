@@ -6,6 +6,18 @@ CACHE_FILE_TMP="${CACHE_FILE}.tmp"
 LOCK_FILE="/tmp/music_info.lock"
 COVER="/tmp/.music_cover.jpg"
 
+LOCK_FILE="/tmp/music_info.lock"
+
+lock() {
+    exec 200>"$LOCK_FILE"
+    flock -n 200 || exit 1
+}
+
+unlock() {
+    flock -u 200
+    rm -f "$LOCK_FILE"
+}
+
 ## Get status
 get_status() {
 	local cache_age=$(($(date +%s%3N) - $(stat -c %.3Y "$CACHE_FILE" | awk '{print $1 * 1000}')))
@@ -16,7 +28,9 @@ get_status() {
 		if [[ $(echo $PLAYBACK_DATA | jq -r ".is_playing") == "null" ]]; then
 			PLAYBACK_DATA=$(cat "$CACHE_FILE")
 		elif [[ "$(echo $PLAYBACK_DATA | jq -r .is_playing)" != "$(cat "$CACHE_FILE" | jq -r .is_playing)" ]]; then
+			lock()
 			echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
+			unlock()
 		fi
 	else
 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
@@ -41,7 +55,9 @@ get_song() {
 		if [[ $(echo $PLAYBACK_DATA | jq -r ".item.name") == "null" ]]; then
 			PLAYBACK_DATA=$(cat "$CACHE_FILE")
 		elif [[ "$(echo $PLAYBACK_DATA | jq -r .item.name)" != "$(cat "$CACHE_FILE" | jq -r .item.name)" ]]; then
+			lock()
 			echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
+			unlock()
 		fi
 	else
 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
@@ -61,7 +77,9 @@ get_artist() {
 		if [[ $(echo $PLAYBACK_DATA | jq -r ".item.artists[].name") == "null" ]]; then
 			PLAYBACK_DATA=$(cat "$CACHE_FILE")
 		elif [[ "$(echo $PLAYBACK_DATA | jq -r .item.artists[].name)" != "$(cat "$CACHE_FILE" | jq -r .item.artists[].name)" ]]; then
+			lock()
 			echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
+			unlock()
 		fi
 	else
 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
@@ -81,7 +99,9 @@ get_time() {
 		if [[ $(echo $PLAYBACK_DATA | jq -r ".progress_ms") == "null" && $(echo $PLAYBACK_DATA | jq -r ".item.duration_ms") == "null" ]]; then
 			PLAYBACK_DATA=$(cat "$CACHE_FILE")
 		elif [[ "$PLAYBACK_DATA" != "$(cat "$CACHE_FILE")" ]]; then
+			lock()
 			echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
+			unlock()
 		fi
 	else
 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
@@ -148,7 +168,9 @@ get_cover() {
 		if [[ $(echo $PLAYBACK_DATA | jq -r ".item.album.images[]") == "null" ]]; then
 			PLAYBACK_DATA=$(cat "$CACHE_FILE")
 		elif [[ "$PLAYBACK_DATA" != "$(cat "$CACHE_FILE")" ]]; then
+			lock()
 			echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
+			unlock()
 		fi
 	else
 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
