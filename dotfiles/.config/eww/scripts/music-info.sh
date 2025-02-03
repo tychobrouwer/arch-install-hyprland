@@ -12,10 +12,10 @@ COVER="/tmp/.music_cover.jpg"
 get_status() {
 	local STATUS=$(echo $PLAYBACK_DATA | jq -r .is_playing)
 
-	if [[ $STATUS == "Playing" ]]; then
-		echo ""
-	else
+	if [[ $STATUS == "false" ]]; then
 		echo ""
+	else
+		echo ""
 	fi
 }
 
