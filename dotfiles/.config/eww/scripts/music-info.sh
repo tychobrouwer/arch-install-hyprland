@@ -13,7 +13,7 @@ get_status() {
 
 		if [[ $(echo $PLAYBACK_DATA | jq -r ".is_playing") == "null" ]]; then
 			PLAYBACK_DATA=$(cat "$CACHE_FILE")
-		elif [[ "$PLAYBACK_DATA" != "$(cat "$CACHE_FILE")" ]]; then
+		elif [[ "$(echo $PLAYBACK_DATA | jq -r .is_playing)" != "$(cat "$CACHE_FILE" | jq -r .is_playing)" ]]; then
 			echo "$PLAYBACK_DATA" >"$CACHE_FILE"
 		fi
 	else
@@ -38,7 +38,7 @@ get_song() {
 
 		if [[ $(echo $PLAYBACK_DATA | jq -r ".item.name") == "null" ]]; then
 			PLAYBACK_DATA=$(cat "$CACHE_FILE")
-		elif [[ "$PLAYBACK_DATA" != "$(cat "$CACHE_FILE")" ]]; then
+		elif [[ "$(echo $PLAYBACK_DATA | jq -r .item.name)" != "$(cat "$CACHE_FILE" | jq -r .item.name)" ]]; then
 			echo "$PLAYBACK_DATA" >"$CACHE_FILE"
 		fi
 	else
@@ -58,7 +58,7 @@ get_artist() {
 
 		if [[ $(echo $PLAYBACK_DATA | jq -r ".item.artists[].name") == "null" ]]; then
 			PLAYBACK_DATA=$(cat "$CACHE_FILE")
-		elif [[ "$PLAYBACK_DATA" != "$(cat "$CACHE_FILE")" ]]; then
+		elif [[ "$(echo $PLAYBACK_DATA | jq -r .item.artists[].name)" != "$(cat "$CACHE_FILE" | jq -r .item.artists[].name)" ]]; then
 			echo "$PLAYBACK_DATA" >"$CACHE_FILE"
 		fi
 	else
@@ -96,45 +96,45 @@ get_time() {
 	fi
 }
 
-get_ctime() {
-	local cache_age=$(($(date +%s%3N) - $(echo $(stat -c %.3Y "$CACHE_FILE") | awk '{print $1 * 1000}')))
+# get_ctime() {
+# 	local cache_age=$(($(date +%s%3N) - $(echo $(stat -c %.3Y "$CACHE_FILE") | awk '{print $1 * 1000}')))
 
-	if [[ $cache_age -ge 500 ]]; then
-		PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
+# 	if [[ $cache_age -ge 500 ]]; then
+# 		PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
 
-		if [[ $(echo $PLAYBACK_DATA | jq -r ".progress_ms") == "null" ]]; then
-			PLAYBACK_DATA=$(cat "$CACHE_FILE")
-		elif [[ "$PLAYBACK_DATA" != "$(cat "$CACHE_FILE")" ]]; then
-			echo "$PLAYBACK_DATA" >"$CACHE_FILE"
-		fi
-	else
-		PLAYBACK_DATA=$(cat "$CACHE_FILE")
-	fi
+# 		if [[ $(echo $PLAYBACK_DATA | jq -r ".progress_ms") == "null" ]]; then
+# 			PLAYBACK_DATA=$(cat "$CACHE_FILE")
+# 		elif [[ "$PLAYBACK_DATA" != "$(cat "$CACHE_FILE")" ]]; then
+# 			echo "$PLAYBACK_DATA" >"$CACHE_FILE"
+# 		fi
+# 	else
+# 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
+# 	fi
 
-	local current_time=$(echo $PLAYBACK_DATA | jq -r .progress_ms)
-	local ctime=$(date -d@$(($current_time / 1000)) -u +%M:%S)
-	echo "$ctime"
-}
+# 	local current_time=$(echo $PLAYBACK_DATA | jq -r .progress_ms)
+# 	local ctime=$(date -d@$(($current_time / 1000)) -u +%M:%S)
+# 	echo "$ctime"
+# }
 
-get_ttime() {
-	local cache_age=$(($(date +%s%3N) - $(echo $(stat -c %.3Y "$CACHE_FILE") | awk '{print $1 * 1000}')))
+# get_ttime() {
+# 	local cache_age=$(($(date +%s%3N) - $(echo $(stat -c %.3Y "$CACHE_FILE") | awk '{print $1 * 1000}')))
 
-	if [[ $cache_age -ge 500 ]]; then
-		PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
+# 	if [[ $cache_age -ge 500 ]]; then
+# 		PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
 
-		if [[ $(echo $PLAYBACK_DATA | jq -r ".item.duration_ms") == "null" ]]; then
-			PLAYBACK_DATA=$(cat "$CACHE_FILE")
-		elif [[ "$PLAYBACK_DATA" != "$(cat "$CACHE_FILE")" ]]; then
-			echo "$PLAYBACK_DATA" >"$CACHE_FILE"
-		fi
-	else
-		PLAYBACK_DATA=$(cat "$CACHE_FILE")
-	fi
+# 		if [[ $(echo $PLAYBACK_DATA | jq -r ".item.duration_ms") == "null" ]]; then
+# 			PLAYBACK_DATA=$(cat "$CACHE_FILE")
+# 		elif [[ "$PLAYBACK_DATA" != "$(cat "$CACHE_FILE")" ]]; then
+# 			echo "$PLAYBACK_DATA" >"$CACHE_FILE"
+# 		fi
+# 	else
+# 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
+# 	fi
 
-	local total_time=$(echo $PLAYBACK_DATA | jq -r .item.duration_ms)
-	local ttime=$(date -d@$(($total_time / 1000)) -u +%M:%S)
-	echo "$ttime"
-}
+# 	local total_time=$(echo $PLAYBACK_DATA | jq -r .item.duration_ms)
+# 	local ttime=$(date -d@$(($total_time / 1000)) -u +%M:%S)
+# 	echo "$ttime"
+# }
 
 ## Get cover
 get_cover() {
@@ -165,20 +165,20 @@ get_cover() {
 	fi
 }
 
-get_cover_next() {
-	local nextsong=$(spotify_player get key queue 2>/dev/null | jq -r ".queue[0]")
-	local url=$(echo $nextsong | jq -r "[.album.images[] | select(.height > 150)][0].url")
-	if [ -z "$url" ]; then
-		echo "images/music.png"
-		return
-	fi
+# get_cover_next() {
+# 	local nextsong=$(spotify_player get key queue 2>/dev/null | jq -r ".queue[0]")
+# 	local url=$(echo $nextsong | jq -r "[.album.images[] | select(.height > 150)][0].url")
+# 	if [ -z "$url" ]; then
+# 		echo "images/music.png"
+# 		return
+# 	fi
 
-	curl -s "$url" >"$COVER"
+# 	curl -s "$url" >"$COVER"
 
-	if [ $? -eq 0 ]; then
-		echo "$COVER"
-	fi
-}
+# 	if [ $? -eq 0 ]; then
+# 		echo "$COVER"
+# 	fi
+# }
 
 summary() {
 	echo "$(get_status) $(get_song) - $(get_artist)"
@@ -191,8 +191,8 @@ case "$1" in
 --status) get_status ;;
 --summary) summary ;;
 --time) get_time ;;
---ctime) get_ctime ;;
---ttime) get_ttime ;;
+# --ctime) get_ctime ;;
+# --ttime) get_ttime ;;
 --cover) get_cover ;;
 --toggle) spotify_player playback play-pause ;;
 --next)
