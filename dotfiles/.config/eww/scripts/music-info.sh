@@ -35,14 +35,13 @@ get_artist() {
 get_time() {
 	local current_time=$(echo $PLAYBACK_DATA | jq -r .progress_ms)
 	local total_time=$(echo $PLAYBACK_DATA | jq -r .item.duration_ms)
-	
+
 	if [ -z "$current_time" ] || [ -z "$total_time" ] || [[ "$total_time" == "null" ]] || [[ "$current_time" == "null" ]] || [ "$total_time" -eq 0 ]; then
-		echo "0"
-		return
+		echo 0
+	else
+		local progress=$((100 * current_time / total_time))
+		echo "$progress"
 	fi
-	
-	local progress=$((100 * current_time / total_time))
-	echo "$progress"
 }
 
 get_ctime() {
@@ -65,7 +64,7 @@ get_cover() {
 		return
 	fi
 
-	curl -s "$url" > "$COVER"
+	curl -s "$url" >"$COVER"
 
 	if [ $? -eq 0 ]; then
 		echo "$COVER"
@@ -82,7 +81,7 @@ get_cover_next() {
 		return
 	fi
 
-	curl -s "$url" > "$COVER"
+	curl -s "$url" >"$COVER"
 
 	if [ $? -eq 0 ]; then
 		echo "$COVER"
@@ -97,15 +96,21 @@ summary() {
 
 ## Execute accordingly
 case "$1" in
-	--song) get_song ;;
-	--artist) get_artist ;;
-	--status) get_status ;;
-	--summary) summary ;;
-	--time) get_time ;;
-	--ctime) get_ctime ;;
-	--ttime) get_ttime ;;
-	--cover) get_cover ;;
-	--toggle) spotify_player playback play-pause ;;
-	--next) spotify_player playback next; get_cover_next ;;
-	--prev) spotify_player playback previous; get_cover_next ;;
+--song) get_song ;;
+--artist) get_artist ;;
+--status) get_status ;;
+--summary) summary ;;
+--time) get_time ;;
+--ctime) get_ctime ;;
+--ttime) get_ttime ;;
+--cover) get_cover ;;
+--toggle) spotify_player playback play-pause ;;
+--next)
+	spotify_player playback next
+	get_cover_next
+	;;
+--prev)
+	spotify_player playback previous
+	get_cover_next
+	;;
 esac

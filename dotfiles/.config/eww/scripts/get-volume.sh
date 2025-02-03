@@ -13,5 +13,5 @@ elif command -v pamixer &>/dev/null; then
         pamixer --get-volume
     fi
 else
-    amixer -D pulse sget Master | awk -F '[^0-9]+' '/Left:/{print $3}'
+    echo 0
 fi
