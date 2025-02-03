@@ -2,6 +2,10 @@
     all: unset; // Unsets everything so you can style everything from scratch
 }
 
+// ------------------------------------------------ //
+// ------------------- Bar Styles ----------------- //
+// ------------------------------------------------ //
+
 .bar {
     background-color: #181926;
     color: #cad3f5;
@@ -104,58 +108,46 @@
     padding: 3px 8px;
 }
 
+// ------------------------------------------------ //
+// ----------------- Music Player ----------------- //
+// ------------------------------------------------ //
 
-
-
-
-
-
-
-
-.genwin {
+.music_window {
 	background-color: #181926;
-	border-radius: 8px;
+	border-radius: 6px;
+    padding: 20px;
 }
 
 .album_art {
 	background-size: 120px;
 	min-height: 120px;
 	min-width: 120px;
-	margin: 20px;
-	border-radius: 6px;
-}
-
-.song {
-	color: #cad3f5;
-	font-size : 24px;
-	font-weight : bold;
-	margin : 20px 0px 0px 0px;
-}
-
-.artist {
-	color: #cad3f5;
-	font-size : 16px;
-	font-weight : normal;
-	margin : 0px 0px 10px 0px;
+	margin-right: 20px;
+	border-radius: 4px;
 }
 
 .btn_prev, .btn_play, .btn_next {
 	font-family: Iosevka Nerd Font;
 }
-.btn_prev {
-	color: #cad3f5;
-	font-size : 16px;
-	font-weight : normal;
-}
+
+.artist,
+.btn_prev,
+.btn_next,
 .btn_play {
 	color: #cad3f5;
-	font-size : 24px;
-	font-weight : bold;
-}
-.btn_next {
-	color: #cad3f5;
 	font-size : 16px;
 	font-weight : normal;
+}
+
+.btn_play,
+.song {
+	color: #cad3f5;
+	font-size : 24px;
+	font-weight : normal;
+}
+
+.artist {
+	margin-bottom: 10px;
 }
 
 .music_bar scale trough highlight {
@@ -163,11 +155,12 @@
 	background-color: #cad3f5;
 	border-radius: 8px;
 }
+
 .music_bar scale trough {
 	all: unset;
 	background-color: #24273a;
 	border-radius: 8px;
 	min-height: 12px;
 	min-width: 200px;
-	margin : 10px 0px 0px 0px;
+	margin-top: 10px;
 }
