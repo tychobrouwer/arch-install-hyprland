@@ -1,12 +1,15 @@
-#!/bin/bash
+#!/bin/sh
 
 ## Get data
-PLAYBACK_DATA=$(spotify_player get key playback | jq -r .)
-# if [ -z "$PLAYBACK_DATA" ]; then
-# 	echo "Error: Unable to retrieve playback data."
-# 	exit 1
-# fi
+CACHE_FILE="$HOME/.cache/music_info.json"
 COVER="/tmp/.music_cover.jpg"
+
+if [ ! -f "$CACHE_FILE" ] || [ $(($(date +%s) - $(stat -c %Y "$CACHE_FILE"))) -ge 1 ]; then
+	PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
+	echo "$PLAYBACK_DATA" > "$CACHE_FILE"
+else
+	PLAYBACK_DATA=$(cat "$CACHE_FILE")
+fi
 
 ## Get status
 get_status() {
