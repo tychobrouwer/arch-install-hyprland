@@ -21,7 +21,7 @@ get_status() {
 
 ## Get song
 get_song() {
-	local song=$(echo $PLAYBACK_DATA | jq -r .item.title)
+	local song=$(echo $PLAYBACK_DATA | jq -r .item.name)
 	echo "${song:-Offline}"
 }
 
