@@ -101,11 +101,11 @@
 
 ;; Music vars
 (defpoll SONG :interval "0.1s" "scripts/music-info.sh --song")
-(defpoll ARTIST :interval "0.1s" "scripts/music-info.sh --artist")
-(defpoll STATUS :interval "0.1s" "scripts/music-info.sh --status")
-(defpoll SUMMARY :interval "0.1s" "scripts/music-info.sh --summary")
-(defpoll CURRENT :interval "0.1s" "scripts/music-info.sh --time")
-(defpoll COVER :interval "0.5s" "scripts/music-info.sh --cover")
+; (defpoll ARTIST :interval "0.1s" "scripts/music-info.sh --artist")
+; (defpoll STATUS :interval "0.1s" "scripts/music-info.sh --status")
+; (defpoll SUMMARY :interval "0.1s" "scripts/music-info.sh --summary")
+; (defpoll CURRENT :interval "0.1s" "scripts/music-info.sh --time")
+; (defpoll COVER :interval "0.5s" "scripts/music-info.sh --cover")
 
 (defpoll volume :interval "0.1s"
 "scripts/get-volume.sh")
