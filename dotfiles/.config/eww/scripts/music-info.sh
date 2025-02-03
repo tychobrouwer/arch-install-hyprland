@@ -3,10 +3,11 @@
 ## Get data
 CACHE_FILE="$HOME/.cache/music_info.json"
 COVER="/tmp/.music_cover.jpg"
+CACHE_FILE_TMP="${CACHE_FILE}.tmp"
 
 ## Get status
 get_status() {
-	local cache_age=$(($(date +%s%3N) - $(echo $(stat -c %.3Y "$CACHE_FILE") | awk '{print $1 * 1000}')))
+	local cache_age=$(($(date +%s%3N) - $(stat -c %.3Y "$CACHE_FILE" | awk '{print $1 * 1000}')))
 
 	if [[ $cache_age -ge 500 ]]; then
 		PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
@@ -14,7 +15,7 @@ get_status() {
 		if [[ $(echo $PLAYBACK_DATA | jq -r ".is_playing") == "null" ]]; then
 			PLAYBACK_DATA=$(cat "$CACHE_FILE")
 		elif [[ "$(echo $PLAYBACK_DATA | jq -r .is_playing)" != "$(cat "$CACHE_FILE" | jq -r .is_playing)" ]]; then
-			echo "$PLAYBACK_DATA" >"$CACHE_FILE"
+			echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
 		fi
 	else
 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
@@ -31,7 +32,7 @@ get_status() {
 
 ## Get song
 get_song() {
-	local cache_age=$(($(date +%s%3N) - $(echo $(stat -c %.3Y "$CACHE_FILE") | awk '{print $1 * 1000}')))
+	local cache_age=$(($(date +%s%3N) - $(stat -c %.3Y "$CACHE_FILE" | awk '{print $1 * 1000}')))
 
 	if [[ $cache_age -ge 500 ]]; then
 		PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
@@ -39,7 +40,7 @@ get_song() {
 		if [[ $(echo $PLAYBACK_DATA | jq -r ".item.name") == "null" ]]; then
 			PLAYBACK_DATA=$(cat "$CACHE_FILE")
 		elif [[ "$(echo $PLAYBACK_DATA | jq -r .item.name)" != "$(cat "$CACHE_FILE" | jq -r .item.name)" ]]; then
-			echo "$PLAYBACK_DATA" >"$CACHE_FILE"
+			echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
 		fi
 	else
 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
@@ -51,7 +52,7 @@ get_song() {
 
 ## Get artist
 get_artist() {
-	local cache_age=$(($(date +%s%3N) - $(echo $(stat -c %.3Y "$CACHE_FILE") | awk '{print $1 * 1000}')))
+	local cache_age=$(($(date +%s%3N) - $(stat -c %.3Y "$CACHE_FILE" | awk '{print $1 * 1000}')))
 
 	if [[ $cache_age -ge 500 ]]; then
 		PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
@@ -59,7 +60,7 @@ get_artist() {
 		if [[ $(echo $PLAYBACK_DATA | jq -r ".item.artists[].name") == "null" ]]; then
 			PLAYBACK_DATA=$(cat "$CACHE_FILE")
 		elif [[ "$(echo $PLAYBACK_DATA | jq -r .item.artists[].name)" != "$(cat "$CACHE_FILE" | jq -r .item.artists[].name)" ]]; then
-			echo "$PLAYBACK_DATA" >"$CACHE_FILE"
+			echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
 		fi
 	else
 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
@@ -71,7 +72,7 @@ get_artist() {
 
 ## Get time
 get_time() {
-	local cache_age=$(($(date +%s%3N) - $(echo $(stat -c %.3Y "$CACHE_FILE") | awk '{print $1 * 1000}')))
+	local cache_age=$(($(date +%s%3N) - $(stat -c %.3Y "$CACHE_FILE" | awk '{print $1 * 1000}')))
 
 	if [[ $cache_age -ge 500 ]]; then
 		PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
@@ -79,7 +80,7 @@ get_time() {
 		if [[ $(echo $PLAYBACK_DATA | jq -r ".progress_ms") == "null" && $(echo $PLAYBACK_DATA | jq -r ".item.duration_ms") == "null" ]]; then
 			PLAYBACK_DATA=$(cat "$CACHE_FILE")
 		elif [[ "$PLAYBACK_DATA" != "$(cat "$CACHE_FILE")" ]]; then
-			echo "$PLAYBACK_DATA" >"$CACHE_FILE"
+			echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
 		fi
 	else
 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
@@ -138,7 +139,7 @@ get_time() {
 
 ## Get cover
 get_cover() {
-	local cache_age=$(($(date +%s%3N) - $(echo $(stat -c %.3Y "$CACHE_FILE") | awk '{print $1 * 1000}')))
+	local cache_age=$(($(date +%s%3N) - $(stat -c %.3Y "$CACHE_FILE" | awk '{print $1 * 1000}')))
 
 	if [[ $cache_age -ge 500 ]]; then
 		PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
@@ -146,7 +147,7 @@ get_cover() {
 		if [[ $(echo $PLAYBACK_DATA | jq -r ".item.album.images[]") == "null" ]]; then
 			PLAYBACK_DATA=$(cat "$CACHE_FILE")
 		elif [[ "$PLAYBACK_DATA" != "$(cat "$CACHE_FILE")" ]]; then
-			echo "$PLAYBACK_DATA" >"$CACHE_FILE"
+			echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
 		fi
 	else
 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
