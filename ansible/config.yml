@@ -263,7 +263,7 @@ customise:
     - man-pages-uk
     - mpv
     - tldr
-    - feh
+    # - feh # Wayland support is not available
     - zip
     - unzip
     - vlc
