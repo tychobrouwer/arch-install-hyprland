@@ -64,7 +64,6 @@
 
 (defwidget music []
   (eventbox :class "music"
-    :orientation "h"
     :halign "center"
     :onclick "eww open music_widget --toggle --screen 0"
     {SUMMARY != "" ? "${SUMMARY}" : ""}

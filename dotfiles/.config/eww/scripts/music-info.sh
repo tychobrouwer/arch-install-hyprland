@@ -35,8 +35,13 @@ get_artist() {
 get_time() {
 	local current_time=$(echo $PLAYBACK_DATA | jq -r .progress_ms)
 	local total_time=$(echo $PLAYBACK_DATA | jq -r .item.duration_ms)
-	local progress=$((100 * current_time / total_time))
-	echo "${progress:-0}"
+	
+	if [ -z "$current_time" ] || [ -z "$total_time" ] || [ "$total_time" -eq 0 ]; then
+		echo 0
+	else
+		local progress=$((100 * current_time / total_time))
+		echo "${progress:-0}"
+	fi
 }
 
 get_ctime() {
