@@ -96,7 +96,7 @@
         (button :class "btn_play" :onclick "scripts/music-info.sh --toggle &" STATUS)
         (button :class "btn_next" :onclick "scripts/music-info.sh --next &" ""))
       (box :class "music_bar" :halign "center" :vexpand "false" :hexpand "false"
-        (scale :min 0 :active "true" :max 100 :value {isnumber(CURRENT) ? CURRENT : 0})))
+        (scale :min 0 :active "true" :max 100 :value {isnumber(CURRENT) ? CURRENT : 0})))))
 
 ;; Music vars
 (defpoll SONG :interval "0.1s" "scripts/music-info.sh --song")
