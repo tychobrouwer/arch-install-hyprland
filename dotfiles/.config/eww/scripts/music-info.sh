@@ -1,12 +1,13 @@
 #!/bin/bash
 
 ## Get data
-STATUS="$(playerctl status)"
-PLAYBACK_DATA=$(playerctl get key playback | jq -r .)
+PLAYBACK_DATA=$(spotify_player get key playback | jq -r .)
 COVER="/tmp/.music_cover.jpg"
 
 ## Get status
 get_status() {
+	local STATUS=$(echo $PLAYBACK_DATA | jq -r .is_playing)
+	
 	if [[ $STATUS == "Playing" ]]; then
 		echo ""
 	else
