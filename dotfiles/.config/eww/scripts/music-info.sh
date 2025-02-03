@@ -78,6 +78,6 @@ case "$1" in
 	--ttime) get_ttime ;;
 	--cover) get_cover ;;
 	--toggle) spotify_player playback play-pause ;;
-	--next) spotify_player playback next; sleep 0.5; get_cover ;;
-	--prev) spotify_player playback previous; sleep 0.5; get_cover ;;
+	--next) spotify_player playback next; sleep 1; get_cover ;;
+	--prev) spotify_player playback previous; sleep 1; get_cover ;;
 esac
