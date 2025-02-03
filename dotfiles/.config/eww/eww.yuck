@@ -100,13 +100,13 @@
   ;   "playerctl --player=spotify_player --follow metadata --format '{{ status }} {{ markup_escape(title) }} - {{ artist }}' || true")
 
 ;; Music vars
-(defpoll SONG :interval "1s" `scripts/music-info.sh --song`)
-(defpoll ARTIST :interval "1s" `scripts/music-info.sh --artist`)
-(defpoll STATUS :interval "1s" `scripts/music-info.sh --status`)
-(defpoll CURRENT :interval "1s" `scripts/music-info.sh --time`)
-(defpoll COVER :interval "1s" `scripts/music-info.sh --cover`)
-(defpoll CTIME :interval "1s" `scripts/music-info.sh --ctime`)
-(defpoll TTIME :interval "1s" `scripts/music-info.sh --ttime`)
+(defpoll SONG :interval "1s" "scripts/music-info.sh --song")
+(defpoll ARTIST :interval "1s" "scripts/music-info.sh --artist")
+(defpoll STATUS :interval "1s" "scripts/music-info.sh --status")
+(defpoll CURRENT :interval "1s" "scripts/music-info.sh --time")
+(defpoll COVER :interval "1s" "scripts/music-info.sh --cover")
+(defpoll CTIME :interval "1s" "scripts/music-info.sh --ctime")
+(defpoll TTIME :interval "1s" "scripts/music-info.sh --ttime")
 
 (defpoll volume :interval "0.1s"
 "scripts/get-volume.sh")
