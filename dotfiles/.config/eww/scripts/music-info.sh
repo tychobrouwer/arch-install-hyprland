@@ -1,10 +1,7 @@
-#!/bin/sh
-
 ## Get data
 CACHE_FILE="$HOME/.cache/music_info.json"
 CACHE_FILE_TMP="${CACHE_FILE}.tmp"
-COVER="/.cache/music_cover.jpg"
-COVER_TMP="${COVER}.tmp"
+COVER="$HOME/.cache/music_cover.jpg"
 
 get_update() {
 	local cache_age=$(($(date +%s%3N) - $(stat -c %.3Y "$CACHE_FILE" | awk '{print $1 * 1000}')))
@@ -13,9 +10,19 @@ get_update() {
 		PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
 
 		if [[ "$(echo $PLAYBACK_DATA | jq -r .)" != "$(cat "$CACHE_FILE" | jq -r .)" ]]; then
+      if [[ "$(echo $PLAYBACK_DATA | jq -r .item.name)" != "$(cat "$CACHE_FILE" | jq -r .item.name)" ]]; then
+        get_cover 2>&1 >/dev/null
+      fi
+
 			echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
-		fi
+    fi
 	fi
+
+  if [[ "$(echo $PLAYBACK_DATA | jq -r .is_playing)" == "true" ]]; then
+    echo true
+  else
+    echo false
+  fi
 }
 
 ## Get status
@@ -102,35 +109,21 @@ get_time() {
 
 ## Get cover
 get_cover() {
-	PLAYBACK_DATA=$(cat "$CACHE_FILE")
-	local url=$(echo $PLAYBACK_DATA | jq -r "[.item.album.images[] | select(.height > 150)][0].url")
+	if [ -z "$PLAYBACK_DATA" ]; then 
+    PLAYBACK_DATA=$(cat "$CACHE_FILE")
+  fi
+  local url=$(echo $PLAYBACK_DATA | jq -r "[.item.album.images[] | select(.height > 150)][0].url")
 
-	if [ -z "$url" ]; then
-		echo "images/music.png"
-		return
-	fi
+  touch "$COVER"
+	
+  if [ -z "$url" ]; then
+	  cat "images/music.png" >"$COVER"
+  else
+	  curl -s "$url" >"$COVER"
+  fi
 
-	curl -s "$url" >"$COVER"
-
-	if [ $? -eq 0 ]; then
-		echo "$COVER"
-	fi
+	echo "$COVER"
 }
-
-# get_cover_next() {
-# 	local nextsong=$(spotify_player get key queue 2>/dev/null | jq -r ".queue[0]")
-# 	local url=$(echo $nextsong | jq -r "[.album.images[] | select(.height > 150)][0].url")
-# 	if [ -z "$url" ]; then
-# 		echo "images/music.png"
-# 		return
-# 	fi
-
-# 	curl -s "$url" >"$COVER"
-
-# 	if [ $? -eq 0 ]; then
-# 		echo "$COVER"
-# 	fi
-# }
 
 summary() {
 	echo "$(get_status) $(get_song) - $(get_artist)"
@@ -147,13 +140,4 @@ case "$1" in
 # --ctime) get_ctime ;;
 # --ttime) get_ttime ;;
 --cover) get_cover ;;
---toggle) spotify_player playback play-pause ;;
---next)
-	spotify_player playback next
-	get_cover
-	;;
---prev)
-	spotify_player playback previous
-	get_cover
-	;;
 esac

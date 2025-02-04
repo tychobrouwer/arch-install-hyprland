@@ -1,5 +1,5 @@
 theme = "Catppuccin-macchiato"
-client_id = "65b708073fc0480ea92a077233ca87bd"
+client_id = "6015d43537c84d4da28f559638af3920"
 client_port = 8080
 playback_format = "{track} • {artists}\n{album}\n{metadata}"
 notify_format = { summary = "{track}\n{artists}", body = "{album}" }

@@ -42,26 +42,26 @@
 
 .right .volume0 {
     color: #181926;
-    padding-right: 2px;
 }
 
 .right .volume25 {
-    padding-right: 9px;
-    padding-left: 2px;
+    padding-right: 11px;
+    padding-left: 3px;
 }
 
 .right .volume50 {
+    padding-right: 7px;
+    padding-left: 3px;
+}
+
+.right .volume75 {
     padding-right: 5px;
     padding-left: 2px;
 }
 
-.right .volume75 {
-    padding-right: 3px;
-    padding-left: 1px;
-}
-
 .right .volume100 {
-    padding-left: 2px;
+    padding-right: 2px;
+    padding-left: 3px;
 }
 
 .metric scale trough highlight {
