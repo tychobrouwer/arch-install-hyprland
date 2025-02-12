@@ -11,6 +11,14 @@
   register: udp2raw_release
   failed_when: udp2raw_release is failed or udp2raw_release.json.tarball_url is not defined 
 
+- name: Create udp2raw directory
+  ansible.builtin.file:
+    path: /opt/udp2raw
+    state: directory
+    mode: "0755"
+    owner: root
+    group: root
+
 - name: Extract udp2raw
   ansible.builtin.unarchive:
     src: "{{ udp2raw_release.json.tarball_url }}"
