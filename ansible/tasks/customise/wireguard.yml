@@ -32,7 +32,7 @@
     content: |
       [Interface]
       Address = {{ item.address }}
-      PrivateKey = {{ item.private_key }}
+      PrivateKey = {{ customise_priv.wireguard.configs[index].private_key }}
       {% if item.dns is defined %}
       DNS = {{ item.dns }}
       {% endif %}
@@ -53,7 +53,7 @@
       {% endif %}
 
       [Peer]
-      PublicKey = {{ item.peer_public_key }}
+      PublicKey = {{ customise_priv.wireguard.configs[index].peer_public_key }}
       AllowedIPs = {{ item.allowed_ips }}
       Endpoint = {{ item.endpoint }}
       {% if item.persistent_keepalive is defined %}
@@ -62,6 +62,8 @@
     owner: root
     group: root
     mode: "0600"
-  with_items: "{{ customise.wireguard.configs }}"
+  loop: "{{ customise.wireguard.configs }}"
+  loop_control:
+    index_var: index
   tags: wireguard
 
