@@ -43,7 +43,7 @@
   with_items:
     - key: PasswordAuthentication
       value: "no"
-    - regexp: PubkeyAuthentication
+    - key: PubkeyAuthentication
       value: "yes"
   notify: Restart sshd
 
