@@ -9,7 +9,7 @@
     url: https://api.github.com/repos/wangyu-/udp2raw-tunnel/releases/latest
     return_content: yes
   register: udp2raw_release
-  failed_when: udp2raw_release is failed or udp2raw_release.json.tarball_url is not defined 
+  failed_when: udp2raw_release is failed or udp2raw_release.name is not defined 
 
 - name: Create udp2raw directory
   ansible.builtin.file:
@@ -21,7 +21,7 @@
 
 - name: Extract udp2raw
   ansible.builtin.unarchive:
-    src: "{{ udp2raw_release.json.tarball_url }}"
+    src: "https://github.com/wangyu-/udp2raw/releases/download/{{ udp2raw_release.name }}/udp2raw_binaries.tar.gz"
     dest: "{{ customise.wireguard.udp2raw_dir }}"
     remote_src: yes
   when: customise.wireguard.udp2raw_install
