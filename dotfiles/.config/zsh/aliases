@@ -43,6 +43,8 @@ alias brave='brave --enable-features=UseOzonePlatform --ozone-platform=wayland'
 
 alias xssh='env TERM=xterm-256color ssh'
 
+alias sudo='sudo -E'
+
 alias vpn='switch_vpn'
 alias home='switch_vpn home'
 alias ams='switch_vpn mullvad-ams'
