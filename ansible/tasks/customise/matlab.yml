@@ -1,19 +1,19 @@
 ---
-- name: Get matlab package manager
-  ansible.builtin.get_url:
-    url: "{{ customise.matlab.mpm_url }}"
-    dest: "{{ customise.matlab.mpm_dest }}"
-    mode: "0755"
-    owner: "{{ user }}"
-    group: "{{ user_group }}"
-
-- name: Make install directory
+- name: Create matlab directory
   ansible.builtin.file:
     path: "{{ customise.matlab.dir }}"
     state: directory
     mode: "0755"
     owner: "{{ user }}"
     group: "{{ user_group }}"
+
+- name: Get matlab package manager
+  ansible.builtin.get_url:
+    url: "{{ customise.matlab.mpm_url }}"
+    dest: "{{ customise.matlab.dir }}/mpm"
+    mode: "0755"
+    owner: root
+    group: root
 
 - name: Check if installed
   ansible.builtin.stat:

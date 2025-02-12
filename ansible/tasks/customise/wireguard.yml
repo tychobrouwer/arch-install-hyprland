@@ -24,6 +24,9 @@
     src: "https://github.com/wangyu-/udp2raw/releases/download/{{ udp2raw_release.json.name }}/udp2raw_binaries.tar.gz"
     dest: "{{ customise.wireguard.udp2raw_dir }}"
     remote_src: yes
+    mode: "0755"
+    owner: root
+    group: root
   when: customise.wireguard.udp2raw_install
 
 - name: Create Wireguard config
