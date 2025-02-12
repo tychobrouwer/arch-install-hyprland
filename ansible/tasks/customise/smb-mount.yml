@@ -20,7 +20,7 @@
     owner: root
     group: root
     mode: "0600"
-  when: smb_password.user_input != "" and not smb_credentials.stat.exists
+  when: smb_password.user_input != "" or not smb_credentials.stat.exists
 
 - name: Create mount directory
   ansible.builtin.file:
