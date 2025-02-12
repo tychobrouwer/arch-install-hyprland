@@ -59,6 +59,15 @@ Comment=Scientific computing environment
 StartupNotify=true
 ```
 
+## Errors
+
+if ServiceHost wont start with some error in ```libmwmshrcfservice.so```
+
+```bash
+sudo patchelf --clear-execstack /home/me/.MathWorks/ServiceHost/-mw_shared_installs/v2024.13.0.2/bin/glnxa64/libmwfoundation_crash_handling.so 
+sudo patchelf --clear-execstack /home/me/.MathWorks/ServiceHost/-mw_shared_installs/v2024.13.0.2/bin/glnxa64/mathworksservicehost/rcf/matlabconnector/serviceprocess/rcf/service/libmwmshrcfservice.so
+```
+
 ## Install Compilers
 
 1. Install compatible gcc compiler [compatibility list](https://nl.mathworks.com/support/requirements/supported-compilers-linux.html).
