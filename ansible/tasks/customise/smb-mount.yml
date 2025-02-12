@@ -49,19 +49,36 @@
     group: root
     mode: "0644"
 
-- name: Create automount file
-  ansible.builtin.copy:
-    dest: /etc/systemd/system/{{ item.name }}.automount
-    content: |
-      [Unit]
-      Description={{ item.description }}
+# - name: Create mount script if ip is reachable
+#   ansible.builtin.copy:
+#     dest: /usr/local/bin/mount-{{ item.name }}
+#     content: |
+#       #!/bin/bash
+#       if ping -c 1 -W 1 {{ item.source_ip }} &> /dev/null; then
+#         systemctl start {{ item.name }}.mount
+#       fi
+#     owner: root
+#     group: root
+#     mode: "0755"
+#   when: item.source_ip is defined
 
-      [Automount]
-      Where={{ item.destination }}
-      TimeoutIdleSec=60
+# - name: Create automount file
+#   ansible.builtin.copy:
+#     dest: /etc/systemd/system/{{ item.name }}.automount
+#     content: |
+#       [Unit]
+#       Description={{ item.description }}
 
-      [Install]
-      WantedBy=multi-user.target
-    owner: root
-    group: root
-    mode: "0644"
+#       [Automount]
+#       Where={{ item.destination }}
+#       TimeoutIdleSec=60
+
+#       [Install]
+#       WantedBy=multi-user.target
+#     owner: root
+#     group: root
+#     mode: "0644"
+
+- name: Reload systemd
+  ansible.builtin.systemd:
+    daemon_reload: yes

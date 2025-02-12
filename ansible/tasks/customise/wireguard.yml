@@ -3,3 +3,57 @@
   ansible.builtin.package:
     name: "{% if ansible_os_family == 'Debian' %}wireguard{% else %}wireguard-tools{% endif %}"
     state: present
+
+- name: Get udp2raw release info
+  ansible.builtin.uri:
+    url: https://api.github.com/repos/wangyu-/udp2raw-tunnel/releases/latest
+    return_content: yes
+  register: udp2raw_release
+  failed_when: udp2raw_release is failed or "'tarball_url' not in udp2raw_release.content"
+
+- name: Extract udp2raw
+  ansible.builtin.unarchive:
+    src: "{{ udp2raw_release.json.tarball_url }}"
+    dest: /opt/udp2raw
+    remote_src: yes
+  when: customise.wireguard.udp2raw_install
+
+- name: Create Wireguard config
+  ansible.builtin.copy:
+    dest: /etc/wireguard/{{ item.name }}.conf
+    content: |
+      [Interface]
+      Address = {{ item.address }}
+      PrivateKey = {{ item.private_key }}
+      {% if item.dns is defined %}
+      DNS = {{ item.dns }}
+      {% endif %}
+      {% if item.mtu is defined %}
+      MTU = {{ item.mtu }}
+      {% endif %}
+      {% if item.pre_up is defined %}
+      PreUp = {{ item.pre_up }}
+      {% endif %}
+      {% if item.post_up is defined %}
+      PostUp = {{ item.post_up }}
+      {% endif %}
+      {% if item.pre_down is defined %}
+      PreDown = {{ item.pre_down }}
+      {% endif %}
+      {% if item.post_down is defined %}
+      PostDown = {{ item.post_down }}
+      {% endif %}
+
+      [Peer]
+      PublicKey = {{ item.peer_public_key }}
+      AllowedIPs = {{ item.allowed_ips }}
+      Endpoint = {{ item.endpoint }}
+      {% if item.persistent_keepalive is defined %}
+      PersistentKeepalive = {{ item.persistent_keepalive }}
+      {% endif %}
+    owner: root
+    group: root
+    mode: "0600"
+  with_items: "{{ customise.wireguard.configs }}"
+  tags: wireguard
+

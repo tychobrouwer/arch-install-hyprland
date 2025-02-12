@@ -230,10 +230,30 @@ customise:
 
   wireguard:
     configure: true
-    wireguard_interface: home
-    wireguard_private_key: 0
-    wireguard_public_key: 0
-    wireguard_dns: 0
+    udp2raw_install: true
+    configs:
+      - name: home
+        address: 10.6.0.2/32
+        dns: "10.12.12.101"
+        mtu: 1420
+        pre_up: /opt/udp2raw/udp2raw_amd64 -s -l127.0.0.1:51820 -r{{ public_ip }}:51821 -a --log-level 0 &
+        post_down: killall udp2raw || true
+        peer_public_key: ""
+        allowed_ips: 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16
+        endpoint: 127.0.0.1:51820
+        persistent_keepalive: 25
+      
+      - name: mulvad-ams.yml
+        address: 10.69.92.193/32, fc00:bbbb:bbbb:bb01::6:5cc0/128
+        dns: "10.64.0.1"
+        allowed_ips: 0.0.0.0/0, ::/0
+        endpoint: 193.32.249.66:51820
+      
+      - name: mulvad-nyc.yml
+        address: 10.72.165.197/32,fc00:bbbb:bbbb:bb01::9:a5c4/128
+        dns: "10.64.0.1"
+        allowed_ips: 0.0.0.0/0, ::/0
+        endpoint: 143.244.47.65:51820
 
   smb_mounts:
     configure: true
