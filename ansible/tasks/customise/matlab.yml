@@ -23,3 +23,27 @@
 - name: Install matlab
   ansible.builtin.command: "{{ customise.matlab.dir }}/mpm install --release={{ customise.matlab.version }} --destination={{ customise.matlab.dir }}/{{ customise.matlab.version }} --products={{ customise.matlab.products | join(' ') }}"
   when: not matlab_installed.stat.exists
+
+- name: Link matlab
+  ansible.builtin.file:
+    src: "{{ customise.matlab.dir }}/{{ customise.matlab.version }}"
+    dest: /usr/local/bin/matlab
+    state: link
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Install Patchelf
+  ansible.builtin.package:
+    name: patchelf
+    state: present
+
+- name: Patch MATLAB libstdc++.so.6
+  ansible.builtin.command: "unlink {{ customise.matlab.dir }}/{{ customise.matlab.version }}/sys/os/glnxa64/libstdc++.so.6 && ln -s /lib64/libstdc++.so.6 -d {{ customise.matlab.dir }}/{{ customise.matlab.version }}/sys/os/glnxa64"
+  changed_when: false
+  when: customise.matlab.patch_libstdc
+
+- name: Patch MATLAB ServiceHost
+  ansible.builtin.command: "sudo patchelf --clear-execstack /home/{{ user }}/.MathWorks/ServiceHost/-mw_shared_installs/*/bin/glnxa64/libmwfoundation_crash_handling.so && sudo patchelf --clear-execstack /home/{{ user }}/.MathWorks/ServiceHost/-mw_shared_installs/*/bin/glnxa64/mathworksservicehost/rcf/matlabconnector/serviceprocess/rcf/service/libmwmshrcfservice.so"
+  changed_when: false
+  when: customise.matlab.patch_servicehost

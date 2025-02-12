@@ -283,6 +283,8 @@ customise:
     mpm_url: https://www.mathworks.com/mpm/glnxa64/mpm
     dir: /opt/MATLAB
     version: R2024b
+    patch_libstdc: true
+    patch_servicehost: true
     products:
       - Communications_Toolbox
       - Computer_Vision_Toolbox
@@ -329,6 +331,7 @@ customise:
     - man-pages-uk
     - mpv
     - ntfs-3g # for mounting NTFS drives
+    - patchelf
     - playerctl
     - powertop
     - ripgrep
