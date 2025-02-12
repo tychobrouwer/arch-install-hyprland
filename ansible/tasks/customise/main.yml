@@ -61,5 +61,4 @@
 
 - name: Configure ozone wayland applications
   ansible.builtin.import_tasks: ozone-wayland.yml
-  when: customise.ozone_wayland
   tags: ["ozone wayland"]
