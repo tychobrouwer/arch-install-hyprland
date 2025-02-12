@@ -115,15 +115,15 @@ graphics: # Currently only supports Arch Linux
     driver: nvidia-dkms
     kernel: linux-zen
     packages:
+      - egl-wayland # provides wayland support
+      - lib32-nvidia-utils
+      - libva-nvidia-driver
       - linux-zen-headers
       - nvidia-open-dkms
-      - nvidia-utils # provides nvidia-smi and
-      - lib32-nvidia-utils
-      - egl-wayland # provides wayland support
       - nvidia-settings
-      - opencl-nvidia # provides opencl support
+      - nvidia-utils # provides nvidia-smi and
       - nvtop
-      - libva-nvidia-driver
+      - opencl-nvidia # provides opencl support
     prime: false
 
   intel:
@@ -185,20 +185,20 @@ desktop:
       - xdg-desktop-portal-hyprland
 
     applications:
-      - dunst
       - cliphist
-      - wl-clipboard
+      - dunst
+      - foot
       - inotify-tools
       - qt5-wayland
       - qt6-wayland
       - rofi-wayland
-      - waybar
       - thunar
       - thunar-archive-plugin
+      - waybar
+      - wl-clipboard
+      - wireplumber
       - zathura
       - zathura-pdf-mupdf
-      - foot
-      - wireplumber
 
     aur_packages:
       - hyprshot
@@ -279,71 +279,71 @@ customise:
         wireguard_needed: home
 
   util_packages:
-    - powertop
-    - btop
-    - man-pages-uk
-    - mpv
-    - tldr
-    # - feh # Wayland support is not available
-    - zip
-    - unzip
-    - vlc
-    - fastfetch
     - base-devel
-    - cifs-utils # for mounting SMB shares
-    - playerctl
     - brightnessctl
+    - btop
+    - cifs-utils # for mounting SMB shares
     - cmake
     - curl
+    - fastfetch
+    # - feh # Wayland support is not available
     - fwupd
     # - gvfs
     # - gvfs-smb
-    - ripgrep
     - inetutils # for hostname
     - less
-    - lm_sensors # for monitoring hardware sensors
-    - ntfs-3g # for mounting NTFS drives
-    - udiskie # for mounting USB drives
-    - wget
     - libva-utils # provides vainfo
-    - vdpauinfo # provides vdpauinfo
+    - lm_sensors # for monitoring hardware sensors
+    - man-pages-uk
+    - mpv
+    - ntfs-3g # for mounting NTFS drives
+    - playerctl
+    - powertop
+    - ripgrep
     - rustup
+    - tldr
+    - udiskie # for mounting USB drives
+    - unzip
+    - vdpauinfo # provides vdpauinfo
+    - vlc
+    - wget
+    - zip
 
   fonts:
+    - ttf-jetbrains-mono
     - ttf-roboto-mono
     - ttf-roboto-mono-nerd
-    - ttf-jetbrains-mono
 
   applications:
     - firefox
     - gimp
     - inkscape
+    - jupyter-notebook
+    - keepassxc
+    - neovim
     - nm-connection-editor
     - qbittorrent
     - steam
     - timeshift
     - torbrowser-launcher
-    - jupyter-notebook
-    - keepassxc
-    - neovim
 
   aur_applications:
     # - android-studio
     - arduino-ide-bin
     - brave-bin
     - cava
+    # - flutter-bin
     # - google-chrome-wayland-vulkan
+    # - jellyfin-media-player
     - kopia-ui-bin
     - mailspring-bin
     - minecraft-launcher
     # - nordvpn-bin
-    - teams-for-linux-bin
-    - visual-studio-code-bin
-    - tor-browser-bin
-    - zotero-bin
-    # - flutter-bin
-    # - jellyfin-media-player
     # - rstudio-desktop-bin
+    - teams-for-linux-bin
+    - tor-browser-bin
+    - visual-studio-code-bin
+    - zotero-bin
 
   configure_spotify: true
 
@@ -352,11 +352,15 @@ customise:
     - avahi-discover
     - bssh
     - bvnc
+    - btop
     - cmake-gui
     - designer
     - electron22
+    - electron33
+    - foot-server
+    - footclient
     - htop
-    - btop
+    - ipython
     - jconsole-java-openjdk
     - jconsole-java11-openjdk
     - jconsole-java17-openjdk
@@ -365,16 +369,14 @@ customise:
     - jshell-java17-openjdk
     - linguist
     - nvtop
-    - org.codeberg.dnkl.foot-server
-    - org.codeberg.dnkl.footclient
     - org.gnome.FileRoller
     - org.kde.kuserfeedback-console
     - qdbusviewer
     - qv4l2
     - qvidcap
     - r
-    - rofi-theme-selector
     - rofi
+    - rofi-theme-selector
     - thunar-bulk-rename
     - thunar-settings
     - torbrowser-settings
