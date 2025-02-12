@@ -1,9 +1,15 @@
 ---
+- name: Check credentials exist
+  ansible.builtin.stat:
+    path: "/etc/cifspasswd-{{ item.name }}"
+  register: smb_credentials
+
 - name: Ask for smb password
   ansible.builtin.pause:
     prompt: "The password for {{ item.name }} (empty for no password)"
     echo: true
   register: smb_password
+  when: not smb_credentials.stat.exists
 
 - name: Create password file
   ansible.builtin.copy:
@@ -14,7 +20,7 @@
     owner: root
     group: root
     mode: "0600"
-  when: smb_password.user_input != ""
+  when: smb_password.user_input != "" and not smb_credentials.stat.exists
 
 - name: Create mount directory
   ansible.builtin.file:
