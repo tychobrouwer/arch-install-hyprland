@@ -46,15 +46,3 @@
 
     - name: Configure Customisations
       ansible.builtin.import_tasks: tasks/customise/main.yml
-
-    # - ansible.builtin.import_tasks: tasks/desktop-tweaks.yml
-    #   when: configure_desktop_tweaks
-    #   tags: ["desktop-tweaks"]
-
-    # - ansible.builtin.import_tasks: tasks/ozone-wayland.yml
-    #   when: configure_ozone_wayland
-    #   tags: ["ozone-wayland"]
-
-    # - ansible.builtin.import_tasks: tasks/spotify.yml
-    #   when: configure_spotify
-    #   tags: ["spotify"]
