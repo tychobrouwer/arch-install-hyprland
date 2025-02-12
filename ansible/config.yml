@@ -231,6 +231,7 @@ customise:
   wireguard:
     configure: true
     udp2raw_install: true
+    udp2raw_dir: /opt/udp2raw
     configs:
       - name: home
         address: 10.6.0.2/32

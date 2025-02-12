@@ -13,7 +13,7 @@
 
 - name: Create udp2raw directory
   ansible.builtin.file:
-    path: /opt/udp2raw
+    path: "{{ customise.wireguard.udp2raw_dir }}"
     state: directory
     mode: "0755"
     owner: root
@@ -22,7 +22,7 @@
 - name: Extract udp2raw
   ansible.builtin.unarchive:
     src: "{{ udp2raw_release.json.tarball_url }}"
-    dest: /opt/udp2raw
+    dest: "{{ customise.wireguard.udp2raw_dir }}"
     remote_src: yes
   when: customise.wireguard.udp2raw_install
 
