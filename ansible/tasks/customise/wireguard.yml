@@ -9,7 +9,7 @@
     url: https://api.github.com/repos/wangyu-/udp2raw-tunnel/releases/latest
     return_content: yes
   register: udp2raw_release
-  failed_when: udp2raw_release is failed or "'tarball_url' not in udp2raw_release.content"
+  failed_when: udp2raw_release is failed or udp2raw_release.json.tarball_url is not defined 
 
 - name: Extract udp2raw
   ansible.builtin.unarchive:
