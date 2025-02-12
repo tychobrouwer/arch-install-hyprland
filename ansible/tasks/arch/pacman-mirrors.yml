@@ -12,7 +12,6 @@
 - name: Install pacman-contrib for rankmirrors
   community.general.pacman:
     name: pacman-contrib
-    update_cache: true
     state: present
 
 - name: Rank mirrors
