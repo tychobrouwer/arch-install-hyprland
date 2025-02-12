@@ -32,6 +32,21 @@
 #     prompt: "Add your ssh key to GitHub\n{{ public_key.stdout }}"
 #     echo: false
 
+- name: Disable SSH password authentication
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: ^{{ item.key }}
+    line: "{{ item.key }} {{ item.value }}"
+    insertafter: \#{{ item.key }}
+    state: present
+    validate: sshd -t -f %s
+  with_items:
+    - key: PasswordAuthentication
+      value: "no"
+    - regexp: PubkeyAuthentication
+      value: "yes"
+  notify: Restart sshd
+
 - name: Enable and start sshd
   ansible.builtin.service:
     name: sshd

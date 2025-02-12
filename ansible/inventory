@@ -1,2 +1,5 @@
-[all]
-127.0.0.1  ansible_connection=local
+[local]
+127.0.0.1 ansible_connection=local
+
+[remote]
+10.12.12.235 ansible_user=me

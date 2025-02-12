@@ -278,6 +278,39 @@ customise:
         username: sambauser
         wireguard_needed: home
 
+  matlab:
+    configure: true
+    mpm_url: https://www.mathworks.com/mpm/glnxa64/mpm
+    mpm_dest: /usr/local/bin/mpm
+    version: R2024b
+    dir: /opt/MATLAB
+    products:
+      - Communications_Toolbox
+      - Computer_Vision_Toolbox
+      - Control_System_Toolbox
+      - Curve_Fitting_Toolbox
+      - Database_Toolbox
+      - DSP_System_Toolbox
+      - Embedded_Coder
+      - Image_Acquisition_Toolbox
+      - Image_Processing_Toolbox
+      - MATLAB
+      - MATLAB_Coder
+      - MATLAB_Compiler
+      - MATLAB_Compiler_SDK
+      - Optimization_Toolbox
+      - Robotics_System_Toolbox
+      - Robust_Control_Toolbox
+      - Signal_Processing_Toolbox
+      - Simulink
+      - Simulink_Coder
+      - Simulink_Compiler
+      - Simulink_Control_Design
+      - Stateflow
+      - Symbolic_Math_Toolbox
+      - System_Identification_Toolbox
+      - WLAN_Toolbox
+
   util_packages:
     - base-devel
     - brightnessctl

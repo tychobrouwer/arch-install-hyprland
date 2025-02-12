@@ -55,6 +55,11 @@
   when: customise.configure_spotify
   tags: ["spotify"]
 
+- name: Install Matlab
+  ansible.builtin.import_tasks: matlab.yml
+  when: customise.matlab.configure
+  tags: ["matlab"]
+
 - name: Hide applications from menu
   ansible.builtin.import_tasks: hide-applications.yml
   tags: ["hide applications"]
