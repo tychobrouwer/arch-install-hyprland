@@ -141,7 +141,7 @@
       "✔ Yes")
     (button :class "confirm-no"
       :onclick "eww close power-confirm"
-      "✖ No")))))
+      "✖ No"))))
 
 ;; Confirm action command
 (defvar confirm_action "")
