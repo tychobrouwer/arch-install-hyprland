@@ -89,10 +89,10 @@
           :space-evenly "false"
           
           (button :class "button-suspend"
-          :onclick "eww open power-confirm && eww update confirm_action='systemctl suspend'" "" )
+          :onclick "eww open confirmation && eww update confirm_action='systemctl suspend'" "" )
           
           (button :class "button-reboot"
-          :onclick "eww open power-confirm && eww update confirm_action='systemctl reboot'"	"")
+          :onclick "eww open confirmation && eww update confirm_action='systemctl reboot'"	"")
           
           (button :class "button-logout"
           :onclick "hyprctl dispatch exit" "")
@@ -101,7 +101,7 @@
           :onclick "hyprlock"	"")))
       
       (button		:class "button-off"
-      :onclick "eww open power-confirm && eww update confirm_action='shutdown now'"	""))))
+      :onclick "eww open confirmation && eww update confirm_action='shutdown now'"	""))))
 
 ;; Metric Template
 (defwidget metric [class label value onchange onclick]
@@ -137,10 +137,10 @@
   (box :orientation "v" :class "confirm-box" "Are you sure?"
     (box :orientation "h"
       (button :class "confirm-yes"
-        :onclick "eww close power-confirm && sh -c $confirm_action"
+        :onclick "eww close confirmation && sh -c $confirm_action"
       "✔ Yes")
       (button :class "confirm-no"
-        :onclick "eww close power-confirm"
+        :onclick "eww close confirmation"
       "✖ No"))))
 
 ;; Confirm action command
