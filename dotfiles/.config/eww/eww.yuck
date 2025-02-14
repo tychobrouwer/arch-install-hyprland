@@ -135,12 +135,12 @@
 ;; Confirmation Widget
 (defwidget confirmation []
   (box :orientation "v" :class "confirm-box" "Are you sure?"
-  (box :orientation "h"
-    (button :class "confirm-yes"
-      :onclick "eww close power-confirm && sh -c $confirm_action"
+    (box :orientation "h"
+      (button :class "confirm-yes"
+        :onclick "eww close power-confirm && sh -c $confirm_action"
       "✔ Yes")
-    (button :class "confirm-no"
-      :onclick "eww close power-confirm"
+      (button :class "confirm-no"
+        :onclick "eww close power-confirm"
       "✖ No"))))
 
 ;; Confirm action command
