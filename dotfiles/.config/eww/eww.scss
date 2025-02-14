@@ -171,31 +171,31 @@
     font-weight: bold;
 }
 
-.button-suspend,
-.button-reboot,
-.button-logout,
-.button-lock,
-.button-off {
-    padding: .5rem .2rem .3rem .2rem;
-}
+// .button-suspend,
+// .button-reboot,
+// .button-logout,
+// .button-lock,
+// .button-off {
+//     padding: .5rem .2rem .3rem .2rem;
+// }
 
 .button-off {
     margin-bottom: .5rem;
-    color: $red;
+    color: #ed8796;
 }
 
 .button-suspend {
-    color: $green;
+    color: #a6da95;
 }
 
 .button-reboot {
-    color: $yellow
+    color: #eed49f
 }
 
 .button-logout {
-    color: $magenta;
+    color: #c6a0f6;
 }
 
 .button-lock {
-    color: $blue;
+    color: #8aadf4;
 }

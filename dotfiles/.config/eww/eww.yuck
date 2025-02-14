@@ -99,7 +99,7 @@
         (button :class "btn_next" :timeout "1s" :onclick "playerctl next" ""))
       (box :class "music_bar" :halign "center" :vexpand "false" :hexpand "false"
         (scale :min 0 :active "true" :max 100 :value {CURRENT != "" ? CURRENT : 0})))))
-    
+
 ;; Power
 (defwidget power []
   (eventbox	:onhover "eww update power=true"
@@ -114,24 +114,19 @@
         (box		:orientation "h"
           :space-evenly "false"
           
-          (button   	:class "button-suspend"
-            :tooltip "Suspend"
+          (button :class "button-suspend"
           :onclick "systemctl suspend" "" )
           
-          (button		:class "button-reboot"
-            :tooltip "Reboot"
+          (button :class "button-reboot"
           :onclick "systemctl reboot"	"")
           
-          (button		:class "button-logout"
-            :tooltip "Logout"
+          (button :class "button-logout"
           :onclick "hyprctl dispatch exit" "")
           
-          (button		:class "button-lock"
-            :tooltip "Lock Screen"
+          (button :class "button-lock"
           :onclick "hyprlock"	"")))
       
       (button		:class "button-off"
-        :tooltip "Shutdown"
       :onclick "shutdown now"	""))))
 
 
