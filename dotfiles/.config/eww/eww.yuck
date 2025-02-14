@@ -134,7 +134,8 @@
 
 ;; Confirmation Widget
 (defwidget confirmation []
-  (box :orientation "v" :class "confirm-box" "Are you sure?"
+  (box :orientation "v" :class "confirm-box" :width 200
+    "Are you sure?"
     (box :orientation "h"
       (button :class "confirm-yes"
         :onclick "eww close confirmation && sh -c $confirm_action"
