@@ -102,8 +102,8 @@
     
 ;; Power
 (defwidget power []
-  (eventbox	:onhover "${eww} update power=true"
-    :onhoverlost "${eww} update power=false"
+  (eventbox	:onhover "eww update power=true"
+    :onhoverlost "eww update power=false"
     (box		:orientation "h"
       :space-evenly "false"
       :hexpand "false"
