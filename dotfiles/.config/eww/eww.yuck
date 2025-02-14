@@ -14,7 +14,7 @@
     )
     (metric
       :class {
-        volume == "" ? "volume0"
+      volume == "" ? "volume0"
       : volume == 0 ? "volume0"
       : volume < 25 ? "volume25"
       : volume < 50 ? "volume50"
@@ -40,6 +40,7 @@
       :onchange ""
       :onclick ""
     )
+    (power)
   ))
 
 (defwidget left []
@@ -98,6 +99,43 @@
         (button :class "btn_next" :timeout "1s" :onclick "playerctl next" ""))
       (box :class "music_bar" :halign "center" :vexpand "false" :hexpand "false"
         (scale :min 0 :active "true" :max 100 :value {CURRENT != "" ? CURRENT : 0})))))
+    
+;; Power
+(defwidget power []
+  (eventbox	:onhover "${eww} update power=true"
+    :onhoverlost "${eww} update power=false"
+    (box		:orientation "h"
+      :space-evenly "false"
+      :hexpand "false"
+      :class "powermenu"
+      (revealer	:transition "slideleft"
+        :reveal power
+        :duration "550ms"
+        (box		:orientation "h"
+          :space-evenly "false"
+          
+          (button   	:class "button-suspend"
+            :tooltip "Suspend"
+          :onclick "systemctl suspend" "" )
+          
+          (button		:class "button-reboot"
+            :tooltip "Reboot"
+          :onclick "systemctl reboot"	"")
+          
+          (button		:class "button-logout"
+            :tooltip "Logout"
+          :onclick "hyprctl dispatch exit" "")
+          
+          (button		:class "button-lock"
+            :tooltip "Lock Screen"
+          :onclick "hyprlock"	"")))
+      
+      (button		:class "button-off"
+        :tooltip "Shutdown"
+      :onclick "shutdown now"	""))))
+
+
+(defvar power false)
 
 ;; Music vars
 (defpoll UPDATE :interval "0.5s" "scripts/music-info.sh --update")

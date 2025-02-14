@@ -161,3 +161,38 @@
     min-width: 200px;
     margin-top: 10px;
 }
+
+
+.powermenu {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.button-suspend,
+.button-reboot,
+.button-logout,
+.button-lock,
+.button-off {
+    padding: .5rem .2rem .3rem .2rem;
+}
+
+.button-off {
+    margin-bottom: .5rem;
+    color: $red;
+}
+
+.button-suspend {
+    color: $green;
+}
+
+.button-reboot {
+    color: $yellow
+}
+
+.button-logout {
+    color: $magenta;
+}
+
+.button-lock {
+    color: $blue;
+}
