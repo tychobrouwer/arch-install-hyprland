@@ -5,7 +5,7 @@ COVER="$HOME/.cache/music_cover.jpg"
 
 get_update() {
 	local cache_age=99999
-	if [ ! -f "$CACHE_FILE" ]; then
+	if [ -f "$CACHE_FILE" ]; then
 		cache_age=$(($(date +%s%3N) - $(stat -c %.3Y "$CACHE_FILE" | awk '{print $1 * 1000}')))
 	fi
 
