@@ -4,25 +4,28 @@ CACHE_FILE_TMP="${CACHE_FILE}.tmp"
 COVER="$HOME/.cache/music_cover.jpg"
 
 get_update() {
-	local cache_age=$(($(date +%s%3N) - $(stat -c %.3Y "$CACHE_FILE" | awk '{print $1 * 1000}')))
+	local cache_age=99999
+	if [ ! -f "$CACHE_FILE" ]; then
+		cache_age=$(($(date +%s%3N) - $(stat -c %.3Y "$CACHE_FILE" | awk '{print $1 * 1000}')))
+	fi
 
 	if [[ $cache_age -ge 500 ]]; then
 		PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
 
 		if [[ "$(echo $PLAYBACK_DATA | jq -r .)" != "$(cat "$CACHE_FILE" | jq -r .)" ]]; then
-      if [[ "$(echo $PLAYBACK_DATA | jq -r .item.name)" != "$(cat "$CACHE_FILE" | jq -r .item.name)" ]]; then
-        get_cover 2>&1 >/dev/null
-      fi
+			if [[ "$(echo $PLAYBACK_DATA | jq -r .item.name)" != "$(cat "$CACHE_FILE" | jq -r .item.name)" ]]; then
+				get_cover 2>&1 >/dev/null
+			fi
 
 			echo "$PLAYBACK_DATA" >"$CACHE_FILE_TMP" && mv "$CACHE_FILE_TMP" "$CACHE_FILE"
-    fi
+		fi
 	fi
 
-  if [[ "$(echo $PLAYBACK_DATA | jq -r .is_playing)" == "true" ]]; then
-    echo true
-  else
-    echo false
-  fi
+	if [[ "$(echo $PLAYBACK_DATA | jq -r .is_playing)" == "true" ]]; then
+		echo true
+	else
+		echo false
+	fi
 }
 
 ## Get status
@@ -67,60 +70,20 @@ get_time() {
 	fi
 }
 
-# get_ctime() {
-# 	local cache_age=$(($(date +%s%3N) - $(echo $(stat -c %.3Y "$CACHE_FILE") | awk '{print $1 * 1000}')))
-
-# 	if [[ $cache_age -ge 500 ]]; then
-# 		PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
-
-# 		if [[ $(echo $PLAYBACK_DATA | jq -r ".progress_ms") == "null" ]]; then
-# 			PLAYBACK_DATA=$(cat "$CACHE_FILE")
-# 		elif [[ "$PLAYBACK_DATA" != "$(cat "$CACHE_FILE")" ]]; then
-# 			echo "$PLAYBACK_DATA" >"$CACHE_FILE"
-# 		fi
-# 	else
-# 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
-# 	fi
-
-# 	local current_time=$(echo $PLAYBACK_DATA | jq -r .progress_ms)
-# 	local ctime=$(date -d@$(($current_time / 1000)) -u +%M:%S)
-# 	echo "$ctime"
-# }
-
-# get_ttime() {
-# 	local cache_age=$(($(date +%s%3N) - $(echo $(stat -c %.3Y "$CACHE_FILE") | awk '{print $1 * 1000}')))
-
-# 	if [[ $cache_age -ge 500 ]]; then
-# 		PLAYBACK_DATA=$(spotify_player get key playback 2>/dev/null | jq -r .)
-
-# 		if [[ $(echo $PLAYBACK_DATA | jq -r ".item.duration_ms") == "null" ]]; then
-# 			PLAYBACK_DATA=$(cat "$CACHE_FILE")
-# 		elif [[ "$PLAYBACK_DATA" != "$(cat "$CACHE_FILE")" ]]; then
-# 			echo "$PLAYBACK_DATA" >"$CACHE_FILE"
-# 		fi
-# 	else
-# 		PLAYBACK_DATA=$(cat "$CACHE_FILE")
-# 	fi
-
-# 	local total_time=$(echo $PLAYBACK_DATA | jq -r .item.duration_ms)
-# 	local ttime=$(date -d@$(($total_time / 1000)) -u +%M:%S)
-# 	echo "$ttime"
-# }
-
 ## Get cover
 get_cover() {
-	if [ -z "$PLAYBACK_DATA" ]; then 
-    PLAYBACK_DATA=$(cat "$CACHE_FILE")
-  fi
-  local url=$(echo $PLAYBACK_DATA | jq -r "[.item.album.images[] | select(.height > 150)][0].url")
+	if [ -z "$PLAYBACK_DATA" ]; then
+		PLAYBACK_DATA=$(cat "$CACHE_FILE")
+	fi
+	local url=$(echo $PLAYBACK_DATA | jq -r "[.item.album.images[] | select(.height > 150)][0].url")
 
-  touch "$COVER"
-	
-  if [ -z "$url" ]; then
-	  cat "images/music.png" >"$COVER"
-  else
-	  curl -s "$url" >"$COVER"
-  fi
+	touch "$COVER"
+
+	if [ -z "$url" ]; then
+		cat "images/music.png" >"$COVER"
+	else
+		curl -s "$url" >"$COVER"
+	fi
 
 	echo "$COVER"
 }
