@@ -210,8 +210,13 @@
     font-weight: normal;
 }
 
+.confirm-box .confirm-text {
+    margin-bottom: 10px;
+}
+
 .confirm-box button {
     border-radius: 6px;
     padding: 3px 8px;
     background-color: #24273a;
+    margin-right: 10px;
 }
