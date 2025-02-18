@@ -153,13 +153,13 @@
 (defvar power false)
 
 ;; Music vars
-(defpoll UPDATE :interval "0.5s" "scripts/music-info.sh --update")
-(defpoll SONG :interval "0.5s" "scripts/music-info.sh --song")
-(defpoll ARTIST :interval "0.5s" "scripts/music-info.sh --artist")
-(defpoll STATUS :interval "0.5s" "scripts/music-info.sh --status")
-(defpoll SUMMARY :interval "0.5s" "scripts/music-info.sh --summary")
-(defpoll CURRENT :interval "1s" "scripts/music-info.sh --time")
-(defpoll COVER :interval "0.5s" "scripts/music-info.sh --cover")
+(defpoll UPDATE :interval "0.5s" "scripts/music-info-playerctl.sh --update")
+(defpoll SONG :interval "0.5s" "scripts/music-info-playerctl.sh --song")
+(defpoll ARTIST :interval "0.5s" "scripts/music-info-playerctl.sh --artist")
+(defpoll STATUS :interval "0.5s" "scripts/music-info-playerctl.sh --status")
+(defpoll SUMMARY :interval "0.5s" "scripts/music-info-playerctl.sh --summary")
+(defpoll CURRENT :interval "1s" "scripts/music-info-playerctl.sh --time")
+(defpoll COVER :interval "0.5s" "scripts/music-info-playerctl.sh --cover")
 
 (defpoll volume :interval "0.1s"
 "scripts/get-volume.sh")
