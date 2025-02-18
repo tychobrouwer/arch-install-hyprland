@@ -22,10 +22,24 @@
       : volume < 75 ? "volume75"
       : "volume100"
       }
-      :label {volume == "" ? "" : volume == 0 ? " ": volume < 25 ? "" : volume < 50 ? "" : volume < 75 ? "" : ""}
+      :label {volume == "" ? "" : volume == 0 ? "": volume < 25 ? "" : volume < 50 ? "" : volume < 75 ? "" : ""}
       :value volume
       :onchange "wpctl set-volume @DEFAULT_AUDIO_SINK@ {}% --limit 1.0"
       :onclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    )
+    (metric
+      :class {
+      batery == "" ? "batery0"
+      : batery == 0 ? "batery0"
+      : batery < 25 ? "batery25"
+      : batery < 50 ? "batery50"
+      : batery < 75 ? "batery75"
+      : "batery100"
+      }
+      :label {batery == "" ? "" : batery == 0 ? "": batery < 25 ? "" : batery < 50 ? "" : batery < 75 ? "" : ""}
+      :value batery
+      :onchange ""
+      :onclick ""
     )
     (metric
       :class ""
@@ -163,6 +177,9 @@
 
 (defpoll volume :interval "0.1s"
 "scripts/get-volume.sh")
+
+(defpoll batery :interval "10"
+"scripts/get-batery.sh")
 
 (defpoll mutedmic :interval "0.1s"
 "scripts/get-mute.sh")
