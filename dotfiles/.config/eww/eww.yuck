@@ -29,32 +29,20 @@
     )
     (metric
       :class {
-      batery == "" ? "batery0"
-      : batery == 0 ? "batery0"
-      : batery < 25 ? "batery25"
-      : batery < 50 ? "batery50"
-      : batery < 75 ? "batery75"
-      : "batery100"
+      batery == "" ? "${batery_status} batery0"
+      : batery == 0 ? "${batery_status} batery0"
+      : batery < 25 ? "${batery_status} batery25"
+      : batery < 50 ? "${batery_status} batery50"
+      : batery < 75 ? "${batery_status} batery75"
+      : "${batery_status} batery100"
       }
-      :label {batery == "" ? "" : batery == 0 ? "": batery < 25 ? "" : batery < 50 ? "" : batery < 75 ? "" : ""}
+      :label {batery == "" ? "" : batery_status == "Charging" ? "" : batery == 0 ? "": batery < 25 ? "" : batery < 50 ? "" : batery < 75 ? "" : ""}
       :value batery
       :onchange ""
       :onclick ""
     )
-    (metric
-      :class ""
-      :label ""
-      :value {EWW_RAM.used_mem_perc}
-      :onchange ""
-      :onclick ""
-    )
-    (metric
-      :class ""
-      :label "💾"
-      :value {round((1 - (EWW_DISK["/"].free / EWW_DISK["/"].total)) * 100, 0)}
-      :onchange ""
-      :onclick ""
-    )
+    (memory)
+    (disk)
     (power)
   ))
 
@@ -117,10 +105,24 @@
       (button		:class "button-off"
       :onclick "eww open confirmation && eww update confirm_action='shutdown now'"	""))))
 
+;; Memory
+(defwidget memory []
+  (box :orientation "h"
+    :class "memory"
+    :space-evenly false
+    " ${round(EWW_RAM.used_mem / 1000000000, 1)}GB "))
+
+;; Disk
+(defwidget disk []
+  (box :orientation "h"
+    :class "disk"
+    :space-evenly false
+    " ${round(EWW_DISK["/"].used / 1000000000, 1)}GB "))
+
 ;; Metric Template
 (defwidget metric [class label value onchange onclick]
   (box :orientation "h"
-    :class "metric"
+    :class "metric ${class}-container"
     :space-evenly false
     (eventbox
       :onclick onclick
@@ -153,7 +155,7 @@
     (box :orientation "h"
       (button :class "confirm-yes"
         :width 100
-        :onclick "eww close confirmation && sh -c $confirm_action"
+        :onclick "eww close confirmation && bash -c \"eval ${confirm_action}\""
       "✔ Yes")
       (button :class "confirm-no"
         :width 100
@@ -180,6 +182,8 @@
 
 (defpoll batery :interval "10"
 "scripts/get-batery.sh")
+(defpoll batery_status :interval "1"
+"scripts/get-batery-status.sh")
 
 (defpoll mutedmic :interval "0.1s"
 "scripts/get-mute.sh")
@@ -216,5 +220,5 @@
   :monitor 0
   :stacking "fg"
   :focusable false
-  :geometry (geometry :x "50%" :y 5 :anchor "top center")
+  :geometry (geometry :x "50%" :y "50%" :anchor "center center")
   (confirmation))

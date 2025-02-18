@@ -40,6 +40,9 @@
     padding-left: 4px;
 }
 
+.right .batery25 {
+    color: #ed8796;
+}
 .right .volume0 {
     color: #181926;
     padding-right: 3px;
@@ -66,19 +69,28 @@
 
 .metric scale trough highlight {
     all: unset;
-    background-color: #D35D6E;
+    background-color: #c6a0f6;
     color: #000000;
     border-radius: 10px;
 }
 
+.batery25-container scale trough highlight {
+    background-color: #ed9786;
+}
+
 .metric scale trough {
     all: unset;
-    background-color: #4e4e4e;
+    background-color: #181926;
     border-radius: 50px;
     min-height: 8px;
     min-width: 50px;
     margin-left: 10px;
     margin-right: 20px;
+}
+
+.memory,
+.disk {
+    margin-right: 10px;
 }
 
 .workspaces {
