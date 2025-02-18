@@ -18,7 +18,7 @@ alias tree='tree -CAhF -L 3 --dirsfirst'
 alias treed='tree -CAFd -L 3'
 
 alias pacman='sudo pacman'
-alias pacman-autoremove='sudo pacman -Rns $(pacman -Qtdq) && paru -Sccy --noconfirm'
+alias pacman-autoremove='sudo pacman -Rns $(pacman -Qtdq) && paru -cc --noconfirm'
 
 alias htop=btop
 alias top=btop
