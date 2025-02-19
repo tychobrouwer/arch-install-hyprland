@@ -169,7 +169,7 @@
 (defvar power false)
 
 ;; Music vars
-(defpoll UPDATE :interval "0.5s" "scripts/music-info-playerctl.sh --update")
+(defpoll UPDATE :interval "30s" "scripts/music-info-playerctl.sh --update")
 (defpoll SONG :interval "0.5s" "scripts/music-info-playerctl.sh --song")
 (defpoll ARTIST :interval "0.5s" "scripts/music-info-playerctl.sh --artist")
 (defpoll STATUS :interval "0.5s" "scripts/music-info-playerctl.sh --status")
@@ -180,9 +180,9 @@
 (defpoll volume :interval "0.1s"
 "scripts/get-volume.sh")
 
-(defpoll batery :interval "10"
+(defpoll batery :interval "30"
 "scripts/get-batery.sh")
-(defpoll batery_status :interval "1"
+(defpoll batery_status :interval "10"
 "scripts/get-batery-status.sh")
 
 (defpoll mutedmic :interval "0.1s"
