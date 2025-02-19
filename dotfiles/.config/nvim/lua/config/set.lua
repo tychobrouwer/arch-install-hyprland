@@ -13,7 +13,7 @@ vim.opt.breakindent = true -- visually continue wrapped line at indent
 vim.opt.linebreak = true -- wrap on 'breakat' characters
 
 vim.opt.undofile = true -- save undo history in file
-vim.opt.undodir = os.getenv("HOME") .. "/.nvim/undodir"
+vim.opt.undodir = os.getenv("HOME") .. "/.cache/nvim/undodir"
 
 vim.opt.termguicolors = true -- enable 24bit colors 
 
@@ -27,9 +27,7 @@ vim.opt.spellfile = os.getenv("HOME") .. "/.config/nvim/spellfile.utf-8.add"
 vim.opt.spelllang = "en" -- set spell checking to english
 vim.opt.spelloptions = "camel" -- separate words for camel case
 
-vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
-end)
+vim.opt.clipboard = 'unnamedplus'
 
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', space = '·', nbsp = '␣' }
