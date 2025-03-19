@@ -10,10 +10,11 @@
     (button
       :onclick "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
       (box
-        :class {mutedmic == "true" ? "mutedmic" : "unmutedmic"}
+        :class {mutedmic == "true" ? "mutedmic bar-item" : "unmutedmic bar-item"}
       {mutedmic == "true" ? "" : ""})
     )
     (metric
+      :parent_class "bar-item"
       :class {
       volume == "" ? "volume0"
       : volume == 0 ? "volume0"
@@ -28,6 +29,7 @@
       :onclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
     )
     (metric
+      :parent_class "bar-item"
       :class {
       batery == "" ? "${batery_status} batery0"
       : batery == 0 ? "${batery_status} batery0"
@@ -41,21 +43,21 @@
       :onchange ""
       :onclick ""
     )
-    (memory)
-    (disk)
-    (power)
+    (memory :class "bar-item")
+    (disk :class "bar-item")
+    (power :class "bar-item")
   ))
 
 (defwidget left []
   (box :class "left" :orientation "h" :space-evenly false :halign "start"
-    (workspaces)
-    (box :class "time" time)
+    (workspaces :class "bar-item")
+    (box :class "time bar-item" time)
   ))
 
 
 ;; Workspaces
-(defwidget workspaces []
-  (box :class "workspaces"
+(defwidget workspaces [class]
+  (box :class "workspaces ${class}"
     :orientation "h"
     :space-evenly true
     :spacing 10
@@ -77,13 +79,14 @@
   ))
 
 ;; Power
-(defwidget power []
+(defwidget power [class]
   (eventbox	:onhover "eww update power=true"
     :onhoverlost "eww update power=false"
-    (box		:orientation "h"
+    (box
+      :orientation "h"
       :space-evenly "false"
       :hexpand "false"
-      :class "powermenu"
+      :class "powermenu ${class}"
       (revealer	:transition "slideleft"
         :reveal power
         :duration "550ms"
@@ -91,38 +94,38 @@
           :space-evenly "false"
           
           (button :class "button-suspend"
-          :onclick "eww open confirmation && eww update confirm_action='systemctl suspend'" "" )
+          :onclick "eww open confirmation && eww update confirm_action='systemctl suspend'" "")
           
           (button :class "button-reboot"
-          :onclick "eww open confirmation && eww update confirm_action='systemctl reboot'"	"")
+          :onclick "eww open confirmation && eww update confirm_action='systemctl reboot'" "")
           
           (button :class "button-logout"
           :onclick "hyprctl dispatch exit" "")
           
           (button :class "button-lock"
-          :onclick "hyprlock"	"")))
+          :onclick "bash -c \"eval 'hyprlock --config $HOME/.config/hypr/hyprlock.conf'\"" "")))
       
       (button		:class "button-off"
-      :onclick "eww open confirmation && eww update confirm_action='shutdown now'"	""))))
+      :onclick "eww open confirmation && eww update confirm_action='systemctl poweroff'" ""))))
 
 ;; Memory
-(defwidget memory []
-  (box :orientation "h"
-    :class "memory"
-    :space-evenly false
-    " ${round(EWW_RAM.used_mem / 1000000000, 1)}GB "))
+(defwidget memory [class]
+  (box
+    :orientation "h"
+    :class "memory ${class}"
+    " ${round(EWW_RAM.used_mem / 1000000000, 1)}GB"))
 
 ;; Disk
-(defwidget disk []
-  (box :orientation "h"
-    :class "disk"
-    :space-evenly false
-    " ${round(EWW_DISK["/"].used / 1000000000, 1)}GB "))
+(defwidget disk [class]
+  (box
+    :orientation "h"
+    :class "disk ${class}"
+    " ${round(EWW_DISK["/"].used / 1000000000, 1)}GB"))
 
 ;; Metric Template
-(defwidget metric [class label value onchange onclick]
+(defwidget metric [parent_class class label value onchange onclick]
   (box :orientation "h"
-    :class "metric ${class}-container"
+    :class "metric ${class}-container ${parent_class}"
     :space-evenly false
     (eventbox
       :onclick onclick
@@ -189,7 +192,7 @@
 "scripts/get-mute.sh")
 
 (defpoll activeworkspace :interval "0.1s"
-  "hyprctl activeworkspace | awk -F '[()]' '{print $2}' | xargs")
+  "hyprctl activeworkspace | awk -F '[()]' '{print $2; exit}' | xargs")
 
 (defpoll time :interval "10s"
 "date '+%d %b %Y  %H:%M'")
@@ -218,7 +221,7 @@
 ;; confirmation
 (defwindow confirmation
   :monitor 0
-  :stacking "fg"
-  :focusable false
-  :geometry (geometry :x "50%" :y "50%" :anchor "center center")
+  :stacking "overlay"
+  :focusable true
+  :geometry (geometry :x "50%" :y 5 :anchor "center top")
   (confirmation))

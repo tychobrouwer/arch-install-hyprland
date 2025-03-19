@@ -75,15 +75,21 @@ return {
         { "dart", "language-server", "--protocol=lsp" },
       });
 
+      lspconfig.golangci_lint_ls.setup{}
+
       require('mason-lspconfig').setup({
         ensure_installed = {
           "bashls",
           "ast_grep",
           "lua_ls",
           "elmls",
+          "html",
           "jsonls",
           "rust_analyzer",
           "elixirls",
+          "golangci_lint_ls",
+          "pylsp",
+          "ansiblels"
         },
         handlers = {
           -- this first function is the "default handler"

@@ -13,36 +13,23 @@
     padding: 5px;
 }
 
-.right {
+.bar-item {
     background-color: #24273a;
     border-radius: 6px;
-    color: #cad3f5;
-    padding: 3px 8px 3px 6px;
-}
-
-.right slider {
-    all: unset;
-    color: #cad3f5;
-}
-
-.right button {
-    all: unset;
-    color: #cad3f5;
+    padding: 3px 8px;
     margin-right: 10px;
 }
 
 .right .mutedmic {
     color: #181926;
+    padding-left: 9px;
 }
 
 .right .unmutedmic {
-    padding-right: 3px;
-    padding-left: 4px;
+    padding-right: 12px;
+    padding-left: 12px;
 }
 
-.right .batery25 {
-    color: #ed8796;
-}
 .right .volume0 {
     color: #181926;
     padding-right: 3px;
@@ -68,10 +55,12 @@
 }
 
 .metric scale trough highlight {
-    all: unset;
     background-color: #c6a0f6;
-    color: #000000;
     border-radius: 10px;
+}
+
+.right .batery25 {
+    color: #ed8796;
 }
 
 .batery25-container scale trough highlight {
@@ -85,20 +74,6 @@
     min-height: 8px;
     min-width: 50px;
     margin-left: 10px;
-    margin-right: 20px;
-}
-
-.memory,
-.disk {
-    margin-right: 10px;
-}
-
-.workspaces {
-    background-color: #24273a;
-    border-radius: 6px;
-    color: #cad3f5;
-    padding: 3px 8px;
-    margin-right: 10px;
 }
 
 .workspaces button {
@@ -112,13 +87,6 @@
 .workspaces button.activeworkspace,
 .workspaces button.activeworkspace:hover {
     color: #cad3f5;
-}
-
-.time {
-    background-color: #24273a;
-    border-radius: 6px;
-    color: #cad3f5;
-    padding: 3px 8px;
 }
 
 // ------------------------------------------------ //
@@ -181,11 +149,10 @@
 .button-suspend,
 .button-reboot,
 .button-logout,
-.button-lock,
-.button-off {
+.button-lock {
     color: #cad3f5;
     font-weight: normal;
-    font-size: 24px;
+    margin-right: 8px;
 }
 
 .button-off {
@@ -230,6 +197,11 @@
     border-radius: 6px;
     padding: 3px 8px;
     background-color: #24273a;
+}
+
+.confirm-box button:focus {
+    background-color: #b7bdf8;
+    color: #24273a;
 }
 
 .confirm-box .confirm-yes {
