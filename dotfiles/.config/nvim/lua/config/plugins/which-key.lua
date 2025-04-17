@@ -29,6 +29,8 @@ return {
       { "<C-W>d", hidden = true },
       { "<C-W><C-D>", hidden = true },
 
+      { "<leader>f", desc = "Format file" },
+
       -- Harpoon
       { "<leader>a", desc = "Add file to Harpoon" },
       { "<leader>e", desc = "Toggle Harpoon menu" },

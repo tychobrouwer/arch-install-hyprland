@@ -69,13 +69,21 @@ return {
         capabilities = require('cmp_nvim_lsp').default_capabilities()
       })
 
+      vim.lsp.config('elixirls', {
+        cmd = "/usr/lib/elixir-ls/launch.sh"
+      })
+
       local lspconfig = require("lspconfig")
 
-      lspconfig.dartls.setup({
+      lspconfig.dartls.setup{
         { "dart", "language-server", "--protocol=lsp" },
-      });
-
-      lspconfig.golangci_lint_ls.setup{}
+      }
+      lspconfig.gopls.setup{}
+      lspconfig.ansiblels.setup{}
+      lspconfig.ast_grep.setup{}
+      lspconfig.rust_analyzer.setup{}
+      lspconfig.elixirls.setup{}
+      lspconfig.elmls.setup{}
 
       require('mason-lspconfig').setup({
         ensure_installed = {
@@ -88,6 +96,7 @@ return {
           "rust_analyzer",
           "elixirls",
           "golangci_lint_ls",
+          "gopls",
           "pylsp",
           "ansiblels"
         },

@@ -6,7 +6,7 @@ reload_minus
 zoom_in
 zoom_out
 
-zoom_in plus
+zoom_in equal
 zoom_out minus
 
 # unset left and right

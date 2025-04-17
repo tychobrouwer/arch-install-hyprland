@@ -365,8 +365,10 @@ customise:
   aur_applications:
     # - android-studio
     - arduino-ide-bin
+    - ast-grep
     - brave-bin
     - cava
+    - elixir-ls
     # - flutter-bin
     # - google-chrome-wayland-vulkan
     # - jellyfin-media-player
