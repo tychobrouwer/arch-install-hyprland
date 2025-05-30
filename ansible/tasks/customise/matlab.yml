@@ -33,10 +33,26 @@
     group: root
     mode: "0755"
 
-- name: Install Patchelf
+- name: Install Xephyr and openbox
   ansible.builtin.package:
-    name: patchelf
-    state: present
+    name:
+      - openbox
+      - xorg-server-xephy
+      - xorg-xdpyinfo
+
+- name: Set NoDisplay desktop file {{ item }}
+  ansible.builtin.lineinfile:
+    path: /home/{{ user }}/.local/share/applications/matlab.desktop
+    regexp: Exec
+    line: Exec=/home/{{ user }}/.scripts/matlab.sh
+    owner: "{{ user }}"
+    group: "{{ user_group }}"
+    mode: "0644"
+
+  #- name: Install Patchelf
+#  ansible.builtin.package:
+#    name: patchelf
+#    state: present
 
 # #! /bin/sh
 # export GTK_PATH=/usr/lib/gtk-2.0
@@ -49,7 +65,7 @@
 #   changed_when: false
 #   when: customise.matlab.patch_libstdc
 
-- name: Patch MATLAB ServiceHost
-  ansible.builtin.command: "sudo patchelf --clear-execstack /home/{{ user }}/.MathWorks/ServiceHost/-mw_shared_installs/*/bin/glnxa64/libmwfoundation_crash_handling.so && sudo patchelf --clear-execstack /home/{{ user }}/.MathWorks/ServiceHost/-mw_shared_installs/v*/bin/glnxa64/mathworksservicehost/rcf/matlabconnector/serviceprocess/rcf/service/libmwmshrcfservice.so"
-  changed_when: false
-  when: customise.matlab.patch_servicehost
+#- name: Patch MATLAB ServiceHost
+#  ansible.builtin.command: "sudo patchelf --clear-execstack /home/{{ user }}/.MathWorks/ServiceHost/-mw_shared_installs/*/bin/glnxa64/libmwfoundation_crash_handling.so && sudo patchelf --clear-execstack /home/{{ user }}/.MathWorks/ServiceHost/-mw_shared_installs/v*/bin/glnxa64/mathworksservicehost/rcf/matlabconnector/serviceprocess/rcf/service/libmwmshrcfservice.so"
+#  changed_when: false
+#  when: customise.matlab.patch_servicehost

@@ -1,5 +1,5 @@
 ---
-- name: Install Hyprshot
+- name: Install spotify player
   ansible.builtin.import_tasks: ../aur-install.yml
   vars:
     _aur_packages: spotify-player-full
