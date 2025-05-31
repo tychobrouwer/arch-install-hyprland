@@ -292,6 +292,7 @@ customise:
       - Curve_Fitting_Toolbox
       - Database_Toolbox
       - DSP_System_Toolbox
+      - Aerospace_Toolbox
       - Embedded_Coder
       - Image_Acquisition_Toolbox
       - Image_Processing_Toolbox
@@ -302,6 +303,7 @@ customise:
       - Optimization_Toolbox
       - Robotics_System_Toolbox
       - Robust_Control_Toolbox
+      - ROS_Toolbox
       - Signal_Processing_Toolbox
       - Simulink
       - Simulink_Coder

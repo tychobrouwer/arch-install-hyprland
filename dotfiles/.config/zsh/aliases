@@ -34,6 +34,8 @@ alias gc='f() { git commit -m "$1" };f'
 alias gp='git push origin main'
 alias gs='git status'
 
+alias matlab='prime-run ~/.scripts/matlab.sh'
+
 #alias code='code --enable-features=UseOzonePlatform --ozone-platform=wayland --password-store=gnome-libsecret'
 #alias google-chrome-stable='google-chrome-stable --enable-features=UseOzonePlatform --ozone-platform=wayland --password-store=gnome-libsecret'
 #alias brave='brave --enable-features=UseOzonePlatform --ozone-platform=wayland --password-store=gnome-libsecret'

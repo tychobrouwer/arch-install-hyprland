@@ -44,7 +44,7 @@
   ansible.builtin.lineinfile:
     path: /home/{{ user }}/.local/share/applications/matlab.desktop
     regexp: Exec
-    line: Exec=/home/{{ user }}/.scripts/matlab.sh
+    line: Exec=prime-run /home/{{ user }}/.scripts/matlab.sh
     owner: "{{ user }}"
     group: "{{ user_group }}"
     mode: "0644"
