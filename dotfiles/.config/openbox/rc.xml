@@ -10,30 +10,30 @@
     <!-- Font settings for various UI elements -->
     <font place="ActiveWindow">
       <name>Sans</name>
-      <size>18</size>
+      <size>14</size>
       <weight>Bold</weight>
     </font>
     <font place="InactiveWindow">
       <name>Sans</name>
-      <size>18</size>
+      <size>14</size>
     </font>
     <font place="MenuHeader">
       <name>Sans</name>
-      <size>16</size>
+      <size>13</size>
       <weight>Bold</weight>
     </font>
     <font place="MenuItem">
       <name>Sans</name>
-      <size>16</size>
+      <size>13</size>
     </font>
     <font place="ActiveOnScreenDisplay">
       <name>Sans</name>
-      <size>15</size>
+      <size>12</size>
       <weight>Bold</weight>
     </font>
     <font place="InactiveOnScreenDisplay">
       <name>Sans</name>
-      <size>15</size>
+      <size>12</size>
     </font>
   </theme>
 
