@@ -66,7 +66,7 @@ MONITOR_PID=$!
 
 # Start MATLAB
 echo "Starting MATLAB..."
-DISPLAY=:1 JAVA_AWT_WM_NONEPARENTING=1 AWT_TOOLKIT=MToolkit /usr/local/bin/matlab -desktop &
+DISPLAY=:1 /usr/local/bin/matlab -desktop &
 MATLAB_PID=$!
 
 echo "MATLAB running with resolution $RESOLUTION"
@@ -75,3 +75,4 @@ echo "Press Ctrl+C to stop."
 
 wait $MATLAB_PID
 echo "MATLAB exited normally."
+

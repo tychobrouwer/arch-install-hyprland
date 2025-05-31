@@ -18,6 +18,6 @@ image/webp=feh.desktop;
 [Added Associations]
 application/zip=org.gnome.FileRoller.desktop;
 inode/directory=org.gnome.FileRoller.desktop;thunar.desktop;
-application/pdf=brave-browser.desktop;firefox.desktop;
-image/svg+xml=firefox.desktop;brave-browser.desktop;org.inkscape.Inkscape.desktop;
+application/pdf=brave-browser.desktop;
+image/svg+xml=brave-browser.desktop;org.inkscape.Inkscape.desktop;
 application/pkix-cert=vim.desktop;
