@@ -381,7 +381,7 @@ customise:
     - visual-studio-code-bin
     - zotero-bin
 
-  configure_spotify: true
+  configure_spotify: false
 
   hidden_applications:
     - assistant
