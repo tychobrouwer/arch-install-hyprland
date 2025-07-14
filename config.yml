@@ -107,7 +107,7 @@ system:
     kernels_to_tweak: /boot/loader/entries/*linux-zen.conf
 
   kernel_iommu:
-    configure: true
+    configure: false
     kernels_to_enable_iommu: /boot/loader/entries/*linux-zen.conf
 
   firewalld:
