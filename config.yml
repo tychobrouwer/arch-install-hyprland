@@ -258,19 +258,19 @@ customise:
       - name: mnt-files
         description: SMB files share
         destination: /mnt/files
-        source: //192.168.1.103/file_share
+        source: //10.12.12.103/file_share
         username: sambauser
         wireguard_needed: home
       - name: mnt-media
         description: SMB media share
         destination: /mnt/media
-        source: //192.168.1.103/media_share
+        source: //10.12.12.103/media_share
         username: sambauser
         wireguard_needed: home
       - name: home-{{ user }}-TUEindhoven
         description: SMB school files share
         destination: /home/{{ user }}/TUEindhoven
-        source: //192.168.1.103/file_share/TUEindhoven
+        source: //10.12.12.103/file_share/TUEindhoven
         username: sambauser
         wireguard_needed: home
 

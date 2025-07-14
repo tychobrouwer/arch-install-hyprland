@@ -22,6 +22,9 @@
   become: true
   become_user: "{{ user }}"
 
+- name: Restart sshd
+  ansible.builtin.command: systemctl restart sshd
+
 # - name: Get public key
 #   ansible.builtin.command: "cat {{ system.ssh.key_dir }}/id_{{ system.ssh.key_type }}.pub"
 #   register: public_key
