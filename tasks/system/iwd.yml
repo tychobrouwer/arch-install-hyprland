@@ -1,7 +1,9 @@
 ---
-- name: Install iwd
+- name: Install iwd and impala
   ansible.builtin.package:
-    name: iwd
+    name:
+      - iwd
+      - impala
     state: present
 
 - name: Add NetworkManager config directory

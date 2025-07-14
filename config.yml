@@ -18,10 +18,6 @@ git:
       dest: /home/{{ user }}/Projects/mail-app-flutter
     - repo: git@github.com/tychobrouwer/secure-messager-erlang.git
       dest: /home/{{ user }}/Projects/secure-messager-erlang
-    - repo: git@github.com/tychobrouwer/torrent-file-downloader.git
-      dest: /home/{{ user }}/Projects/torrent-file-downloader
-    - repo: git@github.com/tychobrouwer/tweakers-pricewatch.git
-      dest: /home/{{ user }}/Projects/tweakers-pricewatch
 
 dotfiles:
   configure: true
@@ -361,7 +357,8 @@ customise:
     - nm-connection-editor
     - qbittorrent
     - steam
-    - timeshift
+    # - timeshift
+    - snapper
     - torbrowser-launcher
 
   aur_applications:
