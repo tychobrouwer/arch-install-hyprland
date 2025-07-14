@@ -295,7 +295,7 @@ customise:
         wireguard_needed: home
 
   matlab:
-    configure: true
+    configure: false
     mpm_url: https://www.mathworks.com/mpm/glnxa64/mpm
     dir: /opt/MATLAB
     version: R2024b
