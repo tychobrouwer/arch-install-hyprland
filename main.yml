@@ -18,6 +18,11 @@
         name: NetworkManager
         state: restarted
 
+    - name: Restart sshd
+      ansible.builtin.systemd:
+        name: sshd
+        state: restarted
+
   tasks:
     - name: Configure git
       ansible.builtin.import_tasks: tasks/git.yml
