@@ -1,0 +1,432 @@
+---
+user: me
+user_group: me
+
+git:
+  name: Tycho Brouwer
+  email: tycho.tbrouwer@gmail.com
+  default_branch: main
+  editor: nvim
+  repos:
+    - repo: git@github.com/tychobrouwer/personal-website-elm.git
+      dest: /home/{{ user }}/Projects/personal-website-elm
+    - repo: git@github.com/tychobrouwer/tychobrouwer.git
+      dest: /home/{{ user }}/Projects/tychobrouwer
+    - repo: git@github.com/tychobrouwer/esp32-remote-car.git
+      dest: /home/{{ user }}/Projects/esp32-remote-car
+    - repo: git@github.com/tychobrouwer/mail-app-flutter.git
+      dest: /home/{{ user }}/Projects/mail-app-flutter
+    - repo: git@github.com/tychobrouwer/secure-messager-erlang.git
+      dest: /home/{{ user }}/Projects/secure-messager-erlang
+    - repo: git@github.com/tychobrouwer/torrent-file-downloader.git
+      dest: /home/{{ user }}/Projects/torrent-file-downloader
+    - repo: git@github.com/tychobrouwer/tweakers-pricewatch.git
+      dest: /home/{{ user }}/Projects/tweakers-pricewatch
+
+dotfiles:
+  configure: true
+  git: git@github.com:tychobrouwer/dotfiles.git
+  git_dir: /home/{{ user }}/Projects/dotfiles
+  script: set_dots.sh
+
+arch:
+  configure_pacman: true
+  pacman_mirror:
+    configure: true
+    mirrorlist: https://archlinux.org/mirrorlist/?country=NL&country=GB&country=DE&protocol=https&use_mirror_status=on
+
+  pacman:
+    parallel_downloads: 20
+    makeflags: "-j$(nproc)"
+
+  preferred_aur_helper: paru
+
+  paru:
+    install: true
+    git: https://aur.archlinux.org/paru.git
+    git_dir: /home/{{ user }}/.local/share
+
+  yay:
+    install: false
+    git: https://aur.archlinux.org/yay.git
+    git_dir: /home/{{ user }}/.local/share
+
+system:
+  ssh:
+    configure: true
+    key_dir: /home/{{ user }}/.ssh
+    key_type: ed25519
+    key_bits: 4096 # ignored for ed25519
+
+  disable_fsck: true
+
+  systemd_boot:
+    configure: true
+    colors:
+      enabled: true
+      colors:
+        - 24273a
+        - ed8796
+        - a6da95
+        - eed49f
+        - 8aadf4
+        - f5bde6
+        - 8bd5ca
+        - b8c0e0
+        - 5b6078
+        - ed8796
+        - a6da95
+        - eed49f
+        - 8aadf4
+        - f5bde6
+        - 8bd5ca
+        - a5adcb
+
+  systemd:
+    configure: true
+    device_timeout_sec: 5s
+    timeout_stop_sec: 5s
+
+  kernel_tweaks:
+    configure: true
+    kernels_to_tweak: /boot/loader/entries/*linux-zen.conf
+
+  kernel_iommu:
+    configure: true
+    kernels_to_enable_iommu: /boot/loader/entries/*linux-zen.conf
+
+  firewalld:
+    configure: true
+    services:
+      - service: ssh
+        permanent: true
+        state: enabled
+      - service: dhcpv6-client
+        permanent: true
+        state: enabled
+
+  enable_iwd: true
+  enable_bluetooth: true
+  enable_docker: true
+
+graphics: # Currently only supports Arch Linux
+  nvidia:
+    configure: false
+    driver: nvidia-dkms
+    kernel: linux-zen
+    packages:
+      - egl-wayland # provides wayland support
+      - lib32-nvidia-utils
+      - libva-nvidia-driver
+      - linux-zen-headers
+      - nvidia-open-dkms
+      - nvidia-settings
+      - nvidia-utils # provides nvidia-smi and
+      - nvtop
+      - opencl-nvidia # provides opencl support
+    prime: false
+
+  intel:
+    configure: false
+    packages:
+      - intel-gpu-tools
+      - intel-media-driver
+      - intel-ucode
+      - vulkan-intel
+      - lib32-vulkan-intel
+
+laptop:
+  tlp:
+    configure: false
+    config: |
+      START_CHARGE_THRESH_BAT0=70
+      STOP_CHARGE_THRESH_BAT0=80
+      RESTORE_THRESHOLDS_ON_BAT=1
+      PCIE_ASPM_ON_BAT=powersave
+      CPU_SCALING_GOVERNOR_ON_BAT=powersave
+      CPU_ENERGY_PERF_POLICY_ON_BAT=power
+      CPU_MIN_PERF_ON_BAT=0
+      CPU_MAX_PERF_ON_BAT=30
+      CPU_BOOST_ON_BAT=0
+      CPU_HWP_DYN_BOOST_ON_BAT=0
+      PLATFORM_PROFILE_ON_BAT=low-power
+
+  thinkfan:
+    configure: false
+    config: |
+      sensors:
+        - tpacpi: /proc/acpi/ibm/thermal
+          indices: [0, 1, 2, 3, 4, 5, 6]
+
+      fans:
+        - tpacpi: /proc/acpi/ibm/fan
+
+      levels:
+        - [0, 0, 41]
+        - [1, 38, 51]
+        - [2, 45, 56]
+        - [3, 51, 61]
+        - [4, 55, 64]
+        - [5, 60, 66]
+        - [6, 63, 68]
+        - [7, 65, 74]
+        - [127, 70, 32767]
+
+desktop:
+  hyprland: # Currently only supports Arch Linux
+    configure: true
+    packages:
+      - hyprland
+      - hyprlock
+      - hypridle
+      - hyprpaper
+      - hyprpicker
+      - xdg-desktop-portal
+      - xdg-desktop-portal-hyprland
+
+    applications:
+      - cliphist
+      - dunst
+      - foot
+      - inotify-tools
+      - qt5-wayland
+      - qt6-wayland
+      - rofi-wayland
+      - thunar
+      - thunar-archive-plugin
+      - waybar
+      - wl-clipboard
+      - wireplumber
+      - zathura
+      - zathura-pdf-mupdf
+
+    aur_packages:
+      - hyprshot
+      - xfce-polkit
+
+  greetd_tuigreet:
+    configure: true
+    vt: 2
+    command: Hyprland > /var/log/hyprland/hyprland.log 2>&1
+    time_format: "%d %b %Y - %H:%M:%S"
+    greeting: Unfriendly environment for unauthorised personnel.
+
+  gnome_keyring:
+    configure: true
+    sessions: gnome;Hyprland
+
+customise:
+  zsh:
+    configure: true
+
+  omz:
+    configure: false
+    git_dir: /home/{{ user }}/.local/share
+    script: https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+
+  starship:
+    configure: true
+    zsh_autosuggestions: https://github.com/zsh-users/zsh-autosuggestions
+
+  wireguard:
+    configure: true
+    udp2raw_install: true
+    udp2raw_dir: /opt/udp2raw
+    configs:
+      - name: home
+        address: 10.6.0.2/32
+        dns: "10.12.12.101"
+        mtu: 1420
+        pre_up: /opt/udp2raw/udp2raw_amd64 -s -l127.0.0.1:51820 -r{{ public_ip }}:51821 -a --log-level 0 &
+        post_down: killall udp2raw || true
+        peer_public_key: ""
+        allowed_ips: 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16
+        endpoint: 127.0.0.1:51820
+        persistent_keepalive: 25
+      
+      - name: mulvad-ams.yml
+        address: 10.69.92.193/32, fc00:bbbb:bbbb:bb01::6:5cc0/128
+        dns: "10.64.0.1"
+        allowed_ips: 0.0.0.0/0, ::/0
+        endpoint: 193.32.249.66:51820
+      
+      - name: mulvad-nyc.yml
+        address: 10.72.165.197/32,fc00:bbbb:bbbb:bb01::9:a5c4/128
+        dns: "10.64.0.1"
+        allowed_ips: 0.0.0.0/0, ::/0
+        endpoint: 143.244.47.65:51820
+
+  smb_mounts:
+    configure: true
+    mounts:
+      - name: mnt-files
+        description: SMB files share
+        destination: /mnt/files
+        source: //192.168.1.103/file_share
+        username: sambauser
+        wireguard_needed: home
+      - name: mnt-media
+        description: SMB media share
+        destination: /mnt/media
+        source: //192.168.1.103/media_share
+        username: sambauser
+        wireguard_needed: home
+      - name: home-{{ user }}-TUEindhoven
+        description: SMB school files share
+        destination: /home/{{ user }}/TUEindhoven
+        source: //192.168.1.103/file_share/TUEindhoven
+        username: sambauser
+        wireguard_needed: home
+
+  matlab:
+    configure: true
+    mpm_url: https://www.mathworks.com/mpm/glnxa64/mpm
+    dir: /opt/MATLAB
+    version: R2024b
+    patch_libstdc: true
+    patch_servicehost: true
+    products:
+      - Communications_Toolbox
+      - Computer_Vision_Toolbox
+      - Control_System_Toolbox
+      - Curve_Fitting_Toolbox
+      - Database_Toolbox
+      - DSP_System_Toolbox
+      - Aerospace_Toolbox
+      - Embedded_Coder
+      - Image_Acquisition_Toolbox
+      - Image_Processing_Toolbox
+      - MATLAB
+      - MATLAB_Coder
+      - MATLAB_Compiler
+      - MATLAB_Compiler_SDK
+      - Optimization_Toolbox
+      - Robotics_System_Toolbox
+      - Robust_Control_Toolbox
+      - ROS_Toolbox
+      - Signal_Processing_Toolbox
+      - Simulink
+      - Simulink_Coder
+      - Simulink_Compiler
+      - Simulink_Control_Design
+      - Stateflow
+      - Symbolic_Math_Toolbox
+      - System_Identification_Toolbox
+      - WLAN_Toolbox
+
+  util_packages:
+    - base-devel
+    - brightnessctl
+    - btop
+    - cifs-utils # for mounting SMB shares
+    - cmake
+    - curl
+    - fastfetch
+    # - feh # Wayland support is not available
+    - fwupd
+    # - gvfs
+    # - gvfs-smb
+    - inetutils # for hostname
+    - less
+    - libva-utils # provides vainfo
+    - lm_sensors # for monitoring hardware sensors
+    - man-pages-uk
+    - mpv
+    - ntfs-3g # for mounting NTFS drives
+    - patchelf
+    - playerctl
+    - powertop
+    - ripgrep
+    - rustup
+    - tldr
+    - udiskie # for mounting USB drives
+    - unzip
+    - vdpauinfo # provides vdpauinfo
+    - vlc
+    - wget
+    - zip
+
+  fonts:
+    - ttf-jetbrains-mono
+    - ttf-roboto-mono
+    - ttf-roboto-mono-nerd
+
+  applications:
+    - firefox
+    - gimp
+    - inkscape
+    - jupyter-notebook
+    - keepassxc
+    - neovim
+    - nm-connection-editor
+    - qbittorrent
+    - steam
+    - timeshift
+    - torbrowser-launcher
+
+  aur_applications:
+    # - android-studio
+    - arduino-ide-bin
+    - ast-grep
+    - brave-bin
+    - cava
+    - elixir-ls
+    # - flutter-bin
+    # - google-chrome-wayland-vulkan
+    # - jellyfin-media-player
+    - kopia-ui-bin
+    - mailspring-bin
+    - minecraft-launcher
+    # - nordvpn-bin
+    # - rstudio-desktop-bin
+    - teams-for-linux-bin
+    - tor-browser-bin
+    - visual-studio-code-bin
+    - zotero-bin
+
+  configure_spotify: true
+
+  hidden_applications:
+    - assistant
+    - avahi-discover
+    - bssh
+    - bvnc
+    - btop
+    - cmake-gui
+    - designer
+    - electron22
+    - electron33
+    - foot-server
+    - footclient
+    - htop
+    - ipython
+    - jconsole-java-openjdk
+    - jconsole-java11-openjdk
+    - jconsole-java17-openjdk
+    - jshell-java-openjdk
+    - jshell-java11-openjdk
+    - jshell-java17-openjdk
+    - linguist
+    - nvtop
+    - org.gnome.FileRoller
+    - org.kde.kuserfeedback-console
+    - qdbusviewer
+    - qv4l2
+    - qvidcap
+    - r
+    - rofi
+    - rofi-theme-selector
+    - thunar-bulk-rename
+    - thunar-settings
+    - torbrowser-settings
+
+  ozone_wayland_applications:
+    - brave-browser
+    - code
+    # - google-chrome
+
+# install_packages_essential:
+# - python-pip
+# - python-pexpect
+# - xorg-xwayland
+# - xwaylandvideobridge
