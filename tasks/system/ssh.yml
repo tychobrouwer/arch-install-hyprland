@@ -21,9 +21,11 @@
     state: present
   become: true
   become_user: "{{ user }}"
+  register: ssh_key
 
 - name: Restart sshd
   ansible.builtin.command: systemctl restart sshd
+  when: ssh_key.changed
 
 # - name: Get public key
 #   ansible.builtin.command: "cat {{ system.ssh.key_dir }}/id_{{ system.ssh.key_type }}.pub"
