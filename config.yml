@@ -190,7 +190,7 @@ desktop:
       - rofi-wayland
       - thunar
       - thunar-archive-plugin
-      - waybar
+      # - waybar
       - wl-clipboard
       - wireplumber
       - zathura
@@ -199,7 +199,8 @@ desktop:
     aur_packages:
       - hyprshot
       - xfce-polkit
-
+      - eww
+  
   greetd_tuigreet:
     configure: true
     vt: 2

@@ -47,7 +47,7 @@
       ansible.builtin.import_tasks: tasks/laptop/main.yml
 
     - name: Configure Desktop Environment
-      ansible.builtin.import_tasks: tasks/desktops/main.yml
+      ansible.builtin.import_tasks: tasks/desktop/main.yml
 
     - name: Configure Customisations
       ansible.builtin.import_tasks: tasks/customise/main.yml
