@@ -61,22 +61,41 @@ system:
     colors:
       enabled: true
       colors:
-        - 24273a
-        - ed8796
-        - a6da95
-        - eed49f
-        - 8aadf4
-        - f5bde6
-        - 8bd5ca
-        - b8c0e0
-        - 5b6078
-        - ed8796
-        - a6da95
-        - eed49f
-        - 8aadf4
-        - f5bde6
-        - 8bd5ca
-        - a5adcb
+        # Everblush
+        - 141b1e
+        - e57474
+        - 8ccf7e
+        - e5c76b
+        - 67b0e8
+        - c47fd5
+        - 6cbfbf
+        - dadada
+        - 232a2d
+        - e57474
+        - 8ccf7e
+        - e5c76b
+        - 67b0e8
+        - c47fd5
+        - 6cbfbf
+        - b3b9b8
+
+        # Catppuccin Macchiato
+        # - 24273a
+        # - ed8796
+        # - a6da95
+        # - eed49f
+        # - 8aadf4
+        # - f5bde6
+        # - 8bd5ca
+        # - b8c0e0
+        # - 5b6078
+        # - ed8796
+        # - a6da95
+        # - eed49f
+        # - 8aadf4
+        # - f5bde6
+        # - 8bd5ca
+        # - a5adcb
 
   systemd:
     configure: true
@@ -102,8 +121,8 @@ system:
         state: enabled
 
   enable_iwd: true
-  enable_bluetooth: true
-  enable_docker: true
+  enable_bluetooth: false
+  enable_docker: false
 
 graphics: # Currently only supports Arch Linux
   nvidia:
@@ -429,3 +448,5 @@ customise:
 # - python-pexpect
 # - xorg-xwayland
 # - xwaylandvideobridge
+
+
