@@ -28,7 +28,7 @@ dotfiles:
 arch:
   configure_pacman: true
   pacman_mirror:
-    configure: true
+    configure: false
     mirrorlist: https://archlinux.org/mirrorlist/?protocol=https&use_mirror_status=on
 
   pacman:
@@ -360,6 +360,7 @@ customise:
     # - timeshift
     - snapper
     - torbrowser-launcher
+    - ncspot
 
   aur_applications:
     # - android-studio
