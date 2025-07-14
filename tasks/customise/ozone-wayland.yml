@@ -15,8 +15,8 @@
     owner: root
     group: root
     mode: "0644"
-  when: ozone_wayland_applications is iterable
-  loop: "{{ ozone_wayland_applications }}"
+  when: customise.ozone_wayland_applications is iterable
+  loop: "{{ customise.ozone_wayland_applications }}"
   failed_when: false
 
 - name: Set command options desktop file {{ item }}
@@ -27,6 +27,6 @@
     owner: "{{ user }}"
     group: "{{ user_group }}"
     mode: "0644"
-  when: ozone_wayland_applications is iterable
-  loop: "{{ ozone_wayland_applications }}"
+  when: customise.ozone_wayland_applications is iterable
+  loop: "{{ customise.ozone_wayland_applications }}"
   failed_when: false
