@@ -340,8 +340,9 @@ customise:
     - fastfetch
     # - feh # Wayland support is not available
     - fwupd
-    # - gvfs
-    # - gvfs-smb
+    - gvfs
+    - gvfs-smb
+    - gopls
     - inetutils # for hostname
     - less
     - libva-utils # provides vainfo
