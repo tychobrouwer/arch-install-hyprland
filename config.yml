@@ -438,6 +438,9 @@ customise:
     - thunar-bulk-rename
     - thunar-settings
     - torbrowser-settings
+    - xgps
+    - xgpsspeed
+    - torbrowser # This is the tor browser launcher, not the browser itself
 
   ozone_wayland_applications:
     - brave-browser
